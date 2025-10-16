@@ -4,9 +4,14 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+  vite: {
+    server: {
+      allowedHosts: ['.hjkl01.cn'],
+    }
+  },
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'Github Repository',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			sidebar: [
 				{
@@ -17,9 +22,13 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Github',
+					autogenerate: { directory: 'github' },
 				},
+				// {
+				// 	label: 'Hello Github',
+				// 	autogenerate: { directory: 'hellogithub' },
+				// },
 			],
 		}),
 	],
