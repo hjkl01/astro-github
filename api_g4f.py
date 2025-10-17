@@ -162,6 +162,73 @@ def streaming_example():
     handle_streaming_response(response)
 
 
+def auto_category(content):
+    category = [
+        "windows",
+        "python",
+        "tools",
+        "vim",
+        "kubernetes",
+        "web",
+        "java",
+        "database",
+        "android",
+        "ecommerce",
+        "backup",
+        "macos",
+        "ai",
+        "networking",
+        "node.js",
+        "rust",
+        "mobile",
+        "javascript",
+        "windows",
+        "devops",
+        "go",
+        "monitoring",
+        "nginx",
+        "sftp-server",
+        "crawling",
+        "cryptography",
+        "media",
+        "web-tools",
+        "translation",
+        "linux",
+        "search",
+        "docker",
+        "sql",
+        "github",
+        "email",
+        "data",
+        "chat",
+        "ocr",
+        "openwrt",
+        "wsl",
+        "shell",
+        "emulators",
+        "system-management",
+        "games",
+        "serverless",
+        "api",
+        "music",
+        "terminal",
+        "geoip",
+        "download",
+        "dotfiles",
+        "nodejs",
+        "git",
+        "remote-desktop",
+    ]
+    # 现在我想对其进行分类，已有的分类有Python、docker、Linux、tools、windows等，分析该项目应在哪个分类下，如不存在已有的分类，可以新建一个。
+    content = f"""我收集了GitHub项目,以下是对项目的描述: {content}.
+    现在我想对其进行分类，已有的分类有{category}，分析该项目应在哪个分类下，如不存在已有的分类，放到默认的GitHub目录下。
+    直接返回分类名称， 不需要其他的废话."""
+    response = api_g4f(content)
+    # print(response)
+    result = response["choices"][0]["message"]["content"]
+    return result
+
+
 if __name__ == "__main__":
     # 运行基本示例
     # main()

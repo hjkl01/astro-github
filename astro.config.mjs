@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import fs from 'fs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,23 +14,14 @@ export default defineConfig({
 		starlight({
 			title: 'Github Repository',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
-			sidebar: [
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Github',
-					autogenerate: { directory: 'github' },
-				},
-				// {
-				// 	label: 'Hello Github',
-				// 	autogenerate: { directory: 'hellogithub' },
-				// },
-			],
+			sidebar: fs.readdirSync('src/content/docs').filter(dir => {
+          const stat = fs.statSync(`src/content/docs/${dir}`);
+          return stat.isDirectory();
+        }).map(dir => ({
+          label: dir,
+          autogenerate: { directory: dir },
+          collapsed: true,
+        })),
 		}),
 	],
 });
