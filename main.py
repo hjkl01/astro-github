@@ -27,13 +27,13 @@ def extract_github_info(github_url):
         return None, None
 
 
-def task(url):
+def task(url, dirname):
     if "github.com" not in url:
         return
     username, repository = extract_github_info(url)
     print(username, repository)
 
-    astro_path = "./src/content/docs/github"
+    astro_path = f"./src/content/docs/{dirname}"
     if os.path.exists(astro_path) is False:
         os.makedirs(astro_path)
     filename = f"{astro_path}/{repository}_{username}.md"
@@ -57,18 +57,40 @@ title: {repository}
         f.write(md)
 
 
+def list_files(dirname="src/content/docs"):
+    files = []
+    for root, dirs, filenames in os.walk(dirname):
+        for filename in filenames:
+            files.append(os.path.join(root, filename))
+    return files
+
+
 def main():
     # url = "https://github.com/apify/crawlee-python?tab=readme-ov-file"
     # username, repository = extract_github_info(url)
     # print(username, repository)
     # return
-    with open("./github_bookmarks.json", "r") as file:
-        data = json.loads(file.read())
-    urls = [item["url"] for item in data["bookmarks"]]
 
-    for url in urls:
+    # with open("./github_bookmarks.json", "r") as file:
+    #     data = json.loads(file.read())
+    # urls = [item["url"] for item in data["bookmarks"]]
+    #
+    # for url in urls:
+    #     try:
+    #         task(url)
+    #     except Exception as e:
+    #         print(e)
+
+    with open("urls.txt", "r") as f:
+        urls = f.readlines()
+    md_files = list_files()
+    for temp in urls:
+        url, dirname = temp.strip().split(" ")
+        if url in md_files:
+            print(f"文件已存在：{url}")
+            continue
         try:
-            task(url)
+            task(url, dirname)
         except Exception as e:
             print(e)
 
