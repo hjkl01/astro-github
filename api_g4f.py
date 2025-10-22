@@ -1,5 +1,7 @@
 import httpx
 import json
+import time
+import random
 from typing import Dict, Any, Optional
 
 
@@ -55,6 +57,9 @@ class APIClient:
 
 
 def api_g4f(content):
+    sleep_time = random.randint(1, 3)
+    print(sleep_time, content)
+    time.sleep(sleep_time)
     client = APIClient()
 
     # 基础数据
@@ -68,10 +73,13 @@ def api_g4f(content):
     grok_response = client.post_chat_completion(
         "https://gpt4free.pro/v1/chat/completions",
         base_payload,
+        # model="grok-4",
         model="gpt-5-chat",
         # "https://g4f.dev/api/grok/chat/completions", base_payload, model="grok-4-fast-non-reasoning"
     )
     print(f"Status: {grok_response.status_code}")
+    if grok_response.status_code != 200:
+        return api_g4f(content)
     # print(f"Response: {grok_response.text[:200]}...")
     print(f"Response: {grok_response.text[:100]}...")
     return grok_response.json()
