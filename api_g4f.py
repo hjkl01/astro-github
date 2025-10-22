@@ -56,33 +56,43 @@ class APIClient:
 # 使用示例
 
 
-def api_g4f(content):
-    sleep_time = random.randint(1, 3)
-    print(sleep_time, content)
-    time.sleep(sleep_time)
-    client = APIClient()
+def api_g4f(content, max_retries=3):
+    for attempt in range(max_retries):
+        try:
+            sleep_time = random.randint(1, 3)
+            print(f"尝试 {attempt + 1}/{max_retries}, 等待 {sleep_time} 秒")
+            time.sleep(sleep_time)
+            client = APIClient()
 
-    # 基础数据
-    base_payload = {
-        "messages": [{"role": "user", "content": content}],
-        # "stream": True,
-        "stream": False,
-        "stream_options": {"include_usage": True},
-    }
+            # 基础数据
+            base_payload = {
+                "messages": [{"role": "user", "content": content}],
+                "stream": False,
+                "stream_options": {"include_usage": True},
+            }
 
-    grok_response = client.post_chat_completion(
-        "https://gpt4free.pro/v1/chat/completions",
-        base_payload,
-        # model="grok-4",
-        model="gpt-5-chat",
-        # "https://g4f.dev/api/grok/chat/completions", base_payload, model="grok-4-fast-non-reasoning"
-    )
-    print(f"Status: {grok_response.status_code}")
-    if grok_response.status_code != 200:
-        return api_g4f(content)
-    # print(f"Response: {grok_response.text[:200]}...")
-    print(f"Response: {grok_response.text[:100]}...")
-    return grok_response.json()
+            grok_response = client.post_chat_completion(
+                "https://gpt4free.pro/v1/chat/completions",
+                base_payload,
+                model="gpt-5-chat",
+            )
+            print(f"Status: {grok_response.status_code}")
+
+            if grok_response.status_code == 200:
+                print(f"Response: {grok_response.text[:100]}...")
+                return grok_response.json()
+            else:
+                print(f"请求失败，状态码: {grok_response.status_code}")
+                if attempt < max_retries - 1:
+                    continue
+
+        except Exception as e:
+            print(f"请求出错 (尝试 {attempt + 1}): {str(e)}")
+            if attempt < max_retries - 1:
+                continue
+
+    print("所有重试均失败")
+    return {"choices": [{"message": {"content": "API 请求失败"}}]}
 
 
 # 流式响应处理示例

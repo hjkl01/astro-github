@@ -27,34 +27,53 @@ def extract_github_info(github_url):
         return None, None
 
 
-def task(url: str, dirname: str = '01'):
+def task(url: str, dirname: str = "01"):
     if "github.com" not in url:
         return
-    username, repository = extract_github_info(url)
-    print(username, repository)
 
-    content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件，包含项目地址，不需要其他的废话."
-    response = api_g4f(content)
-    print(response)
-    md = response["choices"][0]["message"]["content"].lstrip("```markdown").rstrip("```")
-    title = f"""
+    username, repository = extract_github_info(url)
+    if not username or not repository:
+        print(f"无法解析 GitHub URL: {url}")
+        return
+
+    print(username, repository)
+    filename = None
+
+    try:
+        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件，包含项目地址，不需要其他的废话."
+        response = api_g4f(content)
+        print(response)
+
+        if "choices" not in response or not response["choices"]:
+            print(f"API 响应格式错误: {url}")
+            return
+
+        md = response["choices"][0]["message"]["content"].lstrip("```markdown").rstrip("```")
+        title = f"""
 ---
 title: {repository}
 ---
 
 """
-    md = title + md
+        md = title + md
 
-    if dirname:
-        astro_path = f"./src/content/docs/{dirname}"
-        if os.path.exists(astro_path) is False:
-            os.makedirs(astro_path)
-        filename = f"{astro_path}/{repository}_{username}.md"
-        if os.path.exists(filename):
-            print(f"文件已存在：{filename} {url}")
-            return
-    with open(filename, "w") as f:
-        f.write(md)
+        if dirname:
+            astro_path = f"./src/content/docs/{dirname}"
+            os.makedirs(astro_path, exist_ok=True)
+            filename = f"{astro_path}/{repository}_{username}.md"
+            if os.path.exists(filename):
+                print(f"文件已存在：{filename} {url}")
+                return
+
+        if filename:
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write(md)
+            print(f"文件创建成功：{filename}")
+
+    except Exception as e:
+        print(f"处理项目时出错 {url}: {str(e)}")
+        if filename:
+            print(f"问题文件：{filename}")
 
 
 def list_files(dirname="src/content/docs"):
@@ -66,44 +85,45 @@ def list_files(dirname="src/content/docs"):
 
 
 def main():
-    # url = "https://github.com/apify/crawlee-python?tab=readme-ov-file"
-    # username, repository = extract_github_info(url)
-    # print(username, repository)
-    # return
+    try:
+        with open("urls.txt", "r", encoding="utf-8") as f:
+            urls = f.readlines()
 
-    # with open("./github_bookmarks.json", "r") as file:
-    #     data = json.loads(file.read())
-    # urls = [item["url"] for item in data["bookmarks"]]
-    #
-    # for url in urls:
-    #     try:
-    #         task(url)
-    #     except Exception as e:
-    #         print(e)
+        md_files = list_files()
+        md_files = [f.split("/")[-1] for f in md_files]
 
-    with open("urls.txt", "r") as f:
-        urls = f.readlines()
-    md_files = list_files()
-    md_files = [f.split("/")[-1] for f in md_files]
-    for project in urls:
-        temp = project.strip().split("\n")
+        for project_line in urls:
+            project_line = project_line.strip()
+            if not project_line:
+                continue
 
-        username, repository = extract_github_info(temp[0])
-        filename = f"{repository}_{username}.md"
-        if filename in md_files:
-            print(f"文件已存在：{filename}")
-            continue
+            temp = project_line.split("\n")
+            url = temp[0]
 
-        if len(temp) == 1:
-            task(temp[0])
-        elif len(temp) == 2:
+            username, repository = extract_github_info(url)
+            if not username or not repository:
+                print(f"无法解析 GitHub URL: {url}")
+                continue
+
+            filename = f"{repository}_{username}.md"
+            if filename in md_files:
+                print(f"文件已存在：{filename}")
+                continue
+
             try:
-                task(temp[0], temp[1])
+                if len(temp) == 1:
+                    task(url)
+                elif len(temp) == 2:
+                    task(url, temp[1])
+                else:
+                    print(f"无法解析：{temp}")
             except Exception as e:
-                print(e)
-        else:
-            print(f"无法解析：{temp}")
-            continue
+                print(f"处理项目 {url} 时出错：{str(e)}")
+
+    except FileNotFoundError:
+        print("错误：找不到 urls.txt 文件")
+    except Exception as e:
+        print(f"主程序出错：{str(e)}")
 
 
 if __name__ == "__main__":
