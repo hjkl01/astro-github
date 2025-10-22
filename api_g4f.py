@@ -65,50 +65,11 @@ def api_g4f(content):
         "stream_options": {"include_usage": True},
     }
 
-    # # 1. Together AI 请求
-    # print("=== Together AI ===")
-    # together_response = client.post_chat_completion("https://api.together.xyz/v1/chat/completions", base_payload)
-    # print(f"Status: {together_response.status_code}")
-    # print(f"Response: {together_response.text[:200]}...")
-    #
-    # # 2. OpenRouter 模型列表
-    # print("\n=== OpenRouter Models ===")
-    # models_response = client.get_models("https://g4f.dev/api/openrouter/models")
-    # print(f"Status: {models_response.status_code}")
-    # print(f"Models count: {len(models_response.json()) if models_response.status_code == 200 else 'N/A'}")
-    #
-    # # 3. OpenRouter 聊天完成（指定模型）
-    # print("\n=== OpenRouter Chat Completion ===")
-    # openrouter_response = client.post_chat_completion(
-    #     "https://g4f.dev/api/openrouter/chat/completions",
-    #     base_payload,
-    #     model="alibaba/tongyi-deepresearch-30b-a3b:free",
-    # )
-    # print(f"Status: {openrouter_response.status_code}")
-    # print(f"Response: {openrouter_response.text[:200]}...")
-    #
-    # # 4. Gemini 模型列表
-    # print("\n=== Gemini Models ===")
-    # gemini_models = client.get_models("https://g4f.dev/api/gemini/models")
-    # print(f"Status: {gemini_models.status_code}")
-    #
-    # # 5. Gemini 聊天完成
-    # print("\n=== Gemini Chat Completion ===")
-    # gemini_response = client.post_chat_completion(
-    #     "https://g4f.dev/api/gemini/chat/completions", base_payload, model="models/gemini-2.5-pro-preview-03-25"
-    # )
-    # print(f"Status: {gemini_response.status_code}")
-    # print(f"Response: {gemini_response.text[:200]}...")
-    #
-    # # 6. Grok 模型列表
-    # print("\n=== Grok Models ===")
-    # grok_models = client.get_models("https://g4f.dev/api/grok/models")
-    # print(f"Status: {grok_models.status_code}")
-
-    # 7. Grok 聊天完成
-    print("\n=== Grok Chat Completion ===")
     grok_response = client.post_chat_completion(
-        "https://g4f.dev/api/grok/chat/completions", base_payload, model="grok-4-fast-non-reasoning"
+        "https://gpt4free.pro/v1/chat/completions",
+        base_payload,
+        model="gpt-5-chat",
+        # "https://g4f.dev/api/grok/chat/completions", base_payload, model="grok-4-fast-non-reasoning"
     )
     print(f"Status: {grok_response.status_code}")
     # print(f"Response: {grok_response.text[:200]}...")
