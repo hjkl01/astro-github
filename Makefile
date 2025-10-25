@@ -18,7 +18,7 @@ install:
 	@echo "✅ 依赖安装完成，激活环境：source $(VENV)/bin/activate"
 
 
-run: install
+run:
 	@echo "🚀 启动服务..."
 	$(ACTIVATE) && uv run python ./github_trending_scraper.py
 	$(ACTIVATE) && uv run python ./main.py
