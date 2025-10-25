@@ -49,6 +49,9 @@ def task(url: str, dirname: str = "01"):
             return
 
         md = response["choices"][0]["message"]["content"].lstrip("```markdown").rstrip("```")
+        if len(md) < 50:
+            print(f"API 响应内容太短：{url}")
+            return
         title = f"""
 ---
 title: {repository}
@@ -84,7 +87,19 @@ def list_files(dirname="src/content/docs"):
     return files
 
 
+def clean_small_md_files(dirname="src/content/docs", min_size=500):
+    for root, dirs, files in os.walk(dirname):
+        for file in files:
+            if file.endswith(".md"):
+                filepath = os.path.join(root, file)
+                size = os.path.getsize(filepath)
+                if size < min_size:
+                    # os.remove(filepath)
+                    print(f"Deleted small file: {filepath}")
+
+
 def main():
+    clean_small_md_files()
     try:
         with open("urls.txt", "r", encoding="utf-8") as f:
             urls = f.readlines()
