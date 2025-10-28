@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import asyncio
 from api_g4f import api_g4f, auto_category
 
 
@@ -27,7 +28,7 @@ def extract_github_info(github_url):
         return None, None
 
 
-def task(url: str, dirname: str = "01"):
+async def task(url: str, dirname: str = "01"):
     if "github.com" not in url:
         return
 
@@ -36,19 +37,19 @@ def task(url: str, dirname: str = "01"):
         print(f"无法解析 GitHub URL: {url}")
         return
 
-    print(username, repository)
+    print("start: ", username, repository)
     filename = None
 
     try:
-        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件，包含项目地址，不需要其他的废话."
-        response = api_g4f(content)
+        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/01/{repository}_{username}.md，包含项目地址，不需要其他的废话."
+        response = await api_g4f(content)
         print(response)
 
-        if "choices" not in response or not response["choices"]:
-            print(f"API 响应格式错误: {url}")
-            return
+        # if "choices" not in response or not response["choices"]:
+        #     print(f"API 响应格式错误: {url}")
+        #     return
 
-        md = response["choices"][0]["message"]["content"].lstrip("```markdown").rstrip("```")
+        md = response.lstrip("```markdown").rstrip("```")
         if len(md) < 50:
             print(f"API 响应内容太短：{url}")
             return
@@ -98,7 +99,7 @@ def clean_small_md_files(dirname="src/content/docs", min_size=500):
                     print(f"Deleted small file: {filepath}")
 
 
-def main():
+async def main():
     clean_small_md_files()
     try:
         with open("urls.txt", "r", encoding="utf-8") as f:
@@ -127,9 +128,9 @@ def main():
 
             try:
                 if len(temp) == 1:
-                    task(url)
+                    await task(url)
                 elif len(temp) == 2:
-                    task(url, temp[1])
+                    await task(url, temp[1])
                 else:
                     print(f"无法解析：{temp}")
             except Exception as e:
@@ -142,4 +143,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

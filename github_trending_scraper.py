@@ -88,10 +88,13 @@ async def scrape_github_trending():
 
 if __name__ == "__main__":
     trending_repos = asyncio.run(scrape_github_trending())
+    with open("./urls.txt", "r") as f:
+        old_urls = [u.strip() for u in f.readlines()]
     urls = list(set([trending_repo["url"] for trending_repo in trending_repos]))
     for url in urls:
-        with open("./urls.txt", "a") as f:
-            f.write(f"{url}\n")
+        if url not in old_urls:
+            with open("./urls.txt", "a") as f:
+                f.write(f"{url}\n")
     # print(json.dumps(trending_repos, indent=4, ensure_ascii=False))
 
     # Optionally save to file
