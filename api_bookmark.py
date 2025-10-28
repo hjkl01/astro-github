@@ -16,6 +16,7 @@ def find_chrome_bookmarks():
         # 添加更多Profile路径（如果有多个Chrome用户配置）
         Path.home() / "Library" / "Application Support" / "Google" / "Chrome" / "Profile 2" / "Bookmarks",
         Path.home() / "Library" / "Application Support" / "Google" / "Chrome" / "Profile 3" / "Bookmarks",
+        Path.cwd() / "Bookmarks",
     ]
 
     for path in possible_paths:
@@ -110,7 +111,7 @@ def main():
         sys.exit(1)
 
     # 设置输出文件名
-    output_file = Path.home() / "Desktop" / "github_bookmarks.json"
+    output_file = "./github_bookmarks.json"
 
     print(f"输出文件: {output_file}")
     print("-" * 50)
@@ -119,9 +120,9 @@ def main():
     success = extract_github_bookmarks(bookmarks_file, output_file)
 
     if success:
-        print(f"\n✅ 操作成功完成！")
+        print("\n✅ 操作成功完成！")
     else:
-        print(f"\n❌ 操作失败，请检查错误信息。")
+        print("\n❌ 操作失败，请检查错误信息。")
         sys.exit(1)
 
 

@@ -1,11 +1,24 @@
 from g4f.client import AsyncClient
 import asyncio
+import subprocess
+
+
+async def api_opencode(content):
+    command = 'opencode run "{}"'.format(content)
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    return output
 
 
 async def api_g4f(content):
-    client = AsyncClient()
+    client = AsyncClient(timeout=60)
     response = await client.chat.completions.create(
         model="gpt-4o-mini",
+        # model="gpt-4.1",
+        # model="gpt-4o",
+        # model="gpt-3.5-turbo",
+        # model="gemini",
+        # model="grok",
         messages=[{"role": "user", "content": content}],
     )
     result = response.choices[0].message.content

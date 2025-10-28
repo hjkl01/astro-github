@@ -2,7 +2,7 @@ import os
 import json
 import re
 import asyncio
-from api_g4f import api_g4f, auto_category
+from api_g4f import api_g4f, auto_category, api_opencode
 
 
 def extract_github_info(github_url):
@@ -28,7 +28,7 @@ def extract_github_info(github_url):
         return None, None
 
 
-async def task(url: str, dirname: str = "01"):
+async def task(url: str, dirname: str = "00"):
     if "github.com" not in url:
         return
 
@@ -41,8 +41,9 @@ async def task(url: str, dirname: str = "01"):
     filename = None
 
     try:
-        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/01/{repository}_{username}.md，包含项目地址，不需要其他的废话."
+        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/{dirname}/{repository}_{username}.md，包含项目地址，不需要其他的废话."
         response = await api_g4f(content)
+        # response = await api_opencode(content)
         print(response)
 
         # if "choices" not in response or not response["choices"]:
