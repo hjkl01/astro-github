@@ -39,7 +39,7 @@ export default defineConfig({
       })),
 
       editLink: {
-        baseUrl: 'https://github.com/your-username/your-repo/edit/main/'
+        baseUrl: 'https://github.com/hjkl01/astro-github/'
       },
     }),
   ],

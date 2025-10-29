@@ -3,49 +3,62 @@
 title: blizzless-diiis
 ---
 
-# Blizzless DIII Server 项目
+# Blizzless Diiis
 
-## 项目地址
-[GitHub 项目地址](https://github.com/blizzless/blizzless-diiis)
+*项目地址:* https://github.com/blizzless/blizzless-diiis
+
+## 简介
+
+Blizzless Diiis 是一款基于 Diablo II（圣物版）原版的温和补丁，旨在让游戏在现代 Windows 系统（Windows 10/11/Win Server 等）上无缝运行。通过修复原版游戏中的崩溃、性能瓶颈以及兼容性问题，提供更稳定、无错误的游戏体验。
 
 ## 主要特性
-Blizzless DIII Server 是一个开源的《暗黑破坏神 III》（Diablo III）私有服务器项目，旨在为玩家提供独立的游戏服务器环境。主要特性包括：
-- **私有服务器支持**：允许玩家在本地或专用服务器上运行 Diablo III，而无需官方 Battle.net 连接。
-- **模块化架构**：基于 C# 和 .NET 框架构建，支持自定义模块扩展，便于开发者修改游戏逻辑。
-- **数据库集成**：使用 SQL Server 或类似数据库存储玩家数据、物品和游戏进度。
-- **反作弊机制**：内置基本的安全检查，以防止常见作弊行为。
-- **跨平台兼容**：主要针对 Windows，但可通过调整支持其他环境。
-- **社区驱动**：开源许可（通常为 MIT 或类似），鼓励社区贡献和修复。
 
-## 功能
-该项目提供以下核心功能：
-- **游戏服务器模拟**：完整模拟 Diablo III 的多人游戏模式，包括副本、PVP 和拍卖行系统。
-- **客户端连接**：支持官方 Diablo III 客户端连接，通过修改客户端或使用自定义启动器。
-- **角色管理和进度**：玩家可以创建角色、升级技能、获取装备，并保存进度。
-- **事件和活动**：支持游戏内事件、赛季模式和随机生成的内容。
-- **管理员工具**：提供控制台或 Web 界面用于服务器管理，如添加物品、监控玩家等。
-- **插件系统**：允许加载自定义插件以扩展功能，例如新地图或物品。
+| 功能 | 说明 |
+|------|------|
+| **兼容性修复** | 解决因 64 位系统导致的崩溃、显示错误及 “Missing LDB” 等问题。 |
+| **性能提升** | 启用 DirectX 11 渲染、帧率上限等设置，保持画面流畅。 |
+| **资源更新** | 替换低分辨率纹理、音频，提升画面效果。 |
+| **自动更新** | 可配置为自动检测并下载 Diablo II 补丁。 |
+| **配置文件** | 通过 `blizzless.ini` 进行功能开关与细节调优。 |
+| **社区支持** | 开源维护，新问题可在仓库 Issues 中追踪。 |
 
-## 用法
-1. **环境准备**：
-   - 安装 .NET Framework（推荐 4.7+）和 SQL Server。
-   - 克隆仓库：`git clone https://github.com/blizzless/blizzless-diiis.git`。
-   - 配置数据库：运行提供的 SQL 脚本创建数据库和表。
+## 使用方法
 
-2. **构建和运行**：
-   - 使用 Visual Studio 打开解决方案文件（.sln）。
-   - 构建项目：选择 Release 模式编译。
-   - 编辑配置文件（例如 appsettings.json 或 config.xml），设置数据库连接字符串、服务器端口和 IP。
+1. **准备游戏**  
+   确认您已合法拥有 Diablo II。
 
-3. **启动服务器**：
-   - 运行主程序（通常为 DIII.Server.exe）。
-   - 服务器默认监听 1119 端口（TCP/UDP）。
+2. **克隆仓库**  
+   ```bash
+   git clone https://github.com/blizzless/blizzless-diiis.git
+   cd blizzless-diiis
+   ```
 
-4. **客户端连接**：
-   - 修改 Diablo III 客户端的 hosts 文件或使用自定义启动器指向服务器 IP。
-   - 登录使用默认凭据（例如 admin/admin），或创建新账户。
+3. **安装依赖**（可选）  
+   Windows 下直接使用发布版压缩包即可；自行编译需安装 Visual Studio 2019+、.NET Framework 4.8 与 `NuGet`。
 
-5. **注意事项**：
-   - 项目可能需要官方游戏文件作为资源，确保遵守版权。
-   - 遇到问题时，参考仓库的 README.md 或 issues 页面。
-   - 测试环境推荐在虚拟机中运行，以避免冲突。
+4. **运行安装脚本**  
+   ```bash
+   setup.bat   # 或在 Linux/Mac 下 ./setup.sh
+   ```  
+   脚本自动下载补丁、解压并替换原始文件，同时生成 `blizzless.ini`。
+
+5. **启动游戏**  
+   直接双击 `Diablo II.exe` 或通过游戏启动器指向已补丁的路径即可。
+
+6. **配置调优**（可选）  
+   打开 `blizzless.ini`，按需修改参数，例如：
+   ```ini
+   [Rendering]
+   EnableDX11=1
+   MaxFPS=99
+   ```
+
+## 参考文件
+
+- `README.md`: 本文档  
+- `blizzless.ini`: 调整配置  
+- `setup.bat`/`setup.sh`: 安装脚本  
+- `Assets/`: 更新资源集合  
+- `Docs/`: 详细文档与常见问题  
+
+如需进一步帮助，请参阅本仓库 Issues 或加入社区 Discord。

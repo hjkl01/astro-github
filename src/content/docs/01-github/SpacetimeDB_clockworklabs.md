@@ -3,11 +3,6 @@
 title: SpacetimeDB
 ---
 
-**存放文件路径**  
-`src/content/docs/00/SpacetimeDB_clockworklabs.md`
-
-**文件内容**（Markdown）：
-
 ```markdown
 # SpacetimeDB (Clockwork Labs)
 
