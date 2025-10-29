@@ -3,142 +3,83 @@
 title: oil.nvim
 ---
 
-# oil.nvim
+# oil.nvim（stevearc）
 
-**项目地址**: <https://github.com/stevearc/oil.nvim>
-
----
+**仓库地址**: <https://github.com/stevearc/oil.nvim>
 
 ## 主要特性
 
 | 特性 | 说明 |
 |------|------|
-| **文件浏览器** | 替代 `netrw`，以 Neovim 原生 UI 方式展示目录树。 |
-| **多窗口支持** | 可以在浮动窗口、垂直 split、水平 split、或者普通缓冲区显示。 |
-| **快捷键导航** | 默认使用 `h/l`、`j/k`、`Enter`、`gh` 等常用 Vim 键位，支持快速切换。 |
-| **文件操作** | `dd` 删除、`yy` 复制、`p` 粘贴、`x` 重命名、`mkdir` 新建目录、`rm -r` 删除目录等。 |
-| **自定义排序/过滤** | 可按字母、大小、时间、文件类型等排序；支持正则过滤隐藏文件。 |
-| **可配置性** | 通过 `require('oil').setup{}` 完全可定制键位、外观、行为。 |
-| **文件预览** | 按 `p` 或 `Ctrl+P` 可预览文件内容。 |
-| **多标签页支持** | 每个目录打开一个油窗口，支持标签切换。 |
-| **外部插件集成** | 与 `nvim-tree.lua`、`telescope.nvim` 等插件兼容。 |
-| **远程文件浏览** | 通过 `oil://ssh://user@host/` 等 URI 访问远程文件系统。 |
+| **文件树视图** | 在 Neovim 窗口左侧（或任意位置）显示当前目录的树形结构，支持懒加载。 |
+| **快速跳转** | `:Oil` 命令可切换到油视图，`<C-o>` 快捷键可在文件间快速跳转。 |
+| **文件操作** | 右键（或 `gx`）可对文件执行打开、删除、复制、移动等操作。 |
+| **Git 状态集成** | 自动显示文件/目录的 Git 状态（新增、修改、删除等）。 |
+| **多功能过滤** | 支持正则过滤、隐藏文件与隐藏目录配置。 |
+| **异步加载** | 目录读取与文件操作均非塞，提升编辑器响应速度。 |
+| **键位映射自定义** | 通过 `oil.defaults.keymaps` 可自定义多种 UI 操作键位。 |
+| **多窗格支持** | 可与 `bufremove`、`split` 等命令一起使用，保持可视化窗口状态。 |
+| **可配置 UI 主题** | 提供多种颜色组，易于与其它插件或配色方案集成。 |
+| **使用 API** | 允许插件开发者通过 Lua 脚本调用 `require('oil').open()` 等 API。 |
 
----
-
-## 安装
-
-使用 `lazy.nvim`（或任何你喜欢的插件管理器）：
+## 快速上手
 
 ```lua
+-- lazy.nvim 示例
 {
-  'stevearc/oil.nvim',
-  opts = {},          -- 这里可以传递默认配置
-  keys = {            -- 快捷键映射（可根据需要自行修改）
-    { "<leader>e", "<cmd>Oil<CR>", desc = "Open Oil" },
+  "stevearc/oil.nvim",
+  opts = {
+    -- 目录图标
+    default_file_text = "File",
+    show_label = true,
+
+    -- Git 状态颜色
+    git_status_colors = {
+      added = "green",
+      modified = "yellow",
+      deleted = "red",
+    },
+
+    -- 快捷键配置
+    keymaps = {
+      ["<CR>"] = "edit",
+      ["<C-s>"] = "split",
+      ["<C-v>"] = "vsplit",
+      ["<C-x>"] = "close",
+    },
   },
-}
+  cmd = "Oil",      -- 仅在执行 :Oil 时加载
+  keys = { "<leader>oo", "<cmd>Oil<CR>", desc = "Open Oil file explorer" },
+},
 ```
 
-或者使用 `packer.nvim`：
+### 关键命令与键位
+
+- `:Oil`：打开文件树视图。  
+- `<C-o>`：在文件树中打开选中文件。  
+- `gx` / `gX`：在树中执行打开/删除等操作。  
+- `gd`：跳转到文件所在目录。  
+- `:Oil /path/to/dir`：直接打开指定目录。  
+
+## 配置示例（Lua）
 
 ```lua
-use {
-  'stevearc/oil.nvim',
-  config = function()
-    require('oil').setup{}
-  end
-}
-```
-
----
-
-## 基本用法
-
-| 命令 | 说明 |
-|------|------|
-| `:Oil` | 打开当前工作目录的油窗口。 |
-| `:Oil .` | 打开当前缓冲区所在目录。 |
-| `:Oil ..` | 打开父目录。 |
-| `:Oil <path>` | 打开指定路径。 |
-| `:Oil --float` | 以浮动窗口方式打开。 |
-| `:Oil --vertical` | 垂直 split 打开。 |
-| `:Oil --horizontal` | 水平 split 打开。 |
-
-### 典型键盘操作
-
-- `h` / `l` / `j` / `k` – 目录/文件移动
-- `Enter` – 打开文件/进入目录
-- `gh` – 返回上级目录
-- `dd` – 删除文件/目录
-- `yy` – 复制路径
-- `p` – 粘贴路径
-- `x` – 重命名
-- `r` – 刷新
-- `q` – 关闭油窗口
-
-> 你可以在 `oil.setup` 中通过 `keymaps` 字段自定义或禁用任何键位。
-
----
-
-## 高级配置
-
-```lua
+-- init.lua 或 plugins/oil.lua
 require('oil').setup({
-  -- 关闭默认键位，改用自定义
-  skip_confirm_for_simple_edit = true,
-  view_options = {
-    show_hidden = true,          -- 显示隐藏文件
-    sort = "case_insensitive",   -- 按字母顺序排序
-  },
-  keymaps = {
-    ["<C-]>"] = "actions.select",
-    ["<C-^>"] = "actions.toggle_preview",
-    -- 仅保留 Enter 和 gh
-    ["h"] = "",  ["l"] = "", ["j"] = "", ["k"] = "",  -- 清除默认
-  },
-  win_options = {
-    winblend = 10,   -- 浮动窗口透明度
-  },
-  -- 远程文件系统支持
-  remote = {
-    ssh = { port = 22 },
-  },
+  columns = {"icon", "name", "size"},   -- 列显示顺序
+  win_options = {winblend = 0, number = false},
+  height = 30,                          -- 视图高度
+  width = 40,                           -- 视图宽度
 })
 ```
 
-### 示例：在浮动窗口中打开当前文件所在目录
+## 常见用途
 
-```lua
-vim.keymap.set('n', '<leader>of', function()
-  require('oil').open_float(vim.fn.expand('%:p:h'))
-end, { desc = 'Open Oil in floating window' })
-```
-
----
-
-## 与 Telescope 结合
-
-```lua
-require('telescope').load_extension('oil')
-```
-
-然后可以使用 `:Telescope oil` 来快速搜索和打开文件。
-
----
-
-## 常见问题
-
-| 问题 | 解决方案 |
-|------|----------|
-| **油窗口无法关闭** | 按 `q` 或 `x`，如果失效请检查 `keymaps` 配置。 |
-| **远程文件浏览不工作** | 确认 `ssh` 访问可用，且 `oil.nvim` 版本已支持 `remote`。 |
-| **文件显示不完整** | 在 `oil.setup` 中开启 `view_options.show_hidden = true` 或调整 `win_options.wrap = false`。 |
-
----
+1. **文件管理**：快速打开、移动、复制或删除文件。  
+2. **版本控制**：一眼即可看到 Git 状态。  
+3. **多目录工作**：同时打开项目、缓存或配置文件夹的树形结构。  
+4. **配合 Telescope**：在 `telescope.builtin.files` 里使用 `action = "oil"` 直接进入油视图。  
 
 ## 结语
 
-`oil.nvim` 让 Neovim 的文件浏览体验更像现代 IDE 的侧边栏，兼具速度、可定制性和与原生 UI 的无缝集成。通过简单的配置即可替代传统的 `netrw`，并在日常开发中提供更高效的文件管理方式。祝你玩得愉快！
-
----
+`oil.nvim` 用直观的树形界面替代传统命令行文件浏览，使 Neovim 的文件管理与现代编辑器保持一致。通过简洁的 API 与高度可定制的键位映射，适合从新手到高级用户的各种工作流程。

@@ -3,130 +3,97 @@
 title: CopilotChat.nvim
 ---
 
-# CopilotChat.nvim（CopilotC-Nvim）  
-> 访问地址: <https://github.com/CopilotC-Nvim/CopilotChat.nvim>
 
-## 概述  
-CopilotChat.nvim 是一个将 GitHub Copilot Chat 与 Neovim 深度集成的插件。它在 Neovim 内部提供 Chat 界面，支持：
+# CopilotChat.nvim
 
-- 代码生成与改写  
-- 代码解释与对话  
-- 上下文感知（自动注入文件内容、光标上下文）  
-- 输出代码直接插入编辑器或打开新缓冲区  
-- 语法高亮和格式化（User 或 LSP 支持）  
-- 可配置的执行方式（Normal/Insert 模式）
+> GitHub 地址: [https://github.com/CopilotC-Nvim/CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim)
 
----
+## 主要特性
 
-## 安装
+- **AI 辅助聊天**：集成 GitHub Copilot，支持在 Neovim 内直接与 AI 对话。
+- **多语言支持**：可对多种编程语言的代码进行提问、分析和生成。
+- **上下文感知**：自动捕获当前编辑器的上下文（光标所在位置、文件内容等），让 AI 更准确地回答。
+- **交互式对话窗口**：使用浮动窗口或分屏显示聊天记录，支持滚动、复制、清空等操作。
+- **自定义提示**：允许用户自定义提示词或模型参数，以满足不同场景需求。
+- **快捷键映射**：提供一组默认快捷键，方便快速打开/关闭聊天窗口、发送消息等。
 
-使用 **packer.nvim**（示例）：
+## 功能概览
+
+| 功能 | 说明 |
+|------|------|
+| `CopilotChat.Chat()` | 打开聊天窗口，开始与 AI 对话 |
+| `CopilotChat.Send()` | 发送消息给 AI，返回回答 |
+| `CopilotChat.Clear()` | 清空聊天记录 |
+| `CopilotChat.SetContext()` | 手动设置或更新上下文 |
+| `CopilotChat.Config()` | 配置插件选项（如窗口位置、模型参数等） |
+
+## 用法
+
+### 1. 安装
 
 ```lua
+-- 使用 packer.nvim
 use {
   'CopilotC-Nvim/CopilotChat.nvim',
-  requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' }, -- 可选
+  requires = { { 'nvim-lua/plenary.nvim' } },
   config = function()
-    require('CopilotChat').setup {
-      -- 你可以在此添加自己的配置
-    }
+    require('CopilotChat').setup {}
   end
 }
 ```
 
-> 其他插件管理器：`lazy.nvim`、`vim-plug`、`dein` 等，只需把仓库地址添加到插件列表即可。
-
----
-
-## 基础使用
-
-### 打开 Chat 窗口  
-```vim
-:CopilotChatOpen
-```
-或者使用快捷键（如果你在 `setup` 中定义了映射）：
+### 2. 基本使用
 
 ```vim
-nnoremap <leader>ss <Cmd>CopilotChatOpen<CR>
+" 打开聊天窗口
+:CopilotChat
+
+" 在聊天窗口中输入问题后按 Enter 发送
 ```
 
-### 与 Copilot Chat 对话  
+### 3. 快捷键（默认）
 
-- **输入**：在 chat 窗口中键入提示，然后 <kbd>Enter</kbd>  
-- **回复**：插件调用 Chat API，返回代码或解释  
-- **执行**：默认打开新缓冲区；使用 `:CopilotChatInsert` 可以直接插入光标位置（Normal / Insert 模式）  
+| 快捷键 | 操作 |
+|--------|------|
+| `<leader>cc` | 打开/关闭聊天窗口 |
+| `<leader>cs` | 发送当前选区内容给 AI |
+| `<leader>cr` | 清空聊天历史 |
+| `<leader>ct` | 切换到文本模式 / 代码模式 |
 
-### 执行模式  
+> 你可以在 `init.lua` 或 `init.vim` 中自定义快捷键，例如：
+
 ```lua
-require('CopilotChat').setup {
-  default_action = 'open', -- 'open', 'insert'
-  -- 其它选项...
-}
+vim.api.nvim_set_keymap('n', '<leader>cp', ':CopilotChat<CR>', { noremap = true, silent = true })
 ```
 
----
-
-## 命令
-
-| 命令 | 说明 |
-|------|------|
-| `:CopilotChatOpen` | 打开 Chat 窗口 |
-| `:CopilotChatInsert` | 将结果插入光标位置 |
-| `:CopilotChatToggle` | 打开/关闭 Chat 窗口 |
-| `:CopilotChatClear` | 清空聊天记录 |
-| `:CopilotChatClose` | 关闭 Chat 窗口 |
-
----
-
-## 配置示例
+### 4. 配置示例
 
 ```lua
 require('CopilotChat').setup {
-  default_action = 'insert',              -- 默认直接插入
-  open_width = 80,                         -- Chat 窗口宽度
-  open_height = 20,                        -- Chat 窗口高度
-  plugins = { openai = { key = 'YOUR_OPENAI_KEY' } },  -- 认证信息
-  instructions = { 'GitHub Copilot Chat' }, -- 插件提示
-  providers = { 'openai' },                 -- 选用的后端服务
+  -- 窗口设置
+  popup = true,           -- 使用浮动窗口
+  width = 0.8,            -- 宽度占比
+  height = 0.6,           -- 高度占比
+  -- AI 参数
+  model = "gpt-4o-mini",
+  temperature = 0.7,
+  -- 其他自定义选项
+  prompt = {
+    system = "You are a helpful coding assistant."
+  }
 }
 ```
 
----
+### 5. 高级用法
 
-## 快捷键（可选）
+- **上下文注入**：使用 `:CopilotChat.SetContext` 手动注入自定义上下文，例如文件头或项目说明。
+- **多分区聊天**：在同一窗口中同时进行多条对话，使用 `:CopilotChat.NewChat` 创建新会话。
+- **日志导出**：使用 `:CopilotChat.Export` 将聊天记录导出为 Markdown 或纯文本。
 
-```lua
-local map = vim.keymap.set
-map('n', '<leader>cc', require('CopilotChat').open,  { desc = 'Copilot Chat 打开' })
-map('n', '<leader>ci', require('CopilotChat').insert, { desc = 'Copilot Chat 插入' })
-map('n', '<leader>cl', require('CopilotChat').clear,  { desc = 'Copilot Chat 清空' })
-```
+## 贡献
 
----
+如果你想改进插件，欢迎提交 Issue 或 Pull Request。请遵循官方贡献指南。
 
-## 运行环境
+--- 
 
-- Neovim ≥ 0.8  
-- Lua 5.1+  
-- 网络访问 GitHub Chat 服务（需网络代理/免墙）  
-- `vimplug`/`packer`/`lazy` 等插件管理器
-
----
-
-## 常见问题
-
-| 问题 | 解决办法 |
-|------|--------|
-| API 请求超时 | 检查网络代理或 VPN，确认 `OPENAI_API_KEY` 正确配置 |
-| 语法高亮不生效 | 确认 `telescope.nvim` 或其他 LSP 已配置；在 `setup` 或 `require('CopilotChat').open` 前加载插件 |
-| 插件冲突 | 关闭其他 `Chat`/`AI` 插件的映射，或在 `setup` 中做冲突检测 |
-
----
-
-## 许可证
-
-MIT
-
----
-
-> 以上便是 CopilotChat.nvim 的核心特性与使用方法。详细信息请参阅官方仓库的 README 与 Wiki。
+> **Tip**：在使用过程中若遇到 API 调用失败或响应慢，检查网络连接或 GitHub Copilot 的配额限制。

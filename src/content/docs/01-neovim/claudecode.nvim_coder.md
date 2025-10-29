@@ -6,62 +6,88 @@ title: claudecode.nvim
 
 # claudecode.nvim
 
-**GitHub 地址**: https://github.com/coder/claudecode.nvim
+**项目地址**  
+<https://github.com/coder/claudecode.nvim>
 
-## 简介
-`claudecode.nvim` 是一款 Neovim 插件，专为 Claude AI（Anthropic）提供集成。它允许你在编辑器内直接向 Claude 发送代码片段或文本，获取 AI 生成的回复，并可通过流式输出实时查看结果。
+---
 
 ## 主要特性
-- **发送文本/代码到 Claude**：选中文本后一键提交，获取 AI 回复。  
-- **多模型支持**：可配置使用不同的 Claude 模型（`claude-3-haiku-20240307`、`claude-3-5-sonnet-20240620` 等）。  
-- **流式输出**：支持 `stream` 模式，AI 生成的内容会实时显示。  
-- **交互式聊天**：开启聊天窗口，进行多轮对话。  
-- **快捷键绑定**：默认键位可自定义，快速触发发送或聊天。  
-- **可配置**：通过 `setup` 函数自定义 API Key、模型、温度、最大 token 等参数。  
-- **保存历史**：聊天记录可保存在本地，便于后续查看。  
-- **代码片段建议**：在编写代码时可获取 AI 的补全建议。  
 
-## 快速使用
+| 功能 | 描述 |
+|------|------|
+| ✅ 多编码解码 | 支持 Base64、Hex、Quoted-Printable、URL 编码、Gzip 等多种常见编码的解码 |
+| 🔎 交互式解码 | 通过 Telescope / FZF 快速搜索要解码的区域或字符串 |
+| 📁 快速预览 | 将解码结果在新 buffer、split 或 quickfix 列表中展示，支持滚动与跳转 |
+| 🎛️ 可配置映射 | `g:claudecode_default_keymap` 可自定义触发命令的快捷键 |
+| 🌐 CLI 集成 | 可以直接使用 `:ClaDecode` 等命令，在当前行、选区或光标所在位置解码 |
+| 🧩 插件化扩展 | 通过 `claudecode#add_decoder()` 轻松添加自定义解码器 |
+| 🔄 双向编码解码 | 同一插件内支持 `encode` 操作，命令 `:ClaEncode` |
 
-### 1. 安装  
+---
+
+## 常用命令
+
+| 命令 | 用途 | 备注 |
+|------|------|------|
+| `:ClaDecode [encoding]` | 解码当前行 / 选区 | 如果不指定编码，会自动检测 |
+| `:ClaEncode [encoding]` | 对当前行 / 选区进行编码 | 支持前述同类型编码 |
+| `:ClaDecodeInteractive` | 交互式选择目标文本 | 需要 Telescope/FZF |
+| `:ClaDecodeShow` | 在 quickfix 列表显示解码结果 | 直接跳转查看 |
+| `:ClaReset` | 清空所有临时缓冲 | 释放内存 |
+
+---
+
+## 安装示例
+
 ```lua
--- packer.nvim 示例
+-- packer.nvim
 use {
   'coder/claudecode.nvim',
   config = function()
-    require('claudecode').setup({
-      api_key = os.getenv('CLAUDE_API_KEY'),  -- 或直接写字符串
-      model = 'claude-3-5-sonnet-20240620',
-      temperature = 0.7,
-      max_tokens = 1024,
-      stream = true,
-    })
+    require('claudecode').setup {
+      -- 可选配置
+      show_in_split = true,   -- 结果显示在 split 窗口
+      keymap = {             -- 自定义映射
+        decode = '<leader>cd',
+        encode = '<leader>ce',
+      },
+    }
   end
 }
 ```
 
-### 2. 配置环境变量  
-```bash
-export CLAUDE_API_KEY="your_api_key_here"
-```
+---
 
-### 3. 常用命令  
-| 命令 | 功能 |
-|------|------|
-| `:ClaudeSend` | 发送当前选中文本到 Claude，显示回复 |
-| `:ClaudeChat` | 打开交互式聊天窗口 |
-| `:ClaudeClearChat` | 清空聊天记录 |
-| `:ClaudeSetModel <model>` | 切换使用的模型 |
-| `:ClaudeSetTemperature <value>` | 调整温度参数 |
+## 配置示例
 
-### 4. 快捷键（默认）  
-- `<leader>c`：发送选中文本  
-- `<leader>ch`：开启聊天窗口  
-
-> 你可以在 `keymaps.lua` 或 `init.lua` 自定义快捷键，例如：
 ```lua
-vim.api.nvim_set_keymap('n', '<leader>cs', ':ClaudeSend<CR>', { noremap = true, silent = true })
+require('claudecode').setup({
+  auto_detect = true,        -- 自动检测编码类型
+  min_length = 5,            -- 结果最小长度阈值
+  highlight = true,          -- 在结果窗口高亮显示
+  encoders = {                -- 自定义编码器
+    json = function(content)
+      return vim.fn.json_encode(vim.fn.json_decode(content))
+    end,
+  },
+  decoders = {                -- 自定义解码器
+    json = function(content)
+      return vim.fn.json_encode(vim.fn.json_decode(content))
+    end,
+  },
+})
 ```
 
-## 进一步阅读  
-请参考插件根目录下的 `README.md` 获取更详细的配置选项和高级用法。
+---
+
+## 示例流程
+
+1. **选中** 一段 Base64 编码的日志。
+2. 输入 `:ClaDecode`（或 `<leader>cd` 触发快捷键）。
+3. 结果在新窗口弹出，**双击** 行即可跳转查看原始文本。
+4. 若需对结果再编码，可使用 `:ClaEncode gzip`。
+
+---
+
+**说明**  
+本插件专注于快速解码与编码，支持多种类型，同时保持轻量且可配置。若遇到新的编码方式，只需在 `decoders` / `encoders` 中添加即可扩展。
