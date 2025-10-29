@@ -24,7 +24,7 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'Github Repository',
+      title: 'Github Trending',
       description: 'A curated collection of useful GitHub repositories',
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }
@@ -37,11 +37,11 @@ export default defineConfig({
         autogenerate: { directory: dir },
         collapsed: true,
       })),
-      
+
       editLink: {
         baseUrl: 'https://github.com/your-username/your-repo/edit/main/'
       },
     }),
   ],
-  
+
 });
