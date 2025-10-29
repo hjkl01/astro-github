@@ -3,9 +3,6 @@
 title: posting
 ---
 
-以下为 **darrenburns/posting** 项目的中文简介，已整理成 Markdown 格式，便于直接保存到 `src/content/docs/00/posting_darrenburns.md`。
-
-```markdown
 # darrenburns/posting
 
 > 项目地址：[https://github.com/darrenburns/posting](https://github.com/darrenburns/posting)
@@ -58,7 +55,3 @@ collections:
     path: "posts"
     template: "post.html"
 ```
-
----
-
-以上即为 **darrenburns/posting** 项目的概览与基础使用。

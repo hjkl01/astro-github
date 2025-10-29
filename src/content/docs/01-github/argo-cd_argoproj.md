@@ -146,7 +146,3 @@ data:
 | `argocd repo add <url> --username <u> --password <p>` | 添加 Git 仓库 |
 
 > 详细使用请参阅官方文档: <https://argo-cd.readthedocs.io/>
-
----
-
-**文件路径**: `src/content/docs/00/argo-cd_argoproj.md
