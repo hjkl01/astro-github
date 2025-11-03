@@ -1,7 +1,9 @@
 import os
 import json
 import re
+import sys
 import asyncio
+from pathlib import Path
 from api_g4f import api_g4f, auto_category, api_opencode
 
 
@@ -42,6 +44,7 @@ async def task(url: str, dirname: str = "00"):
 
     try:
         content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/{dirname}/{repository}_{username}.md，包含项目地址，不需要其他的废话."
+        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。包含项目地址.不需要其他的废话."
         response = await api_g4f(content)
         # response = await api_opencode(content)
         print(response)
@@ -100,7 +103,31 @@ def clean_small_md_files(dirname="src/content/docs", min_size=500):
                     print(f"Deleted small file: {filepath}")
 
 
-async def main():
+async def category_md_files(dirname="src/content/docs/00"):
+    category_dirs = [
+        str(child).lstrip("src/content/docs/").rstrip("/")
+        for child in Path("src/content/docs").iterdir()
+        if child.is_dir()
+    ]
+
+    md_files = os.listdir(dirname)
+    for md_file in md_files:
+        if md_file.endswith(".md"):
+            with open(os.path.join(dirname, md_file), "r", encoding="utf-8") as f:
+                content = f.read()
+                category = await auto_category(content, category_dirs)
+                print(md_file, category)
+                if category in category_dirs:
+                    new_dir = os.path.join(dirname, category)
+                    os.makedirs(new_dir, exist_ok=True)
+                    os.rename(os.path.join(dirname, md_file), "src/content/docs/" + category + "/" + md_file)
+
+
+async def main(args=None):
+    if args == "cate":
+        await category_md_files()
+        return
+
     clean_small_md_files()
     try:
         with open("urls.txt", "r", encoding="utf-8") as f:
@@ -144,4 +171,8 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    argv = sys.argv
+    if len(argv) > 1 and argv[1] == "cate":
+        asyncio.run(main("cate"))
+    else:
+        asyncio.run(main())

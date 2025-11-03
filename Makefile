@@ -22,6 +22,7 @@ run:
 	@echo "🚀 启动服务..."
 	$(ACTIVATE) && uv run python ./github_trending_scraper.py
 	$(ACTIVATE) && uv run python ./main.py
+	$(ACTIVATE) && uv run python ./main.py cate
 
 build:
 	@echo "🚀 构建服务..."

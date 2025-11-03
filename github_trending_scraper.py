@@ -78,7 +78,7 @@ async def scrape_github_trending():
             "https://github.com/trending/lua",
             "https://github.com/trending/go",
             "https://github.com/trending/rust",
-            "https://github.com/trending/javascript",
+            # "https://github.com/trending/javascript",
         ]
     )
     await crawler.run()
