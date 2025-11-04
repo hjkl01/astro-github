@@ -3,147 +3,133 @@
 title: tokyonight.nvim
 ---
 
+# tokyonight.nvim（作者：Folke）
 
-# tokyonight.nvim (by folke)
+> 项目地址：<https://github.com/folke/tokyonight.nvim>
 
-GitHub 地址：<https://github.com/folke/tokyonight.nvim>
+## 项目概述
 
----
-
-## 🎨 主要特性
-
-- **多种配色风格**  
-  - `night`（默认）: 适合深色背景，强调可读性。  
-  - `storm`: 暗色系但更柔和，适合长时间使用。  
-  - `day`: 明亮的浅色背景，适合日间使用。  
--可定制性**  
-  - 通过 `style`, `terminal_colors`, `sidebars`, `hide_inactive_statusline` 等选项轻松调整。  
-- **与 Neovim 原生终端兼容**  
-  - 可在 Neovim 内置终端中使用同一配色。  
-- **插件兼容**  
-  - 自动补全（nvim-cmp）、文件树（nvim-tree）、Git 指示、LSP、插件状态栏等均可无缝使用。  
-- **高亮主题**  
-  - 支持 `lualine`, `nvim-web-devicons`, `bufferline.nvim`, `gitsigns.nvim` 等插件的高亮设定。  
-- **色彩平滑的视觉体验**  
-  - 采用 `tokyonight` 主题色彩，保证在高对比度模式下也能保持舒适的阅读体验。  
+- **类型**：Neovim 颜色方案  
+- **特色**：浅色与深色双主题，支持 true‑color，兼容 TMUX 与终端。  
+- **目标**：提供高度可配置、无缝配合插件的现代色彩方案，易于阅读、可自定义。
 
 ---
 
-## 🚀 使用方法
+## 主要特性
 
-### 1. 安装
+| 特性 | 说明 |
+|---|---|
+| **三种配色变体** | *day*（浅色）、*night*（深色）与 *storm*（暗紫) 可随意切换。 |
+| **高色深彩支持** | 兼容 24‑bit 真彩色，以及 256 色终端。 |
+| **插件集成** | 自动为 `nvim-treesitter`、`lualine`、`telescope`、`cmp`、`gitsigns`、`lspconfig` 等插件提供匹配 Highlight 组。 |
+| **编辑器端 UI 调整** | 支持隐藏非活跃 statusline、winbar，侧边栏（sidebar）主题同步。 |
+| **对 LSP/Hover/Snippet 等提示** | 内置 Inlay Hint 与 Diagnostic Highlight 预设。 |
+| **高效的默认设置** | 彻底优化 `bold`、`italic`、`underline` 的视觉体验。 |
 
-#### 使用 `packer.nvim`
+---
+
+## 支持插件与默认高亮配置
+
+| 插件 | 兼容项 |
+|---|---|
+| **Treesitter** | 语法高亮、注释、字符串、关键字等。 |
+| **Lualine** | 状态栏组件高亮，默认 `lualine_bold = true`。 |
+| **Telescope** | 结果列表、预览窗口与浮层。 |
+| **cmp** | 自动补全菜单与提示。 |
+| **gitsigns** | 撤销/提交、图形化 diff、高亮添加/删除。 |
+| **lspkind-nvim** | LSP 类型提示。 |
+| **barbecue.nvim** | 文件路径栏高亮。 |
+| **mini.nvim** | 各模块（文件树、注释工具等）配色。 |
+
+> *所有插件均可在 `colors.tokyonight` 的 config table 通过 `plugins` 关键字单独细调。*
+
+---
+
+## 安装 & 配置
+
+> 推荐使用 packer/nvim‑lspl 等插件管理器。
 
 ```lua
+-- packer.nvim 示例
 use {
   'folke/tokyonight.nvim',
-  opt = true
+  config = function()
+    require('tokyonight').setup({
+      style               = "night",          -- "day" / "night" / "storm"
+      transparent         = false,            -- 透明背景
+      terminal_colors     = true,             -- 终端配色
+      hide_inactive_statusline = true,        -- 隐藏非活跃 statusline
+      hide_inactive_winbar = true,            -- 隐藏非活跃 winbar
+      sidebars            = { "qf", "vista", "terminal", "packer" },
+      dim_nc_background   = false,            -- 非活动窗口 dim
+      lualine_bold        = true,             -- Lualine bold
+      -- 进一步定制化
+      on_colors = function(colors)
+        colors.fg_dim = "#777777"
+      end,
+      on_highlights = function(hl, c)
+        hl.TokyonightNormal = { bg = c.bg0 }
+        -- 在此添加自定义 highlight
+      end
+    })
+    vim.cmd('colorscheme tokyonight')
+  end
 }
 ```
 
-```lua
--- 完整示例
-require('packer').startup(function()
-  use {
-    'folke/tokyonight.nvim',
-    opt = true
-  }
-  -- 安装完毕后
-  vim.cmd('colorscheme tokyonight')
-end)
-```
+> **切换主题**  
+> ```vim
+> :colorscheme tokyonight
+> :let g:tokyonight_style = "storm" | colorscheme tokyonight
+> ```
 
-#### 使用 `vim-plug`
-
-```vim
-Plug 'folke/tokyonight.nvim'
-```
-
-然后执行 `:PlugInstall` 并重启 Neovim。
+> **更改配色后重载**  
+> ```vim
+> :lua require('tokyonight').reload()
+> ```
 
 ---
 
-### 2. 基本设置
+## 常用配置项
 
-```lua
-vim.g.tokyonight_style = 'storm'          -- 位置: night / storm / day
-vim.g.tokyonight_italic_comments = true   -- 备注文本斜体
-vim.g.tokyonight_dark_sidebar = true      -- 侧边栏深色化
-vim.g.tokyonight_terminal_colors = true   -- 终端颜色同步
-```
-
----
-
-### 3. 主题配置示例
-
-```lua
-require('tokyonight').setup({
-  style = "night",
-  transparent = false,
-  terminal_colors = true,
-  dim_inactive = false,
-  styles = {
-    comments = {italic = true},
-    keywords = {italic = true},
-    functions = {},
-    variables = {},
-    strings = {},
-    numerals = {},
-    booleans = {},
-    properties = {}
-  },
-  sidebars = { "qf", "vista_kind", "terminal", "packer" },
-  hide_inactive_statusline = false,
-  fold_style = "default",
-})
-```
+| 选项 | 类型 | 默认值 | 说明 |
+|---|---|---|---|
+| `style` | string | `"night"` | "day"、"night" 或 "storm" |
+| `transparent` | bool | `false` | 让 Neovim 透明背景 |
+| `terminal_colors` | bool | `true` | 设置终端 color 方案 |
+| `dim_nc_background` | bool | `false` | 非活动窗口 dim |
+| `hide_inactive_statusline` | bool | `true` | 隐藏非活跃 statusline |
+| `hide_inactive_winbar` | bool | `true` | 隐藏非活跃 winbar |
+| `sidebars` | table | `{}` | 侧边栏窗口统一配色 |
+| `lualine_bold` | bool | `true` | Lualine 文字加粗 |
+| `on_colors` | function | - | 自定义颜色表 |
+| `on_highlights` | function | - | 自定义 Highlight 组 |
+| `plugins` | table | - | 对各插件的单独设置 |
 
 ---
 
-### 4. 兼容插件 (按需开启)
+## 主题变体与切换
 
-```lua
--- nvim-web-devicons
-vim.g.tokyonight_devicons = true
+- **day**: 明亮背景，适合日间使用。  
+- **night**: 深色背景，减少光污染。  
+- **storm**: 暗紫色背景，中间色带柔和。
 
--- lualine
-require('lualine').setup({
-  options = {
-    theme = "tokyonight",
-  }
-})
-
--- nvim-tree
-require('nvim-tree').setup({
-  renderer = {
-    icons = {show = {file = true, folder = true, git = true}},
-    highlight_git = true,
-    highlight_opened_files = "all",
-  }
-})
-```
+> 切换方法示例：  
+> ```vim
+> :let g:tokyonight_style = "day"
+> :colorscheme tokyonight
+> ```
 
 ---
 
-### 5. 在终端中调整配色
+## 常见问题
 
-```lua
-vim.g.tokyonight_terminal_colors = true
--- 重新加载后，保证终端内的 ANSI 颜色与主题保持一致
-```
-
----
-
-## 📄 关键键绑定
-
-| 键位 | 功能 |
-|------|------|
-| `:colorscheme tonynight` | 切换主题 |
-| `:TL` (或者自快捷键) | 切换 `light/dark` 样式 |
+- **不显示亮度变化** → 检查 `transparent` 与 TMUX `set-option -g default-terminal`。  
+- **插件不匹配** → 在 `setup` 时添加对应插件配置 (`plugins`).  
+- **光标颜色不正常** → 通过 `on_colors` 或 `on_highlights` 调整 `CursorLine`、`Cursor`.
 
 ---
 
-## 👋 结束语
+## 结语
 
-`tokyonight.nvim` 是一款高度定制、配色优雅、与 Neovim 生态深度兼容的主题，适合各种工作时间与环境。通过简单配置即可在编辑、终端、插件等多层面保持视觉一致。祝你愉快使用！
+`tokyonight.nvim` 以其多变的配色、兼容广泛的插件生态以及高度可定制的设置，为 Neovim 用户提供了一种现代、舒适且易于扩展的视觉体验。适合日常编码、调试和远程终端工作。
