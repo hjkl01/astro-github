@@ -1,4 +1,3 @@
-
 ---
 title: brave-browser
 ---

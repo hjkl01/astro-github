@@ -1,85 +1,59 @@
-
 ---
-title: ollama
+title: Ollama
 ---
-
 
 # Ollama
 
-**GitHub 项目地址**  
-<https://github.com/ollama/ollama>
+## 项目描述
 
-## 1. 项目概述  
-Ollama 是一款轻量级、可本地部署的大型语言模型（LLM）框架，专注于让开发者能够在本地机器上快速上手、运行、调试各种 LLM。它实现了跨平台的命令行工具、HTTP API 以及 Docker‑style 容器化执行环境，支持多种模型形式（chat、embeddings、text生成等），兼容常见的 LLM 模型文件（例如模型权重、tokenizer、config 等）。
+Ollama 是一个用于在本地机器上构建和运行大型语言模型的轻量级、可扩展框架。它提供了一个简单的 API，用于创建、运行和管理模型，以及一个预构建模型库，可以轻松用于各种应用程序。
 
-## 2. 主要特性  
+## 主要功能
 
-| 特色 | 说明 |
-|-----|-----|
-| **本地化推理** | 无需联网即可完成文本生成、归纳、检索等任务。 |
-| **多模型支持** | 通过 `ollama pull <model>` 支持下载、安装、切换多种模型。 |
-| **统一 API** | `ollama serve` 启动 HTTP API，提供 `/api/chat`, `/api/embeddings` 等端点，兼容 OpenAI API 规范。 |
-| **命令行工具** | 提供 `ollama` CLI，包含 **pull / run / list / rm / serve** 等常用命令。 |
-| **轻量开销** | 采用 Rust + LLama +自己实现的推理引擎，内存占用低，速度快。 |
-| **扩展与自定义** | 可通过 `config.yml` 与环境变量自定义模型路径、GPU/CPU 选项、并发等参数。 |
-| **Docker‑style 运行** | `ollama run <model>` 启动临时容器级服务，方便多实例测试。 |
+- **模型库**：支持多种模型，如 Gemma 3、DeepSeek-R1、Llama 3 等。
+- **自定义模型**：允许从 GGUF 或 Safetensors 导入模型，并自定义提示。
+- **多模态支持**：支持图像和文本的模型，如 LLaVA。
+- **REST API**：提供 API 用于生成响应、聊天和管理模型。
+- **社区集成**：与多种工具和平台集成，如 WebUI、Discord 机器人等。
 
-## 3. 功能说明  
+## 用法
 
-| 功能 | 说明 |
-|------|------|
-| **安装模型** | `ollama pull <model-name>` – 从官方仓库或自定义远程拉取模型文件。 |
-| **运行实例** | `ollama run <model-name>` – 在本地启动模型推理服务。 |
-| **查询已安装模型** | `ollama list` – 查看已下载模型。 |
-| **删除模型** | `ollama rm <model-name>` – 删除本地模型文件。 |
-| **启动后台服务** | `ollama serve` – 启动默认运行地址 `localhost:11434`，支持持续推理。 |
-| **聊天交互** | `ollama chat <model>` – 通过终端交互式对话；`api` 通道可通过 HTTP POST 交互。 |
-| **生成嵌入** | `ollama embedding <model>` – 生成向量嵌入，支持检索与向量数据库集成。 |
-| **配置自定义** | 通过 `config.yml` 或环境变量 (E.g. `OLLAMA_MODELS_PATH`, `OLLAMA_HOST`) 进行本地化与性能调优。 |
+### 安装
 
-## 4. 使用示例  
+- **macOS**：下载 [Ollama.dmg](https://ollama.com/download/Ollama.dmg)
+- **Windows**：下载 [OllamaSetup.exe](https://ollama.com/download/OllamaSetup.exe)
+- **Linux**：运行 `curl -fsSL https://ollama.com/install.sh | sh`
+
+### 运行模型
+
+1. 拉取模型：`ollama pull llama3.2`
+2. 运行模型：`ollama run llama3.2`
+3. 与模型聊天：输入提示并回车。
+
+### 自定义模型
+
+创建 `Modelfile`：
+
+```
+FROM llama3.2
+PARAMETER temperature 1
+SYSTEM "You are Mario from Super Mario Bros."
+```
+
+然后：`ollama create mario -f Modelfile` 和 `ollama run mario`
+
+### REST API 示例
+
+生成响应：
 
 ```bash
-# 安装模型
-ollama pull llama3.1:latest
-
-# 查看已安装模型
-ollama list
-
-# 启动服务器
-ollama serve
-
-# 终端交互式聊天
-ollama chat llama3.1
-
-# 通过 curl 调用 API
-curl -X POST http://localhost:11434/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{"model":"llama3.1","messages":[{"role":"user","content":"你好"}]}'
+curl http://localhost:11434/api/generate -d '{"model": "llama3.2", "prompt":"Why is the sky blue?"}'
 ```
 
-### 自定义配置（config.yml 示例）
+聊天：
 
-```yaml
-# ~/.ollama/config.yml
-models:
-  - name: llama3.1
-    path: /custom/models/llama3.1
-    # 仅当有多 GPU 集群时使用
-    gpu: true
-server:
-  host: "0.0.0.0"
-  port: 11434
-  max_conns: 100
+```bash
+curl http://localhost:11434/api/chat -d '{"model": "llama3.2", "messages": [{"role": "user", "content": "why is the sky blue?"}]}'
 ```
 
-> 配置文件位于 `~/.ollama/config.yml` 或 `$XDG_CONFIG_HOME/ollama/config.yml`。  
-> 采用环境变量优先级可覆盖配置文件中对应字段。
-
-## 5. 进一步阅读  
-- 官方文档: <https://github.com/ollama/ollama/blob/main/docs>  
-- 示例项目与代码控制台: <https://github.com/ollama/ollama/tree/main/example>  
-
----
-
-> 以上内容为最新的项目概要与指南，按需使用即可。
+更多信息请访问 [ollama.com](https://ollama.com)。

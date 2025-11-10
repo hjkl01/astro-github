@@ -1,124 +1,92 @@
-
 ---
 title: qdrant
 ---
 
-
 # Qdrant
 
-[GitHub 项目地址](https://github.com/qdrant/qdrant)
+## 功能介绍
 
-## 项目概述  
-Qdrant 是一个 **高性能向量搜索引擎**，用于在大规模向量集（如文本、图像、音频等嵌入向量）中高效进行近似最近邻（ANN）检索。它支持实时索引、动态更新、过滤查询以及分布式部署。
+Qdrant 是一个高性能、大规模的向量数据库和向量搜索引擎，专为下一代 AI 应用设计。它提供了一个生产就绪的服务，具有便捷的 API 来存储、搜索和管理点（向量及其附加负载）。Qdrant 支持扩展过滤，使其适用于各种神经网络或语义匹配、面搜索和其他应用。
 
-## 主要特性  
-- **ANN 搜索**：基于 HNSW+PQ（Product Quantization）实现子毫秒级的向量检索。  
-- **向量+属性过滤**：在向量检索结果上可以直接做属性过滤（如时间戳、类别等）。  
-- **向量增删改**：支持插入、更新、删除向量，支持批量操作。  
-- **分布式水平扩展**：可在多节点上分片存储，并行查询。  
-- **多模态向量支持**：可存储不同维度、不同类型（float、int8）的向量。  
-- **RESTful + gRPC 接口**：提供统一的 API 供多语言 SDK 调用。  
-- **Python/Go SDK**：官方 SDK 方便在 Python、Go 项目中直接交互。  
+Qdrant 使用 Rust 编写，即使在高负载下也能保持快速和可靠。它可以将嵌入或神经网络编码器转化为完整的匹配、搜索、推荐等应用。
 
-## 核心组件  
-| 组件 | 说明 |
-|------|------|
-| `qdrant` (Server) | 本地或集群部署的向量搜索服务。 |
-| `qdrant-client` | Python SDK，用于向服务器发送 CRUD 与查询请求。 |
-| `qdrant-shell` | 命令行工具，快速交互式管理向量。 |
-| `docker-compose.yml` | 开箱即用的 Docker 部署脚本。 |
+Qdrant 还提供完全托管的 [Qdrant Cloud](https://cloud.qdrant.io/)，包括免费层。
 
-## 快速开始
+### 主要特性
 
-### 1. 环境准备  
+- **过滤和负载**：可以附加任何 JSON 负载到向量，支持基于负载值的存储和过滤。支持关键字匹配、全文过滤、数值范围、地理位置等。
+- **混合搜索与稀疏向量**：支持稀疏向量以克服密集向量在特定关键字搜索中的局限性。
+- **向量量化与磁盘存储**：提供多种选项使向量搜索更便宜、更高效。内置向量量化可将 RAM 使用减少高达 97%。
+- **分布式部署**：支持水平扩展，通过分片和复制增强大小和吞吐量。
+- **其他特性**：查询规划和负载索引、SIMD 硬件加速、异步 I/O、预写日志等。
+
+## 用法
+
+### 快速开始
+
+#### Python
+
+安装客户端：
+
 ```bash
-# Docker 部署
-docker run -p 6333:6333 qdrant/qdrant:latest
+pip install qdrant-client
 ```
 
-或使用 Docker Compose（文件位于仓库根目录）  
-```bash
-docker-compose up -d
-```
+使用内存实例（用于测试）：
 
-### 2. 向量插入  
 ```python
 from qdrant_client import QdrantClient
-from qdrant_client.http import models
-
-client = QdrantClient(":memory:")  # 或连接远程地址 http://localhost:6333
-
-# 创建集合
-client.create_collection(
-    collection_name="example",
-    vector_size=128,
-    distance=models.Distance.COSINE
-)
-
-# 插入 10 条向量
-vectors = [[0.1]*128, [0.2]*128, ...]  # 10 条向量
-payload = [{"id": i, "category": "A"} for i in range(10)]
-client.upsert(
-    collection_name="example",
-    points=[
-        models.PointStruct(id=i, vector=v, payload=p)
-        for i, (v, p) in enumerate(zip(vectors, payload))
-    ]
-)
+qdrant = QdrantClient(":memory:")
 ```
 
-### 3. 向量查询  
+或持久化到磁盘：
+
 ```python
-query_vector = [0.15]*128
-results = client.search(
-    collection_name="example",
-    query_vector=query_vector,
-    limit=5,
-    query_filter=models.Filter(
-        must=[models.FieldCondition(
-            key="category",
-            match=models.MatchValue(value="A")
-        )]
-    )
-)
-
-for hit in results:
-    print(f"id={hit.id}, score={hit.score}")
+client = QdrantClient(path="path/to/db")
 ```
 
-### 4. 删除向量  
+#### 客户端-服务器
+
+运行 Docker 容器：
+
+```bash
+docker run -p 6333:6333 qdrant/qdrant
+```
+
+连接到实例：
+
 ```python
-client.delete(
-    collection_name="example",
-    points_selector=models.PointIdsSelector(ids=[3, 5, 7])
-)
+qdrant = QdrantClient("http://localhost:6333")
 ```
 
-## 进阶使用
+### 客户端库
 
-- **集群部署**：参考官方文档的 `deploying_in_cluster.md`，使用 `qdrant-helm` 或自定义 Kubernetes 副本。  
-- **持久化存储**：修改 `config.yaml`，将 `storage.path` 指向 SSD 或网络文件系统。  
-- **索引优化**：通过 `hnsw` 参数调节 `ef`、`m` 以平衡搜索速度与精度。  
-- **自定义向量化**：将自己的模型输出（BERT、CLIP、FAISS 等）存为 `float32` 向量后插入。  
+官方客户端：
 
-## 开发与贡献
+- [Go](https://github.com/qdrant/go-client)
+- [Rust](https://github.com/qdrant/rust-client)
+- [JavaScript/TypeScript](https://github.com/qdrant/qdrant-js)
+- [Python](https://github.com/qdrant/qdrant-client)
+- [.NET/C#](https://github.com/qdrant/qdrant-dotnet)
+- [Java](https://github.com/qdrant/java-client)
 
-1. 克隆仓库  
-   ```bash
-   git clone https://github.com/qdrant/qdrant.git
-   cd qdrant
-   ```
-2. C++/Rust 编译（官方仓库支持两种实现）  
-   ```bash
-   cargo build --release
-   ```
-3. 单元测试  
-   ```bash
-   cargo test
-   ```
+社区客户端：
 
-> 开发指南请参考 `CONTRIBUTING.md` 与 `docs/` 目录下的详细文档。
+- Elixir, PHP, Ruby 等。
 
----
+### API
 
-> **备注**：所有示例代码已在 Python 3.11 环境下通过单元测试，可直接复制粘贴使用。若遇到性能瓶颈，请在生产环境使用 Redis+PostgreSQL 作为持久化后端或开启分布式模式。  
+- **REST**：在线 OpenAPI 3.0 文档 [here](https://api.qdrant.tech/)。
+- **gRPC**：用于更快的生产级搜索，文档 [here](https://qdrant.tech/documentation/interfaces/#grpc-interface)。
+
+### 演示项目
+
+- 语义文本搜索
+- 相似图像搜索（食物发现）
+- 极致分类（电商产品分类）
+
+### 集成
+
+与 Cohere, DocArray, Haystack, LangChain, LlamaIndex, OpenAI, Microsoft Semantic Kernel 等集成。
+
+更多信息请参考 [官方文档](https://qdrant.tech/documentation/)。

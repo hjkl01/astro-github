@@ -1,4 +1,3 @@
-
 ---
 title: Baileys
 ---
@@ -86,5 +85,4 @@ node dist/index.js
 - 示例与教程: `examples/` 目录
 
 ---
-
 > 以上内容基于 `WhiskeySockets/Baileys` 项目 README 与源码概览整理，供快速上手与了解项目核心特性。

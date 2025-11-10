@@ -1,6 +1,5 @@
-
 ---
-title: china_area_mysql
+title: china
 ---
 
 # 中国行政区划MySQL数据库项目

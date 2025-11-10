@@ -1,4 +1,3 @@
-
 ---
 title: quick-SQL-cheatsheet
 ---

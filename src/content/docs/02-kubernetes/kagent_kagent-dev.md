@@ -1,4 +1,3 @@
-
 ---
 title: kagent
 ---
@@ -104,5 +103,4 @@ metrics:
 - `charts/kagent/` – Helm Chart，用于快速部署  
 
 ---
-
 > 以上内容已转换为 Markdown，可直接保存至 `src/content/docs/00/kagent_kagent-dev.md`。

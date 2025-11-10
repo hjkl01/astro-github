@@ -1,4 +1,3 @@
-
 ---
 title: ubuntu-in-termux
 ---

@@ -1,115 +1,69 @@
-
 ---
 title: pipelex
 ---
 
-下面是 **Pipelex** 项目的中文说明。  
-请以 Markdown 格式保存为文件，路径为：
+# Pipelex
 
-```
-src/content/docs/00/pipelex_Pipelex.md
-```
+## 功能
 
-```markdown
-# Pipelex（Pipelex）
+Pipelex 是一个开源语言，用于 AI 代理创建和运行可重复的 AI 工作流。它开发了开放标准用于可重复的 AI 工作流，让用户编写业务逻辑，而不是 API 调用。
 
-**项目地址**  
-<https://github.com/Pipelex/pipelex>
+- 将任务分解为聚焦的步骤，每个管道（pipe）处理一个清晰的转换。
+- 使用概念（Concepts，具有意义的类型）来确保管道有意义。
+- Pipelex 语言（.plx 文件）简单且人类可读，即使对于非技术用户。
+- 每个步骤可以结构化和验证，提供软件的可靠性与 AI 的智能。
+- 支持多种 AI 提供商，包括 OpenAI、Anthropic、Google 等。
+- 提供 CLI 和 Python API 用于运行工作流。
 
----
+## 用法
 
-## 主要特性
+1. 安装 Pipelex：
 
-| 特性 | 说明 |
-|------|------|
-| **可配置化 Pipeline** | 支持基于 Python 函数和自定义 DSL 轻松定义任务与依赖关系。 |
-| **内置并发执行** | 支持多进程 / 多线程执行，自动调度任务并最大化 CPU 与 IO 资源利用。 |
-| **容错与重试** | 可为每个任务设置超时、重试策略与失败回调，保障整个流水线稳健运行。 |
-| **统一日志管理** | 内置日志收集与格式化，支持按任务、阶段、级别过滤输出。 |
-| **轻量级调试** | 可在开发阶段开启调试模式，实时查看每个节点的输入输出；支持断点与回溯。 |
-| **可视化监控** | 集成 `FastAPI` 与 `WebSocket`，可实现在线监控任务状态与性能指标。 |
-| **插件扩展** | 通过插件机制支持第三方数据源、存储与计算框架（如 Spark、S3、Redis 等）。 |
-
----
-
-## 核心功能
-
-1. **任务定义 (`Task`)**  
-   ```python
-   from pipelex import Task
-
-   @Task(name="example")
-   def my_task(a: int, b: int) -> int:
-       return a + b
+   ```
+   pip install pipelex
+   pipelex init
    ```
 
-2. **阶段与流水线 (`Stage`, `Pipeline`)**  
-   ```python
-   from pipelex import Stage, Pipeline
+2. 获取 API 密钥：
+   - 免费 Pipelex API 密钥：加入 Discord 社区并请求免费 API 密钥。
+   - 或使用自己的 API 密钥（OpenAI、Anthropic、Google 等）。
 
-   stage1 = Stage(name="stage1", tasks=[my_task])
-   pipeline = Pipeline(name="my_pipeline", stages=[stage1])
+3. 生成第一个工作流：
+
+   ```
+   pipelex build pipe "描述你的工作流" --output results/workflow.plx
    ```
 
-3. **依赖关系 & DAG**  
-   - 通过 `depends_on` 指定依赖；  
-   - 自动生成 DAG，避免循环依赖。
+4. 运行管道：
+   - 通过 CLI：
+     ```
+     pipelex run results/workflow.plx --inputs inputs.json
+     ```
+   - 通过 Python：
 
-4. **并发执行**  
-   - 默认使用 `concurrent.futures.ProcessPoolExecutor`；  
-   - 通过 `max_workers` 调整并发度。
+     ```python
+     import asyncio
+     import json
+     from pipelex.pipeline.execute import execute_pipeline
+     from pipelex.pipelex import Pipelex
 
-5. **错误处理**  
-   ```python
-   @Task(name="task_with_retry", retries=3, timeout=60)
-   def risky_task():
-       # 产生可能抛错的代码
+     async def run_pipeline():
+         with open("inputs.json", encoding="utf-8") as f:
+             inputs = json.load(f)
+
+         pipe_output = await execute_pipeline(
+             pipe_code="workflow",
+             inputs=inputs
+         )
+         print(pipe_output.main_stuff_as_str)
+
+     Pipelex.make()
+     asyncio.run(run_pipeline())
+     ```
+
+5. 使用 AI 助手迭代：
+   ```
+   pipelex kit rules
    ```
 
-6. **监控与报告**  
-   - 运行时实时 Web 队列展示：`http://localhost:8000/dashboard`；  
-   - 生成简单报告 JSON。
-
----
-
-## 用法示例
-
-```bash
-# 安装
-pip install git+https://github.com/Pipelex/pipelex.git
-
-# 编写 pipeline
-from pipelex import Task, Stage, Pipeline
-
-@Task(name="add")
-def add(a: int, b: int) -> int:
-    return a + b
-
-@Task(name="multiply")
-def multiply(x: int, y: int) -> int:
-    return x * y
-
-stage_sum = Stage(name="sum", tasks=[add])
-stage_prod = Stage(name="product", tasks=[multiply])
-
-pipeline = Pipeline(name="demo_pipeline",
-                    stages=[stage_sum, stage_prod])
-
-# 运行
-pipeline.run({"add": {"a": 2, "b": 3},
-              "multiply": {"x": 4, "y": 5}})
-```
-
-运行后会在控制台打印任务执行日志，并在浏览器 `http://localhost:8000/dashboard` 查看实时状态。
-
----
-
-> **注意**  
-> 1. 详细配置请参考 repo 中 `docs/` 与 `examples/`。  
-> 2. 所有代码均基于 Python 3.9+，兼容 `asyncio` 版本。
-
----
-
-**作者**：Pipelex 团队  
-**语言**：Python  
-**许可证**：MIT
+参考 [Pipelex 文档](https://docs.pipelex.com/) 开始使用。

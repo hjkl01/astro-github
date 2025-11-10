@@ -1,4 +1,3 @@
-
 ---
 title: mullvadvpn-app
 ---
@@ -83,6 +82,5 @@ Kill Switch 默认开启，若需关闭：
 - CLI 版：`mullvad update` 或使用系统包管理器。
 
 ---
-
 > **提示**：Mullvad 采用匿名支付方式（比特币或现金），无需绑定个人信息。  
 > 如需进一步自定义（如使用自定义 DNS 或自定义服务器列表），请参考官方文档或 GitHub Wiki。

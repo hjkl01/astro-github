@@ -1,79 +1,90 @@
-
 ---
 title: parlant
 ---
 
+# parlant_emcie-co
 
-# Parlant 项目
-**GitHub 地址**  
-[https://github.com/emcie-co/parlant](https://github.com/emcie-co/parlant)
+## 项目简介
 
-## 主要特性
+Parlant 是一个专为控制而构建的 LLM 代理框架，设计用于实际应用，可在几分钟内部署。它解决了传统 AI 代理开发中的主要问题：代理可能忽略精心设计的系统提示、产生幻觉响应或无法一致处理边缘情况。
 
-| # | 特性 | 简介 |
-|---|------|------|
-| 1 | **轻量级结构** | 仅依赖核心 Node.js 与标准插件，体积小，启动快。 |
-| 2 | **模块化插件体系** | 通过 `parlant-plugin-*` 依赖，轻松扩展功能。 |
-| 3 | **命令行工具** | `parlant-cli` 支持项目初始化、构建、启动、插件管理等。 |
-| 4 | **支持多语言** | 通过 `i18n` 模块，项目内文案可多语言切换。 |
-| 5 | **主题与布局可定制** | 采用 Handlebars/HTML 模板，可自由更换主题或开发自定义布局。 |
-| 6 | **静态资源快速构建** | 内置 Gulp/rollup，支持 Sass/ES6/ES Module 的编译和压缩。 |
-| 7 | **服务器端渲染(SSR)** | 可配置为纯静态或 SSR，适配 Vercel、Netlify 等平台部署。 |
+## 主要功能
 
-## core 功能
+- **确保合规性**：通过自然语言定义规则，确保代理遵循指令，而不是依赖于 LLM 的提示工程。
+- **对话旅程 (Journeys)**：定义清晰的客户旅程，并指定代理在每个步骤的响应方式。
+- **行为指南 (Behavioral Guidelines)**：轻松制定代理行为，Parlant 会根据上下文匹配相关元素。
+- **工具集成 (Tool Use)**：将外部 API、数据获取器或后端服务附加到特定交互事件。
+- **领域适应 (Domain Adaptation)**：教导代理特定领域的术语，并制定个性化响应。
+- **预设响应 (Canned Responses)**：使用响应模板消除幻觉并保证风格一致性。
+- **可解释性 (Explainability)**：了解每个指南为何以及何时被匹配和遵循。
+- **企业级特性**：包括对话分析、迭代改进、内置护栏等。
 
-- **项目结构生成**： `parlant init <project-name>` 自动生成文件夹、`package.json` 等基础文件。  
-- **开发服务器**： `parlant dev` 开启热重载模式，实时预览。  
-- **构建发布**： `parlant build` 生成 `dist/`，可直接上传至 CDN。  
-- **插件管理**： `parlant plugin add <name>`, `parlant plugin remove <name>`，插件按需下载。  
-- **多主题切换**：`parlant theme list`, `parlant theme switch <theme>`。  
-- **i18n 渲染**：通过 `#lang {key}` 语法在模板中插入多语言字符串。  
+## 用法
 
-## 快速上手
+### 安装
 
 ```bash
-# 1. 安装 CLI（全局或项目内部）
-npm install -g parlant-cli          # 全局安装
-# 或者
-npm i -D parlant-cli                # 项目内部安装
-
-# 2. 创建新项目
-parlant init my-awesome-site
-
-# 3. 进入项目目录
-cd my-awesome-site
-
-# 4. 开发调试
-parlant dev
-
-# 5. 构建发布
-parlant build
-
-# 6. 本地预览构建产物
-parlant preview
+pip install parlant
 ```
 
-### 插件使用示例
+### 快速开始
 
-```bash
-# 添加 Markdown 处理插件
-parlant plugin add parlant-plugin-md
+以下是一个简单的天气机器人示例：
 
-# 删除插件
-parlant plugin remove parlant-plugin-md
+```python
+import parlant.sdk as p
+
+@p.tool
+async def get_weather(context: p.ToolContext, city: str) -> p.ToolResult:
+    # 你的天气 API 逻辑在这里
+    return p.ToolResult(f"晴天，{city} 温度 72°F")
+
+@p.tool
+async def get_datetime(context: p.ToolContext) -> p.ToolResult:
+    from datetime import datetime
+    return p.ToolResult(datetime.now())
+
+async def main():
+    async with p.Server() as server:
+        agent = await server.create_agent(
+            name="WeatherBot",
+            description="有用的天气助手"
+        )
+
+        # 使用上下文变量在每次响应时更新代理的上下文（更新间隔可自定义）
+        await agent.create_variable(name="current-datetime", tool=get_datetime)
+
+        # 使用自然语言控制和引导代理行为
+        await agent.create_guideline(
+            condition="用户询问天气",
+            action="获取当前天气并提供友好的响应和建议",
+            tools=[get_weather]
+        )
+
+        # 添加其他可靠执行的行为建模元素
+        # ...
+
+        # 🎉 测试游乐场在 http://localhost:8800
+        # 将官方 React 小部件集成到你的应用中，
+        # 或按照教程构建自己的前端！
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
 ```
 
-### 主题切换示例
+运行此代码后，你的代理将在 http://localhost:8800 上运行，并确保遵循规则的行为。
 
-```bash
-# 查看可用主题
-parlant theme list
+## 适用场景
 
-# 切换主题
-parlant theme switch dark-mode
-```
+- **金融服务**：合规优先设计、内置风险管理。
+- **医疗保健**：HIPAA 就绪代理、患者数据保护。
+- **电子商务**：大规模客户服务、订单处理自动化。
+- **法律科技**：精确的法律指导、文档审查协助。
 
----
+## 更多资源
 
-> 该项目的详细使用说明已在根目录的 `README.md` 和 `docs/` 目录下说明，包含 API 文档、主题开发教程与插件开发规范。若需进一步了解插件架构与自定义功能，请参考官方文档。 
-
+- [官方网站](https://www.parlant.io)
+- [快速开始](https://www.parlant.io/docs/quickstart/installation)
+- [Discord 社区](https://discord.gg/duxWqxKk6J)
+- [示例](https://www.parlant.io/docs/quickstart/examples)

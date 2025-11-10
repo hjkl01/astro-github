@@ -1,4 +1,3 @@
-
 ---
 title: ntopng
 ---
@@ -113,5 +112,4 @@ curl -u admin:password "http://localhost:3000/api/flows?from=1620000000&to=16200
 - 社区支持: https://github.com/ntop/ntopng/discussions
 
 ---
-
 > **提示**：在生产环境中建议使用 HTTPS、LDAP 或 OAuth 进行身份认证，并开启告警通知以实时监控网络安全。

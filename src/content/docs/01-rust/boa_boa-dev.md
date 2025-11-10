@@ -1,4 +1,3 @@
-
 ---
 title: boa
 ---
@@ -103,5 +102,4 @@ boa benchmark
 > **提示**：如果需要在与其它 JavaScript 运行时交互（如 `node` 脚本），建议使用 `boa_runtime::Node`, `boa_runtime::Deno` 等对应的扩展（正在开发中）。
 
 ---
-
 **Boa** 是 Rust 生态中最接近标准化、性能平衡且安全可靠的 JavaScript 引擎，适合想要在 Rust 项目中使用脚本语言或打造自定义 JS 相关工具的开发者。祝编码愉快 🚀

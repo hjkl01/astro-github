@@ -1,4 +1,3 @@
-
 ---
 title: Signal-Android
 ---

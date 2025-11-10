@@ -1,4 +1,3 @@
-
 ---
 title: any-jump.vim
 ---

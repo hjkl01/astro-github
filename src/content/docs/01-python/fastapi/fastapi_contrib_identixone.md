@@ -1,6 +1,5 @@
-
 ---
-title: fastapi_contrib
+title: fastapi
 ---
 
 # FastAPI Contrib 项目

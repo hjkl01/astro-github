@@ -1,6 +1,5 @@
-
 ---
-title: Blasting_dictionary
+title: Blasting
 ---
 
 # Blasting_dictionary 项目

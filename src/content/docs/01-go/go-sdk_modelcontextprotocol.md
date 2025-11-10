@@ -1,109 +1,118 @@
-
 ---
 title: go-sdk
 ---
 
+# MCP Go SDK
 
-# ModelContextProtocol Go SDK
+The official Go SDK for Model Context Protocol servers and clients. Maintained in collaboration with Google.
 
-- 项目地址：<https://github.com/modelcontextprotocol/go-sdk>
+## Package / Feature documentation
 
-## 简介
+The SDK consists of several importable packages:
 
-`go-sdk` 是 ModelContextProtocol 的 Go 语言实现，旨在帮助开发者轻松地将业务数据、日志与上下文信息发送到 ModelContextProtocol 平台。该 SDK 通过提供高层封装的客户端 API，简化了数据校验、序列化、签名、重试等常见任务，让你专注于业务逻辑。
+- The [`github.com/modelcontextprotocol/go-sdk/mcp`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/mcp) package defines the primary APIs for constructing and using MCP clients and servers.
+- The [`github.com/modelcontextprotocol/go-sdk/jsonrpc`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/jsonrpc) package is for users implementing their own transports.
+- The [`github.com/modelcontextprotocol/go-sdk/auth`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/auth) package provides some primitives for supporting OAuth.
+- The [`github.com/modelcontextprotocol/go-sdk/oauthex`](https://pkg.go.dev/github.com/modelcontextprotocol/go-sdk/oauthex) package provides extensions to the OAuth protocol, such as ProtectedResourceMetadata.
 
-## 主要特性
+The SDK endeavors to implement the full MCP spec. The [`docs/`](/modelcontextprotocol/go-sdk/blob/main/docs) directory contains feature documentation, mapping the MCP spec to the packages above.
 
-- **易用的客户端**：只需几行代码即可完成数据上传。
-- **自动签名与校验**：使用项目密钥对请求进行 HMAC‑SHA256 签名，保障数据完整性和安全性。
-- **重试机制**：内置指数退避策略，自动重试网络错误与 5xx 状态码。
-- **异步批量发送**：支持将多条数据聚合后一次性发送，减少网络开销。
-- **丰富的错误处理**：统一返回错误结构，方便开发者捕获与定位问题。
-- **可配置化**：支持自定义超时、重试次数、日志级别等。
+## Getting started
 
-## 快速开始
-
-### 1. 安装
-
-```bash
-go get github.com/modelcontextprotocol/go-sdk@latest
-```
-
-### 2. 初始化客户端
+To get started creating an MCP server, create an `mcp.Server` instance, add features to it, and then run it over an `mcp.Transport`. For example, this server adds a single simple tool, and then connects it to clients over stdin/stdout:
 
 ```go
 package main
 
 import (
+	"context"
 	"log"
 
-	"github.com/modelcontextprotocol/go-sdk/pkg/sdk"
+	"github.com/modelcontextprotocol/go-sdk/mcp"
+)
+
+type Input struct {
+	Name string `json:"name" jsonschema:"the name of the person to greet"`
+}
+
+type Output struct {
+	Greeting string `json:"greeting" jsonschema:"the greeting to tell to the user"`
+}
+
+func SayHi(ctx context.Context, req *mcp.CallToolRequest, input Input) (
+	*mcp.CallToolResult,
+	Output,
+	error,
+) {
+	return nil, Output{Greeting: "Hi " + input.Name}, nil
+}
+
+func main() {
+	// Create a server with a single tool.
+	server := mcp.NewServer(&mcp.Implementation{Name: "greeter", Version: "v1.0.0"}, nil)
+	mcp.AddTool(server, &mcp.Tool{Name: "greet", Description: "say hi"}, SayHi)
+	// Run the server over stdin/stdout, until the client disconnects.
+	if err := server.Run(context.Background(), &mcp.StdioTransport{}); err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+To communicate with that server, create an `mcp.Client` and connect it to the corresponding server, by running the server command and communicating over its stdin/stdout:
+
+```go
+package main
+
+import (
+	"context"
+	"log"
+	"os/exec"
+
+	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 func main() {
-	cfg := sdk.NewConfig(
-		"YOUR_PROJECT_ID",
-		"YOUR_API_KEY",
-		sdk.WithEndpoint("https://api.modelcontextprotocol.com"), // 可, 默认值
-		sdk.WithTimeout(30),                                      // 传输超时秒
-		sdk.WithRetry(3),                                          // 重试次数
-	)
+	ctx := context.Background()
 
-	client, err := sdk.NewClient(cfg)
+	// Create a new client, with no features.
+	client := mcp.NewClient(&mcp.Implementation{Name: "mcp-client", Version: "v1.0.0"}, nil)
+
+	// Connect to a server over stdin/stdout.
+	transport := &mcp.CommandTransport{Command: exec.Command("myserver")}
+	session, err := client.Connect(ctx, transport, nil)
 	if err != nil {
-		log.Fatalf("创建客户端失败: %v", err)
+		log.Fatal(err)
 	}
-	defer client.Close()
+	defer session.Close()
 
-	// 发送单条数据
-	if err := client.Send(context.Background(), map[string]interface{}{
-		"user_id":   12345,
-		"action":    "click",
-		"timestamp": time.Now().Unix(),
-	}); err != nil {
-		log.Printf("发送失败: %v", err)
+	// Call a tool on the server.
+	params := &mcp.CallToolParams{
+		Name:      "greet",
+		Arguments: map[string]any{"name": "you"},
+	}
+	res, err := session.CallTool(ctx, params)
+	if err != nil {
+		log.Fatalf("CallTool failed: %v", err)
+	}
+	if res.IsError {
+		log.Fatal("tool failed")
+	}
+	for _, c := range res.Content {
+		log.Print(c.(*mcp.TextContent).Text)
 	}
 }
 ```
 
-### 3. 异步批量发送
+The [`examples/`](/modelcontextprotocol/go-sdk/blob/main/examples) directory contains more example clients and servers.
 
-```go
-batch := &sdk.Batch{
-    Events: []map[string]interface{}{
-        {"user_id": 1, "action": "view"},
-        {"user_id": 2, "action": "purchase"},
-    },
-}
-err := client.SendBatch(context.Background(), batch)
-if err != nil {
-    // handle error
-}
-```
+## Contributing
 
-## API 概览
+We welcome contributions to the SDK! Please see [CONTRIBUTING.md](/modelcontextprotocol/go-sdk/blob/main/CONTRIBUTING.md) for details of how to contribute.
 
-| 包 | 功能 | 说明 |
-|----|------|------|
-| `sdk/config.go` | 账户与连接配置 | 传递项目 ID、API Key、endpoint、超时、重试配置 |
-| `sdk/client.go` | 主要客户端 | `NewClient`, `Send`, `SendBatch`, `Close` |
-| `sdk/transport.go` | HTTP 传输层 | 自动签名、重试、日志 |
-| `sdk/models.go` | 数据模型 | `Event`, `Batch`, `Response` 等 |
-| `sdk/errors.go` | 错误定义 | 包含 `ErrUnauthorized`, `ErrRequestFailed` 等 |
+## Acknowledgements / Alternatives
 
-## 配置参数
+Several third party Go MCP SDKs inspired the development and design of this official SDK, and continue to be viable alternatives, notably [mcp-go](https://github.com/mark3labs/mcp-go), originally authored by Ed Zynda. We are grateful to Ed as well as the other contributors to mcp-go, and to authors and contributors of other SDKs such as [mcp-golang](https://github.com/metoro-io/mcp-golang) and [go-mcp](https://github.com/ThinkInAIXYZ/go-mcp). Thanks to their work, there is a thriving ecosystem of Go MCP clients and servers.
 
-- `ProjectID`（必填）：ModelContextProtocol 项目 ID。  
-- `APIKey`（必填）：用于签名请求的密钥。  
-- `Endpoint`（可选）：API 接口地址，默认 `https://api.modelcontextprotocol.com`。  
-- `Timeout`（可选）：HTTP 超时时间，单位秒。  
-- `Retry`（可选）：失败时重试次数。  
-- `LogLevel`（可选）：日志级别，支持 `debug`, `info`, `warn`, `error`。
+## License
 
-## 贡献
-
-欢迎 Issue 与 Pull Request。开发流程请参考 `CONTRIBUTING.md`。
-
-## 许可证
-
-MIT 开源协议，详见 `LICENSE`。
+This project is licensed under the MIT License - see the [LICENSE](/modelcontextprotocol/go-sdk/blob/main/LICENSE) file for details.

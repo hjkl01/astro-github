@@ -1,4 +1,3 @@
-
 ---
 title: blur-my-shell
 ---
@@ -75,6 +74,5 @@ bmctl reload          # 重载配置
 - 查看 `docs/README.md` 或 `docs/reference.md` 了解更细致的配置与实现细节。
 
 ---
-
 *以上内容为项目快速说明，更多详情请参阅官方 GitHub 文档。*
 ```

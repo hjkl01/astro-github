@@ -1,4 +1,3 @@
-
 ---
 title: shields
 ---
@@ -53,5 +52,4 @@ shields.io 是一个生成自定义徽章（Badges）的在线服务，广泛用
 3. **缓存 & CDN**：shields.io 使用 CDN 缓存，访问速度快，无需额外配置。
 
 ---
-
 > 以上内容已保存为 `src/content/docs/00/shields_badges.md`。

@@ -1,4 +1,3 @@
-
 ---
 title: amazon-q-developer-cli
 ---

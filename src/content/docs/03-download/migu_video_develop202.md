@@ -1,6 +1,5 @@
-
 ---
-title: migu_video
+title: migu
 ---
 
 
@@ -64,11 +63,8 @@ python migu_video.py --url "https://..." --subtitle-only
 > 如需贡献或反馈，请提交 Pull Request 或 Issue。
 
 ---
-
 **键点总结**
-
 - 轻松批量下载 Migu 视频  
 - 多清晰度 & 自动字幕  
 - 断点续传 & 进度显示  
 - 简单易用的命令行接口
-

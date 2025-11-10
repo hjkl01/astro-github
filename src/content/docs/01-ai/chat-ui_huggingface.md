@@ -1,4 +1,3 @@
-
 ---
 title: chat-ui
 ---
@@ -86,5 +85,4 @@ curl -X POST http://localhost:8000/v1/chat/completions \
 - **前端主题**：在 `src/components` 处替换 CSS 或使用 Tailwind 进行主题定制。
 
 ---
-
 > 以上即为 Hugging Face Chat UI 的核心特性与使用方法。祝开发愉快！

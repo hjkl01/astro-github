@@ -1,28 +1,6 @@
-
 ---
 title: ossnav
 ---
-
-# OSSNav
-
-**Project URL:**  
-<https://github.com/maxiaobang7/ossnav>
-
----
-
-## 📦 主要特性
-
-| 特色 | 说明 |
-|------|------|
-| **简洁命令行界面** | 采用类似 `s3cmd` 的语法，操作直观、易学 |
-| **支持阿里云 OSS** | 可一键访问、管理 OSS Bucket 及对象 |
-| **多功能管理** | 包括列举、上传、下载、删除、同步、权限设置等 |
-| **进度显示** | 上传/下载时实时显示进度条 |
-| **配置文件 & 环境变量** | 统一管理 AccessKey、SecretKey、Endpoint 等 |
-| **批量处理** | `--recursive` 递归操作，`sync` 同步目录 |
-| **多线程上传** | 大文件支持分块上传（多线程） |
-| **命令帮助** | `ossnav help` 或 `ossnav <command> --help` |
-
 ---
 
 ## ⚙️ 功能与用法
@@ -125,7 +103,5 @@ ossnav sync oss://example-bucket/ ./remote_folder/
   ```
 
 ---
-
 ## 📚 结语
-
 OSSNav 让你通过命令行就能高效地管理阿里云 OSS，适用于快速备份、同步以及日常文件操作。欢迎尝试并提出任何建议或 issue！

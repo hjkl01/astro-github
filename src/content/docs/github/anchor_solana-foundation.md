@@ -1,4 +1,3 @@
-
 ---
 title: anchor
 ---
@@ -105,5 +104,4 @@ anchor deploy --provider.cluster devnet
 - 跟随 Contributor 手册编写文档及案例。
 
 ---
-
 > 以上为 Anchor 框架的核心特性与常用用法，帮助快速上手 Solana 程序开发。

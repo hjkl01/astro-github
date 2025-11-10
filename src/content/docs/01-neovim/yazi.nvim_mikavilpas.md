@@ -1,4 +1,3 @@
-
 ---
 title: yazi.nvim
 ---
@@ -130,6 +129,5 @@ require('yazi').setup({
 - 社区：可在 Neovim 的 Discord/Telegram 群聊中讨论与使用体验。
 
 ---
-
 **代码仓库**  
 [https://github.com/mikavilpas/yazi.nvim](https://github.com/mikavilpas/yazi.nvim)

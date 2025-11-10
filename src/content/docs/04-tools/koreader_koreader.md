@@ -1,4 +1,3 @@
-
 ---
 title: koreader
 ---
@@ -76,5 +75,4 @@ KOReader 是一款开源的、轻量级的电子书阅读器，专为电子墨�
 - 如需帮助，请查看 `README.md` 与 `CONTRIBUTING.md`，或在 Issues 区提交 bug/需求。
 
 ---
-
 **项目地址**: https://github.com/koreader/koreader

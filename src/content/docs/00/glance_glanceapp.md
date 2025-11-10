@@ -1,90 +1,166 @@
-
 ---
 title: glance
 ---
 
+# Glance
 
-# glanceapp/glance
+## 项目简介
 
-**项目地址**: https://github.com/glanceapp/glance
+Glance 是一个轻量级、高度可定制的自托管仪表板，用于在一个美观、简洁的界面中显示您的所有 feed。
 
-## 项目概述
-glance 是一款基于 Docker 的开源仪表盘，旨在为开发团队提供实时、可视化的 GitHub 仓库状态监控。通过调用 GitHub API 与 Webhook，glance 自动收集代码提交、Issue、Pull Request、CI/CD 状态、代码覆盖率等指标，并以简洁的图表和表格呈现。
+## 主要功能
 
-## 主要特性
-- **实时数据刷新**：支持 GitHub Webhook，数据可在几秒内同步更新。
-- **多维度指标展示**：提交量、作者贡献、PR 成功率、分支合并速率、CI 构建成功率等。
-- **自定义仪表盘**：用户可根据需要添加、删除或重新排列组件。
-- **多仓库管理**：一次部署可监控多仓库，支持团队级别的视图聚合。
-- **权限细粒度**：通过 GitHub OAuth 认证，权限控制细致到用户/团队层级。
-- **轻量级部署**：单个 Docker Compose 文件即可快速启动，零 CDN/代理需求。
+### 多种小部件
 
-## 功能一览
-| 功能 | 说明 |
-|------|------|
-| **Dashboard** | 传统的柱状、折线图显示 Commit/PR/Issue 趋势。 |
-| **Repo Overview** | 单仓库实时概览，包括最新提交、PR、Issue、Star 数量。 |
-| **CI/CD Status** | 显示最近 30 条构建结果，支持多种 CI 提供商（GitHub Actions, Travis, Jenkins 等）。 |
-| **Code Coverage** | 可与覆盖率服务（Codecov, Coveralls 等）集成，展示覆盖率变化。 |
-| **Auth & Permission** | 基于 OAuth 授权，限制只能查看自己访问权限范围内的仓库。 |
-| **Webhook Agent** | 自动注册 GitHub Webhook，在事件发生时立刻抓取最新信息。 |
+- RSS feeds
+- Subreddit posts
+- Hacker News posts
+- 天气预报
+- YouTube 频道上传
+- Twitch 频道
+- 市场价格
+- Docker 容器状态
+- 服务器统计
+- 自定义小部件
+- 以及更多...
+
+### 快速且轻量
+
+- 低内存使用
+- 少量依赖
+- 最小化原生 JS
+- 单个 <20MB 二进制文件，支持多种 OS 和架构，以及同样小的 Docker 容器
+- 未缓存页面通常在 ~1s 内加载（取决于互联网速度和小部件数量）
+
+### 高度可定制
+
+- 不同布局
+- 任意数量的页面/标签
+- 每个小部件的众多配置选项
+- 某些小部件的多种样式
+- 自定义 CSS
+
+### 移动设备优化
+
+因为您会想在外出时使用它。
+
+### 可主题化
+
+通过调整几个数字轻松创建自己的主题，或从[已可用主题](/glanceapp/glance/blob/main/docs/themes.md)中选择。
 
 ## 使用方法
 
-### 1. 获取项目
+### 安装
+
+选择以下方法之一：
+
+#### Docker Compose 使用提供的目录结构（推荐）
+
+创建一个名为 `glance` 的新目录，并在其中创建模板文件：
 
 ```bash
-git clone https://github.com/glanceapp/glance.git
-cd glance
+mkdir glance && cd glance && curl -sL https://github.com/glanceapp/docker-compose-template/archive/refs/heads/main.tar.gz | tar -xzf - --strip-components 2
 ```
 
-### 2. 配置环境变量  
-在 `docker-compose.yml` 或 `.env` 内配置：
+然后，根据需要编辑以下文件：
 
-```dotenv
-# OAuth Application
-GITHUB_CLIENT_ID=your_client_id
-GITHUB_CLIENT_SECRET=your_client_secret
+- `docker-compose.yml`：配置端口、卷和其他容器相关内容
+- `config/home.yml`：配置主页的小部件或布局
+- `config/glance.yml`：如果要更改主题或添加更多页面
 
-# Repository to monitor (comma separated if multiple)
-GITHUB_REPOSITORIES=org1/repo1,org2/repo2
-
-# Optional: CI provider configuration
-CI_PROVIDER=github_actions
-```
-
-> **Tip**：在 GitHub 上注册 OAuth App，授权回调地址为 `https://<YOUR_HOST>/oauth/callback`。
-
-### 3. 启动服务
+准备就绪后，运行：
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-### 4. 访问仪表盘  
-打开浏览器访问：
+#### Docker Compose 手动
 
+创建一个 `docker-compose.yml` 文件，内容如下：
+
+```yaml
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+    ports:
+      - 8080:8080
 ```
-https://<YOUR_HOST>/dashboard
-```
 
-首次访问会跳转到 GitHub 登录，完成授权后即可查看各仓库的实时指标。
-
-### 5. 高级配置（可选）
-
-- **自定义组件**：修改 `templates/` 内的 Vue/Jade 文件，重新部署。
-- **邮件/Slack 通知**：在 `config/email.yml`、`config/slack.yml` 中填写接收者信息。
-- **多语言**：编辑 `locales/zh_CN.yml` 等文件。
-
-### 6. 生产部署
+然后，创建一个名为 `config` 的新目录，并下载示例起始 `glance.yml` 文件：
 
 ```bash
-# 生产环境
-docker-compose -f docker-compose.prod.yml up -d
+mkdir config && wget -O config/glance.yml https://raw.githubusercontent.com/glanceapp/glance/refs/heads/main/docs/glance.yml
 ```
 
-> 使用 `docker-compose.prod.yml` 预设了更高的并发、日志滚动与 HTTPS。
+随意编辑 `glance.yml` 文件，然后运行：
 
----
+```bash
+docker compose up -d
+```
 
-> 以上即为 glanceapp/glance 的主要特性、功能及使用流程。祝使用愉快！   
+#### 手动二进制安装
+
+预编译二进制文件适用于 Linux、Windows 和 macOS（x86、x86_64、ARM 和 ARM64 架构）。
+
+对于 Linux，访问[最新发布页面](https://github.com/glanceapp/glance/releases/latest)获取可用二进制文件。您可以将二进制文件放在 `/opt/glance/` 中，并通过 [systemd 服务](https://linuxhandbook.com/create-systemd-services/)让它随服务器启动。默认情况下，运行二进制文件时，它会在放置目录中查找 `glance.yml` 文件。要指定不同的配置文件路径，使用 `--config` 选项：
+
+```bash
+/opt/glance/glance --config /etc/glance.yml
+```
+
+### 配置
+
+配置通过 YAML 文件完成。要了解布局如何工作、如何添加更多页面以及如何配置小部件，请访问[配置文档](/glanceapp/glance/blob/main/docs/configuration.md#configuring-glance)。
+
+## 常见问题
+
+- **请求超时**：最常见原因是使用 Pi-Hole、AdGuard Home 或其他广告拦截 DNS 服务，默认速率限制较低。根据单个页面中的小部件数量，很容易超过此限制。要修复，请在 DNS 服务设置中增加速率限制。
+- **市场、书签或其他小部件布局损坏**：这几乎总是由浏览器扩展 Dark Reader 引起。要修复，请为 Glance 托管的域禁用暗模式。
+
+## 构建
+
+从源代码构建：
+
+#### 使用 Go 构建二进制文件
+
+要求：[Go](https://go.dev/dl/) >= v1.23
+
+要为当前 OS 和架构构建项目，运行：
+
+```bash
+go build -o build/glance .
+```
+
+要为特定 OS 和架构构建，运行：
+
+```bash
+GOOS=linux GOARCH=amd64 go build -o build/glance .
+```
+
+或者，如果您只想运行应用而不创建二进制文件，例如测试更改时，可以运行：
+
+```bash
+go run .
+```
+
+#### 使用 Docker 构建项目和 Docker 镜像
+
+要求：[Docker](https://docs.docker.com/engine/install/)
+
+仅使用 Docker 构建项目和镜像，运行：
+
+（将 `owner` 替换为您的姓名或组织）
+
+```bash
+docker build -t owner/glance:latest .
+```
+
+如果希望将镜像推送到注册表（默认 Docker Hub），运行：
+
+```bash
+docker push owner/glance:latest
+```

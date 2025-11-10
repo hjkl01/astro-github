@@ -1,4 +1,3 @@
-
 ---
 title: orgmode
 ---
@@ -83,5 +82,4 @@ print("Hello Org!")
 本项目基于 ISC 许可证发布，允许免费使用、修改与分发。详情请参见 `LICENSE` 文件。
 
 ---
-
 > **Tip**：建议同时安装 `nvim-treesitter` 与 `telescope.nvim`，以获得最佳语法高亮与搜索体验。

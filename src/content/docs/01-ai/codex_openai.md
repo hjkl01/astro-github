@@ -1,4 +1,3 @@
-
 ---
 title: codex
 ---
@@ -91,5 +90,4 @@ title: codex
 | 代码审查 | 在 CI 流程中自动检查代码质量、潜在 bug。 |
 
 ---
-
 > **文档来源**：<https://github.com/openai/codex>

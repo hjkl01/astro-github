@@ -1,4 +1,3 @@
-
 ---
 title: nvim-lspconfig
 ---
@@ -77,9 +76,7 @@ require("lspconfig").setup {}
 3. 在 `init.lua` 或对应插件配置文件中调用 `require("lspconfig").setup()` 并按需加入自定义服务器配置。  
 
 ---
-
 > 该插件是 Neovim 官方 LSP 配置工具，专为快速、灵活的语言服务集成而生。  
-
 ```md
 src/content/docs/00/nvim-lspconfig_neovim.md
 ```

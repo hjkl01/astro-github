@@ -1,4 +1,3 @@
-
 ---
 title: rust-clippy
 ---
@@ -66,5 +65,4 @@ title: rust-clippy
 - 可以结合 CI（GitHub Actions 等）自动化 lint 检查
 
 ---
-
 **更多信息**：请查看官方仓库中的 [README](https://github.com/rust-lang/rust-clippy#rust-clippy) 与 [文档](https://rust-lang.github.io/rust-clippy/)。

@@ -1,4 +1,3 @@
-
 ---
 title: sandman2
 ---

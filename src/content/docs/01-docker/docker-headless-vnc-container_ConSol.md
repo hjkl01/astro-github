@@ -1,4 +1,3 @@
-
 ---
 title: docker-headless-vnc-container
 ---

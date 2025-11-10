@@ -1,128 +1,99 @@
-
 ---
 title: lighter-python
 ---
 
-# lighter-python（elliottech）
+# lighter-python
 
-> 项目地址: <https://github.com/elliottech/lighter-python>
+## 项目简介
 
-Lightweight Python SDK 用于与 **Lighter Cloud** 的 RESTful/WS 接口交互。它通过简洁的 API、自动重试、异步支持以及丰富的错误处理，让开发者可以快速构建与设备、事件、配置管理相关的业务流程。
+lighter-python 是 Lighter 平台的官方 Python SDK，提供与 Lighter 区块链交易平台交互的完整 API 支持。Lighter 是一个基于 ZK-rollup 的去中心化交易所 (DEX)，支持高性能的加密货币交易。
 
----
+## 主要功能
 
-## ✨ 主要特性
+- **账户管理**: 查询账户信息、API 密钥、PnL（盈亏）、公共池等
+- **订单操作**: 创建、取消订单，查询订单簿、活跃订单、不活跃订单
+- **市场数据**: 获取 K 线图、资金费率、交易统计、最近交易
+- **交易历史**: 查询账户交易、区块交易、存款/提现历史
+- **区块链信息**: 获取区块信息、当前高度、交易详情
+- **WebSocket 支持**: 实时同步订单簿和账户数据
 
-| 特性 | 描述 |
-|------|------|
-| **简洁直观的接口** | 只需几行代码即可完成验证、设备 CRUD、事件订阅等操作。 |
-| **同步/异步双模式** | 内置 `asyncio` 支持，按需选择 `sync` 或 `async` 调用。 |
-| **自动重试 & 请求限流** | 对网络异常自动重试，支持自定义重试策略，避免瞬时流量激增导致服务拒绝。 |
-| **统一错误处理** | 抛可辨识的错误类型（`AuthenticationError`、`NotFoundError` 等）并提供友好提示。 |
-| **日志与监控** | 默认集成 `logging`，可自定义日志级别与格式，支持链路跟踪。 |
-| **易于配置** | 通过环境变量或显式参数加载 `api_token`、`base_url` 等配置信息。 |
-| **兼容性好** | 只依赖 `requests`（同步）/`httpx`（异步），最低 Python 3.8。 |
+## 安装
 
----
+### 要求
 
-## 📦 安装
+- Python 3.8+
 
-```bash
-pip install lighter-python
-```
-
-或直接从源码安装：
+### 通过 pip 安装
 
 ```bash
-git clone https://github.com/elliottech/lighter-python.git
-cd lighter-python
-pip install .
+pip install git+https://github.com/elliottech/lighter-python.git
 ```
 
----
+## 基本用法
 
-## 🚀 快速上手
-
-### 1. 同步模式
+### 初始化客户端
 
 ```python
-from lighter import LighterClient
-
-# 通过环境变量读取 token，或显式传递
-client = LighterClient()
-
-# 获取设备列表
-devices = client.list_devices()
-print(devices)
-
-# 读取单个设备信息
-device = client.get_device("device-id-123")
-print(device)
-
-# 发送事件
-client.publish_event(device_id="device-id-123", event="temperature", data={"value": 22.5})
-```
-
-### 2. 异步模式
-
-```python
+import lighter
 import asyncio
-from lighter import AsyncLighterClient
 
 async def main():
-    async with AsyncLighterClient() as client:
-        devices = await client.list_devices()
-        print(devices)
+    client = lighter.ApiClient()
+    try:
+        # 使用 API
+        account_api = lighter.AccountApi(client)
+        account = await account_api.account(by="index", value="1")
+        print(account)
+    finally:
+        await client.close()  # 确保连接干净关闭
 
-        await client.publish_event(
-            device_id="device-id-123",
-            event="humidity",
-            data={"value": 55}
-        )
-
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
----
+### 示例
 
-## 📚 主要 API 参考
-
-| 方法 | 说明 | 备注 |
-|------|------|------|
-| `list_devices()` / `list_devices_async()` | 获取所有设备列表 | 支持分页 |
-| `get_device(device_id)` | 查询单个设备 | 返回 `Device` 对象 |
-| `create_device(name, *args)` | 创建新设备 | 捕获 `ConflictError` |
-| `update_device(device_id, **kwargs)` | 更新设备信息 | 精细字段更新 |
-| `delete_device(device_id)` | 删除设备 | 确认删除后再执行 |
-| `publish_event(device_id, event, data)` | 事件上报 | 支持批量事件 |
-| `subscribe_events(callback, **filters)` | 订阅实时事件 | 通过 WebSocket 实现 |
-| `set_config(device_id, config)` | 设置设备配置 | 自动序列化 |
-| `get_config(device_id)` | 获取设备配置 | 解析为 `dict` |
-
-> 所有异步方法均以 `async_` 或 `_async` 结尾，适配协程调用。
-
----
-
-## 🛠️ 配置与环境
-
-- **API Token**：使用 `LIGHTER_API_TOKEN` 环境变量或在客户端构造器中显式传递。
-- **Base URL**：默认 `https://api.lighter.com`，可通过 `LIGHTER_BASE_URL` 或参数 `base_url` 指定（用于测试环境）。
-- **重试策略**：`retry_max`（最大重试次数），`retry_backoff`（指数回退时间，单位秒）可自定义。
-- **日志**：将 `LIGHTER_LOG_LEVEL` 设置为 `DEBUG`、`INFO` 等，可在 import 后配置。
+#### 获取账户信息
 
 ```python
-import os
-os.environ["LIGHTER_LOG_LEVEL"] = "DEBUG"
+account_api = lighter.AccountApi(client)
+account = await account_api.account(by="index", value="1")
 ```
 
----
+#### 查询订单簿
 
-## 📦 贡献与支持
+```python
+order_api = lighter.OrderApi(client)
+order_books = await order_api.order_books()
+```
 
-- 上行 PR：欢迎提交功能改进和 bug 修复。
-- issue：请详细描述重现步骤或错误信息。
-- 文档：保持 README 与代码注释同步。
+#### WebSocket 实时数据
 
----
+```python
+# 参考 examples/ws.py
+```
 
-**项目地址**: [https://github.com/elliottech/lighter-python](https://github.com/elliottech/lighter-python)
+## API 端点
+
+SDK 提供了以下主要 API 类：
+
+- `AccountApi`: 账户相关操作
+- `OrderApi`: 订单和市场数据
+- `TransactionApi`: 交易操作
+- `BlockApi`: 区块链信息
+- `CandlestickApi`: K 线和资金数据
+- `RootApi`: 基本信息和状态
+
+详细的 API 文档请参考项目仓库中的 `docs/` 目录。
+
+## 测试
+
+运行测试：
+
+```bash
+pytest
+```
+
+## 许可证
+
+Apache-2.0 License

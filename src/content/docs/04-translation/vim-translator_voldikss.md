@@ -1,4 +1,3 @@
-
 ---
 title: vim-translator
 ---

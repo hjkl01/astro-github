@@ -1,4 +1,3 @@
-
 ---
 title: lerobot
 ---
@@ -83,7 +82,6 @@ python -m lerobot.trainers.export \
 - **讨论社区**: https://discuss.huggingface.co/t/lerobot
 
 ---
-
 > **提示**：在使用 leRobot 之前，请确保已安装相应的仿真器（如 IsaacGym、MuJoCo）并配置好环境变量。  
 > 
 > 更多信息请参考项目的 README 与 Wiki。

@@ -1,3 +1,7 @@
+---
+title: opentelemetry-collector
+---
+
 # OpenTelemetry Collector
 
 ## 项目简介

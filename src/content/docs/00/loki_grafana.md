@@ -1,117 +1,99 @@
-
 ---
 title: loki
 ---
 
+# Loki
 
-# Loki（Grafana Labs）项目概述
+## 功能
 
-**GitHub 地址**: https://github.com/grafana/loki
+Loki 是一个水平可扩展、高可用、多租户的日志聚合系统，受 Prometheus 启发。它专为日志而设计，非常经济有效且易于操作。与其他日志聚合系统不同，Loki 不对日志内容进行全文索引，而是存储压缩的非结构化日志，并仅索引一组标签作为元数据。
 
----
+Loki 的主要特点包括：
 
-## 1. 项目简介  
-Loki 是一套水平可扩展、受限型的日志聚合系统，专为与 Prometheus 级别的监控场景配合使用。它采用与 Prometheus 相同的标签体系，支持高效存储、索引以及查询日志。
+- **成本效益**：通过仅索引元数据而非日志内容，Loki 更简单、更便宜。
+- **标签驱动**：使用与 Prometheus 相同的标签来索引和分组日志流，实现指标和日志的无缝切换。
+- **云原生友好**：特别适合存储 Kubernetes Pod 日志，自动抓取和索引 Pod 标签等元数据。
+- **Grafana 集成**：原生支持 Grafana（需要 Grafana v6.0 及以上版本）。
 
----
+Loki 基于的日志堆栈包括三个组件：
 
-## 2. 主要特性  
-| 特性 | 说明 |
-|------|------|
-| **轻量级索引** | 只索引日志标签和时间戳，避免大规模文本索引，节省磁盘与内存 |
-| **水平可扩展** | 通过分片、拉取、复制实现多节点扩展 |
-| **多租户支持** | 为每个租户隔离数据与资源，适合 SaaS 场景 |
-| **与 Grafana 深度集成** | 直接在 Grafana 搭建面板，支持 Loki 查询语言 (LogQL) |
-| **弹性存储** | 可使用多种后端：Cassandra、Elasticsearch、BoltDB、S3 等 |
-| **高可用** | 支持 Raft 节点复制，保证日志数据的持久性 |
+- **Alloy**：代理，负责收集日志并发送到 Loki。
+- **Loki**：主服务，负责存储日志和处理查询。
+- **Grafana**：用于查询和显示日志。
 
----
+Loki 不同于 Prometheus，它专注于日志而非指标，并通过推送而非拉取的方式交付日志。
 
-## 3. 核心功能  
-1. **日志采集**  
-   - `promtail`、`fluentd`、`syslog` 等代理程序可将日志推送到 Loki。  
-   - 支持通过文件、容器、Kubernetes 事件等多种来源。
+## 用法
 
-2. **查询日志**  
-   - **LogQL**：查询语言与 PromQL 类似，支持正则匹配、聚合、行过滤。  
-   - 示例：`{app="web"} |~ "error|critical" | line_format "{{.timestamp}} {{.message}}"`
+### 安装 Loki
 
-3. **聚合与采样**  
-   - 支持 *max-lines* 控制查询返回行数，或者使用 `count_over_time`、`sum_over_time` 等聚合函数。
+参考官方文档：[Installing Loki](https://grafana.com/docs/loki/latest/installation/)
 
-4. **多租户查询与标签过滤**  
-   - 通过 `X-Scope-OrgID` HTTP 头控制租户，或通过 `label_values` 函数获取租户标签。
+### 安装 Alloy
 
-5. **终端工具与插件**  
-   - `grafana-cli` 插件：Grafana 中的 Loki 数据源。  
-   - `loki` 命令行：用于查询、导入、诊断。
+参考官方文档：[Installing Alloy](https://grafana.com/docs/loki/latest/send-data/alloy/)
 
----
+### 入门指南
 
-## 4. 典型用法
+参考官方文档：[Getting Started](https://grafana.com/docs/loki/latest/get-started/)
 
-### 4.1 安装与运行  
+### 升级
+
+参考官方文档：[Upgrading Loki](https://grafana.com/docs/loki/latest/upgrading/)
+
+### 文档
+
+- [最新版本文档](https://grafana.com/docs/loki/latest/)
+- [即将发布版本文档](https://grafana.com/docs/loki/next/)
+
+常用部分：
+
+- [API 文档](https://grafana.com/docs/loki/latest/api/)：用于将日志导入 Loki。
+- [标签](https://grafana.com/docs/loki/latest/getting-started/labels/)
+- [操作](https://grafana.com/docs/loki/latest/operations/)
+- [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)：代理，用于跟踪日志文件并推送至 Loki。
+- [管道](https://grafana.com/docs/loki/latest/clients/promtail/pipelines/)：日志处理管道详情。
+- [Docker 驱动客户端](https://grafana.com/docs/loki/latest/clients/docker-driver/)：Docker 插件，直接从 Docker 容器发送日志到 Loki。
+- [LogCLI](https://grafana.com/docs/loki/latest/query/logcli/)：命令行界面，用于查询日志。
+- [Loki Canary](https://grafana.com/docs/loki/latest/operations/loki-canary/)：监控 Loki 安装以检测缺失日志。
+- [故障排除](https://grafana.com/docs/loki/latest/operations/troubleshooting/)：处理错误消息的帮助。
+- [Grafana 中的 Loki](https://grafana.com/docs/loki/latest/operations/grafana/)：在 Grafana 中设置 Loki 数据源。
+
+### 从源码构建
+
+Loki 可以在单主机、无依赖模式下运行。需要最新版本的 Go。
+
 ```bash
-# 拉取仓库
-git clone https://github.com/grafana/loki.git
+# 检出源码
+git clone https://github.com/grafana/loki
 cd loki
 
-# 编译二进制
-make build
+# 构建二进制文件
+go build ./cmd/loki
 
-# 运行 Loki（默认配置示例）
-./loki -config.file=conf/loki-local-config.yaml
+# 运行可执行文件
+./loki -config.file=./cmd/loki/loki-local-config.yaml
 ```
 
-### 4.2 配置采集代理 promtail  
-```yaml
-# promtail.yaml
-server:
-  http_listen_port: 9080
-  grpc_listen_port: 0
+或者使用 make：
 
-positions:
-  filename: /tmp/positions.yaml
-
-clients:
-  - url: http://localhost:3100/loki/api/v1/push
-
-scrape_configs:
-  - job_name: system
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: varlogs
-          __path__: /var/log/*log
-```
 ```bash
-# 运行 promtail
-./promtail -config.file=promtail.yaml
+# 构建二进制文件
+make loki
+
+# 运行可执行文件
+./cmd/loki/loki -config.file=./cmd/loki/loki-local-config.yaml
 ```
 
-### 4.3 在 Grafana 中添加 Loki 数据源  
-1. 登录 Grafana。  
-2. 进入 *Configuration → Data Sources → Add data source → Loki*.  
-3. URL 输入 `http://localhost:3100`.  
-4. 保存并测试。
+构建 Promtail：
 
-### 4.4 查询示例  
-```logql
-# 过滤包含 "error" 的日志
-{job="varlogs"} |~ "error"
-
-# 计算过去 5 分钟内的错误行数
-count_over_time({job="varlogs"}[5m])
+```bash
+go build ./clients/cmd/promtail
 ```
 
----
+### 获取帮助
 
-## 5. 参考资源  
-- 官方文档: https://grafana.com/docs/loki/latest/  
-- 代码仓库: https://github.com/grafana/loki  
-- 交流社区: https://github.com/grafana/loki/discussions  
-
----
-
-**项目地址**: https://github.com/grafana/loki  
+- 在 Grafana Labs 社区论坛搜索 Loki 相关话题：[https://community.grafana.com](https://community.grafana.com/c/grafana-loki/)
+- 在 Loki Slack 频道提问：[https://slack.grafana.com/](https://slack.grafana.com/) 并加入 #loki 频道。
+- [提交问题](https://github.com/grafana/loki/issues/new) 用于报告 bug、问题和功能建议。
+- 发送邮件至 [lokiproject@googlegroups.com](mailto:lokiproject@googlegroups.com) 或使用 [网页界面](https://groups.google.com/forum/#!forum/lokiproject)。

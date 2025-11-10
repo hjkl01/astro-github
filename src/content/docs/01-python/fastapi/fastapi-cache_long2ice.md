@@ -1,4 +1,3 @@
-
 ---
 title: fastapi-cache
 ---

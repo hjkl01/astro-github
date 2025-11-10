@@ -1,4 +1,3 @@
-
 ---
 title: label-studio
 ---

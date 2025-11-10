@@ -1,4 +1,3 @@
-
 ---
 title: vue-pure-admin
 ---

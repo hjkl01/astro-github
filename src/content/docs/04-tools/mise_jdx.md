@@ -1,4 +1,3 @@
-
 ---
 title: mise
 ---
@@ -88,5 +87,4 @@ brew install jdx/mise/mise
 - 发行管理: https://github.com/jdx/mise/releases
 
 ---
-
 **保存路径**: `src/content/docs/00/mise_jdx.md`

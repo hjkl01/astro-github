@@ -1,79 +1,125 @@
-
 ---
 title: dev-environment-files
 ---
 
+# dev-environment-files_josean-dev
 
-# dev-environment-files（josean-dev）
+## 项目简介
 
-**项目地址**：<https://github.com/josean-dev/dev-environment-files>
+这是一个完整的开发环境配置文件集合，由 Josean Martinez (josean-dev) 维护。该项目提供了针对 macOS 的现代化开发环境设置，包括 Neovim 编辑器、Tmux 多路复用器、终端配置、窗口管理器等组件。
 
-## 主要特性
+## 主要功能
 
-1. **统一的开发环境配置**  
-   - 通过 `devcontainer.json` 和 Dockerfile，快速搭建与项目兼容的容器化开发环境。  
-   - 支持多语言（Node.js, Python, Go, Rust 等）一键安装。
+### 1. Neovim 配置
 
-2. **VS Code 插件与设置**  
-   - `extensions.json` 预装常用插件（ESLint, Prettier, GitLens 等）。  
-   - `settings.json` 统一编码、排版、插件行为。
+- 使用 lazy.nvim 作为插件管理器
+- 包含完整的 LSP 支持、语法高亮、自动补全
+- 集成 Telescope 模糊查找、Treesitter 语法解析
+- 支持多种编程语言的开发环境
 
-3. **快捷键与脚本**  
-   - `keybindings.json` 封装常用操作（调试、查找、格式化）。  
-   - `scripts/` 目录下的脚本实现自动化构建、测试、Lint 等。
+### 2. Tmux 配置
 
-4. **跨平台支持**  
-   - 配置兼容 Windows、macOS、Linux。  
-   - 默认使用 Docker，无需手动安装多版本语言运行时。
+- 自定义快捷键和主题
+- 支持窗口和面板管理
+- 与 Neovim 无缝集成
 
-5. **可扩展与可复用**  
-   - 所有配置文件皆可直接引用或复制到项目根目录，适用于多种类型项目。  
-   - 通过 `env` 文件管理环境变量，易于切换线上/测试环境。
+### 3. 终端配置
 
-## 功能概览
+- WezTerm 终端配置（替代之前的 Alacritty）
+- Zsh shell 配置
+- 自定义颜色主题
 
-| 功能 | 说明 |
-|------|------|
-| devcontainer | 内嵌 Docker 运行时，提供完整依赖与工具链。 |
-| vsc-extensions | 自动安装必备 VS Code 插件，提升开发效率。 |
-| coding-styles | 统一代码风格，集成 Prettier + ESLint。 |
-| scripts  | `npm run dev`、`npm test`、`npm lint` 等简化命令。 |
-| env-config | `.env.example` 支持不同环境变量模板。 |
+### 4. 窗口管理
 
-## 用法
+- Yabai 磁贴窗口管理器配置
+- Aerospace 窗口管理器配置
+- Sketchybar 自定义菜单栏
 
-1. **克隆仓库**  
+### 5. 其他工具
+
+- QMK 键盘固件配置
+- 各种 CLI 工具集成
+
+## 使用方法
+
+### 安装步骤
+
+1. **克隆仓库**
+
    ```bash
    git clone https://github.com/josean-dev/dev-environment-files.git
+   cd dev-environment-files
    ```
 
-2. **复制配置到项目根目录**  
+2. **备份现有配置**
+
    ```bash
-   cp -r dev-environment-files/.project-config/ .
-   # 其中 ./*.json 等文件会覆盖到项目根目录
+   # 备份现有配置文件
+   cp ~/.zshrc ~/.zshrc.backup
+   cp ~/.tmux.conf ~/.tmux.conf.backup
+   # 等等
    ```
 
-3. **启动 VS Code**  
-   - 在项目根目录打开 VS Code，按 `F1` → `Remote-Containers: Open Folder in Container`，让开发环境在 Docker 容器中运行。
+3. **复制配置文件**
 
-4. **执行脚本**  
    ```bash
-   npm run dev    # 启动开发服务器
-   npm run test   # 运行单元测试
-   npm run lint   # 代码检查与格式化
+   # 复制到相应位置
+   cp .zshrc ~/.zshrc
+   cp .tmux.conf ~/.tmux.conf
+   cp -r .config/* ~/.config/
    ```
 
-5. **添加自定义插件或脚本**  
-   - 修改 `extensions.json` 或 `keybindings.json`，重新加载 VS Code 即可生效。
+4. **安装依赖工具**
 
-> ⚡️**提示**：如果你不想使用 Docker，只需修改 `devcontainer.json` 中的 `dockerComposeFile` 或移除它，改为直接使用本机环境。
+   **终端工具：**
 
-## 参考
+   ```bash
+   brew install wezterm
+   brew install zsh
+   ```
 
-- [VS Code Remote-Containers 文档](https://code.visualstudio.com/docs/remote/containers)
-- [Docker 官方文档](https://docs.docker.com/)
-- [Node.js 官方文档](https://nodejs.org/)，以及对应语言的官方安装说明。
+   **CLI 工具：**
 
----
+   ```bash
+   brew install fzf fd bat delta eza tldr thefuck
+   ```
 
-> 以上内容已保存到文件 `src/content/docs/00/dev-environment-files_josean-dev.md`。祝你使用愉快!
+   **Neovim 相关：**
+
+   ```bash
+   brew install neovim
+   brew install ripgrep
+   brew install node  # 用于 TypeScript/JavaScript LSP
+   ```
+
+   **字体：**
+
+   ```bash
+   brew tap homebrew/cask-fonts
+   brew install font-meslo-lg-nerd-font
+   ```
+
+5. **安装插件和语言服务器**
+   - 打开 Neovim，lazy.nvim 会自动安装插件
+   - Mason 会自动安装配置的语言服务器
+
+### 配置说明
+
+- **Neovim**: 配置文件位于 `.config/nvim/`
+- **Tmux**: 配置文件为 `.tmux.conf`
+- **Zsh**: 配置文件为 `.zshrc`
+- **WezTerm**: 配置文件为 `.wezterm.lua`
+- **Yabai/Sketchybar**: 配置文件位于 `.config/yabai/` 和 `.config/sketchybar/`
+
+### 注意事项
+
+- 这些配置主要用于 macOS
+- 建议先备份现有配置
+- 某些功能可能需要额外的手动配置
+- 定期检查更新以获取最新功能
+
+## 相关资源
+
+- [YouTube 播放列表](https://youtube.com/playlist?list=PLnu5gT9QrFg36OehOdECFvxFFeMHhb_07) - 详细的设置教程
+- [博客文章](https://josean.com/posts/how-to-setup-neovim-2024) - Neovim 设置指南
+- [GitHub 仓库](https://github.com/josean-dev/dev-environment-files) - 源代码和文档

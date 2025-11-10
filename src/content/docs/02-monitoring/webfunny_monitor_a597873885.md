@@ -1,6 +1,5 @@
-
 ---
-title: webfunny_monitor
+title: webfunny
 ---
 
 # webfunny_monitor 项目描述

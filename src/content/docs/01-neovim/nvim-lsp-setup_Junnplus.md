@@ -1,4 +1,3 @@
-
 ---
 title: nvim-lsp-setup
 ---

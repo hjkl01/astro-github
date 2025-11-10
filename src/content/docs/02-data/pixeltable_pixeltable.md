@@ -1,4 +1,3 @@
-
 ---
 title: pixeltable
 ---
@@ -102,5 +101,4 @@ print(summary)
 > **提示**：所有变换操作返回新的 `DataFrame`，原始对象保持不变。
 
 ---
-
 以上内容可直接复制到 `src/content/docs/00/pixeltable_pixeltable.md`，即可完成所需说明。

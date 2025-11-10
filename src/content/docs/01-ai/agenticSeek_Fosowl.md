@@ -1,4 +1,3 @@
-
 ---
 title: agenticSeek
 ---
@@ -105,7 +104,6 @@ npm run dev
 如需更详细的使用手册，请参考 `docs/` 目录。
 
 ---
-
 **更多信息**：  
 🚀 访问仓库并 star 🌟  
 GitHub：[Fosowl/agenticSeek](https://github.com/Fosowl/agenticSeek)

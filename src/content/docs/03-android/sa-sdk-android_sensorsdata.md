@@ -1,4 +1,3 @@
-
 ---
 title: sa-sdk-android
 ---

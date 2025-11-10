@@ -1,4 +1,3 @@
-
 ---
 title: containers-the-hard-way
 ---

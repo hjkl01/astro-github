@@ -1,64 +1,105 @@
-
 ---
 title: luci-app-easytier
 ---
 
 # luci-app-easytier
 
-**项目地址**: https://github.com/EasyTier/luci-app-easytier
+## 项目简介
 
-## 主要特性
-- **Web UI 集成**：在 OpenWrt LuCI 界面中提供专门的 EasyTier 管理页面，支持节点配置、网络管理与状态监控。  
-- **节点管理**：可一键启用/禁用 EasyTier 实例，支持多节点（多路由器）统一配置，便于大规模网络部署。  
-- **配置模板**：提供默认配置模板，可通过网页编辑器定制 EasyTier 配置文件（`.config`），支持实时保存与应用。  
-- **网络拓扑视图**：图形化展示 EasyTier 网格网络节点及其互联关系，帮助运维人员快速定位问题。  
-- **日志与性能监控**：实时查看 EasyTier 日志、传输速率、延迟等关键指标，支持日志下载与筛选。  
-- **安全特性**：支持 EasyTier 的数字签名与加密机制，可在 Web UI 中配置证书与密钥。  
+luci-app-easytier 是 OpenWrt 系统中的 EasyTier 安装包，提供 IPK 和 APK 格式的安装包。它是一个 LuCI 应用，用于在 OpenWrt 路由器上安装和配置 EasyTier VPN 工具。
 
-## 功能模块
-| 模块 | 说明 |
-|------|------|
-| **节点配置** | 设置 Node ID、Peer 列表、子网掩码、VNI 等 |
-| **接口绑定** | 关联 OpenWrt 网络接口（LAN/WAN）与 EasyTier 虚拟接口 |
-| **路由策略** | 配置 IP 路由、子网路由、NAT 规则 |
-| **服务管理** | 启动/停止 EasyTier 服务，查看运行状态 |
-| **日志管理** | 查看、下载、清理 EasyTier 日志 |
-| **手动同步** | 手动触发 Peer Discovery、状态同步等 |
+## 功能
+
+- 提供 OpenWrt 路由器上的 EasyTier VPN 集成
+- 支持通过 LuCI 界面进行配置和管理
+- 兼容多种 OpenWrt 版本和架构
+- 提供自动编译和发布工作流
 
 ## 用法
 
-1. **安装**  
-   在 OpenWrt 路由器终端中执行：
-   ```bash
-   opkg update
-   opkg install luci-app-easytier
-   ```
+### 依赖
 
-2. **访问 Web UI**  
-   打开浏览器，访问 `http://<router_ip>/cgi-bin/luci/admin/easytier`。  
-   – 首次访问会提示完成基本安全设置（如密码、证书上传）。
+在使用前，需要先安装 `kmod-tun` 内核模块。
 
-3. **配置节点**  
-   - 在 **节点详情** 页面填写 Node ID、Peer 列表（IP/VNI、证书）  
-   - 在 **接口绑定** 页面将 OpenWrt 接口（LAN/WAN）绑定到对应的 EasyTier 虚拟接口  
+### 快速开始
 
-4. **启动/停止服务**  
-   - 在 **服务管理** 页选择 **启用**：EasyTier 服务将自动以后台模式启动。  
-   - 如需停止，切换到 **禁用** 并确认。
+1. Fork 并克隆本项目到你的 GitHub 账户。
+2. 修改 `.github/workflows/build.yml` 文件，在 `jobs.build.strategy` 中配置所需的架构 (arch) 和 SDK 版本。
+   - 建议只保留需要的架构以加速编译。
+   - SDK 可以选择 SNAPSHOT 后缀的 APK 包或 openwrt-22.03 的 IPK 包，根据你的 OpenWrt 版本调整。
+3. 在 Actions 中手动触发编译流程，确保填写 release 信息以发布构建结果。
 
-5. **查看网络状态**  
-   - **拓扑视图**：查看各节点互联关系与链路质量。  
-   - **日志**：在 **日志** 页查看实时输出，支持筛选关键字。  
-   - **性能监控**：在 **性能** 页展示数据包速率、延迟和错误率。
+### 安装方法
 
-6. **高级操作**  
-   - **手动同步**：当 Peer 列表或路由策略已更新，需要即时同步时，点击 **同步** 按钮。  
-   - **证书管理**：在 **证书** 页面导入或更新 TLS/SSL 证书，确保加密通信安全。  
+#### 使用 IPK 包 (适用于旧版 OpenWrt)
 
-> *提示:*  
-> • 所有更改将在页面底部点击 **保存** 后才会写入系统配置。  
-> • 重新加载后可在 **状态** 页面快速验证是否已生效。  
+```bash
+# 上传 IPK 文件到 OpenWrt 的 /tmp/tmp 目录
+opkg install /tmp/tmp/luci-app-easytier_all.ipk
+```
 
----  
+#### 使用 APK 包 (适用于新版 OpenWrt)
 
-**注意:** 本说明基于官方 README 及项目代码构建，仅供快速参考，具体细节可查询仓库内的 `docs` 或 `README.md`。
+```bash
+# 如果出现证书验证问题，使用 --allow-untrusted 选项
+apk add --allow-untrusted /tmp/tmp/luci-app-easytier.apk
+```
+
+#### 卸载
+
+```bash
+opkg remove luci-app-easytier
+```
+
+#### 更新版本
+
+1. 先卸载旧版本：`opkg remove luci-app-easytier`
+2. 安装新版本 IPK 包
+3. 在 LuCI 管理界面中关闭插件，修改参数后重新应用并保存
+4. 如果安装后 LuCI 界面不显示 EasyTier，请注销登录或重新打开浏览器窗口
+
+**注意**：此 LuCI 应用不包含 EasyTier 二进制程序，需要在 LuCI 界面中手动上传二进制文件。
+
+### 编译方法
+
+#### 下载 OpenWrt SDK
+
+```bash
+# 下载并解压 SDK (以 rockchip/armv8 为例)
+wget -qO /opt/sdk.tar.xz https://downloads.openwrt.org/releases/22.03.5/targets/rockchip/armv8/openwrt-sdk-22.03.5-rockchip-armv8_gcc-11.2.0_musl.Linux-x86_64.tar.xz
+tar -xJf /opt/sdk.tar.xz -C /opt
+```
+
+#### 编译步骤
+
+```bash
+cd /opt/openwrt-sdk*/package
+# 克隆项目到 SDK 的 package 目录
+git clone https://github.com/EasyTier/luci-app-easytier.git /opt/luci-app-easytier
+cp -R /opt/luci-app-easytier/luci-app-easytier .
+
+cd /opt/openwrt-sdk*
+# 更新 feeds 并创建默认配置
+./scripts/feeds update -a
+make defconfig
+
+# 编译 luci-app-easytier 包
+make package/luci-app-easytier/compile V=s -j1
+
+# 编译完成后，IPK 文件位于 /opt/openwrt-sdk*/bin/packages/aarch64_generic/base
+cd /opt/openwrt-sdk*/bin/packages/aarch64_generic/base
+mv *.ipk /opt/luci-app-easytier_all.ipk
+```
+
+#### 故障排除
+
+如果在系统日志中出现 `luci.util.pcdata() has been replaced by luci.xml.pcdata()` 错误，可以使用以下命令修复：
+
+```bash
+sed -i 's/util.pcdata/xml.pcdata/g' /usr/lib/lua/luci/model/cbi/easytier.lua
+```
+
+## 相关链接
+
+- [GitHub 仓库](https://github.com/EasyTier/luci-app-easytier)
+- [EasyTier 主项目](https://github.com/EasyTier/EasyTier)

@@ -1,4 +1,3 @@
-
 ---
 title: axios
 ---
@@ -161,5 +160,4 @@ axios.get('/file.pdf', { responseType: 'blob' })
 | **响应过大** | 使用 `responseType: 'stream'`（node）或 `responseType: 'blob'`（浏览器）。 |
 
 ---
-
 > **文档来源**：官方 README 与 GitHub 仓库（<https://github.com/axios/axios>）

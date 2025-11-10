@@ -1,4 +1,3 @@
-
 ---
 title: cookiecutter-flask-restful
 ---

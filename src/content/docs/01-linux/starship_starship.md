@@ -1,4 +1,3 @@
-
 ---
 title: starship
 ---
@@ -100,6 +99,4 @@ disabled = true
 - **主题切换**：通过更改 `style` 或 `palette` 实现多主题。
 
 ---
-
 > **提示**：每次修改 `starship.toml` 后，重启终端或执行 `source ~/.bashrc` / `source ~/.zshrc` 使配置生效。
-

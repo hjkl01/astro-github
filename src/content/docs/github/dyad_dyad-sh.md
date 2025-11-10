@@ -1,4 +1,3 @@
-
 ---
 title: dyad
 ---
@@ -54,6 +53,4 @@ dyad deploy
 欢迎提交 issue 或 pull request。请在提交前先阅读 `CONTRIBUTING.md`。
 
 ---
-
 > 项目地址: https://github.com/dyad-sh/dyad
-

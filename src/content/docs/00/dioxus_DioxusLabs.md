@@ -1,78 +1,131 @@
-
 ---
 title: dioxus
 ---
 
-
 # Dioxus
 
-> GitHub 项目地址: <https://github.com/DioxusLabs/dioxus>
+## 项目简介
 
-## 主要特性
+Dioxus 是一个用于构建跨平台用户界面的 Rust 框架，支持 Web、桌面、移动等多个平台，使用单一代码库。它提供了零配置设置、热重载和基于信号的状态管理。
 
-- **跨平台 UI**：支持 Web（WebAssembly）、桌面（Tauri, tauri‑runtime）与移动（React Native）等多平台渲染。
-- **声明式 + 虚拟 DOM**：以类似 React 的 JSX/TSX 语法编写 UI，使用虚拟 DOM 进行高效 diff 和更新。
-- **高性能**：使用 Rust 编写核心，具备低内存占用、零拷贝、即时编译的优势。
-- **多路由**：集成多路由方案，支持动态路由、懒加载等。
-- **状态管理**：自带“信号”（`Signal`）和“存储”（`Store`）两种状态管理模式，方便组件共享状态。
-- **插件生态**：通过插件系统（比如 `dioxus-router`、`dioxus-tailwind`）扩展功能。
+## 主要功能
 
-## 核心功能
+- **跨平台支持**：使用单一代码库构建 Web、桌面和移动应用
+- **信号-based 状态管理**：高效的状态管理机制，支持响应式更新
+- **热重载**：开发时支持快速迭代和调试
+- **零配置设置**：简化项目初始化和配置
+- **丰富的 Hooks**：提供 `use_signal`、`use_effect`、`use_future`、`use_resource` 等用于状态和副作用管理
+- **RSX 宏**：类似 JSX 的语法用于定义 UI 组件
 
-| 功能 | 描述 |
-|------|------|
-| **组件化** | `Component` 接口、`#[component]` 宏，支持模板语法 `html!{}` 或 `rsx!{}` |
-| **JSX/TSX 语法** | 轻松使用 JSX/TSX，例如 `fn App() -> Element { rsx! { <div>Hello Dioxus</div> } }` |
-| **状态/事件** | `use_signal`, `use_state`, `use_effect`, `on_click!` 等 Hook |
-| **路由** | `Router`, `Route`, `Link` 等 API |
-| **性能检查** | `devtools` 包，支持 Rust 的 `Conduit Profiler` |
-| **移动 + 桌面** | 通过 `dioxus-mobile`、`dioxus-desktop` 运行时构建 apk/ipa 或二进制可执行文件 |
-| **集成 Tailwind** | `#[cfg(feature = "tailwind")]` 自动生成 CSS，支持 `dioxus-scss`**
+## 安装和使用
 
-## 快速开始
+### 安装 Dioxus CLI
 
-1. **创建项目**  
-   ```bash
-   cargo new dioxus_app
-   cd dioxus_app
-   cargo add dioxus
-   ```
+```bash
+cargo install dioxus-cli
+```
 
-2. **编写 `main.rs`**  
-   ```rust
-   use dioxus::prelude::*;
+或安装开发版本：
 
-   fn main() {
-       launch(app);
-   }
+```bash
+cargo install --git https://github.com/DioxusLabs/dioxus dioxus-cli
+```
 
-   fn app(cx: Scope) -> Element {
-       rsx! {
-           <h1>{ "Hello, Dioxus!" }</h1>
-           <button
-               on_click={|_| println!("clicked")}>
-               { "Click me" }
-           </button>
-       }
-   }
-   ```
+### 创建新项目
 
-3. **运行 (Web)**  
-   ```bash
-   cargo web start
-   ```
+使用 CLI 创建新项目：
 
-4. **运行 (桌面)**  
-   ```bash
-   cargo tauri dev
-   ```
+```bash
+dx new my-app
+cd my-app
+dx serve
+```
 
-## 文档与社区
+### 基本用法示例
 
-- 官方文档: <https://dioxuslabs.com/docs/0.5/current/>
-- Discord 社区: <https://discord.gg/dioxus>
-- 示例仓库: <https://github.com/DioxusLabs/examples>
+#### 计数器应用
 
---- 
+```rust
+use dioxus::prelude::*;
 
-> 项目地址: <https://github.com/DioxusLabs/dioxus>
+fn main() {
+    dioxus::launch(App);
+}
+
+#[component]
+fn App() -> Element {
+    let mut count = use_signal(|| 0);
+
+    rsx! {
+        div { "Count: {count}" }
+        button { onclick: move |_| count += 1, "Increment" }
+        button { onclick: move |_| count -= 1, "Decrement" }
+    }
+}
+```
+
+#### 使用信号管理状态
+
+```rust
+use dioxus::prelude::*;
+
+#[component]
+fn App() -> Element {
+    let name = use_signal(|| "world");
+
+    rsx! { "hello {name}!" }
+}
+```
+
+#### 异步数据获取
+
+```rust
+use dioxus::prelude::*;
+
+async fn fetch_data() -> String {
+    // 模拟网络请求
+    "Data fetched successfully!".to_string()
+}
+
+fn DataFetcher(cx: Scope) -> Element {
+    let data_future = use_future(cx, || async {
+        fetch_data().await
+    });
+
+    let content = match data_future.result() {
+        Some(Ok(data)) => rsx! { p { "{data}" } },
+        Some(Err(e)) => rsx! { p { "Error: {e:?}" } },
+        None => rsx! { p { "Loading..." } },
+    };
+
+    cx.render(rsx! {
+        div {
+            h2 { "Data Fetching Example" }
+            content
+        }
+    })
+}
+```
+
+#### 组件组合
+
+```rust
+use dioxus::prelude::*;
+
+#[component]
+fn Greeting(name: String) -> Element {
+    rsx! { p { "Hello, {name}!" } }
+}
+
+#[component]
+fn App() -> Element {
+    rsx! {
+        Greeting { name: "World".to_string() }
+    }
+}
+```
+
+## 更多资源
+
+- [官方文档](https://dioxuslabs.com/)
+- [GitHub 仓库](https://github.com/DioxusLabs/dioxus)

@@ -1,119 +1,44 @@
-
 ---
 title: llm-app
 ---
 
+# llm-app
 
-# Pathway LLM App
+## 功能介绍
 
-**项目地址:** https://github.com/pathwaycom/llm-app
+llm-app 是 Pathway 提供的 AI 管道模板库，提供 ready-to-run 的云端模板，用于构建 RAG（Retrieval-Augmented Generation）、AI 管道和企业级搜索应用。这些模板支持实时数据同步，能够处理来自文件系统、Google Drive、Sharepoint、S3、Kafka、PostgreSQL 和实时数据 API 的数据。
 
-## 主要特性
+主要功能包括：
 
-| 特色 | 说明 |
-|------|------|
-| 简易聊天界面 | 通过 Streamlit 提供实时交互的前端页面 |
-| 多 LLM 支持 | 默认支持 OpenAI（gpt‑3.5‑turbo、gpt‑4 等），可按需切换 |
-| 环境变量配置 | 所有关键配置（API Key、模型、端口等）均通过 `.env` 统一管理 |
-| Docker 化 | 一键 `docker compose up` 即可完成本地或云端部署 |
-| FastAPI 后端 | 提供 `/api/chat` 接口，支持 WebSocket 或 HTTP 请求 |
-| 对话记忆 | 使用 LangChain 的 `ConversationBufferMemory` 自动维护上下文 |
-| 日志记录 | 所有请求与响应均写入 `logs/llm_app.log`，便于排查 |
+- **高精度 RAG 和 AI 企业搜索**：支持大规模文档处理（可扩展到数百万页文档）。
+- **实时数据同步**：自动同步数据源中的新增、删除和更新操作。
+- **内置数据索引**：提供向量搜索、混合搜索和全文搜索，所有操作都在内存中进行，并支持缓存。
+- **Docker 友好**：应用可以作为 Docker 容器运行，无需额外基础设施依赖。
+- **多模态支持**：支持处理 PDF、DOCX 等文档，包括图表和表格的提取。
 
-## 功能说明
+提供的应用模板包括：
 
-- **后端 API (`src/app.py`)**  
-  - `POST /api/chat`：接收 JSON 格式的 `{"message": "用户提问"}`，返回 `{"response": "LLM 回复"}`。  
-  - 通过 `config.py` 读取系统提示、模型、温度等参数。  
-  - 内置错误处理，返回友好的错误信息。  
-
-- **前端页面 (`src/frontend/main.py`)**  
-  - 采用 Streamlit，展示多轮对话。  
-  - 支持文件上传（可扩展为文档检索）。  
-  - 自动刷新聊天记录，实时显示 LLM 输出。  
-
-- **配置 (`src/config.py`)**  
-  - `SYSTEM_PROMPT`: 系统级提示词。  
-  - `MODEL`: LLM 模型名称。  
-  - `TEMPERATURE`: 采样温度。  
-  - `MAX_TOKENS`: 单轮最大 token 数。  
-
-- **日志 (`logs/llm_app.log`)**  
-  - 记录每一次请求、响应、异常。  
+- **Question-Answering RAG App**：基本的端到端 RAG 应用，用于回答文档查询。
+- **Live Document Indexing**：实时文档索引管道，作为向量存储服务。
+- **Multimodal RAG pipeline with GPT4o**：使用 GPT-4o 的多模态 RAG，用于处理金融文档等。
+- **Unstructured-to-SQL pipeline**：将非结构化数据转换为 SQL 并支持自然语言查询。
+- **Adaptive RAG App**：使用自适应 RAG 技术降低 token 成本。
+- **Private RAG App with Mistral and Ollama**：完全私有的本地 RAG 应用。
+- **Slides AI Search App**：用于检索幻灯片的索引管道。
 
 ## 用法
 
-### 1. 克隆仓库
+1. **选择模板**：从 [templates](/pathwaycom/llm-app/blob/main/templates) 目录中选择合适的模板，每个模板都有详细的 README.md 说明。
 
-```bash
-git clone https://github.com/pathwaycom/llm-app.git
-cd llm-app
-```
+2. **运行应用**：
+   - 应用可以作为 Docker 容器运行。
+   - 暴露 HTTP API 用于前端连接。
+   - 部分模板提供可选的 Streamlit UI 用于快速测试和演示。
 
-### 2. 配置环境变量
+3. **配置数据源**：连接到所需的数据源，如 Google Drive、Sharepoint 等，应用会自动同步数据。
 
-在项目根目录创建 `.env`（示例）：
+4. **部署**：支持云端部署（GCP、AWS、Azure、Render 等）或本地部署。
 
-```dotenv
-OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
-LLM_MODEL=gpt-3.5-turbo
-PORT=8000
-```
+5. **集成**：可以与 Langchain 或 Llamaindex 集成，或作为检索后端使用。
 
-> **Tip**：若使用其他 LLM 提供商，只需修改 `LLM_MODEL` 或在 `config.py` 中加入对应参数。
-
-### 3. 本地运行（可选）
-
-```bash
-# 安装依赖
-pip install -r requirements.txt
-
-# 启动后端
-uvicorn src.app:app --reload
-
-# 启动前端（另起一个终端）
-streamlit run src/frontend/main.py
-```
-
-访问 `http://localhost:8501` 即可使用前端页面。
-
-### 4. Docker 部署
-
-```bash
-docker compose up -d
-```
-
-- **后端**：`http://localhost:8000/api/chat`  
-- **前端**：`http://localhost:8501`
-
-### 5. API 调用示例
-
-```bash
-curl -X POST http://localhost:8000/api/chat \
-     -H "Content-Type: application/json" \
-     -d '{"message":"你好"}'
-```
-
-返回：
-
-```json
-{
-  "response": "你好！有什么可以帮您的吗？"
-}
-```
-
-### 6. 自定义系统提示
-
-编辑 `src/config.py`：
-
-```python
-SYSTEM_PROMPT = "You are a helpful assistant."
-```
-
-### 7. 查看日志
-
-日志文件位于 `logs/llm_app.log`，可直接打开或使用 `tail -f` 监控。
-
----
-
-> 进一步细节请参阅仓库根目录下的 `README.md`。祝使用愉快！
+更多详细信息和代码模板，请访问 [Pathway 开发者模板页面](https://pathway.com/developers/templates/)。

@@ -1,4 +1,3 @@
-
 ---
 title: fhevm
 ---
@@ -68,8 +67,6 @@ fhevm-cli call <contract_address> hello --args "world" --keypair keypair.json
 - 社区讨论: Discord / GitHub Discussions
 
 ---
-
 > 通过 FHEVM，开发者可以在不泄露数据的前提下，构建可扩展且安全的智能合约生态。  
 ```
-
 > 以上内容请保存为 `src/content/docs/00/fhevm_zama-ai.md`。

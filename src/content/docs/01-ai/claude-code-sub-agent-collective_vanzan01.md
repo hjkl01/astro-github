@@ -1,4 +1,3 @@
-
 ---
 title: claude-code-sub-agent-collective
 ---
@@ -80,4 +79,3 @@ AgentRegistry.register("my_custom_agent", MyCustomAgent)
 
 ---
 *如需更多细节，请参阅项目 README 与 Wiki。*
-

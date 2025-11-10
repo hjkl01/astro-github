@@ -1,4 +1,3 @@
-
 ---
 title: octo.nvim
 ---
@@ -85,6 +84,5 @@ require('octo').setup({
 欢迎提交 Issue 或 Pull Request，共同完善插件。
 
 ---
-
 > 文件路径：`src/content/docs/00/octo.nvim_pwntester.md`  
 > 内容已包含上述 Markdown 文档。

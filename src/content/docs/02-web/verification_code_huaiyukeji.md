@@ -1,6 +1,5 @@
-
 ---
-title: verification_code
+title: verification
 ---
 
 # 验证码生成项目

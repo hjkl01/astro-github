@@ -1,4 +1,3 @@
-
 ---
 title: Font-Awesome
 ---
@@ -101,5 +100,4 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 - API 参考：<https://fontawesome.com/docs/web/use-with>  
 
 ---
-
 > 如需进一步探索和使用 Font Awesome，建议阅读官方文档中的入门指南与进阶教程。

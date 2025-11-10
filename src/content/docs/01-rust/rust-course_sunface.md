@@ -1,4 +1,3 @@
-
 ---
 title: rust-course
 ---

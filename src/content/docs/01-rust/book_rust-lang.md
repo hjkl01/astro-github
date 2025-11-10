@@ -1,4 +1,3 @@
-
 ---
 title: book
 ---
@@ -43,5 +42,4 @@ title: book
    - 参考 `CONTRIBUTING.md` 了解贡献流程。
 
 ---
-
 **备注**：本文件适用于 `src/content/docs/00/book_rust-lang.md` 路径，作为项目文档的 Markdown 说明。

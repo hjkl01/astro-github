@@ -1,4 +1,3 @@
-
 ---
 title: Administrative-divisions-of-China
 ---

@@ -1,4 +1,3 @@
-
 ---
 title: hyperliquid-python-sdk
 ---
@@ -103,5 +102,4 @@ if __name__ == "__main__":
 - 描述水平: `[GitHub docs]`，内含 `README.md`、`examples/` 与 `docs/`  
 
 ---
-
 **注意**：所有示例均为演示用途，请根据实际交易策略与风险管理要求自行添加必要的容错、重试及风险检测逻辑。

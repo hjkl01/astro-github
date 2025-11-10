@@ -1,4 +1,3 @@
-
 ---
 title: rime-ice
 ---
@@ -88,8 +87,5 @@ A: 检查网络连通，或手动执行 `./update.sh --force`。
 A: 使用 Mac 下的 RIME（如 HarmonyOS 输入法），同样拷贝到 `~/Library/Rime/` 即可。
 
 ---
-
 > 本文件为项目 README 的简化中文版本，所有说明均基于官方文档的默认配置。  
 ```
-
-

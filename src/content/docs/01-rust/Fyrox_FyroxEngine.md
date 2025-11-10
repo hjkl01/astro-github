@@ -1,4 +1,3 @@
-
 ---
 title: Fyrox
 ---
@@ -55,5 +54,4 @@ fn main() -> Result<()> {
 > 详细 API 文档与示例请参阅：[Fyrox Docs](https://fyrox.rs/docs)
 
 ---
-
 *保存路径：`src/content/docs/00/Fyrox_FyroxEngine.md`*

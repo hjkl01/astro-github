@@ -1,4 +1,3 @@
-
 ---
 title: copilot-cli
 ---

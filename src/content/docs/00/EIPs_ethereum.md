@@ -1,97 +1,44 @@
-
 ---
 title: EIPs
 ---
 
+# EIPs_ethereum
 
-# Ethereum Improvement Proposals (EIPs)
+## 项目介绍
 
-**项目地址**: [https://github.com/ethereum/EIPs](https://github.com/ethereum/EIPs)
+EIPs (Ethereum Improvement Proposals) 是 Ethereum 改进提案的仓库，旨在标准化和提供高质量文档给 Ethereum 协议及其上的约定。该仓库跟踪过去和正在进行的 Ethereum 改进，以 EIP (Ethereum Improvement Proposal) 的形式记录。
 
----
+## 功能
 
-## 概述
-- **EIP** 是 Ethereum 社区用来提交、讨论和记录协议改进的正式机制。  
-- 该仓库收集所有已发布与待评审的 EIP 文档，提供统一的格式与审核流程。  
-- 任何人都可以通过提交 PR 的方式贡献新的 EIP，社区通过讨论与投票决定是否纳入协议。
+- **标准化文档**：提供高质量的 Ethereum 协议和约定文档。
+- **分类提案**：
+  - Core EIPs：Ethereum 共识协议的改进。
+  - Networking EIPs：指定 Ethereum 的点对点网络层。
+  - Interface EIPs：标准化用户和应用与区块链交互的接口。
+  - Meta EIPs：需要某种共识的杂项改进。
+  - Informational EIPs：不需要共识的非标准改进。
+- **状态跟踪**：通过 https://eips.ethereum.org/ 网站跟踪 EIP 状态。
+- **自动化验证**：PR 通过 eip-review-bot、eipw、HTMLProofer、CodeSpell 和 markdownlint 检查。
 
----
+注意：ERCs (Ethereum Request for Comments) 现在位于单独的仓库 https://github.com/ethereum/ercs。
 
-## 主要特性
+## 用法
 
-| 特性 | 说明 |
-|------|------|
-| **统一格式** | 所有 EIP 采用 Markdown + JSON 结构，包含 `Title`、`Author`、`Status`、`Type`、`Category` 等字段。 |
-| **版本控制** | 每个 EIP 通过 GitHub Issue 进行跟踪，状态如 `Draft`、`Last Call`、`Active`、`Final` 等。 |
-| **社区治理** | 通过 Issue 讨论、提案标签、社区投票等方式决定 EIP 的接受与实施。 |
-| **项目目录** | `eips/` 目录存放正式 EIP 文档；`draft/` 目录存放正在评审的草稿。 |
-| **工具链** | 提供 `eip-generator`、`eip-validator` 等脚本，帮助作者快速生成并校验 EIP。 |
-
----
-
-## 主要功能
-
-- **提交新提案**  
-  1. Fork 项目。  
-  2. 在 `draft/` 目录下创建以 `EIP-XXX.md` 命名的文件。  
-  3. 填写 EIP 结构（标题、作者、类型、状态等）。  
-  4. 提交 PR，附上 Issue 关联。  
-
-- **评审与讨论**  
-  - 通过 Issue 讨论技术细节。  
-  - 采用 GitHub Discussions 或者 Discord 进行实时交流。  
-  - 通过 `Last Call` 标记进入最终投票阶段。  
-
-- **合并与发布**  
-  - 通过 `Active` → `Final` 状态标记完成。  
-  - 文档同步到 `eips/` 目录，旧版本保留在 `draft/`。  
-
-- **工具支持**  
-  - `make lint`：检查 Markdown 语法与字段完整性。  
-  - `make generate`：根据模板生成新的 EIP 文件。  
-
----
-
-## 使用方法
-
-1. **克隆仓库**  
-   ```bash
-   git clone https://github.com/ethereum/EIPs.git
-   cd EIPs
+1. **讨论想法**：在 [Ethereum Magicians](https://ethereum-magicians.org/) 或 [Ethereum Research](https://ethresear.ch/) 上彻底讨论提案。
+2. **阅读 EIP-1**：了解 EIP 流程，详见 https://eips.ethereum.org/EIPS/eip-1。
+3. **提交提案**：向此仓库提交 PR，提案必须遵循 EIP-1 规则。
+4. **本地验证**：使用 `eipw` 工具验证 EIP：
    ```
-
-2. **查看已发布的 EIP**  
-   - 浏览 `eips/` 目录。  
-   - 使用 `search` 或 `grep` 快速定位特定编号。  
-
-3. **阅读 EIP 标准**  
-   - `EIP-1.md`（EIP 规范）  
-   - `EIP-2.md`（EIP 版本控制）  
-   - `EIP-3.md`（EIP 状态定义）  
-
-4. **提交新提案**  
-   ```bash
-   # 在 draft 目录中创建文件
-   cp eip-template.md draft/EIP-9999.md
-   # 编辑文件
-   # 提交 PR 并关联 Issue
+   cargo install eipw
+   eipw --config ./config/eipw.toml <文件或目录>
    ```
+5. **构建状态页面**：
+   - 安装 Ruby 3.1.4 和 Bundler。
+   - 运行 `bundle install` 安装依赖。
+   - 运行 `bundle exec jekyll serve` 启动本地服务器，预览于 http://localhost:4000。
 
-5. **参与评审**  
-   - 在对应 Issue 下评论。  
-   - 使用 `:thumbsup:` 或 `:thumbsdown:` 表达投票。  
+## 注意事项
 
-6. **保持同步**  
-   ```bash
-   git pull upstream main
-   ```  
-
----
-
-## 参考链接
-
-- [EIP 规范](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1.md)  
-- [EIP 2：版本控制](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-2.md)  
-- [EIP 3：状态定义](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3.md)  
-
---- 
+- 此仓库仅用于记录标准，不提供实现帮助。实现问题请咨询 [Ethereum Stack Exchange](https://ethereum.stackexchange.com)。
+- 成为 EIP 编辑者请阅读 EIP-5069。
+- 引用格式：规范 URL 为 https://eips.ethereum.org/，如 https://eips.ethereum.org/EIPS/eip-1。

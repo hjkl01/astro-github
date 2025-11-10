@@ -1,4 +1,3 @@
-
 ---
 title: paperless-ngx
 ---
@@ -141,5 +140,4 @@ curl -X GET "http://localhost:8000/api/documents/?search=invoice" \
 - API 参考: <https://docs.paperless-ngx.com/api/>  
 
 ---
-
 > 以上内容为项目的核心功能与使用方式概述，若需更详细的操作步骤，请查阅官方文档。

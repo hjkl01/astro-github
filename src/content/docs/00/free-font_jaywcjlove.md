@@ -1,58 +1,85 @@
-
 ---
 title: free-font
 ---
 
-**项目地址**  
-https://github.com/jaywcjlove/free-font
+# free-font
 
-**主要特性与功能**  
+## 项目简介
 
-| 序号 | 功能特性 | 说明 |
-|------|----------|------|
-| 1 | **海量免费字体集合** | 包含上千款字体，涵盖中文、日文、英文、符号等多种语言与风格。 |
-| 2 | **分类与标签** | 字体按正文字体、标题字体、手写体、 Display 体、图标字体、语言系列等多维度分类，方便快速定位。 |
-| 3 | **授权信息一览** | 每款字体均标注对应授权方式（如 SIL OFL、ISC、APSL 等）以及可使用范围，帮助用户遵循法律要求。 |
-| 4 | **预览与下载** | 为每款字体提供在线预览文本，用户可以直接在浏览器中预览并点击下载按钮获得完整字体包。 |
-| 5 | **搜索与筛选** | 页面底部提供搜索框及多种筛选条件（许可证、字类、语言、标签），支持快速定位需要的字体。 |
-| 6 | **多平台支持** | 所有字体均以标准 TTF/OTF/WOFF/WOFF2 等格式提供，兼容 Windows、macOS、Linux、Web 与移动端。 |
-| 7 | **持续维护** | 项目保持定期更新，及时加入新的免费字体资源，并对过期或已失效的资源做标注或移除。 |
+free-font 是由 jaywcjlove 创建的一个开源项目，旨在收集可商用的免费英文和汉字字体。该项目基于已不再维护的字集项目，新增了自动生成字体预览封面的脚本，并重新添加了许多中文字体以及开源英文字体。
 
-**使用方法**  
+## 主要功能
 
-1. 访问项目主页：<https://github.com/jaywcjlove/free-font>。  
-2. 在页面左侧或上方的搜索栏中键入关键词（如“手写体”、“中文”），也可使用筛选条件进一步细化。  
-3. 在搜索结果列表中，点击字体名称查看详细信息页面，页面中会展示：  
-   * 字体预览（可自行输入自己想看的文字或使用默认样例）。  
-   * 许可证说明、授权链接，以及字体作者/来源。  
-4. 在字体页面底部有 **Download** / **Download ZIP** 按钮，点击即可下载完整字体文件或压缩包。  
-5. 下载完成后将字体文件放入系统字体目录或项目中使用即可。  
-   * **Windows**：右键字体文件 → “安装”。  
-   * **macOS**：双击字体 → “安装字体”。  
-   * **Web**：将 WOFF/WOFF2 文件上传至服务器，在 CSS 中使用 `@font-face` 加载。  
+- **字体收集**：收录大量免费商用字体，包括英文和中文字体。
+- **字体分类**：支持多种分类，如黑体、宋体、楷体、艺术体、手绘体、英文字体、开源字体等。
+- **字体预览**：提供字体预览功能，帮助用户快速查看字体效果。
+- **下载支持**：用户可以直接下载字体文件用于个人或商业用途。
+- **本地开发**：支持本地开发环境，允许用户添加新字体并生成预览。
 
-**快速示例（Web）**  
+## 使用方法
 
-```html
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<style>
-@font-face {
-  font-family: 'OpenSans';
-  src: url('fonts/OpenSans-Regular.woff2') format('woff2'),
-       url('fonts/OpenSans-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-body { font-family: 'OpenSans', sans-serif; }
-</style>
+### 在线使用
+
+1. 访问项目主页：[https://wangchujiang.com/free-font/](https://wangchujiang.com/free-font/)
+2. 浏览字体分类，选择需要的字体。
+3. 点击下载按钮获取字体文件。
+4. 将字体安装到系统中，即可在设计软件中使用。
+
+### 本地开发
+
+如果您想贡献新字体或本地预览：
+
+1. 克隆项目仓库：
+
+   ```
+   git clone https://github.com/jaywcjlove/free-font.git
+   cd free-font
+   ```
+
+2. 安装依赖：
+
+   ```
+   npm install
+   ```
+
+3. 添加字体：
+   - 将字体文件放入 `docs/fonts` 目录。
+   - 在 `scripts/data.json` 中添加字体信息，包括分类、许可证和来源。
+
+4. 生成预览：
+
+   ```
+   npm run one -- ./docs/fonts/english/Prima/Prima-Regular.otf  # 生成单个字体预览
+   npm run all  # 生成所有字体预览
+   ```
+
+5. 生成网站：
+
+   ```
+   npm run dev   # 监听模式
+   npm run start # 生成静态网站
+   ```
+
+6. 预览网站：打开 `docs/index.html` 在浏览器中查看。
+
+### Docker 部署
+
+使用 Docker 镜像快速部署本地预览服务：
+
+```
+docker pull wcjiang/free-font:latest
+docker run --name reference --rm -d -p 9677:3000 wcjiang/free-font:latest
 ```
 
-**高阶使用**  
+然后访问 `http://localhost:9677` 查看字体网站。
 
-- 若要批量下载某一类别字体，可先在 GitHub 页面右上角点击 “Code” → “Download ZIP” 下载整仓库；  
-- 在本地使用 `find` / `grep` 命令快速定位所需字体文件；  
-- 若你具备用脚本定期同步新的免费字体，请参考项目文件夹内的 `LICENSE` 与 `NOTICE`，确保遵守相应开源协议。  
+## 注意事项
 
-> 只需一个浏览器、一次下载，项目即提供给你完整的免费字体库。无需额外安装工具，直接调用即可开始创作。
+- 所有字体的版权归原作者所有，使用时请遵守相应许可证。
+- 项目不承担任何法律风险，用户需自行确认字体是否适合商业使用。
+- 字体文件较大，下载时请注意网络条件。
+- 目前不支持超过 50MB 的字体文件提交。
 
-💝 Support this free API: https://www.paypal.com/donate/?hosted_button_id=XS3CAYT8LE2BL
+## 许可证
+
+本项目采用 MIT 许可证。

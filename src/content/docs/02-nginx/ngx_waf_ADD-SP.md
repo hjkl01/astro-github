@@ -1,6 +1,5 @@
-
 ---
-title: ngx_waf
+title: ngx
 ---
 
 # ngx_waf 项目

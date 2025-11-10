@@ -1,4 +1,3 @@
-
 ---
 title: datafusion
 ---
@@ -83,7 +82,5 @@ cargo run --example simple_sql
 | **机器学习预处理** | 与 `arrow2`、`polars` 结合，作为预处理阶段。 |
 
 ---
-
 > 详见官方文档：[https://datafusion.apache.org](https://datafusion.apache.org)  
 > 示例与教程请查阅仓库 `docs/` 与 `examples/` 目录。  
-

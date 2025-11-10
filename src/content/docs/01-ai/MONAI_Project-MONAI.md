@@ -1,4 +1,3 @@
-
 ---
 title: MONAI
 ---
@@ -93,6 +92,5 @@ print("Dice:", dice_metric.aggregate().item())
 > 上述代码仅为示例，实际项目中可根据数据、任务需求灵活调整传输、网络结构与训练策略。
 
 ---
-
 **文档**: 详细使用说明请参阅官方文档：<https://docs.monai.io/en/latest/>  
 **贡献**: 如需贡献代码，请阅读 `CONTRIBUTING.md`。

@@ -1,4 +1,3 @@
-
 ---
 title: azure-sdk-for-python
 ---
@@ -73,5 +72,4 @@ asyncio.run(main())
 - **提交 PR**：遵循官方 `CONTRIBUTING.md` 说明进行代码提交。
 
 ---
-
 > 以上内容提供 Azure SDK for Python 的核心特性、功能与使用示例，便于快速上手与集成。 

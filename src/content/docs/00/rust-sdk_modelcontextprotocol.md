@@ -1,104 +1,98 @@
-
 ---
-title: rust-sdk
+title: Rust Sdk
 ---
 
+# rust-sdk
 
-# Rust SDK (ModelContextProtocol)
+## 功能介绍
 
-- **仓库地址**：<https://github.com/modelcontextprotocol/rust-sdk>
+rust-sdk 是 Model Context Protocol (MCP) 的官方 Rust SDK 实现，使用 tokio 异步运行时。该项目提供了构建 MCP 客户端和服务器的核心功能，支持通过 JSON-RPC 2.0 协议进行通信。
 
-## 主要特性
+主要组件包括：
 
-| 特色 | 说明 |
-|------|------|
-| **数据模型定义** | 通过 `#[derive(ProtocolJson, ProtocolModel)]` 等宏，可快速生成序列化/反序列化实现。 |
-| **上下文管理** | `ModelContext` 提供 CRUD、查询、变更追踪等操作，兼容异步调用。 |
-| **变更记录** | `ModelModifier` 记录对模型的增删改操作，可批量提交。 |
-| **事务支持** | `ModelTransaction` 用于原子性执行一组变更，支持回滚。 |
-| **跨语言兼容** | 内建的 JSON 传输层使得 SDK 可与 Java、Python 等语言互操作。 |
-| **可插拔存储后端** | 默认使用 Rust 标准库自带 `HashMap`，也可通过实现 `Store` trait 换用数据库或网络存储。 |
-| **类型安全** | Rust 的强类型系统保证模型字段匹配与安全执行。 |
+- **rmcp**: 核心 crate，提供 RMCP 协议实现
+- **rmcp-macros**: 过程宏 crate，用于生成 RMCP 工具实现
 
-## 功能概览
+## 用法
+
+### 导入 crate
+
+在 `Cargo.toml` 中添加依赖：
+
+```toml
+rmcp = { version = "0.8.0", features = ["server"] }
+# 或者使用开发版本
+rmcp = { git = "https://github.com/modelcontextprotocol/rust-sdk", branch = "main" }
+```
+
+### 第三方依赖
+
+基本依赖：
+
+- [tokio](https://github.com/tokio-rs/tokio) (必需)
+- [serde](https://github.com/serde-rs/serde) (必需)
+
+### 构建客户端
 
 ```rust
-use modelcontext_protocol::{
-    ModelContext, ModelModifier, Identifier,
-    protocols::{user::UserModel, order::OrderModel},
-};
+use rmcp::{ServiceExt, transport::{TokioChildProcess, ConfigureCommandExt}};
+use tokio::process::Command;
 
 #[tokio::main]
-async fn main() {
-    // 初始化上下文
-    let mut ctx = ModelContext::new();
-
-    // 创建模型实例
-    let user = UserModel {
-        id: Identifier::new(),
-        name: "Alice".to_string(),
-        email: "alice@example.com".to_string(),
-    };
-
-    // 应用增改
-    let mut modifier = ModelModifier::new();
-    modifier.add(user);
-    ctx.apply(modifier).await.unwrap();
-
-    // 查询
-    let users = ctx.query::<UserModel>().await;
-    println!("{:?}", users);
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let client = ().serve(TokioChildProcess::new(Command::new("npx").configure(|cmd| {
+        cmd.arg("-y").arg("@modelcontextprotocol/server-everything");
+    }))?).await?;
+    Ok(())
 }
 ```
 
-## 用法指南
+### 构建服务器
 
-1. **安装依赖**  
-   ```toml
-   [dependencies]
-   modelcontext_protocol = "0.1"
-   tokio = { version = "1", features = ["full"] }
-   ```
+1. 构建传输层：
 
-2. **定义业务模型**  
-   ```rust
-   use modelcontext_protocol::{ProtocolModel, ProtocolJson};
+```rust
+use tokio::io::{stdin, stdout};
+let transport = (stdin(), stdout());
+```
 
-   #[derive(ProtocolModel, ProtocolJson)]
-   struct UserModel {
-       id: Identifier,
-       name: String,
-       email: String,
-   }
-   ```
+2. 构建服务：
 
-3. **创建并操作上下文**  
-   - `ModelContext::new()`：创建一个空上下文。  
-   - `ModelModifier::add()` / `remove()` / `update()`：构造变更。  
-   - `ctx.apply(modifier)`：提交变更。  
-   - `ctx.query::<T>()`：查询指定类型的所有实例。  
+```rust
+let service = common::counter::Counter::new();
+```
 
-4. **事务与回滚**  
-   ```rust
-   let mut transaction = ctx.transaction();
-   transaction.add(user);
-   transaction.commit().await?;
-   // 如出现错误
-   transaction.rollback().await?;
-   ```
+3. 启动服务器：
 
-5. **自定义存储后端**  
-   ```rust
-   use modelcontext_protocol::{Store, InMemoryStore};
+```rust
+let server = service.serve(transport).await?;
+```
 
-   struct MyDbStore;
-   impl Store for MyDbStore { /* ... */ }
+4. 与服务器交互：
 
-   let store = MyDbStore::new();
-   let mut ctx = ModelContext::new_with_store(Box::new(store));
-   ```
+```rust
+// 请求
+let roots = server.list_roots().await?;
 
-6. **多语言交互**  
-   - SDK 自带 `ProtocolJson`，仅需将 JSON 传输给后端实现即可实现与其他语言的协同。
+// 发送通知
+server.notify_cancelled(...).await?;
+```
 
-> 进一步细节请参阅项目 README 与 API 文档。  
+5. 等待服务关闭：
+
+```rust
+let quit_reason = server.waiting().await?;
+// 或者取消
+let quit_reason = server.cancel().await?;
+```
+
+更多示例请参考 [examples](https://github.com/modelcontextprotocol/rust-sdk/tree/main/examples) 目录。
+
+## OAuth 支持
+
+详情请参考 [OAuth 支持文档](https://github.com/modelcontextprotocol/rust-sdk/blob/main/docs/OAUTH_SUPPORT.md)。
+
+## 相关资源
+
+- [MCP 规范](https://spec.modelcontextprotocol.io/specification/2024-11-05/)
+- [Schema](https://github.com/modelcontextprotocol/specification/blob/main/schema/2024-11-05/schema.ts)

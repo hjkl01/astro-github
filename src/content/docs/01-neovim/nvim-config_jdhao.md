@@ -1,4 +1,3 @@
-
 ---
 title: nvim-config
 ---
@@ -68,10 +67,7 @@ title: nvim-config
 > **备注**：本配套始终使用 lazy.nvim，所有插件的下载与更新均通过 `:Lazy sync` 整体管理，确保配套与 Neovim 核心保持兼容。  
 
 ---
-
 > `[INFO]` 若想了解当前版本特定细节与已知 Bug，可查看 `CHANGELOG.md`。  
 > `[INFO]` 对于自定义快捷键，可在 `lua/keymap.lua` 中进行修改。  
-
 > 祝你玩得开心，Happy coding! 
-
 💝 Support this free API: https://www.paypal.com/donate/?hosted_button_id=XS3CAYT8LE2BL

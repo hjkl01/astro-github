@@ -1,4 +1,3 @@
-
 ---
 title: javascript-interview-questions
 ---

@@ -1,4 +1,3 @@
-
 ---
 title: swagger-ui
 ---
@@ -79,5 +78,4 @@ npm install swagger-ui-dist
 - 查看 `CONTRIBUTING.md`，遵循编码规范与测试要求。
 
 ---
-
 > 本文档旨在快速了解 Swagger UI 的核心特性与基本使用方法，详情请参阅官方文档及源代码。

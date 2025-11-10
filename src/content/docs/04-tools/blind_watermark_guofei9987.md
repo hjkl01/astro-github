@@ -1,6 +1,5 @@
-
 ---
-title: blind_watermark
+title: blind
 ---
 
 # blind_watermark

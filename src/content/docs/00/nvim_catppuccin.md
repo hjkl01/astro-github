@@ -1,141 +1,186 @@
-
 ---
 title: nvim
 ---
 
-# catppuccin.nvim
-
-[GitHub 项目](https://github.com/catppuccin/nvim)
+# nvim_catppuccin
 
 ## 项目简介
-catppuccin.nvim 是一款为 Neovim 开源的多主题色彩方案，基于 Catppuccin 主题提供柔和、统一的配色。该插件支持多种 Neovim 插件（譬如 Lualine、Telescope、Treesitter、NvimTree、Bufferline、Which-Key、Comment.nvim 等）的无缝配色兼容。
 
-## 主要特性
+[nvim_catppuccin](https://github.com/catppuccin/nvim) 是一个为 (Neo)Vim 设计的舒缓柔和的颜色主题。它是 Catppuccin 主题系列的一部分，提供多种柔和的色彩方案，帮助用户在编程时获得更好的视觉体验。
 
-- **多主题支持**  
-  提供 `latte`、`frappe`、`macchiato` 与 `mocha` 四种不同的配色方案，支持主题切换。
+## 主要功能
 
-- **全栈兼容**  
-  与绝大部分流行插件无缝配合：Neovim API、Telescope、Lualine、Treesitter、Rust Analyzer、Gitsigns、NvimTree、Bufferline、Which-Key、Comment.nvim 等。
+- **多种色彩方案**：提供 4 种不同的色彩风格（flavours）：
+  - 🌻 Latte：浅色主题
+  - 🪴 Frappé：中性主题
+  - 🌺 Macchiato：温暖主题
+  - 🌿 Mocha：深色主题
 
-- **透明背景**  
-  可轻松开启透明背景：`vim.g.catppuccin_transparent_background = true`。
+- **高度可配置**：支持自定义颜色、样式、透明背景等
+- **插件集成**：支持众多 Neovim 插件的主题集成，如 LSP、Treesitter、GitSigns 等
+- **编译优化**：支持预编译配置以提升启动速度
+- **兼容性**：支持 Neovim >= 0.8 和 Vim >= 9（需编译支持 Lua）
 
-- **插件自动提取配色**  
-  通过 `catppuccin.setup` 可自动识别插件并应用相应主题颜色。
+## 安装方法
 
-- **高亮专案**  
-  对 LSP、Diagnostics、Search(`Ctrl+F`)、Git 状态等进行细致高亮配置。
-
-- **可定制**  
-  可通过 `catppuccin.init_vars` 进行自定义颜色、透明度、插件高亮等。
-
-## 安装方式
+### 使用 lazy.nvim
 
 ```lua
--- packer.nvim
-use {
-  "catppuccin/nvim",
-  as = "catppuccin",
-  config = function()
-    vim.cmd [[colorscheme catppuccin]]
-  end
+{
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000
 }
 ```
 
-## 基础配置
+### 使用 packer.nvim
+
+```lua
+use { "catppuccin/nvim", as = "catppuccin" }
+```
+
+### 使用 vim-plug
+
+```vim
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+```
+
+## 基本用法
+
+1. **设置颜色主题**：
+
+   ```vim
+   colorscheme catppuccin
+   ```
+
+   或在 Lua 中：
+
+   ```lua
+   vim.cmd.colorscheme "catppuccin"
+   ```
+
+2. **选择特定风格**：
+   ```vim
+   colorscheme catppuccin-latte
+   colorscheme catppuccin-frappe
+   colorscheme catppuccin-macchiato
+   colorscheme catppuccin-mocha
+   ```
+
+## 配置示例
+
+```lua
+require("catppuccin").setup({
+    flavour = "auto", -- latte, frappe, macchiato, mocha
+    background = {
+        light = "latte",
+        dark = "mocha",
+    },
+    transparent_background = false,
+    show_end_of_buffer = false,
+    term_colors = false,
+    dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
+    },
+    no_italic = false,
+    no_bold = false,
+    no_underline = false,
+    styles = {
+        comments = { "italic" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+    },
+    color_overrides = {},
+    custom_highlights = {},
+    default_integrations = true,
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        treesitter = true,
+        -- 更多插件集成...
+    },
+})
+
+vim.cmd.colorscheme "catppuccin"
+```
+
+## 自定义选项
+
+### 获取颜色调色板
+
+```lua
+local colors = require("catppuccin.palettes").get_palette "mocha"
+```
+
+### 覆盖颜色
 
 ```lua
 require("catppuccin").setup {
-  flavour = "mocha", -- latte | frappe | macchiato | mocha
-  background = {
-    light = "latte",
-    dark = "mocha",
-  },
-  transparent_background = true,
-  term_colors = true,
-  dim_inactive = false,
-  styles = {
-    comments = {italic = true},
-    conditionals = {italic = true},
-    loops = {},
-    functions = {italic = true},
-    keywords = {},
-    strings = {},
-    variables = {},
-    numbers = {},
-    booleans = {},
-    properties = {},
-    types = {italic = true},
-    operators = {},
-  },
-  custom_highlights = {},
-  plugins = {
-    treesitter = true,
-    cmp = true,
-    lsp_trouble = true,
-    which_key = true,
-    notify = true,
-    telescope = true,
-    mini = true,
-    asea = true,
-    native_lsp = true,
-    native_lsp_cmp = true,
-    cmp_lspkind = true,
-    lualine = false,
-  },
+    color_overrides = {
+        all = {
+            text = "#ffffff",
+        },
+        latte = {
+            base = "#ff0000",
+        },
+    }
 }
 ```
 
-## 自动化插件配色
+### 自定义高亮组
 
 ```lua
-local catppuccin = require("catppuccin")
-catppuccin.init_variables()
-```
-
-## 切换主题
-
-```vim
-:Cats
-```
-
-或在 Lua 中：
-
-```lua
-vim.cmd [[colorscheme catppuccin]]
-```
-
-## 常见插件集成示例
-
-- **Lualine**
-
-```lua
-require('lualine').setup {
-  options = { theme = 'catppuccin' }
+require("catppuccin").setup {
+    custom_highlights = function(colors)
+        return {
+            Comment = { fg = colors.flamingo },
+            TabLineSel = { bg = colors.pink },
+        }
+    end
 }
 ```
 
-- **Telescope**
+## 支持的插件集成
 
-```lua
-require('telescope').setup {
-  defaults = { mappings = { n = { ['q'] = require('telescope.actions').close } } }
-}
-```
+该主题支持大量 Neovim 插件的集成，包括但不限于：
 
-- **Treesitter**
+- aerial.nvim
+- alpha-nvim
+- barbar.nvim
+- bufferline.nvim
+- cmp
+- dashboard-nvim
+- diffview.nvim
+- feline.nvim
+- gitsigns.nvim
+- indent-blankline.nvim
+- lualine.nvim
+- mason.nvim
+- mini.nvim
+- neo-tree.nvim
+- neogit
+- nvim-dap
+- nvim-notify
+- nvim-tree.lua
+- telescope.nvim
+- treesitter
+- which-key.nvim
 
-```vim
-set ts=17
-# 安装树状解析器
-nvim-tree.lua
-```
+## 注意事项
 
-## 文档与源码
-
-- 官方文档：https://github.com/catppuccin/nvim  
-- 源码：https://github.com/catppuccin/nvim
-
----  
-请将以上内容保存至 `src/docs/00/nvim_catppuccin.md`。
+- 需要终端支持真彩色（true color）
+- 对于 tmux 用户，需要启用真彩色支持
+- 建议禁用 `additional_vim_regex_highlighting` 以获得最佳 Treesitter 高亮效果

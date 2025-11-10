@@ -1,4 +1,3 @@
-
 ---
 title: chef
 ---
@@ -105,9 +104,6 @@ chef run deploy   # 根据配置脚本进行部署
 Chef 通过统一配置、依赖锁定、脚本统一调用，显著降低团队在项目协作中的版本冲突与环境漂移问题。适用于中大型 JavaScript/TypeScript 项目，也可嵌入到现有工作流中作为增强工具。
 
 ---
-
 **注意**：项目处于持续迭代阶段，建议关注官方文档及变更日志，及时更新本地工具。
 ```
-
-
 💝 Support this free API: https://www.paypal.com/donate/?hosted_button_id=XS3CAYT8LE2BL

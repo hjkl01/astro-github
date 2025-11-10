@@ -1,4 +1,3 @@
-
 ---
 title: oh-my-posh
 ---
@@ -108,5 +107,4 @@ eval "$(oh-my-posh init bash --config Paradox)"
 - 社区讨论: https://github.com/JanDeDobbeleer/oh-my-posh/discussions
 
 ---
-
 > **提示**：使用 `oh-my-posh --help` 查看所有可用命令和参数。

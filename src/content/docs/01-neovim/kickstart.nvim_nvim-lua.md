@@ -1,4 +1,3 @@
-
 ---
 title: kickstart.nvim
 ---
@@ -75,5 +74,4 @@ title: kickstart.nvim
 | `<Leader>t` | 运行 Neotest 相关命令 |
 
 ---
-
 > 该项目仅为示例，实际使用时请根据项目需求做适配或自行扩展。祝你玩得愉快！

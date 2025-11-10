@@ -1,4 +1,3 @@
-
 ---
 title: django-slick-reporting
 ---

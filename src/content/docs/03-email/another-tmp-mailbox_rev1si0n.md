@@ -1,4 +1,3 @@
-
 ---
 title: another-tmp-mailbox
 ---

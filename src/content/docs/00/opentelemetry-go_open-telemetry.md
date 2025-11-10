@@ -1,101 +1,44 @@
-
 ---
-title: opentelemetry-go
----
-
-
-# OpenTelemetry Go
-
-**GitHub 项目地址**: https://github.com/open-telemetry/opentelemetry-go
-
-## 项目简介
-OpenTelemetry Go 是一个基于 OpenTelemetry 规范的 Go 语言实现，提供了统一的追踪、指标和日志收集、处理和导出功能。它集成了 SDK、API、自动化采样、导出器以及多种语言间的互操作性。
-
-## 主要特性
-- **统一 API**：`go.opentelemetry.io/otel` 包提供标准化的 `Tracer`, `Meter`, `Logger` 等接口。
-- **SDK**：实现了 `otel/sdk` 子包，支持自定义配置、采样、批处理、导出等。
-- **自动化采样**：支持 `TraceIDRatioBased`, `ParentBased`, `AlwaysOn`, `AlwaysOff` 等采样策略。
-- **导出器**：
-  - OTLP (gRPC/HTTP)
-  - Jaeger
-  - Zipkin
-  - Prometheus
-  - Console
-  - File
-  - 自定义导出。
-- **自动化仪表**：自动化采集 HTTP, gRPC, MySQL, PostgreSQL, Redis 等常用组件的指标和追踪。
-- **跨语言互操作**：通过共享的 `OTLP` 协议，支持多语言协作。
-- **扩展性**：支持自定义 `SpanProcessor`, `BatchSpanProcessor`, `MetricExporter` 等。
-- **资源检测**：自动检测主机、容器、Kubernetes 等环境信息。
-
-## 核心模块
-| 模块 | 说明 |
-|------|------|
-| `api` | 追踪、指标、日志的公共接口。 |
-| `sdk` | 具体实现，包括 `trace`, `metric`, `log`。 |
-| `exporters` | 各类导出器实现。 |
-| `instrumentation` | 自动化采集库。 |
-| `propagation` | 传输上下文的实现。 |
-| `trace` | Span, Tracer 相关实现。 |
-| `metric` | Metric, Meter 等实现。 |
-| `log` | 日志相关实现。 |
-
-## 快速上手
-
-```go
-package main
-
-import (
-    "context"
-    "log"
-    "go.opentelemetry.io/otel"
-    "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
-    "go.opentelemetry.io/otel/sdk/resource"
-    sdktrace "go.opentelemetry.io/otel/sdk/trace"
-    "go.opentelemetry.io/otel/attribute"
-    "go.opentelemetry.io/otel/trace"
-)
-
-func main() {
-    // 创建 OTLP 导出器
-    exporter, err := otlptracegrpc.New(context.Background())
-    if err != nil {
-        log.Fatalf("failed to create exporter: %v", err)
-    }
-
-    // 创建 TraceProvider
-    tp := sdktrace.NewTracerProvider(
-        sdktrace.WithBatcher(exporter),
-        sdktrace.WithResource(resource.NewSchemaless(
-            attribute.String("service.name", "my-service"),
-        )),
-    )
-    otel.SetTracerProvider(tp)
-
-    // 创建 Tracer
-    tracer := otel.Tracer("example.com/trace")
-    ctx, span := tracer.Start(context.Background(), "main")
-    defer span.End()
-
-    // 业务逻辑
-    doWork(ctx)
-
-    // 关闭资源
-    if err := tp.Shutdown(context.Background()); err != nil {
-        log.Fatalf("Error shutting down tracer provider: %v", err)
-    }
-}
-
-func doWork(ctx context.Context) {
-    // 业务代码
-}
-```
-
-## 文档与社区
-- 官方文档: https://opentelemetry.io/docs/instrumentation/go/
-- 贡献指南: https://github.com/open-telemetry/opentelemetry-go/blob/main/CONTRIBUTING.md
-- GitHub Issues: https://github.com/open-telemetry/opentelemetry-go/issues
-
+title: Opentelemetry Go
 ---
 
-> 以上内容已保存至 `src/content/docs/00/opentelemetry-go_open-telemetry.md`。
+# OpenTelemetry-Go
+
+## 功能
+
+OpenTelemetry-Go 是 OpenTelemetry 的 Go 语言实现。它提供了一套 API 来直接测量软件的性能和行为，并将这些数据发送到可观测性平台。
+
+- **分布式跟踪 (Traces)**: 稳定，支持捕获和传播分布式跟踪信息。
+- **指标 (Metrics)**: 稳定，支持收集和导出指标数据。
+- **日志 (Logs)**: Beta 阶段，支持日志收集。
+
+## 用法
+
+### 入门
+
+访问 [opentelemetry.io](https://opentelemetry.io/docs/languages/go/getting-started/) 获取入门指南。
+
+### 仪器化 (Instrumentation)
+
+要开始从应用捕获分布式跟踪和指标事件，需要仪器化应用。最简单的方式是使用仪器化库。查看 [官方支持的仪器化库](https://github.com/open-telemetry/opentelemetry-go-contrib/tree/main/instrumentation)。
+
+如果需要扩展或直接构建仪器化，使用 [Go otel](https://pkg.go.dev/go.opentelemetry.io/otel) 包。查看 [示例](https://github.com/open-telemetry/opentelemetry-go-contrib/tree/main/examples)。
+
+### 导出 (Export)
+
+配置导出管道将遥测数据发送到可观测性平台。
+
+支持的导出器：
+
+- **OTLP**: 支持日志、指标、跟踪。
+- **Prometheus**: 支持指标。
+- **stdout**: 支持日志、指标、跟踪。
+- **Zipkin**: 支持跟踪。
+
+### 兼容性
+
+支持 Go 1.24 和 1.25 等版本。支持多种操作系统和架构。
+
+### 贡献
+
+查看 [贡献文档](https://github.com/open-telemetry/opentelemetry-go/blob/main/CONTRIBUTING.md)。

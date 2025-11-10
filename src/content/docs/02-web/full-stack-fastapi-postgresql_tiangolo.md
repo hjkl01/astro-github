@@ -1,4 +1,3 @@
-
 ---
 title: full-stack-fastapi-postgresql
 ---

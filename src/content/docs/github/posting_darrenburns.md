@@ -1,4 +1,3 @@
-
 ---
 title: posting
 ---
@@ -43,9 +42,7 @@ posting deploy
 > **提示**：配置文件默认位于 `.posting.yml`，包括 `output_dir`、`baseurl`、`theme` 等常用参数。
 
 ---
-
 > 举例配置片段 (`.posting.yml`)
-
 ```yaml
 output_dir: "_site"
 baseurl: "/blog"

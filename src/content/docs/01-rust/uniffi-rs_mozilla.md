@@ -1,4 +1,3 @@
-
 ---
 title: uniffi-rs
 ---
@@ -67,5 +66,4 @@ cargo uniffi-bindgen generate
 - 示例项目: <https://github.com/mozilla/uniffi-rs/tree/main/examples>
 
 ---
-
 > 以上内容已保存到 `src/content/docs/00/uniffi-rs_mozilla.md`。

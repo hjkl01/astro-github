@@ -1,6 +1,5 @@
-
 ---
-title: Spider_XHS
+title: Spider
 ---
 
 # Spider_XHS - 小红书爬虫
@@ -102,5 +101,4 @@ Spider_XHS/
 | 下载失败 | 检查网络，或设置 `max_threads` 为 1，逐个重试。 |
 
 ---
-
 > 以上内容已保存在 `src/content/docs/00/Spider_XHS_cv-cat.md`。

@@ -1,4 +1,3 @@
-
 ---
 title: 30-Days-Of-JavaScript
 ---
@@ -47,5 +46,4 @@ title: 30-Days-Of-JavaScript
    - 若发现错误或想改进示例，直接 fork → commit → PR。
 
 ---
-
 祝学习愉快，掌握 JavaScript 发展更多可能！

@@ -1,4 +1,3 @@
-
 ---
 title: trufflehog
 ---
@@ -123,6 +122,5 @@ trufflehog -c .trufflehog.yaml /path/to/repo.git
 MIT License – 可商业使用、修改、分发，需保留原作者声明。
 
 ---
-
 > 以上内容已全部以中文简洁明了的方式进行描述，方便快速入门和日常使用。  
 > **保存路径**：`src/content/docs/00/trufflehog_trufflesecurity.md`

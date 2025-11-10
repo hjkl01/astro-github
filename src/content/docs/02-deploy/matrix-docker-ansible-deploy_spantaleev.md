@@ -1,4 +1,3 @@
-
 ---
 title: matrix-docker-ansible-deploy
 ---

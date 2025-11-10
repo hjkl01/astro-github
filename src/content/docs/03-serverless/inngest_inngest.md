@@ -1,4 +1,3 @@
-
 ---
 title: inngest
 ---
@@ -98,5 +97,4 @@ curl -X POST https://<YOUR_DEPLOYMENT>/api \
 > **TIP**：Inngest 官方提供了完整的 SDK 示例、CLI 工具与可视化 Dashboard，建议先查看官方文档（`website/docs`）进一步学习。
 
 ---
-
 **项目地址**: <https://github.com/inngest/inngest>

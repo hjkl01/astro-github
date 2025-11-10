@@ -1,4 +1,3 @@
-
 ---
 title: wemake-django-template
 ---

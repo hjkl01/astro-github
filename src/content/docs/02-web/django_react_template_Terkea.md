@@ -1,6 +1,5 @@
-
 ---
-title: django_react_template
+title: django
 ---
 
 # Django React Template 项目

@@ -1,4 +1,3 @@
-
 ---
 title: How-To-Ask-Questions-The-Smart-Way
 ---
@@ -81,5 +80,4 @@ fetchData()
 > 复制上述内容，粘贴到 Stack Overflow 或其他 Q&A 平台，即可获得更高质量的回答。  
 
 ---
-
 > 以上是对 **How to Ask Questions: The Smart Way** 项目的简要说明。请根据自身需求，结合 `README.md` 进一步探索和使用。

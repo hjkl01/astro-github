@@ -1,66 +1,48 @@
-
 ---
-title: terraform
+title: Terraform
 ---
 
+# Terraform
 
-# Terraform (HashiCorp)
+## 功能
 
-项目地址: https://github.com/hashicorp/terraform
+Terraform 是一个用于安全高效地构建、更改和版本化基础设施的工具。它可以将 API 编码为声明式配置文件，这些文件可以在团队成员之间共享、编辑、审查和版本化。
 
-## 主要特性
-- **声明式配置**：使用 HashiCorp Configuration Language (HCL) 或 JSON 编写资源描述，让 IaC 更易读写。
-- **跨云支持**：内置对 AWS、Azure、GCP、Alibaba Cloud、OpenStack 等主流云平台的 provider。
-- **状态管理**：自动跟踪已创建资源的状态，支持本地或远程后端（S3、Azure Storage、Consul 等）。
-- **依赖关系图**：自动构建资源间依赖树，按正确顺序创建/销毁资源。
-- **模块化复用**：将通用配置封装为模块，支持版本控制与复用。
-- **计划 & 执行**：`terraform plan` 展示变更方案，`terraform apply` 一键执行。
-- **扩展插件机制**：通过插件实现自定义 provider、 provisioner、linter 等。
+### 主要特性
 
-## 核心功能
-| 作用 | 说明 |
-|------|------|
-| **资源创建/销毁** | 通过 `terraform apply` 与 `terraform destroy` 自动管理云/本地资源生命周期。 |
-| **变量与输出** | 支持动态输入变量与输出信息，便于自动化流水线与信息传递。 |
-| **软件版本兼容** | 通过 `required_version` 指定 Terraform 版本，保证配置可复现。 |
-| **远程后端** | 将状态文件存储在安全的远程后端，支持锁定与共享。 |
-| **团队协作** | 通过语义化的计划文件呈现差异，方便审计与讨论。 |
-| **社区生态** | 丰富的 provider 与模块源，即可从 Terraform Registry 获取。 |
+- **基础设施即代码**：使用高水平配置语法描述基础设施。这允许数据中心的蓝图被版本化，并像其他代码一样对待。此外，基础设施可以被共享和重用。
+- **执行计划**：Terraform 有一个“规划”步骤，其中生成执行计划。执行计划显示调用 apply 时 Terraform 将做什么。这让您避免在 Terraform 操作基础设施时的任何意外。
+- **资源图**：Terraform 构建所有资源的图，并并行化创建和修改任何非依赖资源。因此，Terraform 以尽可能高效的方式构建基础设施，操作员可以洞察基础设施中的依赖关系。
+- **变更自动化**：复杂的变更集可以以最少的人工交互应用于基础设施。通过前面提到的执行计划和资源图，您确切知道 Terraform 将改变什么以及以什么顺序，从而避免许多可能的人为错误。
 
 ## 用法
-1. **安装**  
-   ```bash
-   brew tap hashicorp/tap
-   brew install hashicorp/tap/terraform
-   ```
-2. **初始化**  
-   ```bash
-   terraform init          # 拉取 provider 与后端配置
-   ```
-3. **编写配置**（示例：AWS EC2）  
-   ```hcl
-   provider "aws" {
-     region = "us-east-1"
-   }
 
-   resource "aws_instance" "web" {
-     ami           = "ami-0c55b159cbfafe1f0"
-     instance_type = "t2.micro"
-   }
-   ```
-4. **预览变更**  
-   ```bash
-   terraform plan
-   ```
-5. **应用配置**  
-   ```bash
-   terraform apply
-   ```
-6. **销毁资源**  
-   ```bash
-   terraform destroy
-   ```
+### 入门
 
-> 通过结合 CI/CD（GitHub Actions、GitLab CI 等）可实现可重复、自动的基础设施部署流程。  
+如果您是 Terraform 的新手并想开始创建基础设施，请查看 HashiCorp 学习平台上的[入门指南](https://learn.hashicorp.com/terraform#getting-started)。还有[其他指南](https://learn.hashicorp.com/terraform#operations-and-development)来继续您的学习。
 
-```
+### 基本命令
+
+- `terraform init`：初始化工作目录，下载提供商插件。
+- `terraform plan`：生成执行计划，显示将要进行的更改。
+- `terraform apply`：应用更改到基础设施。
+- `terraform destroy`：销毁基础设施。
+
+### 文档和资源
+
+- 官方网站：[https://developer.hashicorp.com/terraform](https://developer.hashicorp.com/terraform)
+- 文档：[https://developer.hashicorp.com/terraform/docs](https://developer.hashicorp.com/terraform/docs)
+- 教程：[https://developer.hashicorp.com/terraform/tutorials](https://developer.hashicorp.com/terraform/tutorials)
+- 论坛：[HashiCorp Discuss](https://discuss.hashicorp.com/c/terraform-core)
+- 认证考试：[HashiCorp Certified: Terraform Associate](https://www.hashicorp.com/certification/#hashicorp-certified-terraform-associate)
+
+### 开发
+
+此仓库仅包含 Terraform 核心，包括命令行界面和主图引擎。提供商作为插件实现，Terraform 可以自动下载发布在 [Terraform Registry](https://registry.terraform.io) 上的提供商。
+
+- 要了解更多关于编译 Terraform 和贡献建议更改的信息，请参考[贡献指南](https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md)。
+- 要了解更多关于我们如何处理错误报告的信息，请参考[错误分类指南](https://github.com/hashicorp/terraform/blob/main/BUGPROCESS.md)。
+
+### 许可证
+
+[Business Source License 1.1](https://github.com/hashicorp/terraform/blob/main/LICENSE)

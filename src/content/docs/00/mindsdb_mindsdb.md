@@ -1,72 +1,75 @@
-
 ---
 title: mindsdb
 ---
 
-
 # MindsDB
 
-## 项目地址
-- https://github.com/mindsdb/mindsdb
+## 功能
 
-## 主要特性
-- **SQL 驱动的机器学习**：利用标准 SQL 语句（`PREDICT`、`TRAIN` 等）进行模型训练与预测，无需编写 Python 代码。
-- **多数据源支持**：可连接 MySQL、PostgreSQL、SQL Server、BigQuery、Snowflake、Redshift、MongoDB、Excel、CSV、S3 等，数据来源极为灵活。
-- **自动特征工程**：自动完成缺失值处理、标准化、聚合特征、时间序列衍生特征等。
-- **模型管理与监控**：可视化仪表盘展示模型性能、持续评估与自动化漂移检测。
-- **内嵌模型解释**：支持 SHAP、LIME 等解释方法，帮助理解模型决策。
-- **插件生态**：支持自定义模型插件，能够使用 TensorFlow、PyTorch、CatBoost 等任意框架。
+MindsDB 是一个开源的联邦查询引擎，专为 AI 设计。它允许人类、AI、代理和应用程序从大规模数据源中获取高度准确的答案。核心哲学是“连接、统一、响应”：
 
-## 核心功能
-| 功能 | 说明 |
-|------|------|
-| **数据连接** | 通过 `CONNECT TO` 或使用 `mindsdb` Python API 连接外部数据库。 |
-| **模型训练** | `CREATE MODEL ... PREDICT` 语句实现一键训练。 |
-| **预测** | `SELECT PREDICT(column) FROM table` 直接在 SQL 查询中获取预测结果。 |
-| **模型评估与调优** | 自动生成训练集/验证集、训练曲线、性能指标；支持网格搜索。 |
-| **持续学习** | `UPDATE MODEL ...` 自动将新数据纳入模型持续训练。 |
-| **预测服务** | 通过 REST API 或自动生成的 SDK 接口在应用中调用。 |
+- **连接数据**：支持连接到数百个企业数据源，包括数据库、数据仓库和 SaaS 应用程序。
+- **统一数据**：使用 MindsDB SQL 创建知识库和视图来索引和组织结构化和非结构化数据，实现无 ETL 的统一。
+- **响应数据**：通过内置代理和 MCP（Model Context Protocol）与数据交互，进行问答。
 
-## 快速上手
+MindsDB 还内置 MCP 服务器，使 MCP 应用程序能够连接、统一和响应大规模联邦数据。
+
+## 用法
+
+### 安装 MindsDB Server
+
+推荐使用 Docker Desktop 快速启动：
 
 ```bash
-# 1. 安装 MindsDB
-pip install mindsdb
-
-# 2. 启动 MindsDB 服务器（支持 Docker）
-docker run -p 47334:47334 -p 47335:47335 mindsdb/mindsdb
-
-# 3. 连接外部数据库（以 MySQL 为例）
-CREATE DATABASE IF NOT EXISTS mydb;
-CONNECT TO `mysql://username:password@localhost:3306/target_db` WITHIN mydb;
-
-# 4. 训练模型
-CREATE MODEL my_model
-  PREDICT target_column
-  FROM my_table
-  WHERE timestamp >= '2023-01-01';
-
-# 5. 查看训练状态
-SELECT * FROM my_model_status;
-
-# 6. 做预测
-SELECT *, PREDICT(target_column) FROM my_table
-  WHERE timestamp BETWEEN '2023-01-01' AND '2023-01-07';
-
-# 7. 导出模型
-EXPORT MODEL my_model TO 's3://bucket/path/model.zip';
-
-# 8. 在应用中使用 REST API
-curl -X POST http://localhost:47334/api/v1/predict \
-  -H "Content-Type: application/json" \
-  -d '{"model_name": "my_model", "payload": [{"col1": 10, "col2": 5}]}' 
+# 使用 Docker Desktop
+# 按照文档安装 Docker Desktop，然后运行：
+docker run -p 47334:47334 mindsdb/mindsdb
 ```
 
-## 文档与社区
-- 官方文档: https://docs.mindsdb.com/
-- 示例仓库: https://github.com/mindsdb/mindsdb/tree/master/example
-- 社区支持: GitHub Issues、Discord、Slack
+或者使用 Docker：
 
---- 
+```bash
+docker run -p 47334:47334 mindsdb/mindsdb
+```
 
-> **提示**：在生产环境建议使用 Docker 部署，并开启监控与日志收集，配合 MindsDB 的模型监控插件进行持续治理。
+### 基本用法
+
+1. **连接数据源**：在 MindsDB 中连接到你的数据库或数据源。
+
+   ```sql
+   CREATE DATABASE my_db
+   WITH ENGINE = 'postgres',
+   PARAMETERS = {
+     "host": "your-host",
+     "port": 5432,
+     "database": "your-db",
+     "user": "your-user",
+     "password": "your-password"
+   };
+   ```
+
+2. **创建知识库或视图**：统一数据。
+
+   ```sql
+   CREATE VIEW my_view AS
+   SELECT * FROM my_db.table1
+   UNION
+   SELECT * FROM another_source.table2;
+   ```
+
+3. **配置代理**：创建代理来回答问题。
+
+   ```sql
+   CREATE AGENT my_agent
+   USING
+     model = 'openai/gpt-4',
+     knowledge_base = 'my_kb';
+   ```
+
+4. **查询**：使用 SQL 或通过 MCP 与数据交互。
+   ```sql
+   SELECT * FROM my_agent
+   WHERE question = 'What is the sales trend?';
+   ```
+
+更多详细信息，请参考 [官方文档](https://docs.mindsdb.com)。

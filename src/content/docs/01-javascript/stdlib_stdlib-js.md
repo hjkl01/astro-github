@@ -1,4 +1,3 @@
-
 ---
 title: stdlib
 ---
@@ -135,6 +134,4 @@ const result: number = add(2, 3); // 5
 - 社区讨论: <https://github.com/stdlib-js/stdlib/discussions>
 
 ---
-
 > **提示**：所有模块均可单独安装，例如 `npm install @stdlib/math`，这在构建轻量化项目时非常有用。
-

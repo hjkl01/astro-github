@@ -1,4 +1,3 @@
-
 ---
 title: candle
 ---
@@ -138,5 +137,4 @@ trainer.fit(model, train_dataloader, val_dataloader)
 - 如需进一步帮助，请在 GitHub Issues 或 Hugging Face 社区提交问题。
 
 ---
-
 > 以上内容为项目 **Candle** 的核心特性、功能与使用示例，帮助开发者快速上手并在生产环境中部署高效的 NLP 模型。

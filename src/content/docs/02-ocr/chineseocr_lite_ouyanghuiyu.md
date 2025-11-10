@@ -1,6 +1,5 @@
-
 ---
-title: chineseocr_lite
+title: chineseocr
 ---
 
 # ChineseOCR Lite 项目

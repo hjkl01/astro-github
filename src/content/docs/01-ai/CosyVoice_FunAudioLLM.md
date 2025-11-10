@@ -1,4 +1,3 @@
-
 ---
 title: CosyVoice
 ---
@@ -90,5 +89,4 @@ python vc_demo.py \
 - 配置文件示例: `configs/`
 
 ---
-
 > 以上内容为 CosyVoice 项目概要与快速使用指南，更多细节请参阅官方仓库与 Wiki。

@@ -1,4 +1,3 @@
-
 ---
 title: lighthouse
 ---
@@ -122,5 +121,4 @@ jobs:
 - 文档与配置示例可在 `docs/` 与 `lighthouse-core/config` 目录中查阅。  
 
 ---
-
 > **Tip**：使用 `lighthouse-ci`（https://github.com/GoogleChrome/lighthouse-ci）可实现持续性能监控与基准对比，建议结合实际项目使用。

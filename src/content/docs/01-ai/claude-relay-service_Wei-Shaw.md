@@ -1,4 +1,3 @@
-
 ---
 title: claude-relay-service
 ---
@@ -89,5 +88,4 @@ claude-relay-service/
 欢迎提出 Issue、Pull Request 以及添加新功能或修复 bug。
 
 ---
-
 > **提示**: 若使用代理访问 Claude，请在环境变量中配置 `HTTPS_PROXY` 或 `HTTP_PROXY`。

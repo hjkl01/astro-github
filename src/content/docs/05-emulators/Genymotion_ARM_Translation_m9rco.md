@@ -1,6 +1,5 @@
-
 ---
-title: Genymotion_ARM_Translation
+title: Genymotion
 ---
 
 # Genymotion ARM Translation 项目

@@ -1,4 +1,3 @@
-
 ---
 title: django-sql-dashboard
 ---

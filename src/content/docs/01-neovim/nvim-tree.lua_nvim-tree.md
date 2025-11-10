@@ -1,4 +1,3 @@
-
 ---
 title: nvim-tree.lua
 ---
@@ -81,5 +80,4 @@ nvim .
 > **提示**：在多数现代 Neovim 配置中，`nvim-tree.lua` 与 `telescope.nvim`、`fzf-lua` 等插件共同使用，提供更丰富的文件搜索和管理体验。
 
 ---
-
 这样即可在 `src/content/docs/00/nvim-tree.lua_nvim-tree.md` 保存以上内容。

@@ -1,4 +1,3 @@
-
 ---
 title: automatic-api
 ---

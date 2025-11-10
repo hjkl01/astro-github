@@ -1,4 +1,3 @@
-
 ---
 title: miniob
 ---
@@ -98,13 +97,10 @@ curl -X POST http://localhost:2881/restapi \
    ```
 
 ---
-
 **注意**  
 - MiniOB 目前仅适用于开发与测试阶段，**不建议**在生产环境中使用。  
 - 由于是内存数据库，重启后所有数据将丢失（除非开启 WAL 持久化）。  
 - 对 OceanBase 的协议实现虽已兼容但仍处于*稳定*测试阶段，出现细节不一致时请参考官方文档。  
-
 > 了解更多信息请访问项目主页并查看 README 和官方 Wiki。  
 ```  
-
 (保存为 `src/content/docs/00/miniob_oceanbase.md`)

@@ -1,4 +1,3 @@
-
 ---
 title: telescope.nvim
 ---

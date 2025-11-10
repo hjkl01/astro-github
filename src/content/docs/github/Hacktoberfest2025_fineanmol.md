@@ -1,4 +1,3 @@
-
 ---
 title: Hacktoberfest2025
 ---
@@ -119,10 +118,7 @@ npm test
 | 前端访问回源被拦 | 在 `vite.config.js` 添加 `proxy` 配置，或在后端设置 `CORS` 允许跨域 |
 
 ---
-
 > **Tip**  
 > 由于 Hacktoberfest 需要在 10 天内完成 4+ PR，建议先从 `frontend` 的 UI 组件草稿做起，或在 `backend` 里提交新 API 需求。
-
 ``` 
-
 记得将上述内容保存到文件 `src/content/docs/00/Hacktoberfest2025_fineanmol.md`。

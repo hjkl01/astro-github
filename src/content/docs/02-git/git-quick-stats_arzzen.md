@@ -1,4 +1,3 @@
-
 ---
 title: git-quick-stats
 ---

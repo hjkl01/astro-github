@@ -1,4 +1,3 @@
-
 ---
 title: python-small-examples
 ---

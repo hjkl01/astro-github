@@ -1,4 +1,3 @@
-
 ---
 title: noice.nvim
 ---

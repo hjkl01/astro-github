@@ -1,4 +1,3 @@
-
 ---
 title: s-ui
 ---
@@ -163,5 +162,4 @@ export default function App() {
 项目欢迎 Issue 与 PR。若想贡献组件或改进，先 fork、create branch，提交符合 ESLint/Prettier 配置的代码，最后提交 Pull Request。
 
 ---
-
 以上即为 **s-ui** 的主要特性、功能及使用方法。

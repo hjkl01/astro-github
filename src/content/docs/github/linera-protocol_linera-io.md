@@ -1,4 +1,3 @@
-
 ---
 title: linera-protocol
 ---

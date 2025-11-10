@@ -1,4 +1,3 @@
-
 ---
 title: OpenGFW
 ---
@@ -105,6 +104,5 @@ log:
 - 若遇到问题，请先查看 Issues，或在 Discussions 讨论。
 
 ---
-
 **项目地址**  
 [https://github.com/apernet/OpenGFW](https://github.com/apernet/OpenGFW)

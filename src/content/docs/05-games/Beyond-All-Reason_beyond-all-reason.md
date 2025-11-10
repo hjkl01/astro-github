@@ -1,4 +1,3 @@
-
 ---
 title: Beyond-All-Reason
 ---

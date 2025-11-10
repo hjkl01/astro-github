@@ -1,4 +1,3 @@
-
 ---
 title: chainlink
 ---
@@ -106,5 +105,4 @@ contract PriceConsumerV3 is ChainlinkClient {
    - 在前端或脚本中监听 `PriceSet` 事件，以获取数据。
 
 ---
-
 > 以上内容为概览，完整的 API 与高级功能请参考官方仓库与文档。  

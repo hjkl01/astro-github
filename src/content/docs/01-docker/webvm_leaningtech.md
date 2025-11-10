@@ -1,4 +1,3 @@
-
 ---
 title: webvm
 ---
@@ -102,5 +101,4 @@ logging:
 > **提示**：项目使用 `Docker Swarm` 或 `Kubernetes` 进行大规模部署时，请在 `swarm/` 或 `k8s/` 目录下查阅相应的部署脚本和 Helm Charts。
 
 ---
-
 > *以上内容仅为项目功能、特性与基本使用方式的说明，请参考官方仓库的 README 与贡献指南获取更详细信息。*

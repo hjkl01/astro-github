@@ -1,6 +1,5 @@
-
 ---
-title: fastapi_amis_admin
+title: fastapi
 ---
 
 # fastapi_amis_admin 项目

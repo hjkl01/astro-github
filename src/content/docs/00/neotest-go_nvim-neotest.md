@@ -1,117 +1,113 @@
-
 ---
 title: neotest-go
 ---
 
-# neotest-go – Go 测试集成插件
+# neotest-go
 
-**GitHub 项目地址**  
-<https://github.com/nvim-neotest/neotest-go>
+## 功能介绍
 
-## 项目概述  
-neotest-go 是 Neovim 生态中专为 Go 语言设计的 Neotest 适配器。通过 Neotest 的统一接口，它能在 Neovim 内部直接跑、调试、查看 Go 单元测试，并支持多种测试框架与工具链。
+neotest-go 是为 [Neotest](https://github.com/rcarriga/neotest) 框架提供 Go 语言适配器的插件。Neotest 是一个用于 Neovim 的测试框架，支持多种编程语言的测试运行和结果展示。该插件允许在 Neovim 中直接运行 Go 测试，并提供丰富的测试结果可视化功能。
 
-## 主要特性
+主要功能包括：
 
-- **原生 Go 测试支持**  
-  - 直接执行 `go test`，支持常用标志（如 `-v`、`-race`、`-count` 等）。  
-  - 自动识别当前文件或目录下的测试文件（`*_test.go`）。
+- 运行单个测试函数
+- 运行整个测试文件
+- 运行目录下的所有测试
+- 运行整个测试套件
+- 支持 testify 等测试框架的错误消息格式化
+- 可配置额外参数传递给 `go test` 命令
 
-- **多框架兼容**  
-  - 原生 Go 测试。  
-  - `ginkgo` 框架。  
-  - 通过插件配置可扩展到其它测试工具。
+## 安装
 
-- **高效的测试运行模式**  
-  - 单文件 / 单 test / 目录 / 整个项目。  
-  - 按需重新运行（改动后只跑 affected tests）。  
-  - 断点式运行：`--run` 选项可指定测试匹配。
-
-- **Results & UI 集成**  
-  - 与 Neotest UI 完全集成：测试运行状态、节点树、结果列表、详细错误堆栈。  
-  - 可在 `quickfix` 或 `location list` 里直接跳转到失败的测试代码位置。  
-  - 支持覆盖率信息（通过 `-coverprofile` 生成后在 Neotest UI 中展示）。
-
-- **调试集成**  
-  - 在 Neovim 内部通过 DAP 调试 Go 测试，支持设置断点、查看变量、单步执行。  
-  - 通过 `:NeotestDebug` 或快捷键启动。
-
-- **插件化扩展**  
-  - 仅依赖 Neotest，无需额外依赖。  
-  - 可通过 config 选项自定义 `cmd`, `env`, `runner`, `skipFiles` 等。
-
-## 基本用法
-
-1. **安装**  
-   ```lua
-   use { {'neovim/nvim-lspconfig'}, {'nvim-telescope/telescope.nvim'}, {'nvim-neotest/neotest'}, {'nvim-neotest/neotest-go'} }
-   ```
-
-2. **Neotest 配置**  
-   ```lua
-   require('neotest').setup({
-     adapters = {
-       require('neotest-go')({
-         -- 可自定义参数
-         cmd = function()
-           return {'go', 'test', '-v'}
-         end,
-         -- 支持 ginkgo
-         -- path = { 'ginkgo', 'test', '-focus', '.*' }
-       })
-     }
-   })
-   ```
-
-3. **运行命令**  
-   - 运行当前文件所有测试：`<leader>nt` 或 `:NeotestRun`  
-   - 运行选中区段)：`<leader>nr`  
-   - 停止所有测试：`<leader>ns` 或 `:NeotestStop`  
-   - 查看最近测试结果：`<leader>ntq` 或 `:NeotestSummary`
-
-4. **调试**  
-   ```lua
-   vim.keymap.set('n', '<leader>nd', require('neotest').run.run { strategy = 'dap' })
-   ```
-
-5. **查看覆盖率**  
-   - 在 Neotest UI 打开 `c`（coverage），即可查看当前文件/目录的覆盖率。
-
-6. **快速跳转**  
-   - `gt`：跳转到 next failure
-   - `gT`：跳转到 previous failure
-
-## 高级配置示例
+使用 packer 安装：
 
 ```lua
-require('neotest').setup({
+use({
+  "nvim-neotest/neotest",
+  requires = {
+    "nvim-neotest/neotest-go",
+    -- 其他测试适配器
+  },
+  config = function()
+    -- 获取 neotest 命名空间
+    local neotest_ns = vim.api.nvim_create_namespace("neotest")
+    vim.diagnostic.config({
+      virtual_text = {
+        format = function(diagnostic)
+          local message =
+            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+          return message
+        end,
+      },
+    }, neotest_ns)
+    require("neotest").setup({
+      -- neotest 配置
+      adapters = {
+        require("neotest-go"),
+      },
+    })
+  end,
+})
+```
+
+可选配置参数：
+
+```lua
+require("neotest").setup({
   adapters = {
-    require('neotest-go')({
-      -- 自定义命令行
-      cmd = function(opts)
-        local parts = {'go', 'test', '-v', '-count=1'}
-        if opts.focus then
-          table.insert(parts, '-run')
-          table.insert(parts, opts.focus)
-        end
-        return parts
-      end,
-      -- 过滤掉无意义的文件
-      skipFiles = function(filename)
-        return filename:match('%.gen%.go$')
-      end,
-      env = {
-        GOFLAGS = '-mod=vendor'
-      }
+    require("neotest-go")({
+      experimental = {
+        test_table = true,
+      },
+      args = { "-count=1", "-timeout=60s" },
+      recursive_run = true  -- 递归运行测试
     })
   }
 })
 ```
 
-> **提示**：neotest-go 与 Neotest 的所有 UI 与命令保持一致，所有快捷键与命令可在 `:h neotest` 里查看。
+## 用法
 
-> **注意**：若要在远程终端或 CI 环境下使用，需要保证 `go` 命令在 `PATH` 内。
+注意：所有 `require('neotest').run.run` 调用可以映射到 Neovim 命令中。
 
----
+### 测试单个函数
 
-**结束**
+将光标悬停在测试函数上，运行：
+
+```lua
+require('neotest').run.run()
+```
+
+注意：使用 testify 的测试方法无法单独运行，因为 `go test` 无法使用 `-run` 标志单独运行这些测试。
+
+### 测试文件
+
+运行当前文件的测试：
+
+```lua
+require('neotest').run.run(vim.fn.expand('%'))
+```
+
+### 测试目录
+
+运行指定目录下的测试：
+
+```lua
+require('neotest').run.run("path/to/directory")
+```
+
+### 测试套件
+
+运行整个测试套件：
+
+```lua
+require('neotest').run.run(vim.fn.getcwd())
+```
+
+### 额外参数
+
+为 `go test` 命令添加额外参数：
+
+```lua
+require('neotest').run.run({path, extra_args = {"-race"}})
+```

@@ -1,4 +1,3 @@
-
 ---
 title: AFFiNE
 ---
@@ -112,5 +111,4 @@ title: AFFiNE
 > **提示**：AWIN 采用 [Electron](https://www.electronjs.org/) 构建桌面端，前端使用 TS + Lit + CSF，后端是基于 Warp Rust 框架的 REST/GRPC。若有深度二次开发需求，可关注其 [SDK 文档](https://github.com/toeverything/AFFiNE/tree/dev/sdk)。
 
 ---
-
 > 以上信息为快速参考，详细功能与 API 可见官方仓库及文档。祝使用愉快！

@@ -1,48 +1,87 @@
-
 ---
-title: system-design-primer
+title: System Design Primer
 ---
 
-# GitHub 项目: [system-design-primer](https://github.com/donnemartin/system-design-primer)
+# System Design Primer
 
 ## 项目概述
-`system-design-primer` 是一个面向系统设计面试准备的开源资源集合。它以 Markdown 形式记录了许多常见的系统设计问题、关键概念、实践案例以及设计思路，适合想要快速提升系统设计能力的开发者和面试者。
 
-## 主要特性
-- **问题集合**：收录了数百个系统设计面试常见问题（如 URL 缩短器、微博流、消息队列等），每个问题都有详细的设计思路和实现建议。  
-- **技术知识点**：涵盖分布式系统、缓存、数据库、消息系统、负载均衡、搜索引擎等核心技术。  
-- **最佳实践**：提供了最佳实践、可扩展性设计模式、故障恢复方法等。  
-- **代码示例**：多处包含简洁的代码片段，帮助理解设计实现。  
-- **社区贡献**：支持 Issue、Pull Request，持续更新与完善。  
+System Design Primer 是一个开源项目，旨在帮助开发者学习如何设计大规模系统，并为系统设计面试做准备。该项目由 Donne Martin 创建，提供了丰富的资源和学习材料。
 
 ## 主要功能
-- **系统设计模板**：每个问题都按“需求分析 → 方案概览 → 关键技术 → 缺陷与优化”格式组织。  
-- **技术栈列表**：列出实现各类系统常用的技术栈，方便快速查找。  
-- **图表与流程图**：使用 Mermaid 或 PlantUML 绘制关键流程图、架构图，直观展示系统结构。  
-- **可搜索与索引**：项目支持全文搜索，方便定位特定问题或技术点。  
 
-## 用法
-1. **克隆仓库**  
-   ```bash
-   git clone https://github.com/donnemartin/system-design-primer.git
-   cd system-design-primer
-   ```
+### 1. 系统设计学习资源
 
-2. **浏览问题**  
-   - 直接打开 `README.md` 或 `docs/` 目录下的 Markdown 文件。  
-   - 也可使用 `search` 功能在本地搜索关键词。  
+- **全面的系统设计主题索引**：涵盖性能与可扩展性、延迟与吞吐量、可用性与一致性等核心概念
+- **CAP 定理**：解释一致性、可用性和分区容忍性之间的权衡
+- **一致性模式**：弱一致性、最终一致性、强一致性
+- **可用性模式**：故障转移、复制等
+- **网络基础设施**：DNS、CDN、负载均衡器、反向代理等
+- **应用层**：微服务、服务发现
+- **数据库**：关系型数据库、NoSQL、缓存策略
+- **异步通信**：消息队列、任务队列
+- **通信协议**：TCP、UDP、RPC、REST
+- **安全基础**：加密、输入验证等
 
-3. **贡献**  
-   - Fork 仓库 → 新建分支 → 修改/新增文件 → 提交 PR。  
-   - 遵循项目的贡献指南（`CONTRIBUTING.md`）。  
+### 2. 面试准备
 
-4. **本地预览**  
-   - 可使用 `markdown-preview` 或任何支持 Markdown 的编辑器查看。  
-   - 也可使用 `mkdocs` 或 `docsify` 部署到 GitHub Pages。  
+- **系统设计面试问题**：提供常见面试题及解决方案，包括代码、图表和讨论
+- **面向对象设计面试问题**：补充的 OO 设计问题
+- **学习指南**：根据面试时间表（短期、中期、长期）推荐的学习路径
+- **面试技巧**：如何应对系统设计面试问题
 
-5. **集成到学习计划**  
-   - 将感兴趣的问题记录到 `TODO.md` 或个人笔记。  
-   - 结合 `system-design-primer` 的设计方法，练习独立完成完整系统设计。  
+### 3. 学习工具
 
-## 小结
-`system-design-primer` 是系统设计学习的宝贵资源，涵盖从基础概念到高级模式，适合所有想在面试或实际项目中提升系统设计水平的开发者。通过阅读、实践与贡献，你可以系统化地掌握高可用、可扩展系统的设计技巧。
+- **Anki 闪卡**：用于记忆系统设计概念的间隔重复学习工具
+- **实际架构案例**：分析真实世界的系统架构（如 Google、Facebook、Twitter 等）
+- **公司工程博客**：推荐各大公司的技术博客
+
+## 使用方法
+
+### 1. 入门学习
+
+1. 观看可扩展性视频讲座（Harvard 讲座）
+2. 阅读可扩展性文章
+3. 按照学习指南逐步学习系统设计主题
+
+### 2. 练习面试
+
+1. 使用提供的步骤来应对系统设计面试问题：
+   - 步骤 1：概述用例、约束和假设
+   - 步骤 2：创建高层设计
+   - 步骤 3：设计核心组件
+   - 步骤 4：扩展设计
+2. 练习背包计算（back-of-the-envelope calculations）
+3. 解决提供的系统设计面试问题
+
+### 3. 使用 Anki 闪卡
+
+- 下载系统设计闪卡包
+- 使用 Anki 应用进行间隔重复学习
+
+### 4. 深入学习
+
+- 阅读公司工程博客了解实际应用
+- 分析真实世界架构案例
+- 参与贡献，改进项目内容
+
+## 项目结构
+
+- `README.md`：主要文档，包含所有学习内容
+- `solutions/`：系统设计问题的解决方案
+- `resources/`：Anki 闪卡和其他资源
+- `images/`：图表和插图
+
+## 贡献
+
+项目欢迎贡献，包括修复错误、改进部分、添加新内容或翻译。详情请查看 CONTRIBUTING.md。
+
+## 许可证
+
+采用 Creative Commons Attribution 4.0 International License (CC BY 4.0)。
+
+## 资源链接
+
+- GitHub: https://github.com/donnemartin/system-design-primer
+- 英文版: https://github.com/donnemartin/system-design-primer/blob/master/README.md
+- 中文版: https://github.com/donnemartin/system-design-primer/blob/master/README-zh-Hans.md

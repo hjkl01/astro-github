@@ -1,96 +1,118 @@
-
 ---
 title: pathway
 ---
 
-
 # Pathway
 
-项目地址: <https://github.com/pathwaycom/pathway>
+Pathway is a Python ETL framework for stream processing, real-time analytics, LLM pipelines, and RAG. It provides an easy-to-use Python API that integrates seamlessly with popular Python ML libraries. The framework is versatile and robust, suitable for both development and production environments, handling batch and streaming data uniformly.
 
-## 概述
+## Key Features
 
-Pathway 是一款轻量级前端 UI 框架，提供可复用、响应式且可访问的组件。它支持自定义主题、设计系统集成，并可与 React、Vue、Svelte 等主流框架无缝配合。
+- **Unified Engine**: Same code for batch and streaming data processing.
+- **Scalable Rust Engine**: Powered by Differential Dataflow for incremental computation, enabling multithreading, multiprocessing, and distributed computations.
+- **Connectors**: Supports a wide range of data sources including Kafka, GDrive, PostgreSQL, SharePoint, and over 300 sources via Airbyte.
+- **Transformations**: Stateful operations like joins, windowing, sorting, plus custom Python functions.
+- **Persistence**: Saves computation state for restarts after updates or crashes.
+- **Consistency**: Handles time and out-of-order data; free version offers "at least once" consistency.
+- **LLM Integration**: Dedicated tooling for LLM and RAG pipelines, including wrappers, parsers, embedders, and vector indexing.
 
-## 主要特性
+## Installation
 
-- **组件化**：含 Button、Input、Modal、Form 等高质量通用组件。
-- **主题与设计系统**：基于 CSS 变量/SCSS 配置，支持多主题切换与自定义色彩／间距。
-- **响应式 & 可访问性**：WAI‑ARIA 标准，键盘导航、屏幕阅读器友好。
-- **自定义样式**：提供 Tailwind‑style 工具类，支持深度自定义。
-- **CLI 与插件**：`pathway-cli` 用于生成样式、打包、测试以及与 Figma/Sketch 的集成。
-
-## 安装
+Requires Python 3.10 or above.
 
 ```bash
-npm install @pathwaycom/pathway
-# 或
-yarn add @pathwaycom/pathway
+pip install -U pathway
 ```
 
-## 快速使用
+Note: Pathway is available on macOS and Linux. For other systems, run on a Virtual Machine.
 
-```html
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <title>Pathway Demo</title>
-  <link rel="stylesheet" href="node_modules/@pathwaycom/pathway/dist/pathway.css">
-</head>
-<body>
-  <button class="pathway-btn pathway-primary">点击我</button>
-  <script src="node_modules/@pathwaycom/pathway/dist/pathway.js"></script>
-</body>
-</html>
+## Basic Usage
+
+Here's an example of computing the sum of positive values in real time:
+
+```python
+import pathway as pw
+
+# Define the schema of your data (Optional)
+class InputSchema(pw.Schema):
+    value: int
+
+# Connect to your data using connectors
+input_table = pw.io.csv.read(
+    "./input/",
+    schema=InputSchema
+)
+
+# Define your operations on the data
+filtered_table = input_table.filter(input_table.value >= 0)
+result_table = filtered_table.reduce(
+    sum_value=pw.reducers.sum(filtered_table.value)
+)
+
+# Load your results to external systems
+pw.io.jsonlines.write(result_table, "output.jsonl")
+
+# Run the computation
+pw.run()
 ```
 
-React 示例：
+## Deployment
 
-```jsx
-import { Button } from '@pathwaycom/pathway/react';
+### Locally
 
-export default function App() {
-  return <Button type="primary">点击我</Button>;
-}
+Run your script directly:
+
+```bash
+python main.py
 ```
 
-## 配置主题
+Or use Pathway's launcher:
 
-`src/theme.js`：
-
-```js
-import { createTheme } from '@pathwaycom/pathway/theme';
-
-export const theme = createTheme({
-  colors: {
-    primary: '#4f46e5',
-    secondary: '#6b7280',
-  },
-  spacing: {
-    base: '8px',
-    small: '4px',
-    large: '16px',
-  },
-});
+```bash
+pathway spawn python main.py
 ```
 
-主题注入：
+For multithreading:
 
-```jsx
-import { ThemeProvider } from '@pathwaycom/pathway/react';
-import { theme } from './theme';
-
-export default function Root({ children }) {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-}
+```bash
+pathway spawn --threads 3 python main.py
 ```
 
-## 文档
+### Docker
 
-- 官方文档: <https://pathwaycom.github.io/pathway>
-- 示例与演示: <https://codesandbox.io/embed/pathway-demo>
-- 贡献指南: `CONTRIBUTING.md`
+Using Pathway image:
 
-``` 
-（文件路径: src/content/docs/00/pathway_pathwaycom.md）
+```dockerfile
+FROM pathwaycom/pathway:latest
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD ["python", "./your-script.py"]
+```
+
+Build and run:
+
+```bash
+docker build -t my-pathway-app .
+docker run -it --rm --name my-pathway-app my-pathway-app
+```
+
+Run a single script:
+
+```bash
+docker run -it --rm --name my-pathway-app -v "$PWD":/app pathwaycom/pathway:latest python my-pathway-app.py
+```
+
+### Kubernetes and Cloud
+
+Pathway supports Kubernetes deployment. For scaling, consider Pathway for Enterprise for distributed computing.
+
+## Resources
+
+- [Documentation](https://pathway.com/developers/)
+- [API Docs](https://pathway.com/developers/api-docs/pathway)
+- [Examples](https://github.com/pathwaycom/pathway/tree/main/examples)
+- [Templates](https://pathway.com/developers/templates)
+- [Discord Community](https://discord.com/invite/pathway)
+- [GitHub Repository](https://github.com/pathwaycom/pathway)

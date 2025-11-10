@@ -1,4 +1,3 @@
-
 ---
 title: AiToEarn
 ---
@@ -6,39 +5,120 @@ title: AiToEarn
 # AiToEarn 项目
 
 ## 项目地址
-[GitHub 项目地址](https://github.com/yikart/AiToEarn)
+
+https://github.com/yikart/AiToEarn
 
 ## 主要特性
-AiToEarn 是一个基于 AI 的赚钱工具项目，旨在帮助用户通过 AI 技术生成内容、自动化任务或参与 AI 驱动的赚钱机会。主要特性包括：
-- **AI 内容生成**：利用 AI 模型快速生成文章、图像或代码，支持多种语言和风格自定义。
-- **自动化赚钱脚本**：集成脚本自动化处理在线任务，如社交媒体发布、数据收集或简单交易模拟。
-- **开源框架**：模块化设计，便于开发者扩展，支持 Python 和常见 AI 库（如 Hugging Face Transformers）。
-- **用户友好界面**：提供简单的 CLI 或 Web 界面，适合初学者快速上手。
-- **安全与合规**：强调合法使用，避免高风险操作，并包含日志记录以监控活动。
+
+AiToEarn 是一个企业级的 AI 内容营销平台，帮助创作者、品牌和企业使用 AI 自动化构建、分发和货币化内容。支持全球最受欢迎的平台。
+
+支持的渠道：
+Douyin, Xiaohongshu (Rednote), WeChat Channels, Kuaishou, Bilibili, WeChat Official Accounts,
+TikTok, YouTube, Facebook, Instagram, Threads, Twitter (X), Pinterest
 
 ## 主要功能
-- **内容创作模块**：输入提示词，AI 生成高质量文本、图片或视频，用于博客、社交或电商。
-- **任务自动化**：设置规则自动化执行重复任务，如批量生成 NFT 描述或监控市场机会。
-- **赚钱集成**：连接 API 与平台（如 Upwork、Fiverr 或加密货币工具），帮助用户发现并申请 AI 相关 freelance 工作。
-- **数据分析**：内置分析工具，评估生成内容的潜在价值和优化建议。
-- **社区支持**：包含示例脚本和文档，便于用户贡献或 fork 项目。
+
+### 1. 内容发布 — 一键多平台
+
+- **分发到任何地方**：发布到全球最广泛的平台范围（Douyin, Kwai, WeChat Channels, WeChat Offical Account, Bilibili, Rednote, Facebook, Instagram, TikTok, LinkedIn, Threads, YouTube, Pinterest）。
+- **智能导入**：导入历史内容以快速重新编辑和重新分发。
+  - 示例：将您的 Xiaohongshu 帖子同步到 YouTube。
+
+- **日历调度**：像日历一样规划和协调所有平台的内容。
+- **统一仪表板**：在一个地方管理所有互动。
+- **主动互动**：加入热门对话，与潜在客户联系。
+- 将**被动操作**变成**主动流量增长**。
+
+### 2. 内容热点 — 病毒灵感引擎
+
+- **案例库**：探索如何创建获得 10,000+ 喜欢的帖子。
+- **趋势雷达**：即时发现最新的病毒趋势，减少创作者焦虑。
+
+### 3. 内容搜索 — 品牌和市场洞察
+
+- **品牌监控**：实时跟踪关于您品牌的对话。
+- **内容发现**：搜索帖子、话题和社区以进行有针对性的互动。
+
+### 4. 评论搜索 — 精确用户挖掘
+
+- **智能评论搜索**：检测高转化信号，如“链接请”或“如何购买”。
+- **转化助推器**：即时回复，提高互动和销售。
+
+### 5. 内容互动 — 增长引擎
+
+- **统一仪表板**：在一个地方管理所有互动。
+- **主动互动**：加入热门对话，与潜在客户联系。
+- 将**被动操作**变成**主动流量增长**。
+
+### 6. 内容分析 — 全漏斗数据
+
+- **跨平台比较**：一个平台可能会阻止流量，但其他平台不会。
+- **端到端监控**：跟踪性能并构建您的 1M+ 粉丝路径。
+
+### 7. AI 内容创建 — 端到端助手
+
+- **AI 文案**：自动生成标题、字幕和描述。
+- **AI 评论**：主动互动，吸引流量。
+- **图像和卡片生成器**：加速内容工作流程。
+- **支持的 AI 视频模型**：Seedance, Kling, Hailuo, Veo, Medjourney, Sora, Pika, Runway。
+- **支持的 AI 图像模型**：GPT, Flux。
+- **下一步**：标签生成器、智能 DM、视频编辑、AI 头像、翻译以进行全球分发。
+
+### 8. 内容市场 — 交易和货币化
+
+- **创作者**：直接销售您的内容，快速找到买家。
+- **品牌**：购买现成的、高质量的内容。
+- **AI 驱动增长**：
+  **让我们使用 AI 赚钱。让我们一起赚钱！**
 
 ## 用法
-1. **安装**：
-   - 克隆仓库：`git clone https://github.com/yikart/AiToEarn.git`
-   - 安装依赖：`pip install -r requirements.txt`（确保 Python 3.8+ 和 Git 已安装）。
 
-2. **配置**：
-   - 编辑 `config.yaml` 文件，输入 API 密钥（如 OpenAI 或其他 AI 服务）。
-   - 设置个性化参数，如生成风格或任务频率。
+### 快速开始
 
-3. **运行**：
-   - 基本命令：`python main.py --task generate_content --prompt "描述一个 AI 赚钱想法"`
-   - 自动化模式：`python automate.py --mode earn --duration 1h`（运行 1 小时任务）。
-   - Web 界面：`python app.py` 然后在浏览器访问 `localhost:5000`。
+| OS      | 下载                                                                                                                                                                                                            |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android | [![下载 Android](https://img.shields.io/badge/APK-Android1.2.2-green?logo=android&logoColor=white)](https://aitoearn-download.s3.ap-southeast-1.amazonaws.com/aitoearn-download/1.2.2/Aitoearn-1.2.2.apk)       |
+| Windows | [![下载 Windows](https://img.shields.io/badge/Setup-Windows1.2.2-blue?logo=windows&logoColor=white)](https://aitoearn-download.s3.ap-southeast-1.amazonaws.com/aitoearn-download/1.2.2/AiToEarnSetup-1.2.2.exe) |
+| macOS   | [![下载 macOS](https://img.shields.io/badge/DMG-macOS1.2.2-black?logo=apple&logoColor=white)](https://aitoearn-download.s3.ap-southeast-1.amazonaws.com/aitoearn-download/1.2.2/AiToEarn+1.2.2.dmg)             |
+| iOS     | **即将推出！**                                                                                                                                                                                                  |
+| Web     | [在 Web 上使用](https://aitoearn.ai/en/accounts)                                                                                                                                                                |
 
-4. **示例**：
-   - 生成文章：使用内容模块输入主题，输出 Markdown 文件。
-   - 赚钱任务：运行脚本扫描 freelance 平台，自动申请 AI 相关职位。
+[Google Play 下载](https://play.google.com/store/apps/details?id=com.yika.aitoearn.aitoearn_app)
 
-注意：项目强调合法使用，请遵守当地法律法规。更多细节参考仓库 README。
+### 开始 Web 项目
+
+#### 1. 启动后端服务
+
+```bash
+cd project/aitoearn-monorepo
+pnpm install
+npx nx serve aitoearn-channel && npx nx serve aitoearn-server
+```
+
+#### 2. 启动前端 `aitoearn-web`
+
+```bash
+pnpm install
+pnpm run dev
+```
+
+### 开始 Electron 项目
+
+```sh
+# 克隆仓库
+git clone https://github.com/yikart/AttAiToEarn.git
+
+# 进入目录
+cd AttAiToEarn
+
+# 安装依赖
+npm i
+
+# 编译 sqlite (better-sqlite3 需要 node-gyp, Python 必须本地安装)
+npm run rebuild
+
+# 开始开发
+npm run dev
+```
+
+项目适合创作者和开发者使用，文档详见仓库的 README.md。

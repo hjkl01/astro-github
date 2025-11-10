@@ -1,4 +1,3 @@
-
 ---
 title: OpenAvatarChat
 ---
@@ -60,6 +59,5 @@ title: OpenAvatarChat
 > - 对于多语言项目，可在 `SpeechRangeEvent.cs` 添加多语言检测阈值。
 
 ---
-
 > **文档保存路径**  
 > 该说明需以 Markdown 格式保存为src/content/docs/00/OpenAvatarChat_HumanAIGC-Engineering.md`。请直接将上述内容复制至对应文件即可。

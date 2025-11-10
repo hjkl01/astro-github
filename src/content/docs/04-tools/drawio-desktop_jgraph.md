@@ -1,4 +1,3 @@
-
 ---
 title: drawio-desktop
 ---
@@ -84,5 +83,4 @@ draw.io-desktop
 - 在 `scripts.js` 中编写 JavaScript：自动生成流程图或批量修改属性。  
 
 ---
-
 > 以上内容可直接保存为 `src/content/docs/00/drawio-desktop_jgraph.md`，便于在项目内文档体系中引用。

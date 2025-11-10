@@ -1,4 +1,3 @@
-
 ---
 title: PyG2Plot
 ---

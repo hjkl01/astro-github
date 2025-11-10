@@ -1,4 +1,3 @@
-
 ---
 title: nushell
 ---
@@ -57,5 +56,4 @@ cat data.json | from json | where age > 30 | select name, age
 - 代码示例与插件市场
 
 ---
-
 > **提示**：在编写自定义函数时，建议使用 `--test` 进行单元测试，以保证函数在管道中的正确性。

@@ -1,4 +1,3 @@
-
 ---
 title: bufferline.nvim
 ---
@@ -109,5 +108,4 @@ require('bufferline').setup {
 - [插件配置范例](https://github.com/akinsho/bufferline.nvim)
 
 ---
-
 > 以上描述基于最新 `v3.*` 版本，使用时请根据自己的 Neovim 版本或插件管理器进行相应调整。祝用得愉快！

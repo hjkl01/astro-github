@@ -1,4 +1,3 @@
-
 ---
 title: sing-box
 ---
@@ -98,5 +97,4 @@ sing-box run -config ./config.json
 > 详细使用说明请参阅官方文档：<https://sing-box.sagernet.org/>
 
 ---
-
 > 以上为 Sing-Box 项目核心信息与使用示例，供快速上手与参考。

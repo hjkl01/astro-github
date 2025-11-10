@@ -1,4 +1,3 @@
-
 ---
 title: fidget.nvim
 ---
@@ -127,5 +126,4 @@ require('fidget').setup({
 | 速度慢 | 关闭或减少 `animation` 选项；将 `min_width` 设置为更小值。 |
 
 ---
-
 **提示**：查看插件仓库中的 `README.md` 和 `docs` 目录获取更详细的配置示例和更新日志。祝你使用愉快！

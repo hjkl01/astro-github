@@ -1,4 +1,3 @@
-
 ---
 title: django-admin-sortable2
 ---

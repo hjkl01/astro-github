@@ -1,4 +1,3 @@
-
 ---
 title: screenshot-to-code
 ---
@@ -110,5 +109,4 @@ globalStyles:
 欢迎提交 Issue 或 Pull Request，具体贡献指南请查看项目根目录的 `CONTRIBUTING.md`。
 
 ---
-
 > *此文档摘自 [screenshot-to-code](https://github.com/abi/screenshot-to-code) 项目仓库，供快速了解项目特性与使用方法。*

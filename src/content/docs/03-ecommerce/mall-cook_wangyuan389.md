@@ -1,4 +1,3 @@
-
 ---
 title: mall-cook
 ---

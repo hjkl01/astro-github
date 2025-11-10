@@ -1,4 +1,3 @@
-
 ---
 title: ExplorerPatcher
 ---
@@ -45,5 +44,4 @@ GitHub地址: https://github.com/valinet/ExplorerPatcher
 > 注：首次运行时可能需要开启 *管理员权限*。  
 
 ---
-
 如需进一步配置或自定义，可查看项目 README 或直接编辑 `settings.json`（位于 `%LocalAppData%\ExplorerPatcher\`）。

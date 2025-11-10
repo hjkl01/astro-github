@@ -1,4 +1,3 @@
-
 ---
 title: pocketbase
 ---
@@ -98,9 +97,7 @@ PocketBase 是一个轻量级、零配置且开箱即用的后端解决方案，
 > **贴士**：所有配置和脚本均位于 `pocketbase.json` 与 `main.js`，可随时根据业务需求修改。
 
 ---
-
 **官网 & 文档**  
 - 官方网站: https://pocketbase.io  
 - 开发者文档: https://pocketbase.io/docs/  
-
 Happy coding!

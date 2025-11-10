@@ -1,4 +1,3 @@
-
 ---
 title: MoneyPrinter
 ---
@@ -97,5 +96,4 @@ moneyprinter --template custom.xml --output receipt.png
 > **提示**：若想自定义模板语法，请参阅 `docs/template-spec.md`。
 
 ---
-
 **链接**: <https://github.com/FujiwaraChoki/MoneyPrinter>

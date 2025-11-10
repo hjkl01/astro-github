@@ -1,4 +1,3 @@
-
 ---
 title: redis-pro
 ---

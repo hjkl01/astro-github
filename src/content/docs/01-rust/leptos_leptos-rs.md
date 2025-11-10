@@ -1,4 +1,3 @@
-
 ---
 title: leptos
 ---
@@ -98,5 +97,4 @@ fn main() {
 - **CI/CD**：与 GitHub Actions、GitLab CI 无缝集成。  
 
 ---
-
 > 以上内容为 Leptos 框架的核心特性与使用方式介绍，供快速上手与实现全栈 Rust Web 开发。  

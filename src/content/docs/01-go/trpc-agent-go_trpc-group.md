@@ -1,4 +1,3 @@
-
 ---
 title: trpc-agent-go
 ---
@@ -104,5 +103,4 @@ go run client.go
 - CI/CD 通过 GitHub Actions 自动构建与发布 Docker 镜像。
 
 ---
-
 > 本文档摘自项目 README，已作精简与中文化，供快速上手与部署参考。

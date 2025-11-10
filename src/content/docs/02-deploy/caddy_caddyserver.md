@@ -1,4 +1,3 @@
-
 ---
 title: caddy
 ---
@@ -131,5 +130,4 @@ caddy add-package github.com/caddyserver/caddy-dns-cloudflare@v1.0.2
 - 示例项目: https://github.com/caddyserver/caddy/tree/master/examples
 
 ---
-
 > 以上内容为对 Caddy 服务器核心功能与基本使用的简要概述，帮助快速上手。祝使用愉快！

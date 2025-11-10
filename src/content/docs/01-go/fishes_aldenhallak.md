@@ -1,86 +1,133 @@
-
 ---
 title: fishes
 ---
 
-# fishes（GitHub：aldenhallak/fishes）
+# DrawAFish.com - Interactive Fish Drawing
 
-**项目地址**  
-https://github.com/aldenhallak/fishes  
+🐟 **[DrawAFish.com](https://drawafish.com)** 🐟
 
-## 主要特性
+用户可以在实时 AI 验证下绘制鱼，并观看他们的创作在共享鱼缸中游泳。
 
-| 特性 | 说明 |
-|------|------|
-| **核心库** | 纯 Go 实现，可直接 `import` 使用。 |
-| **海鱼种类** | 提供多种鱼类模型（鲣鱼、鲑鱼、金枪鱼等）。 |
-| **尺寸自定义** | 可通过 `Size` 参数指定鱼的宽高比例。 |
-| **颜色支持** | 支持 ANSI 颜色码，能在终端输出彩色鱼。 |
-| **随机化生成** | `Generate()` 产生随机属性的鱼，适合生成趣味 ASCII 艺术。 |
-| **多平台兼容** | 兼容 Linux、macOS、Windows 下的终端输出。 |
-| **内置绘制函数** | `Draw()` 返回鱼的字符串表现，可直接 `fmt.Print`。 |
-| **轻量化** | 仅 6KB 代码，只依赖 Go 标准库。 |
+## 功能
 
-## 主要功能
+### 🎨 **交互式绘图**
 
-1. **新建鱼模型**  
-   ```go
-   fish := fishes.NewFish()        // 创建默认鱼
-   fish.Size = 20                  // 设定鱼的宽度
-   fish.Color = fishes.Yellow      // 设定颜色（常量提供   ```
+- **实时 AI 验证** - 绘制鱼并获得即时反馈从我们的神经网络。
+- **智能画布** - 直观的绘图工具，具有压力敏感输入
+- **实时分类** - 背景颜色随着 AI 识别您的鱼而变化
+- **绘图提示** - 视觉提示帮助您创建更好的鱼绘图
 
-2. **随机化生成鱼**  
-   ```go
-   randomFish := fishes.Generate()   // 返回随机属性的鱼
-   ```
+### 🏊 **社区鱼缸**
 
-3. **绘制鱼**  
-   ```go
-   output := randomFish.Draw()       // 返回鱼的 ASCII 表示
-   fmt.Print(output)                 // 直接打印到终端
-   ```
+- **共享水族馆** - 观看您的鱼与来自世界各地艺术家的创作一起游泳
+- **多种视图模式** - 查看最新、最受欢迎或随机鱼
+- **平滑动画** - 鱼在虚拟水中自然移动
+- **交互体验** - 点击鱼以了解其创作者
 
-4. **批量处理**  
-   ```go
-   for i := 0; i < 5; i++ {
-       f := fishes.Generate()
-       fmt.Print(f.Draw())
-   }
-   ```
+### 🗳️ **投票与排名**
 
-5. **自定义图案**  
-   本项目预定义多种鱼形模板，也可通过实现 `Template()` 方法自定义新形态。
+- **社区投票** - 对其他艺术家的鱼绘图进行评分
+- **智能排名系统** - 算法平衡新颖性和受欢迎度
+- **艺术家资料** - 跟踪您的统计数据并查看您的鱼收藏
+- **排行榜** - 发现社区中最受欢迎的鱼
 
-## 用法示例
+### 🗂️ **个人收藏**
 
-```go
-package main
+- **自定义鱼缸** - 创建您最喜欢鱼的主题收藏
+- **分享收藏** - 让朋友探索您的精选鱼缸
+- **隐私控制** - 使鱼缸公开或保持私有
+- **按主题组织** - 按颜色、风格或任何标准对鱼进行分组
 
-import (
-    "fmt"
-    "github.com/aldenhallak/fishes"
-)
+## 🧠 AI 如何工作
 
-func main() {
-    // 创建一条自定义鱼
-    myFish := fishes.NewFish()
-    myFish.Size = 25
-    myFish.Color = fishes.Cyan
+该应用使用机器学习进行实时鱼识别：
 
-    // 打印鱼
-    fmt.Print(myFish.Draw())
+- **ONNX Runtime Web** - 完全在您的浏览器中运行神经网络推理
+- **PyTorch 训练模型** - 最初使用 PyTorch 开发和训练
+- **即时反馈** - 每次刷子笔触都会发生分类
+- **质量控制** - 只有经过验证的鱼才能加入社区鱼缸
 
-    // 随机生成并打印多条鱼
-    for i := 0; i < 3; i++ {
-        f := fishes.Generate()
-        fmt.Print(f.Draw())
-    }
-}
-```
+## 🚀 入门
 
-> **提示**：  
-> - 若终端不支持 ANSI 颜色，可以设置 `fish.Color = fishes.Default`。  
-> - `Size` 的取值范围是 10~50，超出范围将会自动限制。
+1. **访问 [DrawAFish.com](https://drawafish.com)**
+2. **在画布上开始绘制**（鱼应该面向右！）
+3. **观看 AI** 通过背景颜色变化给出反馈
+4. **提交您的鱼** 当您对它满意时
+5. **看到它游泳** 在社区鱼缸中与其他创作一起
+6. **投票和探索** 其他艺术家在排名中的鱼
 
-> **文档**：  
-> 详细 API 说明请参见仓库 `docs` 目录下的 `README.md`。
+## 📱 跨平台兼容
+
+- **桌面浏览器** - 鼠标/触控板绘图的全体验
+- **平板友好** - iPad 和 Android 平板电脑的触摸优化
+- **移动响应** - 手机的简化界面
+- **渐进式 Web 应用** - 可以像原生应用一样安装
+
+## 🌟 社区功能
+
+### 对于艺术家
+
+- **资料系统** - 跟踪您的鱼创作和统计数据
+- **个人画廊** - 展示您的最佳作品
+- **成就跟踪** - 查看您的投票分数和社区参与
+- **社交分享** - 在社交媒体上分享您的鱼和鱼缸
+
+### 对于观众
+
+- **发现工具** - 找到新艺术家和热门鱼
+- **投票系统** - 帮助提升最佳社区内容
+- **收藏** - 将收藏保存到个人鱼缸
+- **评论** - 与社区互动（即将推出）
+
+## 🔧 技术细节
+
+## 项目结构
+
+### HTML 页面（根目录）
+
+- `index.html` — 主绘图页面和 UI
+- `tank.html` — 鱼缸显示与游泳动画
+- `rank.html` — 鱼排名和投票系统
+- `login.html` — 审核认证页面
+- `moderation.html` — 审核界面用于管理提交
+
+### 源文件
+
+- `src/js/` — JavaScript 文件
+  - `app.js` — 主绘图、AI 和 UI 逻辑
+  - `tank.js` — 鱼缸动画和显示
+  - `rank.js` — 排名系统逻辑
+  - `login.js` — 认证处理
+  - `moderation.js` — 审核工具
+  - `fish-utils.js` — 共享工具和 API 调用
+  - `firebase-init.js` — Firebase/Firestore 初始化
+
+### 资产
+
+- `assets/` — 静态资产（图像、模型）
+- `public/` — 公共资产（favicon 等）
+
+## 连接的仓库
+
+### [fish-trainer](https://github.com/aldenhallak/fish-trainer)
+
+- 包含训练鱼涂鸦分类器的 PyTorch 代码。
+- 将训练模型导出为 ONNX 格式，由 DrawAFish.com 用于浏览器内推理。
+- 包括数据增强、预处理和模型评估脚本。
+
+### [fish-be](https://github.com/aldenhallak/fish-be)
+
+- DrawAFish.com 的后端，作为无服务器函数部署（我使用 cloud run :~)）。
+- 处理鱼图像上传，处理和存储提交，并返回鱼缸的规范鱼图像。
+- 可能还提供审核、统计或画廊功能的端点。
+
+## 设置与部署
+
+1. 克隆此仓库。
+2. 将 ONNX 模型（`fish_doodle_classifier.onnx`）放在 `assets/models/` 目录中。
+3. 配置 `src/js/firebase-init.js` 如果使用 Firestore 进行实时功能。
+4. 部署静态站点（例如，Vercel、Netlify、Firebase Hosting）。
+5. 确保 `src/js/fish-utils.js` 中的后端端点指向部署的 `fish-be` 实例。
+
+---
+此仓库大约 80% 是 AI 生成的。我使用了 copilot + zencoder。两个工具都工作得很好，但不能独自做决定 :)

@@ -1,4 +1,3 @@
-
 ---
 title: external-dns
 ---
@@ -122,5 +121,4 @@ External DNS 是一个开源工具，旨在自动将 Kubernetes Service 和 Ingr
 - 常见问题: <https://github.com/kubernetes-sigs/external-dns/issues>  
 
 ---
-
 > **注**：上述示例仅供参考，实际使用请根据目标 DNS 공급商和集群环境进行适配。

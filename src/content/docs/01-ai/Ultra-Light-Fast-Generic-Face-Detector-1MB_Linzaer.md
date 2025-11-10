@@ -1,4 +1,3 @@
-
 ---
 title: Ultra-Light-Fast-Generic-Face-Detector-1MB
 ---

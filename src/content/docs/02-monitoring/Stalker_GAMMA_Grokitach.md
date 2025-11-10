@@ -1,6 +1,5 @@
-
 ---
-title: Stalker_GAMMA
+title: Stalker
 ---
 
 

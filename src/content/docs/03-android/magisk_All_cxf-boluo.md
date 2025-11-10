@@ -1,6 +1,5 @@
-
 ---
-title: magisk_All
+title: magisk
 ---
 
 # Magisk_All 项目

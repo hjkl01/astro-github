@@ -1,4 +1,3 @@
-
 ---
 title: tailspin
 ---
@@ -119,5 +118,4 @@ block_on(source).expect("failed");
 本项目采用 MIT 许可证。欢迎 Issue、Pull Request 与社区一起扩展功能。
 
 ---
-
 *以上内容基于对 `bensadeh/tailspin` 仓库的公开信息整理。若版本更新，功能列表与示例请以仓库最新 README 为准。*

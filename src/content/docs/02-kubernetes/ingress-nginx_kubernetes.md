@@ -1,4 +1,3 @@
-
 ---
 title: ingress-nginx
 ---
@@ -88,5 +87,4 @@ helm upgrade ingress-nginx ingress-nginx/ingress-nginx \
 ```
 
 ---
-
 以上即为 **Ingress‑NGINX** 项目的核心特性、功能与基本使用流程。

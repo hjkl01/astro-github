@@ -1,5 +1,5 @@
 ---
-title: Prisma-AI
+title: prisma-ai
 ---
 
 # Prisma-AI

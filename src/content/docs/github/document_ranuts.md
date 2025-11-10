@@ -1,4 +1,3 @@
-
 ---
 title: document
 ---
@@ -71,7 +70,5 @@ docs/
 | 主题不生效 | 清除浏览器缓存或强制刷新；检查 `themeConfig` 是否正确。 |
 
 ---
-
 > **提示**：若想将文档部署到 GitHub Pages，请在仓库 `settings → Pages` 中将源设置为 `gh-pages` 分支，或使用 `npm run docs:deploy` 自动部署。
-
 ``` 

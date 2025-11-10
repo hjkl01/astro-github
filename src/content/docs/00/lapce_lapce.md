@@ -1,111 +1,51 @@
-
 ---
 title: lapce
 ---
 
-
 # Lapce
 
-**项目地址:** https://github.com/lapce/lapce
+## 简介
 
-Lapce 是一款基于 Rust Language 开发、使用 Flutter 框架构建的轻量级、跨平台代码编辑器。它兼具现代界面与强大的编辑功能，专为提高开发效率而设计。
+Lapce 是一个用纯 Rust 编写的闪电般快速且强大的代码编辑器。它的 UI 基于 [Floem](https://github.com/lapce/floem)，设计灵感来源于 [Xi-Editor](https://github.com/xi-editor/xi-editor) 的 Rope Science 技术，实现超快计算，并使用 [wgpu](https://github.com/gfx-rs/wgpu) 进行渲染。
 
-## 主要特性
+## 功能特性
 
-- **高性能渲染**：使用 Flutter 的绘制引擎，保证流畅的 UI 响应和占用低资源。
-- **多语言语法高亮**：支持 60+ 语言的高亮与智能提示。
-- **语言服务器协议（LSP）**：原生集成 LSP，提供代码补全、跳转、诊断等智能功能。可通过配置自动安装与管理对应语言服务器。
-- **内置终端**：一键打开与代码目录同步的终端，支持多标签。
-- **文件资源管理**：侧边栏文件树、面板搜索、批量重命名等文件操作工具。
-- **多标签 & 代码折叠**：支持无限标签页与代码段折叠，便于大型项目浏览。
-- **插件生态**：通过内置插件市场可下载安装主题、主题色、插件等，支持自定义插件。
-- **主题 & 主题色**：默认暗色与亮色主题，支持第三方主题。
-- **键盘快捷键 & 配置**：支持全局键盘快捷键设置，提供可视化配置面板。
-- **跨平台**：支持 Windows、macOS、Linux 发行版。
+- **内置 LSP 支持**：提供智能代码功能，如自动补全、诊断和代码操作。
+- **模态编辑**：原生支持 Vim-like 模态编辑，可切换。
+- **远程开发**：内置远程开发支持，类似于 VSCode Remote Development，提供本地体验的同时利用远程系统的全部功能。
+- **插件系统**：支持使用可编译为 WASI 格式的编程语言（如 C、Rust、AssemblyScript）编写插件。
+- **内置终端**：无需离开编辑器即可在工作区执行命令。
 
-## 快速上手
+## 安装
 
-### 1. 安装
+你可以从 [GitHub Releases](https://github.com/lapce/lapce/releases) 下载适用于 Windows、Linux 和 macOS 的预构建版本，或使用包管理器安装。详细安装指南请参考 [官方文档](https://docs.lapce.dev/)。
 
-#### 官方发行版
+### 从源码编译
 
-- **Windows/Mac/Linux**  
-  访问 Releases 页面下载对应平台的二进制压缩包，解压后运行即可。
+如果需要从源码编译，请参考 [构建指南](https://github.com/lapce/lapce/blob/master/docs/building-from-source.md)。
 
-#### 源码构建（需要 Rust 1.70+）
+## 使用方法
 
-```bash
-git clone https://github.com/lapce/lapce.git
-cd lapce
-cargo build --release
-```
+1. **启动 Lapce**：下载并安装后，运行 Lapce。
+2. **打开项目**：使用文件菜单或命令打开文件夹作为工作区。
+3. **编辑代码**：享受快速的代码编辑体验，支持 LSP 提供的智能功能。
+4. **模态编辑**：如果启用 Vim 模式，使用 `i` 进入插入模式，`Esc` 返回正常模式。
+5. **远程开发**：配置远程环境以在远程系统上开发。
+6. **插件**：从插件市场安装插件以扩展功能。
+7. **终端**：使用内置终端执行命令。
 
-构建完成后，执行生成的可执行文件：`./target/release/lapce`。
+更多详细用法请参考 [Lapce 文档](https://docs.lapce.dev/)。
 
-### 2. 打开项目
+## 贡献
 
-```bash
-lapce /path/to/your/project
-```
+Lapce 是开源项目，欢迎贡献。贡献指南请见 [CONTRIBUTING.md](https://github.com/lapce/lapce/blob/master/CONTRIBUTING.md)。
 
-或在 UI 右上角选择 **Open Folder**。
+## 反馈与联系
 
-### 3. 基本使用
+- Discord: [https://discord.gg/n8tGJ6Rn6D](https://discord.gg/n8tGJ6Rn6D)
+- Reddit: [https://www.reddit.com/r/lapce/](https://www.reddit.com/r/lapce/)
+- Matrix: [https://matrix.to/#/#lapce-editor:matrix.org](https://matrix.to/#/#lapce-editor:matrix.org)
 
-| 功能 | 快捷键 | 说明 |
-|------|--------|------|
-| 新建窗口 | `Ctrl+Shift+N` | 打开独立窗口 |
-| 新建标签 | `Ctrl+T` | 新建空白文件 |
-| 切换标签 | `Ctrl+Tab` | 切换到下一个标签 |
-| 跳转到定义 | `F12` | 在 LSP 支持的文件中跳转 |
-| 终端 | `Ctrl+` | 打开/切换终端面板 |
-| 搜索文件 | `Ctrl+P` | 快捷打开文件 |
-| 代码搜索 | `Ctrl+Shift+F` | 全局搜索文本 |
-| 侧边栏 | `Ctrl+B` | 切换侧边栏可视化 |
-| 主题切换 | `Ctrl+K Ctrl+T` | 切换主题 |
+## 许可证
 
-### 4. 配置与插件
-
-- **settings.json**：位于 `~/.config/lapce/settings.json`。可手动编辑主题、颜色、快捷键等。
-- **插件管理**：在 `Extensions` 面板搜索并安装所需插件。插件可以自定义脚本、添加新功能。
-
-```json
-{
-  "editor.fontSize": 14,
-  "workbench.colorTheme": "Lapce Dark",
-  "lapce.lsp.use_dap": true
-}
-```
-
-### 5. 运行与调试
-
-Lapce 支持 DAP（Debug Adapter Protocol），在 `Launch.json` 配置项中设置断点、运行参数后即可调试：
-```json
-{
-  "name": "Launch",
-  "type": "cppdbg",
-  "request": "launch",
-  "program": "${workspaceFolder}/main",
-  "args": [],
-  "stopAtEntry": false,
-  "cwd": "${workspaceFolder}"
-}
-```
-
----
-
-> **快速提示**  
-> - 使用 `Ctrl+Shift+F` 可以在所有文件中进行文本搜索。  
-> - 插件 `lapce-git` 为 Git 提供了丰富的 UI，支持提交、分支切换、冲突解决等。  
-> - 通过 `Ctrl+P` 后跟 `>` 可以快速打开命令面板，执行任意 Lapce 命令。  
-
-> 进一步支持与社区贡献请查看官方仓库（issues, PRs）。  
-
----  
-> **Base Features**  
-> - Minimalist editor with strong focus on Rust-based speed and Flutter UI.  
-> - Build on LSP for language features, with extensible plugin ecosystem akin to VS Code plus less overhead.  
-
-> **How to contribute**  
-> - Fork → clone → `cargo build --release`  
-> - Submit PR to `main` branch with descriptive commit messages.
+Lapce 基于 Apache License Version 2.0 许可证开源。

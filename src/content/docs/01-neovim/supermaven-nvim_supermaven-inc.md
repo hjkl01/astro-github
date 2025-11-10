@@ -1,4 +1,3 @@
-
 ---
 title: supermaven-nvim
 ---

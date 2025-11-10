@@ -1,4 +1,3 @@
-
 ---
 title: screenity
 ---
@@ -129,6 +128,5 @@ cargo build --release
 - 详见 `CONTRIBUTING.md` 与 `ISSUE_TEMPLATE.md`。
 
 ---
-
 > **项目主页**  
 > https://github.com/alyssaxuu/screenity

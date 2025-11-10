@@ -1,6 +1,5 @@
-
 ---
-title: dota_imba
+title: dota
 ---
 
 # Dota IMBA 项目

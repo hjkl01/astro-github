@@ -1,29 +1,39 @@
-
 ---
 title: AI-Vtuber
 ---
 
-# AI-Vtuber 项目
+# Luna AI 项目
 
 ## 项目地址
+
 https://github.com/Ikaros-521/AI-Vtuber
 
 ## 主要特性
-AI-Vtuber 是一个开源项目，旨在利用人工智能技术创建虚拟主播（Vtuber）。其核心特性包括：
-- **AI驱动的虚拟形象生成**：基于深度学习模型（如Stable Diffusion或类似AI图像生成工具）自动创建或自定义Vtuber的2D/3D虚拟形象，支持实时动画渲染。
-- **语音合成与唇同步**：集成TTS（Text-to-Speech）引擎，实现自然语音输出，并通过AI算法同步虚拟形象的嘴型和表情，提升互动真实感。
-- **实时互动支持**：兼容直播平台（如Bilibili、Twitch），允许Vtuber响应用户聊天输入，进行自动对话生成。
-- **模块化设计**：易于扩展，支持插件式添加新AI模型、表情包或背景设置。
-- **跨平台兼容**：适用于Windows、macOS和Linux，支持GPU加速以优化性能。
+
+Luna AI 是一款结合了最先进技术的虚拟AI主播。它的核心是一系列高效的人工智能模型和平台，包括 `ChatterBot、GPT、Claude、langchain、chatglm、text-generation-webui、讯飞星火、智谱AI、谷歌Bard、通义星尘、阿里云百炼（通义千问、百川、月之暗面、零一万物、MiniMax）、千帆大模型（文心一言）、Gemini、Kimi Chat、koboldcpp、FastGPT、Ollama、One-API、AnythingLLM、LLM_TPU、Dify、火山引擎（豆包）`。这些模型既可以在本地运行，也可以通过云端服务提供支持。当然，为了让对话照进现实，还结合了多模态模型，包括 `Gemini、glm-4v` 的图像识别能力，获取电脑画面进行分析讲解。
+
+`Luna AI` 的外观由 `Live2D、Vtube Studio、xuniren、UE5 结合 Audio2Face、EasyAIVtuber、数字人视频播放器（Easy-Wav2Lip、Sadtalker、GeneFace++、MuseTalk、AniTalker、本地视频）、metahuman-stream（ernerf、musetalk、wav2lip）、DH_live、live2d-TTS-LLM-GPT-SoVITS-Vtuber` 技术打造，为用户提供了一个生动、互动的虚拟形象。这使得 `Luna AI` 能够在各大直播平台，如 `Bilibili、抖音、快手、微信视频号、拼多多、1688、斗鱼、淘宝、让弹幕飞、YouTube、Twitch 和 TikTok`，进行实时互动直播。当然，它也可以在本地环境中与您进行个性化对话。
+
+为了使交流更加自然， `Luna AI` 使用了先进的自然语言处理技术，结合文本转语音系统，如 `Edge-TTS、VITS-Fast、elevenlabs、VALL-E-X、睿声AI、OpenVoice、GPT_SoVITS、clone-voice、Azure TTS、fish-speech、ChatTTS、CosyVoice、F5-TTS、MultiTTS、MeloTTS`。这不仅让它能够生成流畅的回答，还可以通过 `so-vits-svc 和 DDSP-SVC` 实现声音的变化，以适应不同的场景和角色。
+
+此外， `Luna AI` 还能够通过特定指令与 `Stable Diffusion` 协作，展示画作。用户还可以自定义文案，让 Luna AI 循环播放，以满足不同场合的需求。
+
+本项目个人使用完全免费，商用抽成10%，如需商用请联系作者授权。  
+如有发现一模一样的套壳售卖程序，皆为盗版，请及时止损。
 
 ## 主要功能
+
 - **虚拟形象自定义**：用户可以上传或生成Vtuber的外观，包括服装、发型和配件，通过AI工具进行风格迁移。
 - **对话AI集成**：内置聊天机器人（如基于ChatGPT或开源LLM），让Vtuber能智能回复观众问题、讲故事或进行角色扮演。
 - **直播与录制**：一键启动直播模式，支持OBS集成；同时提供本地录制功能，用于内容创作。
-- **表情与动作控制**：使用计算机视觉（如OpenCV）捕获用户面部表情，并映射到虚拟形象上，实现“镜像”互动。
+- **表情与动作控制**：使用计算机视觉（如OpenCV）捕获用户面部表情，并映射到虚拟形象上，实现"镜像"互动。
 - **多语言支持**：语音和文本处理支持中文、英语等多种语言，便于全球用户使用。
+- **多模态支持**：结合图像识别能力，获取电脑画面进行分析讲解。
+- **声音变化**：通过so-vits-svc 和 DDSP-SVC实现声音的变化。
+- **画作展示**：通过特定指令与Stable Diffusion协作，展示画作。
 
 ## 用法
+
 1. **环境准备**：
    - 克隆仓库：`git clone https://github.com/Ikaros-521/AI-Vtuber.git`
    - 安装依赖：运行 `pip install -r requirements.txt`（需Python 3.8+和CUDA支持的GPU）。

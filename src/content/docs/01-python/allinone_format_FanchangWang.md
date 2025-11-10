@@ -1,6 +1,5 @@
-
 ---
-title: allinone_format
+title: allinone
 ---
 
 # GitHub 项目描述

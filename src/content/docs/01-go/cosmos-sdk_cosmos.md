@@ -1,70 +1,70 @@
-
 ---
 title: cosmos-sdk
 ---
 
-以下是你可以直接复制到 **src/content/docs/00/cosmos-sdk_cosmos.md** 的 Markdown 文档内容：
-
-```markdown
 # Cosmos SDK
 
 > 项目地址: <https://github.com/cosmos/cosmos-sdk>
 
-Cosmos SDK 是一套用 Go 语言编写的模块化区块链开发框架，帮助开发者快速构建自定义区块链。它提供了开箱即用的核心组件、标准化的治理、权限、交易处理与模块化开发能力，使得链与链之间可互操作、可通过 IBC（Inter‑Blockchain Communication）协议互联。
+Cosmos SDK 是一个模块化、开源的区块链 SDK，用于构建安全的、高性能的 Layer 1 链，具有完全的可定制性，被 200 多个生产链使用。开发者可以使用 Cosmos SDK 轻松快速地启动自定义区块链，这些区块链可以原生互操作。
 
-## 主要特性
+Cosmos SDK 专为构建安全的、主权应用程序特定区块链而定制。使用 Cosmos SDK 构建的开发者可以使用涵盖标准区块链功能的预定义模块，或为特定用例创建自定义模块。这种可组合架构实现了强大的定制。SDK 为权限、治理、状态管理、账户抽象、代币化过程、应用程序逻辑等提供了抽象。
 
-| 特性 | 说明 |
-|------|------|
-| **模块化设计** | 每个功能（如账户、治理、交易、验证等）被拆解成独立模块，用户可按需复用或自定义模块。 |
-| **Cosmos Hub & IBC** | 通过 IBC 轻松实现跨链资产转移与跨链协议调用，实现链与链之间的互操作。 |
-| **可扩展治理** | 支持提案投票、锁仓投票、代币持有授权等治理机制，适合 DAO 或去中心化自治组织。 |
-| **生态友好** | 与 Tendermint 共识、Protobuf/GRPC、REST、WebSocket 等 RPC 接口辅以行业标准，易于集成。 |
-| **安全的交易 & 通用 SDK** | 内置交易签名、验证、序列化、广播，并支持多签、租赁等高级功能。 |
-| **开发与调试工具** | 提供 `cosmos-sdk` CLI、`testnet` 快速启动脚本、`simapp` 模拟应用快速验证功能。 |
-| **多链互操作** | 通过 `cosmos-sdk` 的 `ModuleAccount`、`Bank` 等核心模块实现资产托管与转账。 |
+Cosmos SDK 区块链通过与 [Inter-Blockchain Communication Protocol (IBC)](https://github.com/cosmos/ibc-go) 的原生集成开箱即用地获得互操作性。Ibc-go 在 Cosmos SDK 中作为 Go 模块实现。
 
-## 核心功能
+虽然 Cosmos SDK 与任何共识引擎即插即用，但我们推荐使用 [CometBFT](https://github.com/cometbft/cometbft) 作为快速、久经考验、高吞吐量、可配置的 BFT 状态机。CometBFT 是作为 Cosmos Stack 的一部分开发的，其发布与 SDK 一起更新。
 
-1. **链初始化与运行**  
-   - 使用 `gaia` 或自定义链配置启动 Tendermint 共识节点。  
-   - `app.py` 通过 `NewApp` 注册核心模块，生成 `App` 对象。
+**警告**：Cosmos SDK 大部分已稳定，但我们仍在进行一些破坏性更改。
 
-2. **交易处理**  
-   - 交易包含 `Msgs`，每个 Msg 进入相应模块进行验证与执行。  
-   - 支持多签、递延交易、单元测试。
+## 快速开始
 
-3. **账户 & 权限**  
-   - 采用 `sdk.AccAddress` 与 `sdk.Coins`，提供余额查询、代币发放。  
-   - `module` 模块账号（ModuleAccount）用于托管各类系统资金。  
+要从高层视角学习 Cosmos SDK 的工作原理，请参阅 Cosmos SDK [高层介绍](https://docs.cosmos.network/main/intro/overview)。
 
-4. **治理与提案**  
-   - 提案类型包括升级、修改、社区增发、抵押资产等。  
-   - 票权与投票机制通过 `staking` 与 `governance` 模块实现。
+如果您想快速入门并学习如何在 Cosmos SDK 上构建，请访问 [Cosmos SDK 教程](https://tutorials.cosmos.network)。您也可以 fork 教程的仓库来开始构建自己的 Cosmos SDK 应用程序。
 
-5. **跨链功能**  
-   - IBC 协议支持：轻量级通道建立、跨链转账、事件同步。  
-   - 可与 Cosmos Hub、Stargate、Juno 等链互通。
+注意：我们建议始终使用最新的维护 [Go 版本](https://go.dev/dl/) 来构建 Cosmos SDK 应用程序。
 
-## 用法示例
+## 模块
 
-### 1. 创建自定义链
+Cosmos SDK 维护了一套可以包含在区块链应用程序中的模块。有关模块的更多信息，请参阅我们的 [介绍文档](./x/README.md)。
 
-```bash
-# 生成链文件
-git clone https://github.com/cosmos/cosmos-sdk
-cd cosmos-sdk
-make install
+## 模块
 
-# 初始化链
-myapp init myhome --chain-id mychain
+Cosmos SDK 维护了一套可以包含在区块链应用程序中的模块。有关模块的更多信息，请参阅我们的 [介绍文档](/cosmos/cosmos-sdk/blob/main/x/README.md)。
 
-# 生成 genesis 账户
-myapp add-genesis-account $(stake addr) 1000000uatom
+## 维护者
 
-# 配置交易
-myapp tx bank send $(stake addr) $(stake addr) 10uatom --keyring-backend test --chain-id mychain
-```
+[Cosmos Labs](https://cosmoslabs.io/) 维护堆栈的核心组件：Cosmos SDK、CometBFT、IBC、Cosmos EVM 以及各种开发者工具和框架。详细的维护政策可以在 [这里](https://github.com/cosmos/security/blob/main/POLICY.md) 找到。除了开发和维护 Cosmos Stack，Cosmos Labs 为区块链解决方案提供咨询和工程服务。[联系 Cosmos Labs](https://www.cosmoslabs.io/contact)。
+
+Cosmos Labs 是 [Interchain Foundation](https://interchain.io/) 的全资子公司，Interchain Foundation 是瑞士非营利组织，负责财务管理、资助公共产品并支持 Cosmos 的治理。
+
+Cosmos Stack 由强大的开源贡献者社区支持。
+
+## 历史
+
+Cosmos SDK 于 2019 年首次发布，使用 SDK 的第一个生产区块链是 [Cosmos Hub](https://hub.cosmos.network/main)。今天，Cosmos SDK 是一个流行的、久经考验的开源框架，被数百个链使用。
+
+Cosmos Hub 仍然接收最新的 Cosmos SDK 版本。Cosmos Hub 应用程序 `gaia` 有自己的 [cosmos/gaia 仓库](https://github.com/cosmos/gaia)。
+
+## 开发者社区和支持
+
+这个仓库的问题列表仅用于错误报告和功能请求。我们在 Discord、Telegram 和 Slack 上有活跃、乐于助人的社区。
+
+**| 需要帮助？ | 支持与社区：[Discord](https://discord.com/invite/interchain) - [Telegram](https://t.me/CosmosOG) - [与专家交谈](https://cosmos.network/interest-form) - [加入 #Cosmos-tech Slack 频道](https://forms.gle/A8jawLgB8zuL1FN36) |**
+
+## 文档和资源
+
+**查看 Cosmos SDK 文档：[https://docs.cosmos.network/](https://docs.cosmos.network/)**
+
+### Cosmos Stack 库
+
+- [CometBFT](https://github.com/cometbft/cometbft) - 高性能、10k+ TPS 可配置 BFT 共识引擎。
+- [Inter-Blockchain Communication Protocol (IBC)](https://github.com/cosmos/ibc-go/) - 一种区块链互操作协议，允许区块链传输以字节编码的任何类型数据。
+- [Cosmos EVM](https://github.com/cosmos/evm) - Cosmos SDK 链的原生 EVM 层。
+
+## 歧义消除
+
+这个 Cosmos SDK 项目与 [React-Cosmos](https://github.com/react-cosmos/react-cosmos) 项目无关（目前）。非常感谢 Evan Coury 和 Ovidiu (@skidding) 为这个 GitHub 组织名称。根据我们的协议，这个歧义消除通知将保留在这里。
 
 ### 2. 开发自定义模块
 
@@ -92,6 +92,16 @@ app.MyAppKeeper = NewKeeper(appCodec, keys[types.StoreKey])
 # 在同一目录下启动多个节点
 myapp start --keyring-backend test
 ```
+
+## Cosmos Stack 库
+
+- [CometBFT](https://github.com/cometbft/cometbft) - 高性能、10k+ TPS 可配置 BFT 共识引擎。
+- [Inter-Blockchain Communication Protocol (IBC)](https://github.com/cosmos/ibc-go/) - 一种区块链互操作协议，允许区块链传输以字节编码的任何类型数据。
+- [Cosmos EVM](https://github.com/cosmos/evm) - Cosmos SDK 链的原生 EVM 层。
+
+## 歧义消除
+
+这个 Cosmos SDK 项目与 [React-Cosmos](https://github.com/react-cosmos/react-cosmos) 项目无关（目前）。非常感谢 Evan Coury 和 Ovidiu (@skidding) 为这个 GitHub 组织名称。根据我们的协议，这个歧义消除通知将保留在这里。
 
 ## 快速链接
 

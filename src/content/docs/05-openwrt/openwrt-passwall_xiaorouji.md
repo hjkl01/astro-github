@@ -1,4 +1,3 @@
-
 ---
 title: openwrt-passwall
 ---
@@ -92,7 +91,5 @@ title: openwrt-passwall
 > - 频繁更新节点时建议使用 `passwall update` 脚本或自动代理列表（如 `ssr-shadowsocks` 子域）。
 
 ---
-
 > 本文提供了项目概览及快速入门的核心操作步骤，帮助用户快速在 OpenWrt 环境中部署并使用 Passwall 进行网络代理与路由管理。
-
 💝 Support this free API: https://www.paypal.com/donate/?hosted_button_id=XS3CAYT8LE2BL

@@ -1,4 +1,3 @@
-
 ---
 title: chrome-extensions-samples
 ---

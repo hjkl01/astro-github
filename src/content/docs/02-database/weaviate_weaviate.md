@@ -1,4 +1,3 @@
-
 ---
 title: weaviate
 ---
@@ -90,9 +89,6 @@ curl -X POST http://localhost:8080/v1/objects/Article/query \
 > 详细文档请参阅官方仓库 README 与 API 文档。
 
 ---
-
 **作者**: Weaviate 团队  
 **许可**: Apache-2.0  
-
 ```
-

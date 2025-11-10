@@ -1,6 +1,5 @@
-
 ---
-title: china_area
+title: china
 ---
 
 # 中国行政区划数据项目

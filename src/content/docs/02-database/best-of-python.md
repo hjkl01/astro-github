@@ -1,6 +1,5 @@
-
 ---
-title: best-of-python#database-clients
+title: best-of-python
 ---
 
 # Best of Python - Database Clients

@@ -1,4 +1,3 @@
-
 ---
 title: nginx-proxy-automation
 ---

@@ -1,4 +1,3 @@
-
 ---
 title: restful-api-design-references
 ---

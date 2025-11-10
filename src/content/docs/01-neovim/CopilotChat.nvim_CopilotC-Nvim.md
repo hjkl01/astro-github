@@ -1,4 +1,3 @@
-
 ---
 title: CopilotChat.nvim
 ---
