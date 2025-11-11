@@ -7,21 +7,38 @@ title: PeerBanHelper
 **GitHub 项目地址**: [https://github.com/PBH-BTN/PeerBanHelper](https://github.com/PBH-BTN/PeerBanHelper)
 
 ## 主要特性
+
 PeerBanHelper 是一个开源工具，专为 BTN (BroadcastTheNet) 社区设计，主要用于帮助用户管理 BT 下载中的 Peer 封禁（Peer Ban）问题。其核心特性包括：
+
 - **自动化检测与处理**：自动扫描和识别潜在的 Peer 封禁事件，支持实时监控下载进度。
-- **集成 BT 客户端**：兼容 qBittorrent、Transmission 等流行 BT 客户端，提供插件式集成或脚本支持。
+- **集成 BT 客户端**：兼容 qBittorrent、Transmission、BiglyBT、Deluge、BitComet 等流行 BT 客户端，提供插件式集成或脚本支持。
 - **数据可视化**：生成封禁报告和统计图表，帮助用户分析封禁原因（如 IP 泄露或协议违规）。
 - **隐私保护**：强调用户隐私，不收集个人信息，支持本地运行以避免数据外泄。
-- **跨平台支持**：适用于 Windows、macOS 和 Linux 系统，通过 Python 脚本实现。
+- **跨平台支持**：适用于 Windows、macOS 和 Linux 系统，通过 Java 实现。
+- **PeerID 黑名单**：基于 PeerID 封禁不受欢迎的客户端。
+- **客户端名称黑名单**：基于客户端名称封禁。
+- **IP/GeoIP 黑名单**：基于 IP、地理位置或网络类型封禁。
+- **进度欺骗检查**：检测虚假进度以识别异常 Peer。
+- **自动连锁封禁**：自动封禁相关 IP 范围。
+- **多拨追猎**：支持多拨网络环境下的封禁。
+- **表达式引擎**：使用 AviatorScript 自定义封禁规则。
+- **主动监测**：提供本地数据分析功能。
+- **IP 规则订阅**：订阅外部 IP 规则列表。
+- **WebUI**：提供 Web 界面查看活跃封禁、历史日志、统计图表等。
 
 ## 主要功能
+
 - **Peer 封禁检测**：监控 torrent 下载中的 Peer 连接，检测异常封禁信号，并自动隔离问题 Peer。
 - **日志分析**：解析 BT 客户端日志文件，提取封禁相关信息，并输出易读的报告。
 - **自动修复建议**：基于检测结果，提供 VPN 配置、端口转发或客户端设置的优化建议。
 - **批量处理**：支持同时处理多个 torrent 文件，提高效率。
 - **自定义规则**：用户可定义封禁过滤规则，例如忽略特定 IP 范围或协议类型。
+- **报告生成**：生成详细的封禁报告和统计。
+- **GeoIP 支持**：集成 GeoIP 库，支持按国家、城市、ASN 等封禁。
+- **通知系统**：可选的通知机制。
 
 ## 用法
+
 1. **安装**：
    - 克隆仓库：`git clone https://github.com/PBH-BTN/PeerBanHelper.git`
    - 安装依赖：进入项目目录，运行 `pip install -r requirements.txt`（需要 Python 3.6+）。
