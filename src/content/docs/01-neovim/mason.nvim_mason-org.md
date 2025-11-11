@@ -6,9 +6,7 @@ title: mason.nvim
 
 ## 简介
 
-mason.nvim 是一个便携式的 Neovim 包管理器，能够在任何运行 Neovim 的地方运行。它允许您轻松安装和管理外部编辑器工具，如 LSP 服务器、DAP 服务器、linters 和 formatters。
-
-包默认安装在 Neovim 的数据目录中，可执行文件链接到单个 `bin/` 目录，mason.nvim 在设置期间会将其添加到 Neovim 的 PATH 中，从而实现从 Neovim 内置功能（LSP 客户端、shell、终端等）以及其他第三方插件的无缝访问。
+> Description from GitHub: Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.
 
 ## 功能
 

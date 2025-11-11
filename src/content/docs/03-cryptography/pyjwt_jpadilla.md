@@ -5,10 +5,13 @@ title: pyjwt
 # PyJWT 项目
 
 ## 项目地址
+
 [GitHub 项目地址](https://github.com/jpadilla/pyjwt)
 
 ## 主要特性
+
 PyJWT 是一个纯 Python 实现的 JSON Web Token (JWT) 库，支持 JSON Web Signature (JWS)、JSON Web Encryption (JWE) 和 JSON Web Key (JWK)。它兼容 JWS JOSE 规范（RFC 7515、7516、7517、7518、7519），并提供安全的密钥管理功能。主要特性包括：
+
 - 支持多种算法：HS256、HS384、HS512、RS256、RS384、RS512、ES256、ES384、ES512、EdDSA 等。
 - 算法自动验证：防止签名算法混淆攻击（Signature Algorithm Confusion Attack）。
 - 内置支持多种密钥类型：对称密钥、非对称密钥、JWK 等。
@@ -17,6 +20,7 @@ PyJWT 是一个纯 Python 实现的 JSON Web Token (JWT) 库，支持 JSON Web S
 - 兼容性强：支持 Python 3.7+，并提供类型提示（typing 支持）。
 
 ## 主要功能
+
 - **编码和解码 JWT**：生成和验证 JSON Web Token，支持自定义负载（payload）和头部（header）。
 - **签名和验证**：使用各种算法对 token 进行签名和完整性验证。
 - **加密和解密**：支持 JWE 加密 token 的内容。
@@ -25,7 +29,9 @@ PyJWT 是一个纯 Python 实现的 JSON Web Token (JWT) 库，支持 JSON Web S
 - **自定义选项**：支持设置过期时间（exp）、签发者（iss）、受众（aud）等标准 JWT 声明。
 
 ## 用法
+
 ### 安装
+
 ```bash
 pip install PyJWT
 # 可选：安装 cryptography 以支持更多算法
@@ -33,22 +39,29 @@ pip install PyJWT[crypto]
 ```
 
 ### 基本用法示例
+
 #### 编码（生成 JWT）
+
 ```python
 import jwt
 
-# 使用 HS256 算法编码
-payload = {
-    'sub': '1234567890',
-    'name': 'John Doe',
-    'iat': 1516239022  # 签发时间
-}
-secret_key = 'your-secret-key'
-encoded_jwt = jwt.encode(payload, secret_key, algorithm='HS256')
-print(encoded_jwt)  # 输出: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+encoded = jwt.encode({"some": "payload"}, "secret", algorithm="HS256")
+print(encoded)
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.4twFt5NiznN84AWoo1d7KO1T_yoc0Z6XOpOVswacPZg
 ```
 
 #### 解码（验证 JWT）
+
+```python
+import jwt
+
+decoded = jwt.decode(encoded, "secret", algorithms=["HS256"])
+print(decoded)
+# {'some': 'payload'}
+```
+
+#### 解码（验证 JWT）
+
 ```python
 import jwt
 
@@ -61,6 +74,7 @@ except jwt.InvalidTokenError as e:
 ```
 
 #### 使用非对称密钥（RS256）
+
 ```python
 import jwt
 

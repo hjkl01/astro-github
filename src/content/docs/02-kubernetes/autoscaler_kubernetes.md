@@ -14,7 +14,6 @@ Kubernetes Autoscaler 是 Kubernetes 社区维护的一个仓库，包含多个�
 
 - 自动调整 Kubernetes 集群的大小，确保所有 Pod 都有地方运行，同时避免不必要的节点。
 - 支持多个公有云提供商。
-- 当前版本：1.0 (GA)，随 Kubernetes 1.8 发布。
 
 ### Vertical Pod Autoscaler (VPA)
 

@@ -2,63 +2,65 @@
 title: bore
 ---
 
-
 # bore
 
 **项目地址**: https://github.com/ekzhang/bore
 
 ## 主要特性
 
-- **轻量级**：仅依赖标准库，二进制占用极小。
-- **高性能**：使用零拷贝实现，读写速度快。
-- **跨平台**：支持 Linux、macOS、Windows。
-- **易用 API**：函数式接口，使用友好。
+- **简单 TCP 隧道**：现代、简单的 Rust TCP 隧道，将本地端口暴露到远程服务器，绕过标准 NAT 连接防火墙。
+- **高效**：仅约 400 行安全异步 Rust 代码，易于安装和自托管，无额外功能。
+- **跨平台**：支持多种安装方式，包括 Cargo、二进制、Docker 等。
+- **无意见化**：专注于转发 TCP 流量，简单高效。
 
 ## 功能概览
 
-| 功能 | 说明 |
-|------|------|
-| `bore::open` | 打开文件或内存映射，返回句柄。 |
-| `bore::read` | 读取指定长度的数据，支持异步。 |
-| `bore::write` | 写入数据，支持批量写入。 |
-| `bore::sync` | 强制同步到磁盘。 |
-| `bore::delete` | 删除文件或释放资源。 |
+- **本地转发**：使用 `bore local` 命令将本地端口转发到远程服务器。
+- **自托管服务器**：运行 `bore server` 启动服务器，支持自定义端口范围和认证。
+- **认证支持**：可选的秘密认证，防止未经授权使用。
 
-## 用法示例
+## 用法
 
-```rust
-use bore::Bore;
+### 安装
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // 打开文件
-    let mut file = Bore::open("data.bin")?;
+- **Cargo**：`cargo install bore-cli`
+- **Homebrew (macOS)**：`brew install bore-cli`
+- **Arch Linux**：`yay -S bore`
+- **二进制**：从 [Releases](https://github.com/ekzhang/bore/releases) 下载。
+- **Docker**：`docker run -it --init --rm --network host ekzhang/bore <ARGS>`
 
-    // 写入数据
-    file.write(b"Hello, bore!")?;
+### 本地转发
 
-    // 读取数据
-    let mut buffer = vec![0u8; 12];
-    file.read_exact(&mut buffer)?;
-    println!("读取内容: {}", std::str::from_utf8(&buffer)?);
-
-    // 同步并关闭
-    file.sync()?;
-    Ok(())
-}
+```shell
+bore local 8000 --to bore.pub
 ```
 
-> 运行前请确保已在 `Cargo.toml` 中添加依赖：
-> ```toml
-> [dependencies]
-> bore = "0.1"
-> ```
+这将本地 `localhost:8000` 暴露到公共互联网 `bore.pub:<PORT>`。
 
-## 文档与贡献
+选项：
 
-- 详细文档请参阅项目根目录下的 `docs/` 目录。
-- 欢迎提交 issue 与 pull request。
+- `--port <PORT>`：指定远程端口。
+- `--local-host <HOST>`：指定本地主机。
+- `--secret <SECRET>`：认证秘密。
 
-``` 
+### 自托管服务器
+
+```shell
+bore server
 ```
 
-*(请将以上内容保存为 `src/content/docs/00/bore_ekzhang.md`。)*
+选项：
+
+- `--min-port <MIN>`：最小端口。
+- `--max-port <MAX>`：最大端口。
+- `--secret <SECRET>`：认证秘密。
+
+## 示例
+
+将本地 HTTP 服务器暴露：
+
+```shell
+bore local 3000 --to bore.pub
+```
+
+然后访问分配的 URL。

@@ -3,24 +3,34 @@ title: ab-download-manager
 ---
 
 ---
+
 ## title: ab-download-manager
+
 # AB Download Manager 项目
+
 ## 项目地址
+
 [GitHub 项目地址](https://github.com/amir1376/ab-download-manager)
+
 ## 主要特性
+
 - **多协议支持**：支持 HTTP、HTTPS、FTP 等常见下载协议，适用于各种网络资源下载。
 - **批量下载管理**：允许用户同时管理多个下载任务，支持暂停、恢复和优先级设置。
 - **进度监控**：实时显示下载进度、速度和剩余时间，提供详细的日志记录。
 - **断点续传**：支持下载中断后从断点处继续，避免重复下载。
 - **自定义配置**：用户可设置下载路径、文件过滤规则和代理服务器等个性化选项。
 - **跨平台兼容**：基于 Java 开发，支持 Windows、Linux 和 macOS 系统。
+
 ## 主要功能
+
 - **下载任务管理**：添加 URL、监控下载状态、删除或重命名任务。
 - **队列管理**：支持任务队列排序、限速控制和自动重试失败下载。
 - **文件处理**：自动解压压缩文件、校验文件完整性（MD5/SHA）。
 - **界面友好**：提供图形用户界面（GUI）和命令行模式，便于不同用户操作。
 - **插件扩展**：可通过插件添加新功能，如视频下载器或 torrent 支持。
+
 ## 用法
+
 1. **安装**：
    - 从 GitHub 仓库下载最新 release 版本的 JAR 文件或源代码。
    - 确保安装 Java 8 或更高版本。
@@ -31,6 +41,7 @@ title: ab-download-manager
    - 在主界面监控进度，支持拖拽文件或批量导入 URL 列表。
    - 使用菜单栏暂停/恢复任务，或查看设置进行自定义配置。
 3. **高级用法**：
-   - 编辑 `config.properties` 文件调整默认设置。
-   - 对于命令行模式：`java -jar ab-download-manager.jar --url <URL> --output <path>` 直接下载。
-   - 如遇问题，查看仓库的 README.md 或 issues 页面获取帮助。
+   - **配置自定义**：编辑 `config.properties` 文件调整下载路径、代理设置、限速等。
+   - **命令行模式**：`java -jar ab-download-manager.jar --url <URL> --output <path>` 直接下载，支持批量。
+   - **插件扩展**：安装插件添加新功能，如视频下载器或 torrent 支持。
+   - **故障排除**：查看仓库的 README.md 或 issues 页面获取帮助和最新更新。

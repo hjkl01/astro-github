@@ -9,23 +9,23 @@ title: RustPython
 
 ## 主要特性
 
-- **速度与安全并重**：使用 Rust 编写的 Python 解释器，结合 JIT 技术实现高性能执行。
-- **完整的标准库实现**：覆盖大部分 CPython 标准库，可直接使用常见的 Python 模块。
-- **可嵌入使用**：提供 API，支持将 RustPython 嵌入到 Rust 项目中，或作为可执行文件使用。
-- **持续发展**：活跃的社区维护，持续对新特性和兼容性进行改进。
-- **跨平台**：支持 Windows、Linux、macOS 及 WebAssembly 环境。
+- **Python-3 解释器**：用 Rust 编写的完整 Python-3 (CPython >= 3.13.0) 解释器。
+- **高性能**：结合 JIT 编译器，实现热点代码的原生执行。
+- **可嵌入**：可嵌入到 Rust 应用中，提供脚本功能。
+- **跨平台**：支持多种平台，包括 WebAssembly 和 WASI。
+- **标准库**：实现大部分 CPython 标准库。
 
 ## 主要功能
 
-| 项目 | 功能说明 |
-|------|----------|
-| **解释器引擎** | 运行 .py 文件、交互式 REPL、执行字符串代码 |
-| **JIT 编译** | 可选的 LLVM/JIT 编译器，提高热点代码执行速度 |
-| **模块系统** | 完整的 import 系统，支持自定义扩展和 C/C++ 模块（通过 FFI） |
-| **标准库** | os、sys、math、datetime 等常用模块 |
-| **可交互性** | 标准 REPL，支持输入历史、自动补全 |
-| **调试工具** | 支持 `pdb` 调试、堆栈追踪，以及 Rust 调试接口 |
-| **WebAssembly** | 编译为 WASM，可在浏览器中运行 Python 代码 |
+| 项目            | 功能说明                                                    |
+| --------------- | ----------------------------------------------------------- |
+| **解释器引擎**  | 运行 .py 文件、交互式 REPL、执行字符串代码                  |
+| **JIT 编译**    | 可选的 LLVM/JIT 编译器，提高热点代码执行速度                |
+| **模块系统**    | 完整的 import 系统，支持自定义扩展和 C/C++ 模块（通过 FFI） |
+| **标准库**      | os、sys、math、datetime 等常用模块                          |
+| **可交互性**    | 标准 REPL，支持输入历史、自动补全                           |
+| **调试工具**    | 支持 `pdb` 调试、堆栈追踪，以及 Rust 调试接口               |
+| **WebAssembly** | 编译为 WASM，可在浏览器中运行 Python 代码                   |
 
 ## 用法
 
@@ -96,7 +96,7 @@ import init, { run } from './pkg/rustpython.js';
 
 (async () => {
   await init();
-  run("print('Hello WASM')")
+  run("print('Hello WASM')");
 })();
 ```
 
@@ -107,4 +107,5 @@ import init, { run } from './pkg/rustpython.js';
 - 关注 `issues`、`pull requests` 以及 `issues` 目录中的 [Roadmap](https://github.com/RustPython/RustPython/labels/roadmap)。
 
 ---
+
 > 文件存放路径: **src/content/docs/00/RustPython_RustPython.md**

@@ -2,17 +2,49 @@
 title: asterinas
 ---
 
-该项目是Asterinas，一个用于构建无服务器应用程序的平台。其主要特性和功能包括：
+# Asterinas
 
-1. **无服务器架构**：支持无服务器开发，使得用户可以专注于代码而不必管理服务器。
-2. **灵活的部署**：用户可以轻松地将应用程序部署到云端。
-3. **多语言支持**：支持多种编程语言，便于开发者使用自己熟悉的语言。
-4. **简单的事件处理**：可以通过简单的事件驱动模型响应外部事件，例如HTTP请求、定时任务等。
-5. **易于集成**：能够与多种云服务和API进行集成，提升应用的功能性。
+Asterinas 是一个安全、快速且通用的操作系统内核，使用 Rust 编写并与 Linux 兼容。它提供了 Linux ABI，可以作为 Linux 的无缝替换，同时通过内存安全和开发者友好性增强安全性。
 
-### 用法
-- **快速开始**：用户可以通过GitHub获取源代码并按照文档进行快速部署。
-- **构建应用**：按照教程创建无服务器函数，编写逻辑代码。
-- **部署与管理**：使用平台提供的工具进行应用的部署、监控和管理。
+## 主要特性
+
+- **内存安全**：使用 Rust 作为唯一编程语言，将 unsafe Rust 限制在明确定义的最小可信计算基 (TCB) 中。
+- **框架内核架构**：通过模块化设计实现安全和性能。
+- **Linux 兼容**：提供 Linux ABI，支持现有 Linux 应用程序。
+- **开发者友好**：使用 Rust 编程语言，提供 OSDK 工具链简化工作流。
+- **高性能**：针对 x86-64、RISC-V 和 LoongArch 架构优化。
+
+## 主要功能
+
+- **内核开发**：使用 Rust 构建安全操作系统内核。
+- **模块化**：支持开源和专有内核模块。
+- **测试和基准**：提供全面的测试套件和性能基准。
+- **文档**：详细的书籍和指南。
+
+## 用法
+
+### 快速开始
+
+1. 下载最新源代码：
+
+   ```
+   git clone https://github.com/asterinas/asterinas
+   ```
+
+2. 运行 Docker 容器作为开发环境：
+
+   ```
+   docker run -it --privileged --network=host --device=/dev/kvm -v $(pwd)/asterinas:/root/asterinas asterinas/asterinas:0.16.1-20250922
+   ```
+
+3. 在容器中构建和运行 Asterinas：
+   ```
+   make build
+   make run
+   ```
+
+### 更多信息
+
+请参考 [Asterinas Book](https://asterinas.github.io/book/) 获取详细文档。
 
 项目地址: [Asterinas GitHub](https://github.com/asterinas/asterinas)

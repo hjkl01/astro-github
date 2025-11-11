@@ -2,30 +2,53 @@
 title: reinstall
 ---
 
-# GitHub项目：reinstall
+# reinstall 项目
 
 **项目地址：** [https://github.com/bin456789/reinstall](https://github.com/bin456789/reinstall)
 
 ## 主要特性
-- **一键重装系统**：支持Windows系统的快速重装，无需复杂操作。
-- **备份与恢复**：自动备份重要数据，并在重装后恢复。
-- **自定义配置**：允许用户选择重装选项，如驱动安装和软件预装。
-- **跨平台兼容**：适用于多种Windows版本，包括Win10和Win11。
-- **开源免费**：基于开源代码，用户可自由修改和贡献。
+
+reinstall 是一键 VPS 系统重装脚本，支持 Linux 和 Windows 重装，采用分区表 ID 识别硬盘，确保安全。主要特性包括：
+
+- **一键重装 Linux**：支持 19 种发行版，如 Debian、Ubuntu、Alpine 等。
+- **一键重装 Windows**：使用官方 ISO，支持自动查找链接和安装驱动。
+- **任意方向重装**：Linux 到 Linux/Windows，Windows 到 Linux/Windows。
+- **智能 IP 配置**：自动设置静态/动态 IP，支持 IPv4/IPv6。
+- **低内存优化**：适配低配机器，内存 256MB 起。
+- **开源透明**：所有资源实时从镜像源获取，无自制包。
 
 ## 主要功能
-- **系统诊断**：扫描系统问题并建议重装。
-- **镜像下载**：集成官方Windows镜像下载功能。
-- **自动化安装**：重装过程中自动处理分区、格式化和安装。
-- **驱动管理**：重装后自动检测并安装硬件驱动。
-- **日志记录**：详细记录整个过程，便于排查问题。
+
+- **安装 Linux**：选择发行版和版本，自动下载和安装。
+- **安装 Windows**：指定 ISO 或自动查找，支持语言和版本。
+- **DD 原始镜像**：支持 raw/vhd 镜像到硬盘。
+- **引导到 Alpine Live OS**：内存系统，用于手动操作。
+- **引导到 netboot.xyz**：用于手动安装其他系统。
+- **高级选项**：SSH 密钥、端口、密码设置，frpc 内网穿透。
 
 ## 用法
-1. **下载项目**：从GitHub仓库克隆或下载ZIP文件。
-2. **准备环境**：确保电脑有网络连接，并备份重要数据。
-3. **运行工具**：解压后运行`reinstall.exe`（或Python脚本`main.py`）。
-4. **选择选项**：在界面中选择重装模式（如完整重装或修复模式）。
-5. **执行重装**：确认后工具将引导进入重装流程，重启电脑完成安装。
-6. **验证**：重装完成后，检查系统并恢复备份。
 
-注意：使用前请阅读README.md文件以获取最新更新和注意事项。
+脚本支持 Linux/Windows 下运行，使用 bash 或 batch 文件。
+
+### 下载
+
+国外：`curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh`
+国内：`curl -O https://cnb.cool/bin456789/reinstall/-/git/raw/main/reinstall.sh`
+
+### 安装 Linux
+
+`bash reinstall.sh debian 12` 或 `ubuntu 24.04 --minimal`
+
+### 安装 Windows
+
+`bash reinstall.sh windows --image-name "Windows 11 Pro" --lang zh-cn`
+
+### DD 镜像
+
+`bash reinstall.sh dd --img "https://example.com/image.xz"`
+
+### 其他功能
+
+`bash reinstall.sh alpine --hold 1` 或 `netboot.xyz`
+
+注意：重装会清除硬盘，使用前备份。更多选项见 README。

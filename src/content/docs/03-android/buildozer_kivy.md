@@ -2,45 +2,25 @@
 title: buildozer
 ---
 
-# Buildozer 项目描述
+# Buildozer
 
-## 项目地址
-[https://github.com/kivy/buildozer](https://github.com/kivy/buildozer)
+Buildozer 是一个开发工具，用于将 [Python](https://www.python.org/) 应用程序转换为可安装的二进制包，支持多个平台，包括移动设备。
+
+应用开发者提供一个单独的 "buildozer.spec" 文件，该文件描述了应用程序的需求和设置，如标题和图标。然后，Buildozer 可以为 Android、iOS、Windows、macOS 和/或 Linux 创建可安装的包。
+
+Buildozer 由 [Kivy Team](https://kivy.org/about.html) 管理，依赖于其兄弟项目：[python-for-android](https://github.com/kivy/python-for-android/) 和 [Kivy for iOS](https://github.com/kivy/kivy-ios/)。它提供了使使用 [Kivy 框架](https://github.com/kivy/kivy) 构建应用程序更轻松的功能，但也可以独立使用，甚至与其他 GUI 框架一起使用。
+
+对于 Android，Buildozer 会自动下载并准备构建依赖项。有关更多信息，请参阅 [Android SDK NDK 信息](https://github.com/kivy/kivy/wiki/Android-SDK-NDK-Information)。
+
+> [!NOTE]  
+> 此工具与在线构建服务 `buildozer.io` 无关。
 
 ## 主要特性
-Buildozer 是一个用于 Python/Kivy 应用的自动化构建工具，主要针对移动平台（如 Android 和 iOS）的打包。它具有以下核心特性：
-- **自动化打包**：无需手动配置复杂的构建环境，即可将 Python 应用打包成 APK（Android）或 IPA（iOS）文件。
-- **跨平台支持**：主要支持 Android 和 iOS，支持 Kivy 框架的应用打包，也可扩展到其他 Python 项目。
-- **依赖管理**：自动下载和集成 Python 依赖库，支持 requirements.txt 文件定义依赖。
-- **配置简单**：使用单一的 `buildozer.spec` 配置文件管理应用标题、包名、图标、权限等设置。
-- **多架构支持**：支持 ARM 和 x86 等不同设备架构的构建。
-- **开源免费**：基于 Python 开发，MIT 许可，社区活跃。
+- 单一的配置文件 (`buildozer.spec`) 来管理应用程序的打包设置。
+- 支持多平台 (Android, iOS, Windows, macOS, Linux)。
+- 自动处理 Android 的构建依赖项。
 
-## 主要功能
-- **应用打包**：将 Python 脚本和资源文件转换为可安装的移动应用包。
-- **环境初始化**：自动安装必要的工具链，如 Android SDK、NDK 等。
-- **调试与优化**：支持 release 和 debug 模式构建，提供日志输出和错误诊断。
-- **自定义扩展**：允许用户通过 spec 文件自定义构建规则、添加原生代码或插件。
-- **虚拟环境集成**：兼容 venv 或其他 Python 环境，确保依赖隔离。
+## 项目地址
+[Buildozer GitHub Repository](https://github.com/kivy/buildozer)
 
-## 用法
-1. **安装 Buildozer**：
-   - 确保已安装 Python 3 和 Kivy。
-   - 使用 pip 安装：`pip install buildozer`。
-   - 对于 Android 构建，还需安装 Java JDK、Android SDK 等（Buildozer 会引导初始化）。
-
-2. **初始化项目**：
-   - 在项目根目录运行：`buildozer init`，这会生成 `buildozer.spec` 配置文件。
-   - 编辑 `buildozer.spec`：设置应用名称（title）、包名（package.name）、版本、依赖（requirements）、权限（android.permissions）等。
-
-3. **构建应用**：
-   - 对于 Android：运行 `buildozer android debug`（调试版）或 `buildozer android release`（发布版）。首次运行会下载依赖，可能需数小时。
-   - 对于 iOS：运行 `buildozer ios debug`（需 macOS 环境和 Xcode）。
-   - 输出文件位于 `bin/` 目录下，例如 `myapp-1.0-debug.apk`。
-
-4. **常见命令**：
-   - `buildozer -v android debug`：详细日志构建。
-   - `buildozer android clean`：清理构建缓存。
-   - `buildozer android update`：更新依赖。
-
-注意：Android 构建推荐在 Linux 或 macOS 上进行；iOS 仅限 macOS。遇到问题时，检查 spec 文件和日志输出。
+💝 Support this free API: https://www.paypal.com/donate/?hosted_button_id=XS3CAYT8LE2BL

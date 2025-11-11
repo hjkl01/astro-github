@@ -2,42 +2,49 @@
 title: DouyinLiveWebFetcher
 ---
 
-# DouyinLiveWebFetcher 项目
+# 抖音直播间网页版弹幕数据抓取
 
-## 项目地址
-[GitHub 项目地址](https://github.com/saermart/DouyinLiveWebFetcher)
+**项目地址：** [https://github.com/saermart/DouyinLiveWebFetcher](https://github.com/saermart/DouyinLiveWebFetcher)
 
 ## 主要特性
-- **实时直播数据抓取**：支持从抖音直播间实时获取视频流、弹幕、礼物等数据，通过WebSocket和HTTP接口实现高效数据传输。
-- **Web界面支持**：提供简易的Web前端，用户可以通过浏览器访问和监控直播内容，无需复杂配置。
-- **多平台兼容**：基于Node.js开发，支持Windows、macOS和Linux系统运行，易于部署。
-- **数据持久化**：可选将抓取的数据保存为JSON或CSV格式，便于后续分析和存储。
-- **轻量级设计**：代码结构简洁，依赖少，适合个人开发者或小型项目使用。
+
+- **抖音弹幕抓取**：专门用于抓取抖音直播间网页版的弹幕数据，支持实时获取进场消息、聊天消息、礼物消息、点赞消息等。
+- **2025最新版本**：持续更新以适应抖音接口变化，包含最新的signature和a_bogus参数处理。
+- **Python实现**：基于Python开发，支持WebSocket连接获取实时数据。
+- **开源免费**：AGPL-3.0许可，仅用于学习研究交流。
+- **多环境支持**：支持Windows、macOS、Linux，Python 3.7+，Node.js v18.2.0。
 
 ## 主要功能
-- **直播间监控**：输入抖音直播间ID或URL，即可开始抓取直播视频流和互动数据。
-- **弹幕实时显示**：捕获并实时展示直播间的弹幕消息，支持过滤和关键词搜索。
-- **礼物与互动追踪**：记录观众送出的礼物、点赞和分享等互动事件，提供统计汇总。
-- **API接口**：内置RESTful API，允许外部程序调用抓取数据，实现自动化集成。
-- **错误处理与日志**：内置日志系统，记录抓取过程中的异常和调试信息，确保稳定运行。
+
+- **弹幕数据抓取**：实时抓取直播间弹幕，包括用户进场、聊天、礼物、点赞、粉丝团等消息。
+- **观看人数统计**：获取当前观看人数和累计观看人数。
+- **数据输出**：将抓取的数据输出到控制台，支持自定义处理。
+- **Protobuf支持**：使用Protobuf解析抖音的二进制数据包。
+- **签名生成**：内置JS代码生成必要的签名参数（signature、a_bogus）。
 
 ## 用法
+
 1. **环境准备**：
-   - 安装Node.js（版本 >= 14.0）。
-   - 克隆仓库：`git clone https://github.com/saermart/DouyinLiveWebFetcher.git`。
-   - 进入项目目录：`cd DouyinLiveWebFetcher`。
-   - 安装依赖：`npm install`。
+   - 安装Python 3.7+ 和 Node.js v18.2.0。
+   - 安装protoc（libprotoc 25.1）。
+   - 克隆仓库：
+     ```
+     git clone https://github.com/saermart/DouyinLiveWebFetcher.git
+     cd DouyinLiveWebFetcher
+     ```
+   - 安装依赖：
+     ```
+     pip install -r requirements.txt
+     ```
 
-2. **配置**：
-   - 编辑`config.json`文件，设置抖音直播间ID、代理（如需绕过限制）和输出路径。
+2. **运行**：
+   - 执行主程序：
+     ```
+     python main.py
+     ```
+   - 输入抖音直播间网页URL，程序将自动提取房间ID并开始抓取弹幕。
 
-3. **运行**：
-   - 启动服务器：`npm start`。
-   - 通过浏览器访问`http://localhost:3000`，输入直播间信息开始抓取。
-   - 使用命令行模式：`node fetcher.js --roomId=你的直播间ID`。
+3. **数据查看**：
+   - 弹幕数据实时输出到控制台，包括用户昵称、性别、消息内容等。
 
-4. **停止与数据导出**：
-   - 按Ctrl+C停止抓取。
-   - 数据自动保存至`output/`目录，可自定义路径。
-
-注意：使用时需遵守抖音平台的使用条款，避免滥用导致账号封禁。项目仅供学习和研究目的。
+注意：仅用于学习研究交流，严禁用于商业谋利、破坏系统或盗取个人信息。遵守抖音平台使用条款。

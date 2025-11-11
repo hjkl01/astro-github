@@ -2,85 +2,103 @@
 title: LTX-Video
 ---
 
+# LTX-Video
 
-# LTX-Video by Lightricks
+Official repository for LTX-Video
 
-> 项目地址: https://github.com/Lightricks/LTX-Video
+项目地址: https://github.com/Lightricks/LTX-Video
 
-## 项目概述
-LTX-Video 是 Lightricks 开源的 **跨平台视频处理框架**，主要用于在移动端（Android / iOS）快速构建、编辑、渲染高质量视频。它提供了一套完整的视频处理 SDK，覆盖录制、编辑、转码和导出等核心功能，帮助开发者快速集成视频编辑模块。
+## 简介
 
-## 主要特性与功能
+LTX-Video 是第一个 DiT-based 视频生成模型，包含现代视频生成的所有核心能力：同步音频和视频、高保真、多性能模式、生产就绪输出、API 访问和开放访问。它可以生成高达 50 FPS 的视频，在本地 4K 分辨率下一次性同步音频。模型在大型多样视频数据集上训练，可以生成高分辨率视频，具有真实和多样化的内容。
 
-| 功能 | 说明 |
-|------|------|
-| **视频录制** | 支持多种分辨率、帧率与码率的实时录制，内置 HDR 与超分辨率等高级模式。 |
-| **剪辑与分块** | 支持按时间轴分段剪切、合并、拖拽重排；提供多种过渡（Fade、Slide、Wipe 等）。 |
-| **特效 & 过滤** | 包含丰富的图像滤镜、色彩校正、镜像、反转等实时特效。 |
-| **叠加与文本** | 支持文字、贴纸、动态图层叠加；可以自定义动画、字体与颜色。 |
-| **音频处理** | 录音、背景音乐混音、音量自动化、淡入/淡出，支持多轨音频。 |
-| **转码与压缩** | 快速将编辑结果导出为 MP4、MOV、GIF、WEBM 等格式，支持自定义分辨率/码率配置。 |
-| **序列化 & 预览** | 通过 JSON 描述编辑序列，支持离线预览与播放。 |
-| **跨平台 API** | 统一 Kotlin/Swift 接口，方便在 Android 与 iOS 之间共享业务逻辑。 |
+模型支持图像到视频、多关键帧条件、基于关键帧的动画、视频扩展（向前和向后）、视频到视频转换，以及这些功能的任何组合。
 
-## 快速入门
+## 主要特性
 
-1. **安装依赖**  
-   ```bash
-   # Android
-   implementation 'com.lightricks:ltx-video:<version>'
+- **文本到视频**：高质量文本到视频生成，无需太多提示工程。
+- **图像到视频**：从图像生成视频，支持多种条件。
+- **视频扩展**：向前或向后扩展现有视频。
+- **多关键帧条件**：使用多个图像或视频段生成视频。
+- **音频同步**：生成同步音频和视频。
+- **高分辨率**：支持 4K 分辨率和高达 50 FPS。
+- **多种模型**：13B 和 2B 模型变体，支持蒸馏版本以提高速度。
+- **控制模型**：深度、姿势、Canny 控制等。
+- **集成**：ComfyUI、Diffusers 支持。
 
-   # iOS
-   pod 'LTXVideo', '~> <version>'
-   ```
+## 主要功能
 
-2. **初始化 SDK**  
-   ```kotlin
-   LTXVideo.initialize(context, apiKey = "YOUR_API_KEY")
-   ```
+- **在线推理**：通过 LTX-Studio、Fal.ai、Replicate 等平台。
+- **本地运行**：使用 Python 脚本或作为库。
+- **ComfyUI 集成**：推荐用于高质量生成。
+- **Diffusers 集成**：使用 Hugging Face Diffusers。
+- **训练**：开放源代码训练仓库用于微调。
+- **社区贡献**：ComfyUI-LTXTricks、LTX-VideoQ8、TeaCache 等。
 
-3. **创建编辑会话**  
-   ```kotlin
-   val session = LTXVideo.createSession()
-   session.addClip(videoUri)
-   session.applyFilter(ColorFilter.GRAYSCALE)
-   session.addTextOverlay("Hello LTX", position = Position.CENTER)
-   ```
+## 用法
 
-4. **导出视频**  
-   ```kotlin
-   session.export(
-       outputUri,
-       resolution = VideoResolution.HD,
-       bitrate = 5_000_000
-   ) { result ->
-       if (result.isSuccess) {
-           println("视频已导出：${result.outputUri}")
-       } else {
-           println("导出失败：${result.error}")
-       }
-   }
-   ```
+### 安装
 
-5. **查看文档**  
-   - 官方使用指南：`docs/USAGE.md`  
-   - API 参考：`docs/API_REFERENCE.md`  
-   - 示例项目：`samples/`
+```bash
+git clone https://github.com/Lightricks/LTX-Video.git
+cd LTX-Video
+python -m venv env
+source env/bin/activate
+python -m pip install -e .[inference]
+```
 
-## 示例项目
+### 推理
 
-- **Android Demo** – 演示录制、编辑、导出完整流程。  
-- **iOS Demo** – 同样演示跨平台功能。  
-- **Web Demo** – 通过 React Native 呼叫原生 SDK 的简单演示。
+#### 图像到视频生成
 
-## 社区与支持
+```bash
+python inference.py --prompt "PROMPT" --conditioning_media_paths IMAGE_PATH --conditioning_start_frames 0 --height HEIGHT --width WIDTH --num_frames NUM_FRAMES --seed SEED --pipeline_config configs/ltxv-13b-0.9.8-distilled.yaml
+```
 
-- **问题追踪**：在 GitHub Issues 中提交 bug 或功能需求。  
-- **讨论**：GitHub Discussions 用于交流最佳实践与插件开发。  
-- **贡献**：遵循项目的贡献指南 (`CONTRIBUTING.md`)。  
+#### 扩展视频
 
----  
+```bash
+python inference.py --prompt "PROMPT" --conditioning_media_paths VIDEO_PATH --conditioning_start_frames START_FRAME --height HEIGHT --width WIDTH --num_frames NUM_FRAMES --seed SEED --pipeline_config configs/ltxv-13b-0.9.8-distilled.yaml
+```
 
-> > 如果你正在寻找一套 **高性能、可定制的视频处理方案**，LTX-Video 提供了完整且易于使用的 API，几乎无需自行编写渲染管线。欢迎贡献代码或改进文档！  
-> 
-> **Happy coding!** 
+#### 作为库使用
+
+```python
+from ltx_video.inference import infer, InferenceConfig
+
+infer(
+    InferenceConfig(
+        pipeline_config="configs/ltxv-13b-0.9.8-distilled.yaml",
+        prompt=PROMPT,
+        height=HEIGHT,
+        width=WIDTH,
+        num_frames=NUM_FRAMES,
+        output_path="output.mp4",
+    )
+)
+```
+
+### ComfyUI 集成
+
+请访问 [ComfyUI-LTXVideo](https://github.com/Lightricks/ComfyUI-LTXVideo/)。
+
+### Diffusers 集成
+
+请查看 [官方文档](https://huggingface.co/docs/diffusers/main/en/api/pipelines/ltx_video)。
+
+## 模型用户指南
+
+### 提示工程
+
+专注于详细、按时间顺序的动作和场景描述。包括具体运动、外观、相机角度和环境细节 - 都在一个流动的段落中。从动作开始，直接保持描述字面和精确。像电影摄影师描述拍摄列表一样思考。保持在 200 字以内。
+
+### 参数指南
+
+- 分辨率预设：更高分辨率用于详细场景，更低用于更快生成和简单场景。
+- 种子：保存种子值以重新创建您喜欢的特定样式或构图。
+- 指导尺度：3-3.5 是推荐值。
+- 推理步骤：更多步骤（40+）用于质量，更少步骤（20-30）用于速度。
+
+## 许可证
+
+Apache-2.0 License

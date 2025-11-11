@@ -53,6 +53,15 @@ title: asynq
 13. **CLI 工具**
     - 命令行工具用于检查和控制队列和任务。
 
+14. 周期性任务
+     - 支持周期性任务调度。
+
+15. 支持 Redis 哨兵
+     - 支持 Redis 哨兵用于高可用性。
+
+16. 与 Prometheus 集成
+     - 集成 Prometheus 以收集和可视化队列指标。
+
 ## 安装
 
 确保安装了 Go（下载：https://golang.org/dl/）。支持最后两个 Go 版本。

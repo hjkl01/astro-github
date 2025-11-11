@@ -7,36 +7,28 @@ title: cheating-daddy
 项目地址: https://github.com/sohzm/cheating-daddy
 
 ## 主要特性
-- 多游戏支持（如 Minecraft、GTA V、CS:GO 等）
-- 无限资源、无剪辑、自动瞄准等作弊功能
-- 可自定义热键、脚本插件
-- 轻量级注入方式，兼容 Windows
+
+- **实时AI协助**：使用Google Gemini 2.0 Flash Live提供实时帮助。
+- **屏幕和音频捕获**：分析屏幕和音频以提供上下文响应。
+- **多种配置文件**：面试、销售电话、商务会议、演示、谈判。
+- **透明叠加**：始终在顶层的窗口，可任意定位。
+- **点击穿透模式**：需要时使窗口对点击透明。
+- **跨平台**：支持macOS、Windows和Linux。
 
 ## 功能介绍
-- **Spawn**：快速生成车辆/道具
-- **ESP / Wallhack**：显示实体位置
-- **God Mode / Infinite Health**：免死模式
-- **NoClip / Fly**：穿墙飞行
-- **Auto Aim**：自动瞄准
+
+- **实时AI协助**：基于屏幕和音频提供上下文帮助。
+- **多种模式**：支持不同场景的配置文件。
+- **键盘快捷键**：移动窗口、切换模式等。
 
 ## 用法
-1. **编译**  
-   ```bash
-   git clone https://github.com/sohzm/cheating-daddy.git
-   cd cheating-daddy
-   # 使用 Visual Studio 生成可执行文件
-   ```
 
-2. **运行**  
-   - 启动目标游戏  
-   - 运行 `cheating-daddy.exe`，程序会自动注入
-
-3. **配置**  
-   - `config.json` 可设置热键、功能开关
-
-4. **使用**  
-   - 按热键开启/关闭对应功能  
-   - 右键菜单可切换脚本
+1. **获取Gemini API密钥**：访问Google AI Studio。
+2. **安装依赖**：`npm install`
+3. **运行应用**：`npm start`
+4. **使用**：输入API密钥，选择配置文件，开始会话。
+5. **快捷键**：Ctrl/Cmd + 箭头键移动窗口，等等。
 
 ## 许可证
+
 MIT

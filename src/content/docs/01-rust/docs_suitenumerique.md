@@ -2,26 +2,42 @@
 title: docs
 ---
 
-# 项目描述：Sui 文档
+# La Suite Docs
 
 **GitHub 项目地址：** [https://github.com/suitenumerique/docs](https://github.com/suitenumerique/docs)
 
 ## 主要特性
-- **全面文档覆盖**：该项目是 Sui 区块链平台的官方文档仓库，提供从基础概念到高级开发的完整指南，支持多语言（包括英文和中文）。
-- **模块化结构**：文档分为多个模块，如 Sui 的核心概念、智能合约开发、Move 语言教程、节点操作和生态系统集成，便于用户快速定位所需内容。
-- **开源协作**：基于 GitHub 平台，用户可以贡献、报告问题或提出改进建议，支持社区驱动的文档更新。
-- **多格式支持**：文档使用 Markdown 编写，便于阅读和转换，支持在线浏览、PDF 下载和本地构建。
+
+- **协作文本编辑**：Docs 是一个协作文本编辑器，旨在解决知识构建和分享中的常见挑战。
+- **实时协作**：享受实时编辑，见证团队实时协作。
+- **安全访问控制**：通过细粒度访问控制保持信息安全，仅与合适的人分享。
+- **多格式导出**：以多种格式导出内容（.odt, .docx, .pdf），支持自定义模板。
+- **自托管**：易于在自己的服务器上安装，支持 Kubernetes 和 Docker Compose。
 
 ## 主要功能
-- **学习与开发指导**：帮助开发者理解 Sui 的架构，包括对象模型、交易处理和共识机制，提供代码示例和最佳实践。
-- **工具与集成**：涵盖 Sui CLI 工具的使用、SDK 集成（如 Rust 和 JavaScript），以及与钱包、DeFi 和 NFT 等应用的交互。
-- **更新与维护**：项目定期更新以匹配 Sui 主网版本变化，包括测试网指南和迁移文档。
-- **社区资源**：包含 FAQ、故障排除和链接到 Sui 论坛、Discord 等社区渠道。
+
+- **写作**：简单、可访问的在线编辑；美观格式；Markdown 语法；块类型和快捷键；离线写作；AI 动作如重述、总结、翻译。
+- **协作**：实时编辑；安全控制；导出；子页面组织知识。
+- **自托管**：支持 Docker Compose、Kubernetes 等安装方式。
 
 ## 用法
-1. **在线阅读**：访问 GitHub 仓库或官方 Sui 文档网站（docs.sui.io），浏览预构建的 HTML 版本。
-2. **本地克隆**：使用 Git 命令 `git clone https://github.com/suitenumerique/docs.git` 下载仓库，然后在本地使用工具如 MkDocs 或 Hugo 构建静态站点（需安装依赖）。
-3. **贡献文档**：Fork 仓库，编辑 Markdown 文件，提交 Pull Request。确保遵循仓库的贡献指南（CONTRIBUTING.md）。
-4. **搜索与导航**：仓库使用目录结构和搜索功能，便于查找特定主题，如 “Sui Move Tutorial” 或 “Deploying on Sui”。 
 
-该项目适合 Sui 生态的初学者和高级开发者使用，保持文档与 Sui 协议同步。
+### 测试
+
+访问 [demo document](https://impress-preprod.beta.numerique.gouv.fr/docs/6ee5aac4-4fb9-457d-95bf-bb56c2467713/) 在浏览器中测试。
+
+### 本地运行
+
+使用 Docker 和 Docker Compose：
+
+1. 安装 Docker 和 Docker Compose。
+2. 运行 `make bootstrap FLUSH_ARGS='--no-input'` 启动服务。
+3. 访问 http://localhost:3000，默认凭据：username: impress, password: impress。
+
+### 自托管
+
+支持 Kubernetes、Docker Compose 等。详见 [安装文档](/docs/installation/README.md)。
+
+### 贡献
+
+在 [Crowdin](https://crowdin.com/project/lasuite-docs) 帮助翻译，或提交 PR。见 [CONTRIBUTING](https://github.com/suitenumerique/docs/blob/main/CONTRIBUTING.md)。

@@ -84,3 +84,8 @@ Awesome 是一个极简、可编程的窗口管理器，专为 X Window 系统�
 ### 小结
 
 Awesome 通过 Lua 脚本实现极致可定制的窗口管理体验，适合喜欢键盘操作、追求极简与高效的用户。其强大的插件系统和主题支持，让你可以随心所欲地打造专属桌面。
+
+### Troubleshooting
+
+- 检查 ~/.xsession-errors 文件获取错误信息。
+- 使用 gdb 调试：DISPLAY=:2 gdb awesome，然后 set args --replace, run。

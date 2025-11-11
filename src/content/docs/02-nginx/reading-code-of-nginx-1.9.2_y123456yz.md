@@ -7,20 +7,22 @@ title: reading-code-of-nginx-1.9.2
 **项目地址：** [https://github.com/y123456yz/reading-code-of-nginx-1.9.2](https://github.com/y123456yz/reading-code-of-nginx-1.9.2)
 
 ## 主要特性
-- **源码分析深度**：该项目专注于Nginx 1.9.2版本的核心源码，提供详细的代码阅读笔记和解释，帮助开发者理解Nginx的内部实现机制。
-- **模块化结构**：笔记按Nginx的模块（如核心模块、HTTP模块、事件驱动等）组织，便于针对性学习。
-- **中文文档**：所有内容以中文撰写，适合中文开发者阅读，包含代码片段、流程图和原理说明。
-- **开源免费**：基于GitHub平台，代码和笔记均为开源，鼓励社区贡献和讨论。
+
+- Detailed analysis of Nginx 1.9.2 source code with extensive Chinese comments and function call flow annotations.
+- Most comprehensive nginx source code reading analysis Chinese comments, updated.
+- Covers high concurrency design, excellent ideas applied to other high concurrency proxy middleware.
 
 ## 主要功能
-- **代码解析**：详细剖析Nginx的启动过程、事件循环、请求处理管道、内存管理和配置解析等关键功能。
-- **模块讲解**：覆盖Nginx的核心组件，如ngx_core、ngx_http、ngx_event等模块的实现细节。
-- **问题解答**：通过笔记形式解答常见源码疑问，例如如何实现高并发、负载均衡和缓存机制。
-- **学习资源**：提供Nginx源码阅读的入门指导和高级技巧，适用于Web服务器开发和性能优化。
+
+- Code reading notes with detailed function analysis, related function flow calls.
+- Analysis of nginx startup, exit, connection pool, memory pool, event-driven, async I/O, HTTP framework, request processing, reverse proxy, load balancing, rate limiting, WAF, etc.
+- Application of nginx multi-process high concurrency low latency high reliability mechanism to cache proxy middleware like twemproxy.
+- Reading process: config compilation, user modules, processes, data structures, connection processing, request stages, compression, hash tables, logs, reverse proxy, load balancing, etc.
 
 ## 用法
-1. **克隆仓库**：使用Git命令 `git clone https://github.com/y123456yz/reading-code-of-nginx-1.9.2.git` 下载项目。
-2. **阅读笔记**：浏览项目中的Markdown文件，按目录顺序学习，从基础模块开始逐步深入。
-3. **结合源码**：下载Nginx 1.9.2源码（从官网获取），对照笔记进行代码调试和跟踪。
-4. **贡献代码**：如果有新见解，可Fork仓库、修改笔记并提交Pull Request。
-5. **环境准备**：需安装Git和Markdown查看器（如VS Code），推荐在Linux环境下结合Nginx源码编译运行。
+
+1. Clone repo: `git clone https://github.com/y123456yz/reading-code-of-nginx-1.9.2.git`
+2. Read notes: Browse markdown files, learn from basic to advanced modules.
+3. With source: Download nginx 1.9.2 source, debug against notes.
+4. Contribute: Fork, edit, PR.
+5. Setup: Git, markdown viewer, Linux with nginx compile.

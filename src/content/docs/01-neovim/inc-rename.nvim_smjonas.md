@@ -6,7 +6,7 @@ title: inc-rename.nvim
 
 ## 项目简介
 
-inc-rename.nvim 是一个小型的 Neovim 插件，提供基于 Neovim 命令预览功能的 LSP 重命名命令。该插件允许用户在重命名标识符时获得即时视觉反馈。
+> Description from GitHub: Incremental LSP renaming based on Neovim's command-preview feature.
 
 ## 功能
 

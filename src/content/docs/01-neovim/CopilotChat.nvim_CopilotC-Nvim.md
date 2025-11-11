@@ -2,36 +2,56 @@
 title: CopilotChat.nvim
 ---
 
-
 # CopilotChat.nvim
 
 > GitHub 地址: [https://github.com/CopilotC-Nvim/CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim)
 
+> Description from GitHub: Chat with GitHub Copilot in Neovim
+
 ## 主要特性
 
 - **AI 辅助聊天**：集成 GitHub Copilot，支持在 Neovim 内直接与 AI 对话。
+- **多模型支持**：支持 GitHub Copilot（包括 GPT-4o、Gemini 2.5 Pro、Claude 4 Sonnet、Claude 3.7 Sonnet、Claude 3.5 Sonnet、o3-mini、o4-mini）以及自定义提供商（Ollama、Mistral.ai）。
+- **工具调用**：LLM 可以调用工作区函数（文件读取、git 操作、搜索），需要您的明确批准。
+- **隐私优先**：仅分享您明确请求的内容 - 无后台数据收集。
 - **多语言支持**：可对多种编程语言的代码进行提问、分析和生成。
 - **上下文感知**：自动捕获当前编辑器的上下文（光标所在位置、文件内容等），让 AI 更准确地回答。
 - **交互式对话窗口**：使用浮动窗口或分屏显示聊天记录，支持滚动、复制、清空等操作。
+- **智能提示**：可组合模板和粘性提示以保持一致的上下文。
+- **令牌高效**：资源替换防止重复上下文，通过 tiktoken 计数进行历史管理。
 - **自定义提示**：允许用户自定义提示词或模型参数，以满足不同场景需求。
 - **快捷键映射**：提供一组默认快捷键，方便快速打开/关闭聊天窗口、发送消息等。
+- **可脚本化**：用于自动化和无头模式操作的全面 Lua API。
+- **可扩展**：自定义函数和提供商，加上 mcphub.nvim 等集成。
 
 ## 功能概览
 
-| 功能 | 说明 |
-|------|------|
-| `CopilotChat.Chat()` | 打开聊天窗口，开始与 AI 对话 |
-| `CopilotChat.Send()` | 发送消息给 AI，返回回答 |
-| `CopilotChat.Clear()` | 清空聊天记录 |
-| `CopilotChat.SetContext()` | 手动设置或更新上下文 |
-| `CopilotChat.Config()` | 配置插件选项（如窗口位置、模型参数等） |
+| 功能                       | 说明                                   |
+| -------------------------- | -------------------------------------- |
+| `CopilotChat.Chat()`       | 打开聊天窗口，开始与 AI 对话           |
+| `CopilotChat.Send()`       | 发送消息给 AI，返回回答                |
+| `CopilotChat.Clear()`      | 清空聊天记录                           |
+| `CopilotChat.SetContext()` | 手动设置或更新上下文                   |
+| `CopilotChat.Config()`     | 配置插件选项（如窗口位置、模型参数等） |
 
 ## 用法
 
 ### 1. 安装
 
 ```lua
--- 使用 packer.nvim
+-- 使用 lazy.nvim
+{
+  "CopilotC-Nvim/CopilotChat.nvim",
+  dependencies = {
+    { "nvim-lua/plenary.nvim", branch = "master" },
+  },
+  build = "make tiktoken",
+  opts = {
+    -- See Configuration section for options
+  },
+}
+
+-- 或使用 packer.nvim
 use {
   'CopilotC-Nvim/CopilotChat.nvim',
   requires = { { 'nvim-lua/plenary.nvim' } },
@@ -52,11 +72,11 @@ use {
 
 ### 3. 快捷键（默认）
 
-| 快捷键 | 操作 |
-|--------|------|
-| `<leader>cc` | 打开/关闭聊天窗口 |
-| `<leader>cs` | 发送当前选区内容给 AI |
-| `<leader>cr` | 清空聊天历史 |
+| 快捷键       | 操作                      |
+| ------------ | ------------------------- |
+| `<leader>cc` | 打开/关闭聊天窗口         |
+| `<leader>cs` | 发送当前选区内容给 AI     |
+| `<leader>cr` | 清空聊天历史              |
 | `<leader>ct` | 切换到文本模式 / 代码模式 |
 
 > 你可以在 `init.lua` 或 `init.vim` 中自定义快捷键，例如：
@@ -93,6 +113,6 @@ require('CopilotChat').setup {
 
 如果你想改进插件，欢迎提交 Issue 或 Pull Request。请遵循官方贡献指南。
 
---- 
+---
 
 > **Tip**：在使用过程中若遇到 API 调用失败或响应慢，检查网络连接或 GitHub Copilot 的配额限制。

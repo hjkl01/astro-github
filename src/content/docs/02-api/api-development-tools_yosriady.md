@@ -2,31 +2,40 @@
 title: api-development-tools
 ---
 
-# API 开发工具项目
+# API 开发工具资源集合
 
-## 项目地址
-[GitHub 项目地址](https://github.com/yosriady/api-development-tools)
+**GitHub 项目地址：** [https://github.com/yosriady/api-development-tools](https://github.com/yosriady/api-development-tools)
 
-## 主要特性
-- **自动化测试支持**：提供 API 接口的自动化测试框架，支持多种协议如 HTTP/REST 和 GraphQL。
-- **代码生成工具**：基于 OpenAPI/Swagger 规范自动生成客户端和服务器端代码，减少手动开发工作量。
-- **监控与日志**：集成实时监控功能，记录 API 调用日志，便于调试和性能分析。
-- **跨平台兼容**：支持 Windows、macOS 和 Linux 环境，易于集成到 CI/CD 管道。
-- **插件扩展**：模块化设计，允许用户自定义插件扩展功能，如安全认证和数据验证。
+## 项目主要特性
+
+api-development-tools 是一个开源的 API 开发工具资源集合，由 Yos Riady 维护。它收集了构建 RESTful HTTP+JSON API 的有用资源，包括框架、客户端、文档工具等，帮助开发者快速找到合适的工具。
+
+主要特性包括：
+
+- **资源丰富**：涵盖 API 规范、框架、客户端、文档、调试、设计指南等多个类别。
+- **分类清晰**：按功能和语言分类，便于查找。
+- **社区驱动**：鼓励社区贡献，持续更新新工具和资源。
+- **免费开源**：所有资源均为开源项目，无需付费。
+- **多语言支持**：包括 Ruby, Python, JavaScript, Go 等多种语言的工具。
 
 ## 主要功能
-- **API 文档生成**：自动从代码或规范生成交互式 API 文档，支持 Markdown 和 HTML 输出。
-- **Mock 服务**：快速搭建模拟 API 服务，用于前端开发或测试隔离。
-- **性能基准测试**：运行负载测试，评估 API 的响应时间、吞吐量和错误率。
-- **集成开发环境**：内置编辑器和调试工具，支持直接在项目中编写和测试 API 端点。
-- **版本管理**：跟踪 API 版本变化，提供向后兼容检查。
+
+该集合的主要功能是为 API 开发提供全面的资源指南。具体包括：
+
+- **API 规范语言**：如 OpenAPI, API Blueprint, JSON Schema。
+- **API 框架**：各种语言的 API 框架，如 Django REST, FastAPI, Express 等。
+- **API 客户端**：如 Postman, Insomnia, Bruno 等。
+- **API 文档**：如 Swagger UI, ReDoc 等。
+- **API 调试和模拟**：如 Json-Server, Prism 等。
+- **API 设计指南**：如 Google API Design Guide 等。
+- **学习资源**：博客、书籍推荐。
 
 ## 用法
-1. **安装**：克隆仓库后，使用 `npm install` 或 `pip install`（视语言而定）安装依赖。
-2. **配置**：编辑 `config.yaml` 文件，指定 API 规范路径和测试环境。
-3. **运行测试**：执行 `npm run test` 或 `python run_tests.py` 启动自动化测试。
-4. **生成代码**：使用命令 `generate --spec openapi.json --output src/` 生成代码。
-5. **启动 Mock**：运行 `mock-server --port 3000` 启动模拟服务。
-6. **监控 API**：集成到应用中，使用 `monitor start` 开启日志记录。
 
-详细用法请参考项目 README 文件。
+1. **访问集合**：克隆仓库或直接查看 README 文件。
+2. **查找资源**：根据需求浏览不同类别，找到合适的工具。
+3. **评估工具**：查看每个工具的描述、链接和使用方法。
+4. **贡献资源**：如果发现新工具或更新，提交 Pull Request。
+5. **学习使用**：参考提供的学习资源提升 API 开发技能。
+
+此集合适用于 API 开发者、架构师，帮助快速上手和选择工具。更多详情请参考 GitHub README。

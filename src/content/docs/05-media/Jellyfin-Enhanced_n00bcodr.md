@@ -2,65 +2,139 @@
 title: Jellyfin-Enhanced
 ---
 
+# Jellyfin Enhanced
 
-# Jellyfin Enhanced  
+A Jellyfin Plugin to enhance your Jellyfin Web experience.
+
 项目地址: https://github.com/n00bcodr/Jellyfin-Enhanced
 
-## 主要功能  
-1. **多功能播放控制**  
-   - 快进/快退、跳过片头/片尾、压制广告  
-   - 自定义播放速度、淡入淡出  
-2. **字幕与音轨管理**  
-   - 自动下载并缓存多语言字幕  
-   - 一键切换字幕/音轨，支持字幕同时显示  
-3. **录像与截图**  
-   - 立即截图或录制片段  
-   - 自动生成缩略图并上传到媒资库  
-4. **跨平台监控**  
-   - 通过 WebSocket 与 Jellyfin 服务器实时同步播放状态  
-   - 支持移除、恢复、暂停正在播放的媒体  
-5. **插件化扩展**  
-   - 支持自定义插件开发接口，扩展第三方资源获取、转码等功能  
+## 简介
 
-## 特色亮点  
-- **与 Jellyfin 原生 UI 深度集成**：无缝嵌入播放界面，操作习惯保持一致。  
-- **多语言支持与可配置性**：所有文字可在配置文件中切换，支持 UTF-8/GB2312。  
-- **低资源占用**：插件仅在播放时激活，后台保持最小占用。  
+Jellyfin Enhanced 是 Jellyfin 的增强插件，捆绑了高级功能和自定义项到一个方便的插件中。
 
-## 用法示例  
+## 主要特性
 
-### 安装  
-1. 下载插件包或克隆本仓库。  
-2. 将 `Jellyfin-Enhanced.dll`（以及同目录下的 `plugin.xml`）放入  
-   ```
-   <Jellyfin 数据目录>/Plugins/
-   ```  
-3. 重新启动 Jellyfin。  
+- **⌨️ 高级键盘快捷键：** 一套全面的热键，用于导航、播放控制等。
+- **📝 可自定义字幕：** 微调字幕的外观，使用预设样式、大小和字体。
+- **⏯️ 智能播放：** 切换标签页时自动暂停，并在返回时自动恢复。
+- **↪️ 自动跳过片头/片尾：** 无中断地连续观看（需要 Intro Skipper 插件）。
+- **🎲 随机项目按钮：** 只需单击即可在您的库中发现新内容。
+- **👁️ 从继续观看中移除：** 轻松清理您的主页。
+- **🔍 流媒体提供商查找：** 查看您的媒体在多个地区其他地方可用的地方。
+- **✒️ 显示 TMDB 评论：** 在 Jellyfin 中显示 TMDB 评论的选项。
+- **🖼️ 自动画中画：** 切换到另一个标签页时自动进入画中画模式。
+- **📁 显示文件大小：** 在其详细信息页面上显示媒体的总文件大小。
+- **🗣️ 显示音频语言：** 在项目详细信息页面上显示可用音频语言与国旗。
+- **🎬 自定义暂停屏幕：** 当您暂停视频时，一个美丽、信息丰富的覆盖层。这个功能的修改版本来自 [BobHasNoSoul](https://github.com/BobHasNoSoul/Jellyfin-PauseScreen)。
+- **🏷️ 质量标签：** 直接在海报上显示媒体质量（4K、HDR、Atmos）。这是 [BobHasNoSoul](https://github.com/BobHasNoSoul/Jellyfin-Qualitytags) 原始脚本的修改和重写版本。
+- **🎭 流派标签：** 使用主题图标即时识别流派。
+- **🌐 语言标签：** 将可用音频语言显示为海报上的国旗。
+- **🔗 .arr 链接集成：** 对于管理员，快速跳转到 Sonarr、Radarr 或 Bazarr 页面。
+- **🔖 观看列表** 任何项目并使用 [CustomTab](https://github.com/IAmParadox27/jellyfin-plugin-custom-tabs/tree/main/src) 从 [KefinTweaks](https://github.com/ranaldsgift/KefinTweaks) 访问您的观看列表
+- **🌍 多语言支持：** 界面以多种语言提供，更多即将到来。
+- **🖼️ 自定义启动屏幕：** 一个可配置的启动屏幕，在 Jellyfin 加载时出现。
 
-### 配置  
-1. 登录 Jellyfin 后台。  
-2. 前往 **插件管理** → **Jellyfin Enhanced**。  
-3. 根据需要开启/关闭功能，填写字幕/音轨下载源，调整截图分辨率等。  
+## Jellyseerr 搜索集成
 
-### 使用  
-- 播放视频时，页面左下角会出现 `Enhanced` 按钮。  
-- 点击按钮即可打开功能面板。  
-- 快捷键（可在配置中修改）：  
-  - `Shift+←/→` 快退/快进 10 秒  
-  - `Shift+↑/↓` 快退/快进 30 秒  
-  - `Alt+S` 切换字幕  
-  - `Ctrl+S` 截图  
-  - `Ctrl+R` 录制片段  
+Jellyfin Enhanced 插件可以与您的 Jellyseerr 实例集成，允许用户直接从 Jellyfin 搜索界面搜索和请求媒体。
 
-### 示例代码（插件调用）  
-```csharp
-// 在插件内部获取播放器
-var player = context.GetService<IPlayer>();
-player.Seek(TimeSpan.FromSeconds(120)); // 跳到 2 分钟位置
+### 设置
+
+要启用 Jellyseerr 集成，您必须首先在插件设置中配置它：
+
+1. 在 Jellyfin 中，转到 **Dashboard > Plugins > Catalog > ⚙️**
+2. 点击 **➕** 并为存储库命名（例如，“Jellyfin Enhanced”）。
+3. 设置 **Repository URL** 为：
+
+重要
+
+**如果您在 Jellyfin 版本 10.11 上使用 10.11 manifest**
+
+```
+https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/10.11/manifest.json
 ```
 
-## 支持与贡献  
-- **Issue tracker**: https://github.com/n00bcodr/Jellyfin-Enhanced/issues  
-- **Pull requests**: https://github.com/n00bcodr/Jellyfin-Enhanced/pulls  
+如果您在 10.10.7 上，使用下面的 manifest
 
-> 如需更多高级功能，欢迎提交 Issue 或 PR。祝使用愉快！  
+```
+https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/10.10/manifest.json
+```
+
+4. 点击 **Save**。
+5. 转到 **Catalog** 选项卡，在列表中找到 **Jellyfin Enhanced**，然后点击 **Install**。
+6. **Restart** 您的 Jellyfin 服务器以完成安装。
+
+## 安装
+
+1. 在 Jellyfin 中，转到 **Dashboard > Plugins > Catalog > ⚙️**
+2. 点击 **➕** 并为存储库命名（例如，“Jellyfin Enhanced”）。
+3. 设置 **Repository URL** 为：
+
+```
+https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/10.11/manifest.json
+```
+
+4. 点击 **Save**。
+5. 转到 **Catalog** 选项卡，在列表中找到 **Jellyfin Enhanced**，然后点击 **Install**。
+6. **Restart** 您的 Jellyfin 服务器以完成安装。
+
+### Docker 安装解决方法
+
+如果您使用 Docker 运行 Jellyfin，插件可能没有权限修改 jellyfin-web 来注入脚本。如果您在日志中看到权限错误，例如 `'System.UnauthorizedAccessException: Access to the path '/jellyfin/jellyfin-web/index.html ' is denied.`，您将需要手动映射 `index.html` 文件：
+
+1. 从您的容器复制 index.html 文件：
+   docker cp jellyfin:/jellyfin/jellyfin-web/index.html /path/to/your/jellyfin/config/index.html
+
+2. 将卷映射添加到您的 Docker run 命令：
+   -v /path/to/your/jellyfin/config/index.html:/jellyfin/jellyfin-web/index.html
+
+3. 或对于 Docker Compose，在您的 volumes 部分添加：
+   services:
+   jellyfin: # ... other config
+   volumes: - /path/to/your/jellyfin/config:/config - /path/to/your/jellyfin/config/index.html:/jellyfin/jellyfin-web/index.html # ... other volumes
+
+这为插件提供了必要的权限来将 JavaScript 注入到 Web 界面。
+
+## 兼容性
+
+- 官方 Jellyfin Web UI
+- 官方 Jellyfin Android 和 iOS Apps
+- 官方 Jellyfin Desktop Apps（未测试，但理想情况下应该工作）
+
+重要
+
+功能不适用于不使用 Jellyfin Embedded web UI 的任何东西，例如第三方应用、Android TV App 等。
+
+## 主要功能
+
+- 高级键盘快捷键
+- 可自定义字幕
+- 智能播放
+- 自动跳过片头/片尾
+- 随机项目按钮
+- 从继续观看中移除
+- 流媒体提供商查找
+- 显示 TMDB 评论
+- 自动画中画
+- 显示文件大小
+- 显示音频语言
+- 自定义暂停屏幕
+- 质量标签
+- 流派标签
+- 语言标签
+- .arr 链接集成
+- 观看列表
+- 多语言支持
+- 自定义启动屏幕
+
+## 用法
+
+安装后，插件会自动增强 Jellyfin Web 界面。访问设置面板以配置功能。
+
+### 故障排除
+
+参考 README 中的常见错误和故障排除部分。
+
+## 许可证
+
+MIT License

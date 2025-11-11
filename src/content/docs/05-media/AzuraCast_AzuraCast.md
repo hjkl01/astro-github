@@ -2,49 +2,72 @@
 title: AzuraCast
 ---
 
-# AzuraCast 项目
+# AzuraCast: A Simple, Self-Hosted Web Radio Management Suite
 
-## 项目地址
-[https://github.com/AzuraCast/AzuraCast](https://github.com/AzuraCast/AzuraCast)
+**AzuraCast** is a self-hosted, all-in-one web radio management suite. Using its easy installer and powerful but intuitive web interface, you can start up a fully working web radio station in a few quick minutes. AzuraCast works for web radio stations of all types and sizes, and is built to run on even the most affordable VPS web hosts. AzuraCast is currently beta software.
 
-## 主要特性
-AzuraCast 是一个开源的自托管网络广播平台，专为运行在线电台而设计。它基于 Liquidsoap 和 Shoutcast/Icecast 技术，提供完整的广播解决方案。主要特性包括：
-- **多站管理**：支持同时管理多个电台站，每个站可独立配置播放列表、调度和元数据。
-- **自动化播放**：内置 Liquidsoap 引擎，支持无缝交叉淡入淡出、自动调度和实时音频处理。
-- **Web 界面**：直观的 Docker-based Web 面板，允许用户通过浏览器管理电台、上传媒体文件和监控状态。
-- **集成支持**：兼容 Shoutcast 2、Icecast 和其他流媒体协议；支持 API 集成，用于外部工具或移动应用。
-- **扩展性**：模块化设计，便于添加插件，如天气公告、新闻源或自定义脚本。
-- **安全性与监控**：内置用户认证、实时监听器统计、日志记录和故障恢复机制。
-- **开源与社区驱动**：完全免费开源（GPLv3 许可），有活跃社区支持和文档。
+You can learn more about AzuraCast via our [Documentation](https://www.azuracast.com/docs):
 
-## 主要功能
-- **媒体管理**：上传、组织和调度音乐、播客或其他音频文件，支持文件夹结构和标签系统。
-- **播放列表与调度**：创建动态播放列表，支持时间表、随机播放和广告插入。
-- **实时广播**：DJ 模式允许实时源输入，支持多种音频格式（MP3、AAC 等）。
-- **监听器互动**：集成请求系统、聊天和元数据更新，让听众请求歌曲。
-- **分析与报告**：跟踪监听者数量、峰值时间和流媒体统计，提供导出功能。
-- **移动与嵌入**：生成嵌入代码，用于网站或 app；支持移动端流媒体访问。
-- **备份与维护**：自动备份数据库和媒体文件，一键更新和 Docker 容器管理。
+- [About AzuraCast](https://www.azuracast.com/docs/#core-features)
+- [Included Software](https://www.azuracast.com/docs/#whats-included)
+- [System Requirements](https://www.azuracast.com/docs/getting-started/requirements/)
+- [Installation](https://www.azuracast.com/docs/getting-started/installation/)
 
-## 用法
-1. **安装**：
-   - AzuraCast 使用 Docker 部署。克隆仓库后，运行 `./docker.sh install` 命令（需 Docker 和 Docker Compose）。
-   - 系统要求：Linux 服务器（推荐 Ubuntu/Debian），至少 2GB RAM，域名指向服务器。
+## Live Demo
 
-2. **配置**：
-   - 访问 Web 界面（默认端口 80/443），创建管理员账户。
-   - 添加新站：选择协议（Shoutcast/Icecast），设置源密码和端口。
-   - 上传媒体：通过界面或 SFTP 上传音频文件到指定目录。
+Want to see AzuraCast for yourself? Visit our demo site at [demo.azuracast.com](https://demo.azuracast.com/):
 
-3. **运行电台**：
-   - 创建播放列表并分配到站。
-   - 启动广播：Web 界面一键启动，或使用 API 控制。
-   - 监控：查看实时仪表盘，调整设置如比特率（通常 128kbps）。
+- Username: `demo@azuracast.com`
+- Password: `demo`
 
-4. **高级用法**：
-   - 自定义 Liquidsoap 脚本以添加效果（如回声或过滤）。
-   - 集成外部服务：如 NowPlaying API 用于元数据同步。
-   - 更新：运行 `./docker.sh update` 以获取最新版本。
-   - 故障排除：参考官方文档（docs.azuracast.com）或 GitHub Issues。
+## Install AzuraCast
 
-AzuraCast 适合业余爱好者、社区电台或专业广播，提供从入门到高级的完整工具链。
+To install AzuraCast, you should have a basic understanding of the Linux shell terminal. Once installed, every aspect of your radio station can be managed via AzuraCast's web interface.
+
+Follow our **[installation guide](https://www.azuracast.com/docs/getting-started/installation/)** for instructions on how to install AzuraCast on your own server.
+
+## License
+
+AzuraCast is licensed under the [Affero GNU General Public License (AGPL) version 3.0](https://github.com/AzuraCast/AzuraCast/blob/main/LICENSE.md). This project is free and open-source software, and pull requests are always welcome.
+
+## Need Help?
+
+If you need help with AzuraCast, the first place you should visit is our [Support page](https://www.azuracast.com/docs/help/troubleshooting/), which features solutions to a number of commonly encountered issues and questions, as well as instructions on how to check your server's log files for more details. If you do need our help via GitHub, supplying these logs is absolutely essential in helping us diagnose and resolve your issue.
+
+New feature requests are powered by FeatureUpvote. You can visit our [Feature Request Page](https://features.azuracast.com/) to submit a new feature request or vote on existing ones.
+
+For bug and error reports, we rely exclusively on our [GitHub Issues board](https://github.com/AzuraCast/AzuraCast/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) to diagnose, track and update these reports. First, check to make sure the issue you're experiencing isn't already reported on GitHub. If it is, you can subscribe to the existing ticket for updates on the issue's progress. If your issue or request isn't already reported, click the "New Issue" button to create it. Make sure to follow the template provided, as it asks important details that are very important to our team.
+
+Please keep in mind that AzuraCast is a free software project built and maintained by volunteers, so there may be some delays in getting back to you. We will make the absolute best effort possible to resolve your issues and answer your questions.
+
+## Communities and Social Media
+
+We frequently post to social media any time there are significant updates to our software, security issues that users should be aware of, or upcoming changes to third-party software. You can get these updates in a more timely fashion by following our accounts:
+
+- On Bluesky at [@azuracast.com](https://bsky.app/profile/azuracast.com)
+- On Mastodon at [@AzuraCast@floss.social](https://floss.social/@AzuraCast)
+
+If you are an AzuraCast user, station owner, developer or other contributor, you can also join our Discord community, where you can ask questions, share your station and more:
+
+- [Discord](https://discord.gg/azuracast)
+
+Note that our social media channels aren't the best way to report issues to us; instead, you should use the GitHub issues instructions above, as this allows our whole team to help resolve and track the progress of the issue in one location.
+
+## Friends of AzuraCast
+
+We would like to thank the following organizations for their support of AzuraCast's ongoing development:
+
+- [JetBrains](https://www.jetbrains.com/) for making our development faster, easier and more productive with tools like PhpStorm
+- [CrowdIn](https://crowdin.com/) for giving us a simple and powerful tool to help translate our application for users around the world
+- [Netlify](https://www.netlify.com/) for supporting open-source software like ours and for serving as the host of our primary [azuracast.com](https://www.azuracast.com/) website.
+- [BrowserStack](https://www.browserstack.com/) for giving us tools to help test our software's accessibility and features across multiple browsers and operating systems.
+- [Depot](https://depot.dev/?utm_source=AzuraCast) for powering our Docker image builds.
+- The creators and maintainers of the many free and open-source tools that AzuraCast is built on, who have done so much to help move FOSS forward
+
+## Support AzuraCast Development
+
+AzuraCast will always be available free of charge, but if you find the software useful and would like to support the project's lead developer, visit either of the links below. Your support is greatly appreciated.
+
+[![Buy Me a Coffee at ko-fi.com](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/silvereagle)
+
+[Become a Patron](https://www.patreon.com/bePatron?u=232463)

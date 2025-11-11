@@ -60,5 +60,9 @@ Hyperswitch 采用模块化架构，支持全局支付方法（卡、钱包、BN
 - **开源**：透明度驱动信任和更好的软件。
 - **高性能**：用 Rust 构建，确保可靠性和性能。
 - **社区驱动**：由真实世界用例和贡献者塑造路线图。
+- **技术-agnostic**：不绑定特定技术栈或供应商。
+- **GraphQL only**：高效的API设计，无碎片化。
+- **Headless and API only**：API是交互、配置和扩展的唯一方式。
+- **云原生**：在全球品牌上经过实战测试。
 
 更多信息：[https://hyperswitch.io/](https://hyperswitch.io/)

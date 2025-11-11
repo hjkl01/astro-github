@@ -16,6 +16,10 @@ LocalStack 支持越来越多的 AWS 服务，包括：
 - Kinesis
 - SQS
 - SNS
+- API Gateway
+- CloudFormation
+- CloudWatch
+- Config
 - 以及更多！
 
 无论是测试复杂的 CDK 应用程序或 Terraform 配置，还是刚刚开始学习 AWS 服务，LocalStack 都能帮助加速和简化您的测试和开发工作流程。

@@ -4,113 +4,69 @@ title: MinerU
 
 # MinerU (OpenDataLab)
 
-> **项目地址**  
+> **项目地址**
 > https://github.com/opendatalab/MinerU
 
-## 简介  
-MinerU 是一个面向开源数据分析的 Python 工具集，旨在帮助研究人员和工程师快速完成用户数据的抽取、清洗、特征工程与建模。项目提供了统一的接口和高效的实现，支持多种常见的数据源（CSV、JSON、SQL、NoSQL 等）以及多种分析方法（聚类、关联规则、图挖掘、文本挖掘等）。
+## 简介
 
-## 主要特性  
+MinerU 是一个将 PDF 转换为机器可读格式（如 markdown、JSON）的工具，便于提取到任何格式。MinerU 在 InternLM 的预训练过程中诞生。我们专注于解决科学文献中的符号转换问题，并希望为大模型时代的技术发展做出贡献。与知名的商业产品相比，MinerU 还很年轻。如果您遇到任何问题或结果不符合预期，请在 [issue](https://github.com/opendatalab/MinerU/issues) 中提交，并**附上相关 PDF**。
 
-| 特性 | 说明 |
-|------|------|
-| **多源数据抽取** | 通过统一的 `DataLoader` 接口支持 CSV、JSON、MySQL、MongoDB 等多种来源。 |
-| **自动化清洗** | 内置缺失值填充、异常值检测与修复、数据类型转换等工具。 |
-| **特征工程** | 提供数值型、分类型、文本型特征的标准化、独热编码、TF‑IDF、词嵌入等转换器。 |
-| **用户画像** | 通过聚类与关联规则生成用户画像，支持可视化展示。 |
-| **图挖掘** | 通过 NetworkX 与 PyTorch Geometric 进行用户关系图构建、节点嵌入与社区检测。 |
-| **模型训练** | 内置轻量级机器学习管道，可直接使用 scikit‑learn、XGBoost、LightGBM 等模型。 |
-| **可视化** | 通过 Plotly、Seaborn 等库实现交互式报告与仪表盘。 |
-| **CLI 与 API** | 提供命令行工具与 Python API 两种调用方式，方便批处理与脚本集成。 |
-| **可扩展插件** | 支持自定义插件接口，用户可轻松添加新的数据源、特征或模型。 |
+## 主要特性
 
-## 功能模块
-
-| 模块 | 功能 |
-|------|------|
-| `loader` | 数据加载器，支持多种格式与数据库。 |
-| `preprocess` | 数据清洗、缺失值处理、标准化等。 |
-| `feature` | 特征提取与转换工具。 |
-| `graph` | 图构建、节点嵌入、社区检测。 |
-| `model` | 机器学习管道与模型训练。 |
-| `visualize` | 报告生成与交互式可视化。 |
-| `cli` | 命令行入口，快速执行常用流程。 |
+- **语义连贯性**：移除页眉、页脚、脚注、页码等，确保语义连贯。
+- **可读顺序输出**：以人类可读的顺序输出文本，适用于单列、多列和复杂布局。
+- **结构保留**：保留原始文档的结构，包括标题、段落、列表等。
+- **多媒体提取**：提取图像、图像描述、表格、表格标题和脚注。
+- **公式转换**：自动识别并将文档中的公式转换为 LaTeX 格式。
+- **表格转换**：自动识别并将文档中的表格转换为 HTML 格式。
+- **OCR 支持**：自动检测扫描 PDF 和乱码 PDF 并启用 OCR 功能。
+- **多语言 OCR**：OCR 支持检测和识别 109 种语言。
+- **多种输出格式**：支持多种输出格式，如多模态和 NLP Markdown、按阅读顺序排序的 JSON，以及丰富的中间格式。
+- **可视化结果**：支持各种可视化结果，包括布局可视化和跨度可视化，以高效确认输出质量。
+- **纯 CPU 运行**：支持在纯 CPU 环境中运行，也支持 GPU(CUDA)/NPU(CANN)/MPS 加速。
+- **跨平台兼容**：兼容 Windows、Linux 和 Mac 平台。
 
 ## 安装与使用
 
+### 安装 MinerU
+
+#### 使用 pip 或 uv 安装 MinerU
+
 ```bash
-# 克隆仓库
+pip install --upgrade pip
+pip install uv
+uv pip install -U "mineru[core]"
+```
+
+#### 从源码安装 MinerU
+
+```bash
 git clone https://github.com/opendatalab/MinerU.git
 cd MinerU
-
-# 创建虚拟环境（推荐）
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-
-# 安装依赖
-pip install -r requirements.txt
-
-# 可选：安装开发依赖
-pip install -r dev-requirements.txt
+uv pip install -e .[core]
 ```
 
-### 通过 Python API
+### 使用 MinerU
 
-```python
-from mineru.loader import CSVLoader
-from mineru.preprocess import DataCleaner
-from mineru.feature import TextVectorizer
-from mineru.model import SimplePipeline
-from mineru.visualize import plot_cluster
-
-# 1. 加载数据
-loader = CSVLoader('data/sample_users.csv')
-df = loader.load()
-
-# 2. 数据清洗
-cleaner = DataCleaner()
-df_clean = cleaner.clean(df)
-
-# 3. 特征工程
-vectorizer = TextVectorizer()
-X = vectorizer.fit_transform(df_clean['comment'])
-y = df_clean['label']
-
-# 4. 模型训练
-pipeline = SimplePipeline(models=['logreg', 'rf'])
-pipeline.fit(X, y)
-
-# 5. 可视化
-plot_cluster(X, pipeline.predict(X))
-```
-
-### 通过 CLI
+最简单的命令行调用是：
 
 ```bash
-# 读取、清洗、特征化并训练模型
-mineru run --input data/sample_users.csv \
-           --output results/ \
-           --model random_forest \
-           --plot
+mineru -p <input_path> -o <output_path>
 ```
+
+您可以通过命令行、API 和 WebUI 等多种方式使用 MinerU 进行 PDF 解析。详细说明请参考 [使用指南](https://opendatalab.github.io/MinerU/usage/)。
 
 ## 示例
 
 ```bash
-mineru run \
-  --input data/users.csv \
-  --output results/ \
-  --model xgboost \
-  --cluster kmeans \
-  --plot
+# 解析单个 PDF
+mineru -p sample.pdf -o output/
+
+# 批量解析
+mineru -p pdfs/ -o results/
 ```
 
-> 以上命令会完成：  
-> 1. 从 `data/users.csv` 读取数据  
-> 2. 自动清洗与特征化  
-> 3. 训练 XGBoost 模型  
-> 4. 对用户进行 K‑Means 聚类  
-> 5. 输出预测结果与聚类可视化到 `results/`
+> 以上命令会将 PDF 转换为 markdown 和 JSON 格式，提取文本、表格、公式等内容。
 
 ## 贡献
 

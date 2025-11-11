@@ -36,8 +36,13 @@ Keycloak 的功能聚焦于安全身份管理，适用于 Web 应用、移动应
 ## 用法
 
 ### 安装和部署
-1. **下载和运行**: 从 GitHub 仓库克隆代码，或下载预构建的二进制文件。使用 Maven 构建：`mvn clean install`。
-2. **Docker 部署**: 使用官方 Docker 镜像快速启动：
+
+1. **下载和运行**: 从 [官方网站](https://www.keycloak.org/downloads.html) 下载最新版本。解压后运行：
+   ```
+   bin/kc.sh start-dev
+   ```
+   或使用 Maven 从源码构建：`mvn clean install`。
+2. **Docker 部署**: 使用官方 Docker 镜像快速启动开发模式：
    ```
    docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:latest start-dev
    ```
@@ -45,6 +50,7 @@ Keycloak 的功能聚焦于安全身份管理，适用于 Web 应用、移动应
 3. **生产部署**: 配置数据库（如 PostgreSQL），启用 HTTPS，并使用 OptaPlanner 优化性能。参考官方文档进行集群模式设置。
 
 ### 配置和使用
+
 1. **创建 Realm**: 在管理控制台中创建一个新的 realm（领域），用于隔离不同应用的用户和配置。
 2. **注册客户端**: 为你的应用添加客户端（Client），配置重定向 URI、协议（OIDC/SAML）和访问类型（public/confidential）。
 3. **用户管理**: 添加用户、组和角色。启用用户自注册和密码策略。

@@ -5,44 +5,35 @@ title: aliyundrive-webdav
 # AliyunDrive WebDAV 项目
 
 ## 项目地址
+
 [https://github.com/messense/aliyundrive-webdav](https://github.com/messense/aliyundrive-webdav)
 
 ## 主要特性
-- **WebDAV 协议支持**：将阿里云盘转换为 WebDAV 服务，允许通过标准 WebDAV 客户端访问和管理文件。
-- **多用户支持**：支持多个阿里云盘账号登录，实现文件共享和多盘管理。
-- **文件同步与传输**：支持上传、下载、删除、移动等文件操作，兼容主流文件管理工具。
-- **安全认证**：使用阿里云盘的 OAuth 授权机制，确保数据安全。
-- **轻量级部署**：基于 Rust 开发，性能高效，支持 Docker 容器化部署。
-- **跨平台兼容**：可在 Windows、macOS、Linux 等系统上运行，支持各种 WebDAV 客户端如 Cyberduck、WinSCP 等。
 
-## 主要功能
-- **文件浏览与管理**：通过 WebDAV 协议浏览阿里云盘目录、预览文件。
-- **实时同步**：支持双向文件同步，自动处理文件变更。
-- **分享与协作**：可将阿里云盘文件映射为网络驱动器，便于团队协作。
-- **API 集成**：提供 RESTful API 接口，便于与其他应用集成。
-- **日志与监控**：内置日志记录和错误处理，便于调试和维护。
+- **WebDAV 服务**：将阿里云盘转换为 WebDAV 服务，主要用于配合支持 WebDAV 协议的客户端如 Infuse、nPlayer 等在电视上观看云盘视频。
+- **直接播放**：支持客户端直接从阿里云盘获取文件播放，不经过服务器中转。
+- **上传支持**：支持上传文件，但受限于 WebDAV 协议不支持文件秒传，且上传功能测试不全面。
+- **V2 版本**：基于阿里云盘开放平台接口实现，不再支持阿里云盘 Web 和 App 版本获取的 refresh token。
+- **多种安装方式**：支持二进制下载、pip 安装、snap 安装、Docker 运行等。
+- **跨平台**：支持 Windows、macOS、Linux 等系统，以及 OpenWrt 路由器。
 
 ## 用法
+
 1. **安装**：
-   - 使用 Cargo（Rust 包管理器）安装：`cargo install aliyundrive-webdav`。
-   - 或使用 Docker：`docker pull messense/aliyundrive-webdav`。
+   - 从 [GitHub Releases](https://github.com/messense/aliyundrive-webdav/releases) 下载预先构建的二进制包。
+   - 使用 pip：`pip install aliyundrive-webdav`。
+   - 使用 snap：`sudo snap install aliyundrive-webdav`。
+   - 使用 Docker：`docker run -d --name=aliyundrive-webdav --restart=unless-stopped -p 8080:8080 -v /etc/aliyundrive-webdav/:/etc/aliyundrive-webdav/ -e REFRESH_TOKEN='your refresh token' -e WEBDAV_AUTH_USER=admin -e WEBDAV_AUTH_PASSWORD=admin messense/aliyundrive-webdav`。
+   - OpenWrt：下载对应架构的 ipk 文件，使用 opkg 安装。
 
-2. **配置**：
-   - 获取阿里云盘 Refresh Token：访问 [阿里云盘开放平台](https://openapi.aliyundrive.com/)，通过 OAuth 流程获取 token。
-   - 创建配置文件（如 `config.toml`），设置 token 和 WebDAV 端口，例如：
-     ```
-     [server]
-     host = "0.0.0.0"
-     port = 8080
-
-     [aliyundrive]
-     refresh_token = "your_refresh_token"
-     ```
+2. **获取 refresh token**：
+   - 通过在线工具：[https://messense-aliyundrive-webdav-backendrefresh-token-ucs0wn.streamlit.app/](https://messense-aliyundrive-webdav-backendrefresh-token-ucs0wn.streamlit.app/)。
+   - 或命令行：`aliyundrive-webdav qr login` 扫码授权。
 
 3. **运行**：
-   - 命令行启动：`aliyundrive-webdav --config config.toml`。
-   - Docker 运行：`docker run -d -p 8080:8080 -v /path/to/config:/config messense/aliyundrive-webdav`。
+   - 命令行：`aliyundrive-webdav -r 'your_refresh_token'`。
+   - Docker：如安装步骤中的命令。
 
 4. **连接客户端**：
-   - 在 WebDAV 客户端中输入服务器地址（如 `http://localhost:8080`），使用用户名/密码（可选，根据配置）连接。
-   - 即可像本地驱动器一样管理阿里云盘文件。
+   - 在 WebDAV 客户端中输入服务器地址（如 `http://localhost:8080`），使用设置的用户名/密码连接。
+   - 即可访问阿里云盘文件。

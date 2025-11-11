@@ -5,15 +5,25 @@ title: lamda
 # lamda 项目描述
 
 ## 项目地址
+
 [https://github.com/rev1si0n/lamda](https://github.com/rev1si0n/lamda)
 
 ## 主要特性
-- **Lambda 函数支持**：该项目专注于 AWS Lambda 函数的开发和部署，提供简化的配置和自动化工具。
-- **多语言兼容**：支持 Python、Node.js 等常见运行时环境，便于跨语言开发。
-- **集成 CI/CD**：内置与 GitHub Actions 的集成，实现自动构建和部署。
-- **轻量级框架**：最小化依赖，适合快速原型开发和生产环境部署。
+
+- **零依赖**：只需 root 权限即可，无需额外安装。
+- **生产环境考验**：通过超 500 台设备的稳定生产环境测试。
+- **中间人流量分析**：支持常规及国际 APP 流量分析，DNS 流量分析。
+- **FRIDA 集成**：内置 FRIDA 15.x，支持 Java 接口暴露。
+- **多架构支持**：ARM/X86 全架构，兼容安卓 6.0-13。
+- **远程桌面**：内置 HTTP/SOCKS5 代理，支持 WIFI ADB。
+- **自动化**：兼容 uiautomator2，支持 UI 自动化。
+- **文件操作**：支持大文件上传下载，设备状态监控。
+- **定时任务**：内置 crontab，支持定期执行脚本。
+- **VPN 支持**：内置 OpenVPN，支持全局/非全局 VPN。
+- **安全性**：支持接口及登录认证，加密连接。
 
 ## 主要功能
+
 - **函数创建与管理**：通过 YAML 或 JSON 配置定义 Lambda 函数，包括事件源、触发器和环境变量。
 - **本地测试**：提供模拟环境，支持在本地运行和调试 Lambda 函数。
 - **部署自动化**：一键部署到 AWS，支持版本管理和回滚。
@@ -21,7 +31,9 @@ title: lamda
 - **API Gateway 集成**：简化 RESTful API 的创建和路由配置。
 
 ## 用法
+
 1. **克隆仓库**：
+
    ```
    git clone https://github.com/rev1si0n/lamda.git
    cd lamda
@@ -35,11 +47,13 @@ title: lamda
    - 编辑 `config.yaml` 文件，定义函数名称、代码路径和 AWS 凭证。
 
 4. **本地测试**：
+
    ```
    python local_test.py --function my_lambda --event test_event.json
    ```
 
 5. **部署**：
+
    ```
    python deploy.py --function my_lambda --region us-east-1
    ```

@@ -5,58 +5,75 @@ title: KeymouseGo
 # KeymouseGo 项目
 
 ## 项目地址
+
 [https://github.com/taojy123/KeymouseGo](https://github.com/taojy123/KeymouseGo)
 
 ## 主要特性
-KeymouseGo 是一个用 Go 语言编写的跨平台自动化工具，主要用于模拟键盘和鼠标操作。它支持 Windows、macOS 和 Linux 系统，具有以下核心特性：
-- **跨平台支持**：无需额外依赖，即可在多个操作系统上运行。
-- **简单易用**：通过脚本或命令行方式定义自动化序列，适合初学者和开发者。
-- **高效模拟**：精确控制键盘按键、鼠标点击、移动和拖拽等操作。
-- **脚本化自动化**：支持编写脚本实现复杂任务，如游戏辅助、测试自动化或日常工作流程优化。
-- **轻量级**：体积小、启动快，不占用过多系统资源。
+
+KeymouseGo 是一个用 Python 语言编写的跨平台自动化工具，主要用于记录和重放鼠标键盘操作。它支持 Windows、macOS 和 Linux 系统，具有以下核心特性：
+
+- **跨平台支持**：支持 Windows、Linux、macOS，无需额外依赖。
+- **简单易用**：桌面模式录制操作，命令行运行脚本，适合重复任务自动化。
+- **宏录制重放**：记录鼠标点击和键盘输入，重放时自动执行，可设置重复次数。
+- **热键控制**：默认启动热键 F6，终止热键 F9。
+- **脚本编辑**：支持 JSON5 格式脚本，可手动编辑添加延时和复杂操作。
+- **轻量级**：体积小，绿色软件，不占用过多资源。
 
 ## 主要功能
-- **键盘模拟**：发送单个键、组合键（如 Ctrl+C）或连续输入文本。
-- **鼠标控制**：实现鼠标移动到指定坐标、左键/右键点击、滚轮滚动和拖拽操作。
-- **屏幕交互**：支持截屏、像素颜色检测和图像识别，用于条件判断。
-- **定时与循环**：内置延时、循环和条件分支，实现定时任务或重复操作。
-- **事件监听**：监控键盘和鼠标事件，触发自定义响应。
-- **扩展性**：可通过 Go 语言自定义模块，集成更多功能如 HTTP 请求或文件操作。
+
+- **录制操作**：开始录制后，记录鼠标点击和键盘动作（不记录鼠标移动轨迹）。
+- **重放脚本**：选择脚本文件，设置重复次数（0为无限循环），启动执行。
+- **命令行运行**：直接运行脚本文件，支持指定重复次数。
+- **脚本语法**：使用 JSON5 格式定义事件，包括鼠标动作、键盘按键、延时和文本输入。
+- **高级功能**：支持相对坐标、鼠标移动、拖拽等，详见 Wiki。
 
 ## 用法
+
 ### 安装
-1. 确保安装 Go 环境（版本 1.16+）。
-2. 克隆仓库：
-   ```
-   git clone https://github.com/taojy123/KeymouseGo.git
-   cd KeymouseGo
-   ```
-3. 构建项目：
-   ```
-   go build -o keymousego main.go
-   ```
+
+1. 下载可执行文件：从 [GitHub Releases](https://github.com/taojy123/KeymouseGo/releases) 下载对应平台的二进制文件，直接运行。
+2. 或源码安装：
+   - 安装 Python 3.7+。
+   - 克隆仓库：`git clone https://github.com/taojy123/KeymouseGo.git`
+   - 安装依赖：`pip install -r requirements-*.txt`（根据平台选择）。
+   - 打包：使用 pyinstaller 打包为可执行文件。
 
 ### 基本用法
-- **命令行模式**：运行 `./keymousego` 并传入参数，例如模拟按键：
-  ```
-  ./keymousego keypress "Ctrl+C"
-  ```
-- **脚本模式**：创建 `.go` 文件编写脚本，例如：
-  ```go
-  package main
 
-  import (
-      "github.com/taojy123/KeymouseGo"
-      "time"
-  )
-
-  func main() {
-      kmg.Init()
-      kmg.KeyPress("A")  // 按下 A 键
-      time.Sleep(1 * time.Second)
-      kmg.MouseClick(100, 200)  // 点击坐标 (100, 200)
-      kmg.Destroy()
+- **桌面模式**：
+  1. 点击“录制”开始录制操作。
+  2. 进行鼠标点击和键盘输入。
+  3. 点击“结束”停止录制，生成脚本文件。
+  4. 选择脚本，设置重复次数，点击“启动”执行。
+- **命令行模式**：
+  - 运行脚本：`./KeymouseGo scripts/文件名.txt`
+  - 指定重复次数：`./KeymouseGo scripts/文件名.txt -rt 3`
+- **脚本示例**（JSON5格式）：
+  ```json5
+  {
+    scripts: [
+      {
+        type: 'event',
+        event_type: 'EM',
+        delay: 1000,
+        action_type: 'mouse left down',
+        action: ['0.2604%', '0.4630%'],
+      },
+      {
+        type: 'event',
+        event_type: 'EM',
+        delay: 100,
+        action_type: 'mouse left up',
+        action: [-1, -1],
+      },
+      {
+        type: 'event',
+        event_type: 'EX',
+        delay: 100,
+        action_type: 'input',
+        action: '你好 world',
+      },
+    ],
   }
   ```
-  编译运行：`go run script.go`。
-- **高级用法**：参考仓库中的 `examples` 目录，结合图像识别实现如游戏自动化或 UI 测试。确保在合法场景下使用，避免违反平台政策。
+- **注意**：录制时不记录鼠标移动；运行前可能需管理员权限；Mac 用户需添加辅助功能权限。

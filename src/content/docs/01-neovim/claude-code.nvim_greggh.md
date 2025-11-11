@@ -4,12 +4,21 @@ title: claude-code.nvim
 
 项目地址: [https://github.com/greggh/claude-code.nvim](https://github.com/greggh/claude-code.nvim)
 
-该项目是一个用于 Neovim 的插件，旨在通过集成 Claude AI 模型来增强代码编辑体验。主要特性和功能包括：
+> Description from GitHub: Seamless integration between Claude Code AI assistant and Neovim
 
-1. **智能代码补全**：利用 Claude AI 提供上下文相关的代码补全建议，提升编程效率。
-2. **代码片段生成**：根据用户输入生成常用的代码片段，帮助快速编写代码。
-3. **语法检查与建议**：实时对代码进行语法检查，并提供改进建议，减少错误。
-4. **集成简单**：易于安装和配置，支持默认的 Neovim 插件管理工具。
+该项目是一个用于 Neovim 的插件，通过集成 Claude Code AI 助手来增强代码编辑体验。主要特性和功能包括：
+
+1. **终端窗口切换**：使用单个键按下在终端窗口中切换 Claude Code。
+2. **命令行参数支持**：支持如 `--continue` 和自定义变体的命令行参数。
+3. **自动文件重新加载**：自动检测和重新加载 Claude Code 修改的文件。
+4. **实时缓冲区更新**：文件外部更改时的实时缓冲区更新。
+5. **可自定义窗口位置和大小**：（包括浮动窗口）。
+6. **与 which-key 集成**：（如果可用）。
+7. **自动使用 git 项目根目录**：（当可用时）作为工作目录。
+8. **模块化和可维护代码结构**：。
+9. **使用 LuaCATS 的类型注解**：更好的 IDE 支持。
+10. **配置验证**：防止错误。
+11. **测试框架**：可靠性（44 个综合测试）。
 
 使用方法：
 

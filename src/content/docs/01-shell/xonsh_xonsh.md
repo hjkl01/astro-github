@@ -2,38 +2,143 @@
 title: xonsh
 ---
 
-# Xonsh 项目文档：xonshrc.rst
+# Xonsh (xonsh/xonsh)
 
-## 项目地址
-[https://github.com/xonsh/xonsh/blob/master/docs/xonshrc.rst](https://github.com/xonsh/xonsh/blob/master/docs/xonshrc.rst)
+> 项目地址: <https://github.com/xonsh/xonsh>
+
+## 概述
+
+Xonsh 是一个 Python 驱动的命令行 shell。它是 Python 3.6+ 的超集，添加了 shell 原语。名称 "Xonsh" 读作 "conch"（🐚），代表它属于命令 shell 的世界。
 
 ## 主要特性
-xonshrc.rst 是 Xonsh 项目文档的一部分，Xonsh 是一个 Python 驱动的命令行 shell，结合了 Unix shell 的命令执行能力和 Python 的编程功能。该文档主要描述 xonshrc 文件的配置特性，包括环境变量设置、别名定义、钩子函数和启动脚本的自定义。核心特性包括：
-- **混合编程支持**：允许在 shell 中直接嵌入 Python 代码，实现脚本化和交互式命令。
-- **跨平台兼容**：支持 Windows、macOS 和 Linux，支持多种子命令行（如 bash、cmd.exe）。
-- **配置灵活性**：通过 xonshrc 文件自定义 shell 行为，如路径搜索、命令历史和环境变量。
-- **扩展性强**：提供钩子（hooks）机制，用于在 shell 生命周期中注入自定义逻辑。
 
-## 主要功能
-- **环境配置**：设置 $PATH、$HOME 等环境变量，支持动态修改。
-- **别名和命令**：定义命令别名（如 alias ls='ls --color=auto'），并支持 Python 函数作为命令。
-- **钩子系统**：包括 on_pre_init、on_post_init 等钩子，用于初始化和事件处理。
-- **启动脚本**：xonshrc 文件作为用户配置文件，支持模块导入和全局设置。
-- **历史和补全**：配置命令历史记录、自动补全和错误处理。
+- **Python 超集**：在 shell 中直接嵌入 Python 代码，实现脚本化和交互式命令。
+- **跨平台**：原生支持 Windows、macOS 和 Linux。
+- **混合编程**：结合了 Unix shell 的命令执行能力和 Python 的编程功能。
+- **扩展系统**：通过 xontribs（扩展）系统提供额外功能。
+- **配置灵活**：通过 xonshrc 文件自定义 shell 行为。
+- **钩子机制**：提供生命周期钩子，用于注入自定义逻辑。
+- **智能提示**：内置命令补全、语法高亮和历史记录。
+
+## 核心功能
+
+- **环境变量管理**：动态设置和修改 $PATH、$HOME 等。
+- **别名系统**：定义命令别名，支持 Python 函数作为命令。
+- **模块导入**：直接在 shell 中导入和使用 Python 模块。
+- **管道和重定向**：支持 Unix 风格的管道和 I/O 重定向。
+- **子进程执行**：无缝执行外部命令和脚本。
+- **数据结构**：原生支持列表、字典等 Python 数据结构。
+
+## 安装
+
+### 通过 pip 安装
+
+```bash
+python -m pip install 'xonsh[full]'
+```
+
+### 通过包管理器
+
+Xonsh 在多个包管理器中可用：
+
+- **Linux/macOS**: `brew install xonsh`
+- **更多选项**: 见 [安装文档](https://xon.sh/contents.html#installation)
 
 ## 用法
-1. **创建配置文件**：在用户目录下创建 `~/.xonshrc` 文件（Windows 为 `%USERPROFILE%\xonshrc.xsh`）。
-2. **基本语法**：使用 Python 语法编写，例如：
-   ```
-   $PATH = ["/usr/local/bin"] + $PATH
-   aliases['ll'] = 'ls -l'
-   ```
-3. **钩子示例**：在 xonshrc 中定义钩子函数：
-   ```
-   def on_pre_init():
-       print("Xonsh 初始化中...")
-   ```
-4. **运行 Xonsh**：启动 shell 时自动加载 xonshrc。使用 `xonsh` 命令进入交互模式，或通过脚本运行 `xonsh script.xsh`。
-5. **高级用法**：导入模块扩展功能，如 `import subprocess` 用于自定义命令执行。参考文档中示例配置环境、集成工具链（如 Git、Docker）。
 
-更多细节请查看源文档。
+### 基本使用
+
+```bash
+# 启动交互式 shell
+xonsh
+
+# 执行脚本
+xonsh script.xsh
+
+# 内联执行
+xonsh -c "echo 'Hello from xonsh'"
+```
+
+### Python 集成示例
+
+```python
+# 环境变量
+$PATH.append('/usr/local/bin')
+
+# 别名
+aliases['ll'] = 'ls -l'
+aliases['gs'] = 'git status'
+
+# Python 代码
+def greet(name):
+    return f"Hello, {name}!"
+
+# 使用 Python 特性
+files = $(ls).split()
+for f in files:
+    if f.endswith('.py'):
+        echo @(f)
+```
+
+### 配置文件 (xonshrc)
+
+在 `~/.xonshrc` 中自定义配置：
+
+```python
+# 环境设置
+$PATH = ["/usr/local/bin"] + $PATH
+$PROMPT = '{user}@{hostname} {cwd} $ '
+
+# 别名
+aliases['ll'] = 'ls -la'
+aliases['..'] = 'cd ..'
+
+# 钩子函数
+def on_pre_init():
+    print("Welcome to xonsh!")
+
+# 导入模块
+import sys
+```
+
+## 扩展 (Xontribs)
+
+Xonsh 支持扩展系统，称为 xontribs：
+
+- [xontrib 列表](https://github.com/topics/xontrib)
+- [Awesome xontribs](https://github.com/xonsh/awesome-xontribs)
+
+### 常用 xontribs
+
+```bash
+# 安装 xontrib
+xpip install xontrib-powerline
+
+# 加载 xontrib
+xontrib load powerline
+```
+
+## 集成项目
+
+Xonsh 被以下项目使用或兼容：
+
+- **Conda/Mamba**: 现代包管理器
+- **Starship**: 跨 shell 提示符
+- **Zoxide**: 智能 cd 命令
+- **Jupyter**: 通过 xontrib-jupyter
+- **更多**: 见 [项目列表](https://xon.sh/projects.html)
+
+## 文档和支持
+
+- 官方文档: <https://xon.sh>
+- 教程: <https://xon.sh/tutorial.html>
+- 社区: [Zulip Chat](https://xonsh.zulipchat.com/)
+- 问题反馈: <https://github.com/xonsh/xonsh/issues>
+
+## 贡献
+
+欢迎贡献！见 [贡献指南](https://xon.sh/devguide.html)。
+
+- 解决 [热门问题](https://github.com/xonsh/xonsh/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc)
+- 创建新的 xontrib
+- 改进文档或核心功能

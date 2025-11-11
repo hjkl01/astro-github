@@ -4,71 +4,40 @@ title: uosc
 
 # uosc
 
-## 1. 项目简介  
-uosc 是一个用于 Node.js 的 OSC（Open Sound Control）库，提供简洁的 API 用于发送、接收以及解析 OSC 消息，支持 UDP 与 WebSocket。
+## 项目简介
 
-## 2. 主要特性  
-- **轻量级**：仅几百行代码，依赖最小化。  
-- **全功能**：支持 OSC 地址、数据类型、时间戳、Bundle 等完整规范。  
-- **UDP & WebSocket**：默认 UDP，附加 WebSocket 封装，便于浏览器端使用。  
-- **监听模式**：可按地址模式（`/foo`、`/bar/*`、`/baz/#`）订阅消息。  
-- **Type‑safe**：使用 TypedArray 加速数据读写。  
+uosc 是一个功能丰富的极简主义基于邻近度的 MPV 播放器 UI。它根据光标位置显示和隐藏 UI 元素，提供无缝的观看体验。
 
-## 3. 安装  
-```bash
-npm install uosc
-```
+## 主要特性
 
-## 4. 基本用法  
+- **邻近度隐藏**：UI 元素基于光标位置显示/隐藏，而不是每次鼠标移动。
+- **最小化进度条**：当未使用时，时间线可以最小化为离散的进度条。
+- **上下文菜单**：通过编辑 input.conf 文件构建自己的上下文菜单，支持嵌套。
+- **可配置控制栏**：自定义控制栏元素。
+- **快速缩略图**：与 thumbfast 集成，提供高效缩略图。
+- **多种 UI**：用于选择字幕、音频、视频轨道，下载字幕，加载外部字幕，选择流质量，快速目录和播放列表导航。
+- **即时搜索**：所有菜单都是即时可搜索的，只需开始输入。
+- **鼠标滚轮**：根据悬停的 UI 元素执行不同操作。
+- **章节到范围**：将章节转换为时间线范围。
+- **大量选项和命令**：用于绑定键的许多有用选项和命令。
+- **脚本 API**：用于扩展或使用 uosc 渲染菜单的第三方脚本 API。
 
-### 4.1 创建客户端并发送  
-```js
-const uosc = require('uosc');
-const client = uosc.createClient('127.0.0.1', 8000);
+## 安装
 
-client.send('/audio/freq', [440, 0.8]); // 频率，音量
-```
+uosc 需要 mpv 0.33+。
 
-### 4.2 创建服务器并接收  
-```js
-const uosc = require('uosc');
-const server = uosc.createServer(8000, (socket, msg, rinfo) => {
-    console.log('Received msg:', msg.address, msg.args);
-});
-```
+1. 下载并解压 uosc.zip 到 mpv 配置目录。
+2. 可选：下载 uosc.conf 到 script-opts，包含所有选项。
+3. 可选：安装 thumbfast 以获取时间线缩略图。
+4. 可选：mpv.conf 调整以更好地集成 uosc。
 
-### 4.3 订阅地址模式  
-```js
-server.addListener/*', (msg) => {
-    console.log('Audio msg:', msg);
-});
-```
+## 用法
 
-### 4.4 发送 Bundle  
-```js
-const bundle = uosc.createBundle(0, [
-    { address: '/audio/vol', args: [0.5] },
-    { address: '/audio/freq', args: [880] }
-]);
-client.sendBundle(bundle);
-```
+- **激活菜单**：右键或菜单键绑定到 uosc/menu。
+- **导航**：使用 up/down、enter、bs 等键导航菜单。
+- **搜索**：开始输入以搜索菜单项。
+- **命令**：绑定如 toggle-ui、flash-ui 等命令到键。
 
-## 5. API 说明  
+## 项目地址
 
-| 方法 | 作用 |
-| ---- | ---- |
-| `uosc.createClient(host, port)` | 创建 UDP/WS 客户端 |
-| `uosc.createServer(port, [callback])` | 创建 UDP/WS 服务器 |
-| `client.send(address, args)` | 发送单条 OSC 消息 |
-| `client.sendBundle(bundle)` | 发送 Bundle |
-| `server.addListener(address, fn)` | 注册地址监听器 |
-| `server.removeListener(address, fn)` | 移除监听器 |
-| `uosc.encodeMessage(msg)` | 手动编码消息 |
-| `uosc.decodeMessage(buffer)` | 手动解码消息 |
-
-## 6. 参考  
-- 官方文档与示例在 GitHub  
-- 支持的类型：`f`(float), `i`(int), `s`(string), `b`(blob), `m`(midi), `T`, `F`, `N`, `-`, `[]` (数组)
-
-## 项目地址  
 [https://github.com/tomasklaen/uosc](https://github.com/tomasklaen/uosc)

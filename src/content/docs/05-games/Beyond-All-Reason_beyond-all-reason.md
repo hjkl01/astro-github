@@ -10,57 +10,36 @@ title: Beyond-All-Reason
 
 ## 主要特性
 
-- **基于Unity**：使用Unity 2022.x 进行开发，采用 C# 编写脚本，支持 3D 与 2D 场景。
-- **模块化设计**：游戏核心逻辑拆分为多个可独立升级的模块，方便后期扩展和替换。
-- **多人联网**：集成 UNET / Mirror，实现跨平台多人在线对战。
-- **AI 对战**：内置基于状态机的 AI 系统，支持单人 vs AI 的多种玩法。
-- **Mod 插件**：提供插件框架，玩家可以通过自定义脚本或资源包实现游戏改动。
-- **日常挑战与剧情**：自带多段剧情任务与每日挑战系统，增强游戏趣味性与重玩价值。
-- **性能优化**：使用对象池、协程以及 DOTS（Burst+Jobs）等技术，减少 GC 与帧率波动。
+- **开源 RTS 游戏**：基于 Recoil RTS Engine 构建的免费实时战略游戏。
+- **跨平台支持**：支持 Windows、Linux、macOS 等平台。
+- **社区驱动**：活跃的开源社区，提供持续更新和 mod 支持。
+- **免费下载**：从官方网站免费下载和游玩。
 
 ## 功能说明
 
-| 功能 | 说明 |
-|------|------|
-| **宇宙航行** | 通过自由飞行控制器在星系中飞行，支持加速与降落。 |
-| **资源采集** | 玩家可在行星表面采集矿物、能源与生物样本，供科技研发使用。 |
-| **科技树** | 由玩家制衡不同研究路径，解锁新舰船、武器与等级提升。 |
-| **舰队战斗** | 采用轨道投射与实体碰撞，支持多舰作战与策略配置。 |
-| **UPnP 直连** | 内置 NAT-PIN/NAT-T 解析，简化玩家间直接连接。 |
-| **自定义剧情** | 通过文本与脚本文件驱动剧情节点，可在游戏中随时跳转回调。 |
+| 功能           | 说明                                              |
+| -------------- | ------------------------------------------------- |
+| **单位建造**   | 建造各种地面和空中单位，进行战略部署。            |
+| **资源管理**   | 采集资源，建造经济单位，维持军队供应。            |
+| **战斗系统**   | 实时战斗，支持多种武器和战术。                    |
+| **多人对战**   | 支持多人在线对战，通过 lobby 连接。               |
+| **地图多样性** | 多种地图类型，支持自定义地图。                    |
+| **Mod 支持**   | 开放式 mod 系统，允许自定义单位、地图和游戏模式。 |
 
 ## 安装与使用
 
-1. **克隆仓库**
+1. **下载**：从官方网站 [https://www.beyondallreason.info/download](https://www.beyondallreason.info/download) 下载游戏。
 
-   ```bash
-   git clone https://github.com/beyond-all-reason/Beyond-All-Reason.git
-   ```
+2. **安装**：运行安装程序，按照提示安装。
 
-2. **打开 Unity 项目**
+3. **运行**：启动游戏，通过 lobby 进入单人或多人模式。
 
-   - 直接双击 `Beyond-All-Reason/Assets` 文件夹中的 `ProjectSettings` 目录，或在 Unity Hub 中导入该项目。
-
-3. **构建平台**
-
-   - 在 `File → Build Settings` 中设置目标平台（Windows、Mac、Linux、WebGL 等），点击 **Build** 或 **Build And Run**。
-
-4. **运行游戏**
-
-   - 执行生成的可执行文件，或者直接在 Unity Editor 中按 `Play` 进入实验模式。
-
-5. **多人匹配**
-
-   - 在游戏主界面选择 “多人游戏” → 服务器/匹配，输入服务器地址或使用默认 matchmaking。
-
-6. **添加 Mod**
-
-   - 在 `Mods` 文件夹下放置自定义脚本或资源包，然后在主菜单 “Mod 管理器” 中激活。
+4. **玩法**：参考指南 [https://www.beyondallreason.info/guides](https://www.beyondallreason.info/guides) 学习游戏规则。
 
 ## 开发者指南
 
-- **代码结构**：核心逻辑分布在 `Assets/Scripts/Core`，网络模块在 `Assets/Scripts/Networking`，AI 与循 Clang 8.0 代码风格，使用 PascalCase 规范命名。建议使用 Git Flow 工作流。
-- **文档**：所有接口均已在 `Docs` 文件夹下生成。请在 PR 时更新对应 Markdown 文档。
+- **代码结构**：游戏代码主要使用 Lua 脚本，引擎基于 C++ 的 Recoil RTS Engine。游戏逻辑在 `luarules` 和 `luaui` 目录。
+- **开发环境**：需要安装 lobby (Chobby)，然后克隆代码到 `data/games` 目录，创建 `devmode.txt` 文件启用开发模式。
+- **贡献**：Fork 仓库，提交 PR。参考 [https://github.com/beyond-all-reason/Beyond-All-Reason](https://github.com/beyond-all-reason/Beyond-All-Reason) 的 README 获取详细开发指南。
 
 > 你可以在项目的 Issues 或 Discussions 区域提出功能请求或报告 BUG。我们十分欢迎贡献者参与开发。
-

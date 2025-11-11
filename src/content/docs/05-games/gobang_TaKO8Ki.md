@@ -5,40 +5,48 @@ title: gobang
 # Gobang 项目
 
 ## 项目地址
+
 [https://github.com/TaKO8Ki/gobang](https://github.com/TaKO8Ki/gobang)
 
 ## 主要特性
-- **经典五子棋实现**：基于Go语言开发的命令行版五子棋游戏，支持标准15x15棋盘规则。
-- **AI玩家支持**：内置简单AI对手，可与玩家进行人机对战，AI采用基本策略（如优先阻挡和进攻）。
-- **交互式界面**：通过终端输入坐标进行落子，实时显示棋盘状态。
-- **游戏规则完整**：自动检测五子连珠胜负，支持悔棋和重新开始功能。
-- **轻量级设计**：无外部依赖，纯Go实现，便于编译和运行。
+
+- **跨平台支持**：支持 macOS、Windows、Linux。
+- **多数据库支持**：支持 MySQL、PostgreSQL、SQLite。
+- **直观的键盘控制**：仅使用键盘进行操作，无需鼠标。
+- **TUI 界面**：终端用户界面，提供直观的数据库浏览和管理。
 
 ## 主要功能
-- **人机对战**：玩家与AI轮流落子，游戏结束时显示胜负结果。
-- **棋盘可视化**：使用ASCII艺术在终端渲染棋盘，标记黑白子位置。
-- **输入验证**：确保落子坐标有效，避免无效操作。
-- **游戏重置**：支持新游戏开始或退出程序。
-- **胜负判断**：实时检查横、竖、斜线是否形成五子连珠。
+
+- **数据库连接**：配置并连接到多种数据库。
+- **数据浏览**：查看表、记录、列、约束、外键等。
+- **查询执行**：支持 SQL 查询（计划中）。
+- **键盘导航**：高效的键盘快捷键进行导航和操作。
 
 ## 用法
-1. **克隆仓库**：
-   ```
-   git clone https://github.com/TaKO8Ki/gobang.git
-   cd gobang
-   ```
 
-2. **编译运行**：
-   - 确保安装Go环境（版本1.16+）。
-   ```
-   go build -o gobang main.go
-   ./gobang  # Linux/macOS
-   # 或 gobang.exe (Windows)
-   ```
+1. **安装**：
+   - 使用 Homebrew（Linux、macOS）：`brew install tako8ki/tap/gobang`
+   - 使用 Scoop（Windows）：`scoop install gobang`
+   - 使用 Cargo：`cargo install gobang`
+   - 或从 Releases 下载二进制文件。
 
-3. **游戏操作**：
-   - 运行后，棋盘显示在终端。
-   - 输入落子坐标，如 "A1"（列A，行1），黑子先手。
-   - AI自动响应。
-   - 输入 "quit" 退出，"restart" 重置游戏。
-   - 游戏结束时显示结果，按提示继续或退出。
+2. **运行**：
+   - `gobang`
+
+3. **配置**：
+   - 编辑配置文件添加数据库连接（位置取决于 OS，如 `~/.config/gobang/config.toml`）。
+   - 示例配置：
+     ```
+     [[conn]]
+     type = "mysql"
+     host = "localhost"
+     user = "root"
+     ```
+
+4. **按键映射**：
+   - h/j/k/l：滚动
+   - Ctrl+u/Ctrl+d：多行滚动
+   - g/G：滚动到顶/底
+   - 1-5：切换到记录/列/约束/外键/索引标签
+   - /：过滤
+   - ?：帮助

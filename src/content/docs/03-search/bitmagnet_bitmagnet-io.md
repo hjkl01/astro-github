@@ -2,12 +2,14 @@
 title: bitmagnet
 ---
 
-# Bitmagnet 项目
+# Bitmagnet
 
 **GitHub 项目地址:** [https://github.com/bitmagnet-io/bitmagnet](https://github.com/bitmagnet-io/bitmagnet)
 
+A self-hosted BitTorrent indexer, DHT crawler, content classifier and torrent search engine with web UI, GraphQL API and Servarr stack integration.
+
 ## 主要特性
-Bitmagnet 是一个开源的磁力链接索引器和 API，提供高效的 BitTorrent 生态系统搜索和数据管理功能。主要特性包括：
+
 - **磁力链接索引**：自动爬取和索引 BitTorrent 元数据，支持大规模数据存储和快速检索。
 - **RESTful API 接口**：提供标准化的 API，用于查询 torrent 信息、元数据和搜索结果，支持 JSON 格式输出。
 - **高性能架构**：基于 Go 语言开发，使用 PostgreSQL 数据库和 Redis 缓存，实现高效的索引和查询性能。
@@ -16,6 +18,7 @@ Bitmagnet 是一个开源的磁力链接索引器和 API，提供高效的 BitTo
 - **自托管友好**：易于部署在 Docker 或 Kubernetes 环境中，无需复杂配置。
 
 ## 主要功能
+
 - **搜索功能**：通过 API 或 Web 界面搜索 torrent，支持关键词、类别、标签和高级过滤（如文件大小、上传日期）。
 - **元数据管理**：存储和更新 torrent 元数据，包括健康度评估（基于种子/下载者比率）和自动验证。
 - **API 集成**：暴露 endpoints 如 `/search`、`/torrent/{id}` 和 `/stats`，便于与其他工具（如 qBittorrent 或 Deluge）集成。
@@ -24,6 +27,7 @@ Bitmagnet 是一个开源的磁力链接索引器和 API，提供高效的 BitTo
 - **安全性**：内置认证机制（如 API 密钥）和数据加密，确保隐私保护。
 
 ## 用法
+
 1. **安装与部署**：
    - 使用 Docker 快速启动：运行 `docker run -p 8080:8080 bitmagnet/bitmagnet`（参考官方文档获取完整配置）。
    - 手动安装：克隆仓库，安装 Go 环境，运行 `go build` 和 `./bitmagnet`。配置 PostgreSQL 和 Redis 连接。

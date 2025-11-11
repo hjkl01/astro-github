@@ -4,30 +4,36 @@ title: automatic-api
 
 # Automatic API 项目
 
-## 项目地址
-[GitHub 项目地址](https://github.com/dbohdan/automatic-api)
+**GitHub 项目地址：** [https://github.com/dbohdan/automatic-api](https://github.com/dbohdan/automatic-api)
 
-## 主要特性
-- **自动化API生成**：基于Python脚本自动生成RESTful API，支持从简单函数快速构建API端点。
-- **框架无关**：不依赖特定Web框架，可与Flask、FastAPI等集成，灵活性高。
-- **简单配置**：通过装饰器或配置字典定义API路由、参数和响应，支持JSON数据处理。
-- **内置测试支持**：提供示例和测试用例，便于验证API功能。
-- **轻量级设计**：代码简洁，易于扩展和自定义，适合小型项目或原型开发。
+## 项目主要特性
+
+Automatic API 是一个开源项目，列出了各种将数据库自动转换为 REST/GraphQL API 的软件工具。由 dbohdan 维护，帮助开发者快速找到合适的数据库 API 生成工具。
+
+主要特性包括：
+
+- **工具列表**：收集了众多自动生成 API 的工具，支持多种数据库如 PostgreSQL, MySQL, SQLite 等。
+- **分类详细**：按数据库类型、API 类型（REST/GraphQL）分类。
+- **信息丰富**：每个工具包括名称、支持数据库、API 类型、实现语言、许可证、GitHub 统计等。
+- **持续更新**：社区贡献，定期更新工具信息。
+- **开源免费**：所有工具均为开源，无需付费。
 
 ## 主要功能
-- **路由定义**：自动将Python函数映射为HTTP端点，支持GET、POST等方法。
-- **参数处理**：自动解析查询参数、路径参数和请求体，支持类型验证。
-- **响应格式化**：统一返回JSON格式，支持错误处理和自定义响应。
-- **文档生成**：内置简单文档生成，帮助开发者快速了解API接口。
-- **扩展性**：支持添加中间件、认证和缓存机制。
+
+该项目的主要功能是提供数据库到 API 转换工具的目录。具体包括：
+
+- **REST API 生成**：如 PostgREST, Directus 等。
+- **GraphQL API 生成**：如 Hasura, PostGraphile 等。
+- **数据库内置 API**：如 CouchDB, ArangoDB 等。
+- **多数据库支持**：支持 SQL 和 NoSQL 数据库。
+- **工具比较**：帮助选择适合的工具。
 
 ## 用法
-1. **安装**：克隆仓库后，使用`pip install -r requirements.txt`安装依赖。
-2. **基本使用**：
-   - 导入模块：`from automatic_api import create_app`。
-   - 定义函数：例如`def hello(name): return {'message': f'Hello, {name}!'}`
-   - 创建应用：`app = create_app([hello])`。
-   - 运行：使用Flask运行`app.run()`，访问`/hello?name=World`测试。
-3. **高级配置**：通过`ApiConfig`类自定义路由前缀、默认响应等。
-4. **示例**：仓库中提供`examples/`目录，运行`python example.py`查看演示。
-5. **扩展**：修改源代码添加自定义功能，或集成到现有项目中。
+
+1. **访问项目**：克隆仓库或查看 README。
+2. **选择工具**：根据数据库类型和需求查找工具。
+3. **查看详情**：点击链接查看工具文档和安装方法。
+4. **安装使用**：按工具说明安装和配置。
+5. **贡献**：提交新工具或更新信息。
+
+适用于需要快速为数据库生成 API 的开发者。详细列表请参考 GitHub README。

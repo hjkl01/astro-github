@@ -2,7 +2,6 @@
 title: cobra
 ---
 
-
 # Cobra (spf13/cobra)
 
 > 项目地址: <https://github.com/spf13/cobra>
@@ -18,8 +17,23 @@ title: cobra
 - **多种标志类型**  
   `String`, `Int`, `Bool`, `StringSlice` 等，支持持久化标志（`PersistentFlags`）和本地标志（`Flags`）。
 
+- **全局、本地和级联标志**  
+  支持全局、局部和级联标志的灵活配置。
+
+- **智能建议**  
+  提供智能建议，例如输入 `app srver` 时提示 `app server`。
+
 - **自动补全**  
   支持 Bash、Zsh、Fish、PowerShell 等多种 shell 的命令补全脚本。
+
+- **分组帮助**  
+  支持子命令的帮助分组。
+
+- **自动生成手册页**  
+  自动生成应用程序的手册页。
+
+- **命令别名**  
+  支持命令别名，允许在不破坏现有功能的情况下更改命令。
 
 - **可配置的使用模板**  
   通过 `cmd.SetUsageTemplate()` 自定义用法展示。
@@ -29,6 +43,12 @@ title: cobra
 
 - **集成测试友好**  
   通过 `cobra.Command` 的 `ExecuteContextC` 等方法，可在单元测试中执行命令。
+
+- **灵活的帮助和使用定义**  
+  允许自定义帮助、使用等。
+
+- **可选的 Viper 集成**  
+  支持与 Viper 库的无缝集成，用于 12 因子应用程序。
 
 ## 基本用法
 

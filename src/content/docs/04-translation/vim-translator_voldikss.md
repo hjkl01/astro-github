@@ -7,7 +7,8 @@ title: vim-translator
 **GitHub 项目地址**: [https://github.com/voldikss/vim-translator](https://github.com/voldikss/vim-translator)
 
 ## 主要特性
-- **集成翻译引擎**：支持 Google Translate、Youdao、DeepL、Microsoft Translator 等多种翻译服务，提供准确的翻译结果。
+
+- **集成翻译引擎**：支持 bing、google、haici、youdao、sdcv、trans 等多种翻译服务（iciba 已过期），提供准确的翻译结果。
 - **多语言支持**：可翻译英文、中文、日文等常见语言，并支持自定义语言对。
 - **Vim 友好界面**：无缝集成 Vim 编辑器，支持弹出窗口、浮动窗口或新标签页显示翻译结果。
 - **批量翻译**：可翻译选中文本、单词、句子或整个文件内容。
@@ -16,14 +17,15 @@ title: vim-translator
 - **扩展性**：支持命令行模式和脚本集成，适用于自动化任务。
 
 ## 主要功能
+
 - **单词/短语翻译**：光标置于单词上，一键获取翻译、发音和解释。
 - **选中文本翻译**：选中任意文本段落，进行即时翻译。
 - **文件翻译**：翻译整个缓冲区或指定文件，支持输出到新缓冲区。
 - **历史记录**：保存翻译历史，便于回顾和复用。
-- **发音支持**：集成 TTS（文本到语音）功能，播放翻译结果的发音。
-- **API 集成**：允许用户输入自定义 API 密钥以访问高级翻译服务。
+- **无需 API 密钥**：无需 appid/appkey，直接使用翻译服务。
 
 ## 用法
+
 1. **安装**：
    - 使用 Vim 插件管理器（如 Vim-Plug）安装：
      ```

@@ -3,7 +3,7 @@ title: GitHub Projects Collection
 description: A curated collection of useful GitHub projects for developers.
 template: splash
 hero:
-  tagline: Discover amazing open-source projects on GitHub!
+  tagline: Discover amazing open-source projects on GitHub, automatically curated and described with AI!
   image:
     file: ../../assets/houston.webp
   actions:
@@ -18,19 +18,71 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
+## How It Works
+
+This collection is automatically maintained through several key features:
+
+### 🤖 Automated Content Generation
+
+- **GitHub Trending Scraper**: Automatically fetches trending repositories from GitHub across multiple programming languages
+- **AI-Powered Descriptions**: Uses advanced AI models to generate detailed Chinese descriptions of project features and usage
+- **Smart Categorization**: Automatically organizes projects into appropriate categories based on their functionality
+
+### 🚀 Static Site Generation
+
+- Built with Astro for lightning-fast static site generation
+- Starlight provides beautiful documentation UI with search and responsive design
+- Supports both light and dark themes
+
+## Usage
+
+### Running the Scraper
+
+```bash
+# Scrape trending repositories and update urls.txt
+python github_trending_scraper.py
+
+# Generate markdown files for new projects
+python main.py
+
+# Categorize existing files
+python main.py cate
+```
+
+### Building the Site
+
+```bash
+pnpm install
+pnpm dev      # Start development server
+pnpm build    # Build for production
+pnpm preview  # Preview build
+```
+
 ## Explore Categories
 
 <CardGrid stagger>
-	<Card title="Web Development" icon="rocket">
-		Discover tools and frameworks for building modern web applications.
-	</Card>
-	<Card title="DevOps & Tools" icon="setting">
-		Essential tools for development, deployment, and automation.
-	</Card>
-	<Card title="AI & Machine Learning" icon="brain">
-		Cutting-edge projects in artificial intelligence and data science.
-	</Card>
-	<Card title="Mobile & Desktop" icon="devices">
-		Apps and libraries for mobile and desktop development.
-	</Card>
+  <Card title="Programming Languages" icon="code">
+    Explore projects for Go, Python, Rust, JavaScript, and more.
+  </Card>
+  <Card title="Web Development" icon="rocket">
+    Discover tools and frameworks for building modern web applications.
+  </Card>
+  <Card title="Databases & APIs" icon="database">
+    Tools for data management, APIs, and backend services.
+  </Card>
+  <Card title="DevOps & Deployment" icon="setting">
+    Essential tools for development, deployment, and automation.
+  </Card>
+  <Card title="AI & Data Science" icon="brain">
+    Cutting-edge projects in artificial intelligence and data science.
+  </Card>
+  <Card title="Mobile & Desktop" icon="devices">
+    Apps and libraries for mobile and desktop development.
+  </Card>
+  <Card title="Tools & Utilities" icon="tools">
+    Productivity tools, utilities, and miscellaneous projects.
+  </Card>
+  <Card title="Games & Media" icon="game">
+    Entertainment, emulators, and media-related projects.
+  </Card>
 </CardGrid>
