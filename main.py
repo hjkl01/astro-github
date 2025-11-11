@@ -1,10 +1,9 @@
 import os
-import json
 import re
 import sys
 import asyncio
 from pathlib import Path
-from api_ai import api_g4f, auto_category, api_opencode
+from api_ai import auto_category, api_opencode
 
 
 def extract_github_info(github_url):
@@ -40,7 +39,6 @@ async def task(url: str, dirname: str = "00"):
         return
 
     print("start: ", username, repository)
-    filename = None
 
     try:
         await api_opencode(url=url)
@@ -48,43 +46,46 @@ async def task(url: str, dirname: str = "00"):
         print(err)
     return
 
-    try:
-        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/{dirname}/{repository}_{username}.md，包含项目地址，不需要其他的废话."
-        content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。包含项目地址.不需要其他的废话."
-        response = await api_g4f(content)
-        # response = await api_opencode(content)
-        print(response)
+    # filename = None
 
-        # if "choices" not in response or not response["choices"]:
-        #     print(f"API 响应格式错误: {url}")
-        #     return
 
-        md = response.lstrip("```markdown").rstrip("```")
-        if len(md) < 50:
-            print(f"API 响应内容太短：{url}")
-            return
-        title = f"""
----
-title: {repository}
----
-
-"""
-        md = title + md
-
-        if dirname:
-            astro_path = f"./src/content/docs/{dirname}"
-            os.makedirs(astro_path, exist_ok=True)
-            filename = f"{astro_path}/{repository}_{username}.md"
-
-        if filename:
-            with open(filename, "w", encoding="utf-8") as f:
-                f.write(md)
-            print(f"文件创建成功：{filename}")
-
-    except Exception as e:
-        print(f"处理项目时出错 {url}: {str(e)}")
-        if filename:
-            print(f"问题文件：{filename}")
+#     try:
+#         content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/{dirname}/{repository}_{username}.md，包含项目地址，不需要其他的废话."
+#         content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。包含项目地址.不需要其他的废话."
+#         response = await api_g4f(content)
+#         # response = await api_opencode(content)
+#         print(response)
+#
+#         # if "choices" not in response or not response["choices"]:
+#         #     print(f"API 响应格式错误: {url}")
+#         #     return
+#
+#         md = response.lstrip("```markdown").rstrip("```")
+#         if len(md) < 50:
+#             print(f"API 响应内容太短：{url}")
+#             return
+#         title = f"""
+# ---
+# title: {repository}
+# ---
+#
+# """
+#         md = title + md
+#
+#         if dirname:
+#             astro_path = f"./src/content/docs/{dirname}"
+#             os.makedirs(astro_path, exist_ok=True)
+#             filename = f"{astro_path}/{repository}_{username}.md"
+#
+#         if filename:
+#             with open(filename, "w", encoding="utf-8") as f:
+#                 f.write(md)
+#             print(f"文件创建成功：{filename}")
+#
+#     except Exception as e:
+#         print(f"处理项目时出错 {url}: {str(e)}")
+#         if filename:
+#             print(f"问题文件：{filename}")
 
 
 def list_files(dirname="src/content/docs"):

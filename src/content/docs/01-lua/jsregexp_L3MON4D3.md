@@ -84,6 +84,38 @@ for i, match in ipairs(matches) do
 end
 ```
 
+## Integration with LuaSnip
+
+To use jsregexp for LSP snippet transformations in LuaSnip, install it as follows:
+
+### Packer
+
+```lua
+use({
+    "L3MON4D3/LuaSnip",
+    -- Follow latest release version
+    tag = "v2.*", -- Replace <CurrentMajor> with the latest major version number
+    -- Optional: install jsregexp
+    run = "make install_jsregexp"
+})
+```
+
+### Lazy
+
+```lua
+{
+    "L3MON4D3/LuaSnip",
+    -- Follow latest release version
+    version = "v2.*", -- Replace <CurrentMajor> with the latest major version number
+    -- Optional: install jsregexp
+    build = "make install_jsregexp"
+}
+```
+
+### Vim-Plug
+
+Follow the latest release version and install jsregexp.
+
 ## Notes
 
 jsregexp is used for ECMAScript regex in LSP snippet transformations in LuaSnip. Without it, transformations fall back to simple copies.

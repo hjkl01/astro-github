@@ -105,7 +105,7 @@ deepwiki/
 
 ## 📱 截图
 
-![DeepWiki 主界面](https://raw.githubusercontent.com/AsyncFuncAI/deepwiki-open/main/screenshots/Interface.png)
+![DeepWiki 主界面](https://gh.hjkl01.cn/https://raw.githubusercontent.com/AsyncFuncAI/deepwiki-open/main/screenshots/Interface.png)
 
 _DeepWiki 的主界面_
 
