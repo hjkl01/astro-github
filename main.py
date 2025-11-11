@@ -4,7 +4,7 @@ import re
 import sys
 import asyncio
 from pathlib import Path
-from api_g4f import api_g4f, auto_category, api_opencode
+from api_ai import api_g4f, auto_category, api_opencode
 
 
 def extract_github_info(github_url):
@@ -43,6 +43,12 @@ async def task(url: str, dirname: str = "00"):
     filename = None
 
     try:
+        await api_opencode(url=url)
+    except Exception as err:
+        print(err)
+    return
+
+    try:
         content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/{dirname}/{repository}_{username}.md，包含项目地址，不需要其他的废话."
         content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。包含项目地址.不需要其他的废话."
         response = await api_g4f(content)
@@ -69,9 +75,6 @@ title: {repository}
             astro_path = f"./src/content/docs/{dirname}"
             os.makedirs(astro_path, exist_ok=True)
             filename = f"{astro_path}/{repository}_{username}.md"
-            if os.path.exists(filename):
-                print(f"文件已存在：{filename} {url}")
-                return
 
         if filename:
             with open(filename, "w", encoding="utf-8") as f:

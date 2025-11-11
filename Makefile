@@ -24,10 +24,14 @@ run:
 	$(ACTIVATE) && uv run python ./main.py
 	$(ACTIVATE) && uv run python ./main.py cate
 
-build:
+clean-cache:
+	@echo "🚀 清理缓存..."
+	rm -rf .astro && rm -rf  node_modules/.astro
+
+build: clean-cache
 	@echo "🚀 构建服务..."
 	pnpm run build
 
-deploy: build
+deploy: clean-cache
 	@echo "🚀 部署服务..."
 	pnpm run deploy

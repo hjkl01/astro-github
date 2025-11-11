@@ -1,12 +1,8 @@
-# Starlight Starter Kit: Basics
+# GitHub Projects Collection
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
-```
-pnpm create astro@latest -- --template starlight
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+A curated collection of useful GitHub projects for developers, built with Astro and Starlight.
 
 ## 🚀 Project Structure
 
@@ -35,14 +31,23 @@ Static assets, like favicons, can be placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| Command        | Action                                       |
+| :------------- | :------------------------------------------- |
+| `pnpm install` | Installs dependencies                        |
+| `pnpm dev`     | Starts local dev server at `localhost:5173`  |
+| `pnpm build`   | Build your production site to `./dist/`      |
+| `pnpm preview` | Preview your build locally, before deploying |
+| `pnpm deploy`  | Build and deploy to GitHub Pages             |
+| `pnpm lint`    | Run ESLint                                   |
+| `pnpm format`  | Format code with Prettier                    |
+
+## 📚 Features
+
+- Curated collection of GitHub projects across various categories
+- Built with Astro for fast static site generation
+- Starlight for beautiful documentation UI
+- Responsive design with dark/light mode support
+- Search functionality for easy project discovery
 
 ## 👀 Want to learn more?
 
