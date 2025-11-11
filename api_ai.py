@@ -1,6 +1,26 @@
 import asyncio
 import subprocess
 
+import dashscope
+from dashscope import Generation
+
+from config import logger, QWEN_KEY
+
+
+def api_qianwen(prompt):
+    logger.debug(prompt[:100])
+    # 设置 API Key
+    dashscope.api_key = QWEN_KEY
+
+    # 调用 Qwen-Max 模型
+    model = "qwen-max"
+    # model = "qwen3-max-2025-09-23"
+    response = Generation.call(model=model, prompt=prompt)
+
+    # 输出结
+    logger.info(response.output)
+    return response.output.text
+
 
 async def api_opencode(url=None, content=None):
     if url:
@@ -17,11 +37,11 @@ async def api_opencode(url=None, content=None):
 
 async def auto_category(content, category_dirs):
     # 现在我想对其进行分类，已有的分类有Python、docker、Linux、tools、windows等，分析该项目应在哪个分类下，如不存在已有的分类，可以新建一个。
-    content = f"""我收集了GitHub上的项目,以下是对项目的描述: `{content}`.
-    现在我想对其进行分类，已有的分类有 `{category_dirs}` ，分析该项目应在哪个分类下，如不存在已有的分类，返回`github`。 直接返回分类名称， 不需要其他的废话."""
-    # response = await api_g4f(content)
-    response = await api_opencode(content=content)
-    print(response)
+    content = f"""我收集了GitHub上的项目,以下是对项目的描述: {content}.
+    现在我想对其进行分类，已有的分类有 {category_dirs} ，分析该项目应在哪个分类下，如不存在已有的分类，返回 github。 直接返回分类名称， 不需要其他的废话."""
+    response = api_qianwen(content)
+    # response = await api_opencode(content=content)
+    logger.info(response)
     return response
 
 

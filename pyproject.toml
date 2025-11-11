@@ -6,6 +6,9 @@ requires-python = ">=3.12"
 dependencies = [
     "crawlee[all]",
     "httpx",
+    "dashscope",
+    "python-dotenv",
+    "loguru",
 ]
 
 # [build-system]
