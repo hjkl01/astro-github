@@ -32,6 +32,6 @@ build: clean-cache
 	@echo "🚀 构建服务..."
 	pnpm run build
 
-deploy: clean-cache
+deploy:
 	@echo "🚀 部署服务..."
 	pnpm run deploy
