@@ -1,0 +1,13 @@
+[project]
+name = "astro-project"
+version = "0.1.0"
+description = "Astro project with Python backend"
+requires-python = ">=3.12"
+dependencies = [
+    "crawlee[all]",
+    "httpx",
+]
+
+# [build-system]
+# requires = ["hatchling"]
+# build-backend = "hatchling.build"
