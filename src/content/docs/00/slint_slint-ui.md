@@ -30,7 +30,7 @@ slint = "1.0"
 
 2. 创建 `.slint` 文件（例如 `main.slint`）：
 
-```slint
+```rust
 export component MainWindow inherits Window {
     title: "Hello World";
     width: 400px;

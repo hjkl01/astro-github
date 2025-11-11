@@ -35,7 +35,7 @@ helix init
 
 Edit the generated `.hx` files to define your schema and queries. For example:
 
-```hql
+```sql
 N::User {
    INDEX name: String,
    age: U32

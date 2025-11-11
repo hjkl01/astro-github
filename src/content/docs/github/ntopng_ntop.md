@@ -71,7 +71,7 @@ sudo make install
 ### 3. 配置
 - **主配置文件**: `/etc/ntopng/ntopng.conf`  
   示例内容：
-  ```conf
+  ```ini
   -i eth0          # 监听接口
   -w 3000          # Web UI 端口
   -f "capture.pcap"  # pcap 文件（可选）

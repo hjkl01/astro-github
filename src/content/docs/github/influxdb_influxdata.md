@@ -39,7 +39,7 @@ InfluxDB 是一款专为时序数据（Time‑Series Data）设计的高性能�
      SELECT mean("value") FROM "temperature" WHERE time > now() - 1h GROUP BY time(10m)
      ```
    - **Flux**（更灵活）:  
-     ```flux
+     ```javascript
      from(bucket:"sensors")
        |> range(start: -1h)
        |> filter(fn: (r) => r._measurement == "temperature")

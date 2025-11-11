@@ -46,7 +46,7 @@ require('orgmode').setup({
 | `<localleader>l` | 切换到流程视图（侧边栏） |
 
 ### 3. 代码块执行
-```org
+```text
 #+begin_src python
 print("Hello Org!")
 #+end_src
@@ -54,7 +54,7 @@ print("Hello Org!")
 按 `<localleader>e` 后，结果会在代码块下面插入。
 
 ### 4. 日期与标签
-```org
+```text
 ** TODO 会议纪要  <2024-10-20 Thu>
    :PROPERTIES:
    :CUSTOM_ID: meeting-20241020

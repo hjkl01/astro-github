@@ -2,19 +2,21 @@
 title: indent-blankline.nvim
 ---
 
-# indent-blankline.nvim
+## 功能介绍
 
-这是一个为 Neovim 添加缩进指南的插件。它使用 Neovim 的虚拟文本功能，不依赖 conceal。
+indent-blankline.nvim 是一个 Neovim 插件，用于在代码中添加缩进指南。它使用 Neovim 的虚拟文本功能，不依赖 conceal，提供清晰的缩进可视化。
 
-## 功能
+主要功能：
 
-- 显示缩进指南，帮助可视化代码结构
-- 支持多种样式：简单线条、多彩缩进、背景色高亮
-- 集成 scope 高亮（需要 treesitter）
+- 显示缩进空白线，帮助识别代码块结构
+- 支持作用域高亮（需要 treesitter）
 - 支持混合缩进检测
-- 可自定义高亮颜色和字符
+- 可自定义颜色和字符
+- 与其他插件如 rainbow-delimiters.nvim 集成
 
-## 安装
+## 用法
+
+### 安装
 
 使用插件管理器安装，例如 lazy.nvim：
 
@@ -28,30 +30,17 @@ title: indent-blankline.nvim
 }
 ```
 
-或 pckr.nvim：
+### 基本设置
 
-```lua
-use "lukas-reineke/indent-blankline.nvim"
-```
-
-## 用法
-
-在 Neovim 配置中调用 setup 函数：
+在 init.lua 或插件配置文件中添加：
 
 ```lua
 require("ibl").setup()
 ```
 
-### 基本配置
+### 高级配置
 
-```lua
-require("ibl").setup({
-    indent = { char = "│" },
-    scope = { enabled = true }
-})
-```
-
-### 多彩缩进
+#### 多彩缩进
 
 ```lua
 local highlight = {
@@ -78,21 +67,12 @@ end)
 require("ibl").setup { indent = { highlight = highlight } }
 ```
 
-### 背景色缩进
+#### 作用域高亮
 
 ```lua
-local highlight = {
-    "CursorColumn",
-    "Whitespace",
-}
-require("ibl").setup {
-    indent = { highlight = highlight, char = "" },
-    whitespace = {
-        highlight = highlight,
-        remove_blankline_trail = false,
-    },
-    scope = { enabled = false },
-}
+require("ibl").setup()
 ```
+
+需要 treesitter 支持，用于显示变量和函数的作用域范围。
 
 更多配置选项请参考 `:help ibl.config`。

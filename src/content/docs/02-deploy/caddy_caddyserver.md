@@ -41,7 +41,7 @@ sudo mv caddy /usr/local/bin/
 
 ### 2. 简单的 Caddyfile 示例
 
-```caddy
+```nginx
 {
     # 全局设置
     email you@example.com

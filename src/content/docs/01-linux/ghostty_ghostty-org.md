@@ -38,7 +38,7 @@ title: ghostty
 
 3. **配置**
    编辑配置文件（如 `~/.config/ghostty/config`）：
-   ```conf
+   ```ini
    font=JetBrains Mono
    theme=dracula
    enable_gpu=true

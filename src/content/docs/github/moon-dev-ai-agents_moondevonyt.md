@@ -50,7 +50,7 @@ title: moon-dev-ai-agents
 
 3. **配置 API Key**  
    在项目根目录创建 `.env` 并添加  
-   ```env
+   ```bash
    OPENAI_API_KEY=your_api_key_here
    ```
 

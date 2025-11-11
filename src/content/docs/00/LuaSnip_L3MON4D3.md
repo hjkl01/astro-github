@@ -143,7 +143,7 @@ SnipMate 格式非常简单，因此添加**自定义片段**只需要几个步�
 - 在 `init.vim` 旁边（或 `runtimepath` 中的任何其他位置）添加一个名为 `snippets` 的目录
 - 在该目录中，创建名为 `<filetype>.snippets` 的文件，并在其中为给定文件类型添加片段（灵感来源：[honza/vim-snippets](https://github.com/honza/vim-snippets/tree/master/snippets)）
 
-```snippets
+```text
 # comment
 snippet <trigger> <description>
 <snippet-body>
