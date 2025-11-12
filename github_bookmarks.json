@@ -1,0 +1,379 @@
+{
+  "total_count": 74,
+  "bookmarks": [
+    {
+      "name": "bensadeh/tailspin: 🌀 A log file highlighter",
+      "url": "https://github.com/bensadeh/tailspin",
+      "type": "bookmark"
+    },
+    {
+      "name": "darrenburns/posting: The modern API client that lives in your terminal.",
+      "url": "https://github.com/darrenburns/posting",
+      "type": "bookmark"
+    },
+    {
+      "name": "GitHub - cemu-project/Cemu: Cemu - Wii U emulator",
+      "url": "https://github.com/cemu-project/Cemu",
+      "type": "bookmark"
+    },
+    {
+      "name": "blizzless/blizzless-diiis: Fully-functional open-source server implementation for Diablo 3",
+      "url": "https://github.com/blizzless/blizzless-diiis",
+      "type": "bookmark"
+    },
+    {
+      "name": "azahar-emu/azahar: An open-source 3DS emulator project based on Citra.",
+      "url": "https://github.com/azahar-emu/azahar",
+      "type": "bookmark"
+    },
+    {
+      "name": "dream1986/nesrom: nes游戏合集",
+      "url": "https://github.com/dream1986/nesrom",
+      "type": "bookmark"
+    },
+    {
+      "name": "fogleman/nes: NES emulator written in Go.",
+      "url": "https://github.com/fogleman/nes",
+      "type": "bookmark"
+    },
+    {
+      "name": "tailscale/tailscale: The easiest, most secure way to use WireGuard and 2FA.",
+      "url": "https://github.com/tailscale/tailscale",
+      "type": "bookmark"
+    },
+    {
+      "name": "vernesong/OpenClash: A Clash Client For OpenWrt",
+      "url": "https://github.com/vernesong/OpenClash",
+      "type": "bookmark"
+    },
+    {
+      "name": "game · GitHub Topics",
+      "url": "https://github.com/topics/game",
+      "type": "bookmark"
+    },
+    {
+      "name": "shiawasenahikari/UnoCard: A simple UNO card game running on PC and Android devices.",
+      "url": "https://github.com/shiawasenahikari/UnoCard?tab=readme-ov-file#chs",
+      "type": "bookmark"
+    },
+    {
+      "name": "wesnoth/wesnoth: An open source, turn-based strategy game with a high fantasy theme.",
+      "url": "https://github.com/wesnoth/wesnoth",
+      "type": "bookmark"
+    },
+    {
+      "name": "误入 GitHub 游戏区，意外地收获颇丰 - HelloGitHub",
+      "url": "https://hellogithub.com/article/d8ce1ba5e08147e3a989fffc8b4c58db",
+      "type": "bookmark"
+    },
+    {
+      "name": "zhihu_topic_game/【有哪些好玩且耐玩的安卓游戏？】--匿名用户的回答.md at master · Ravior/zhihu_topic_game · GitHub",
+      "url": "https://github.com/Ravior/zhihu_topic_game/blob/master/%E3%80%90%E6%9C%89%E5%93%AA%E4%BA%9B%E5%A5%BD%E7%8E%A9%E4%B8%94%E8%80%90%E7%8E%A9%E7%9A%84%E5%AE%89%E5%8D%93%E6%B8%B8%E6%88%8F%EF%BC%9F%E3%80%91--%E5%8C%BF%E5%90%8D%E7%94%A8%E6%88%B7%E7%9A%84%E5%9B%9E%E7%AD%94.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "ErLinErYi/PlantsVsZombies: PlantsVsZombies game made by cocos2dx 3.16 (c++)",
+      "url": "https://github.com/ErLinErYi/PlantsVsZombies",
+      "type": "bookmark"
+    },
+    {
+      "name": "View Table · TodoList",
+      "url": "https://github.com/users/hjkl01/projects/3/views/1",
+      "type": "bookmark"
+    },
+    {
+      "name": "hjkl01/dotfiles at adb48b935576fcb1fee5ddd32e04bd87ed85ea44",
+      "url": "https://github.com/hjkl01/dotfiles/tree/adb48b935576fcb1fee5ddd32e04bd87ed85ea44",
+      "type": "bookmark"
+    },
+    {
+      "name": "New conversation · GitHub Copilot",
+      "url": "https://github.com/copilot/",
+      "type": "bookmark"
+    },
+    {
+      "name": "FunAudioLLM/CosyVoice: Multi-lingual large voice generation model, providing inference, training and deployment full-stack ability.",
+      "url": "https://github.com/FunAudioLLM/CosyVoice",
+      "type": "bookmark"
+    },
+    {
+      "name": "SparkAudio/Spark-TTS：Spark-TTS 推理代码 --- SparkAudio/Spark-TTS: Spark-TTS Inference Code",
+      "url": "https://github.com/SparkAudio/Spark-TTS?tab=readme-ov-file",
+      "type": "bookmark"
+    },
+    {
+      "name": "index-tts/index-tts: An Industrial-Level Controllable and Efficient Zero-Shot Text-To-Speech System",
+      "url": "https://github.com/index-tts/index-tts?tab=readme-ov-file",
+      "type": "bookmark"
+    },
+    {
+      "name": "harry0703/MoneyPrinterTurbo: 利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "type": "bookmark"
+    },
+    {
+      "name": "FujiwaraChoki/MoneyPrinter: Automate Creation of YouTube Shorts using MoviePy.",
+      "url": "https://github.com/FujiwaraChoki/MoneyPrinter",
+      "type": "bookmark"
+    },
+    {
+      "name": "linyqh/NarratoAI: 利用AI大模型，一键解说并剪辑视频； Using AI models to automatically provide commentary and edit videos with a single click.",
+      "url": "https://github.com/linyqh/NarratoAI",
+      "type": "bookmark"
+    },
+    {
+      "name": "lllyasviel/FramePack: Lets make video diffusion practical!",
+      "url": "https://github.com/lllyasviel/FramePack",
+      "type": "bookmark"
+    },
+    {
+      "name": "modstart-lib/aigcpanel: AigcPanel 是一个简单易用的一站式AI数字人系统，支持视频合成、声音合成、声音克隆，简化本地模型管理、一键导入和使用AI模型。",
+      "url": "https://github.com/modstart-lib/aigcpanel",
+      "type": "bookmark"
+    },
+    {
+      "name": "panyanyany/Twocast: AI Podcast Generator for bilingual episodes, Multi Languages, Alternative to NotebookLLM；真人对话AI播客生成器，多语言，多音色",
+      "url": "https://github.com/panyanyany/Twocast",
+      "type": "bookmark"
+    },
+    {
+      "name": "yakami129/VirtualWife: VirtualWife是一个虚拟数字人项目，支持B站直播，支持openai、ollama",
+      "url": "https://github.com/yakami129/VirtualWife?tab=readme-ov-file",
+      "type": "bookmark"
+    },
+    {
+      "name": "libn-net/marketing_creator_pro_max_backend: 高颜值AI数字人克隆、声音克隆、短视频生成、直播（待发布）、AI配音、AI字幕，包括Windows安装版，Web版，H5版，小程序版，副业必备，开源数字人克隆平台后端API",
+      "url": "https://github.com/libn-net/marketing_creator_pro_max_backend",
+      "type": "bookmark"
+    },
+    {
+      "name": "Duix.Heygem/README_zh.md at main · duixcom/Duix.Heygem",
+      "url": "https://github.com/duixcom/Duix.Heygem/blob/main/README_zh.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "Duix.mobile/README_zh.md at main · duixcom/Duix.mobile",
+      "url": "https://github.com/duixcom/Duix.mobile/blob/main/README_zh.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "OpenAvatarChat/readme_cn.md at main · HumanAIGC-Engineering/OpenAvatarChat",
+      "url": "https://github.com/HumanAIGC-Engineering/OpenAvatarChat/blob/main/readme_cn.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "dreammis/social-auto-upload: 自动化上传视频到社交媒体：抖音、小红书、视频号、tiktok、youtube、bilibili",
+      "url": "https://github.com/dreammis/social-auto-upload",
+      "type": "bookmark"
+    },
+    {
+      "name": "jwwsjlm/douyinLive: 抖音弹幕抓取",
+      "url": "https://github.com/jwwsjlm/douyinLive",
+      "type": "bookmark"
+    },
+    {
+      "name": "Ikaros-521/AI-Vtuber: AI Vtuber是一个由 【ChatterBot/ChatGPT/claude/langchain/chatglm/text-gen-webui/闻达/千问/kimi/ollama】 驱动的虚拟主播【Live2D/UE/xuniren】，可以在 【Bilibili/抖音/快手/微信视频号/拼多多/斗鱼/YouTube/twitch/TikTok】 直播中与观众实时互动 或 直接在本地进行聊天。它使用TTS技术【edge-tts/VITS/elevenlabs/bark/bert-vits2/睿声】生成回答并可以选择【so-vits-svc/DDSP-SVC】变声；指令协同SD画图。",
+      "url": "https://github.com/Ikaros-521/AI-Vtuber",
+      "type": "bookmark"
+    },
+    {
+      "name": "yikart/AiToEarn: Let's use AI to Earn!",
+      "url": "https://github.com/yikart/AiToEarn",
+      "type": "bookmark"
+    },
+    {
+      "name": "saermart/DouyinLiveWebFetcher: 抖音直播间网页版的弹幕数据抓取（2025最新版本）",
+      "url": "https://github.com/saermart/DouyinLiveWebFetcher",
+      "type": "bookmark"
+    },
+    {
+      "name": "YILS-LIN/short-video-factory: 一键生成产品营销与泛内容短视频，AI批量自动剪辑，高颜值跨平台桌面端工具 One click generation of product marketing and general content short videos, AI batch automatic cliping, beautiful cross platform desktop tool",
+      "url": "https://github.com/YILS-LIN/short-video-factory",
+      "type": "bookmark"
+    },
+    {
+      "name": "moeru-ai/airi: 💖🧸 Self hosted, you owned Grok Companion, a container of souls of waifu, cyber livings to bring them into our worlds, wishing to achieve Neuro-sama's altitude. Capable of realtime voice chat, Minecraft, Factorio playing. Web / macOS / Windows supported.",
+      "url": "https://github.com/moeru-ai/airi",
+      "type": "bookmark"
+    },
+    {
+      "name": "Data-Camp/WeApp_Demos: 持续更新中的微信小程序和小游戏的源码案例库。目前涵盖了120多个微信小程序或小游戏。",
+      "url": "https://github.com/Data-Camp/WeApp_Demos",
+      "type": "bookmark"
+    },
+    {
+      "name": "dockur/macos: macOS inside a Docker container.",
+      "url": "https://github.com/dockur/macos",
+      "type": "bookmark"
+    },
+    {
+      "name": "datalens-tech/datalens: A modern, scalable analytics system",
+      "url": "https://github.com/datalens-tech/datalens",
+      "type": "bookmark"
+    },
+    {
+      "name": "PBH-BTN/PeerBanHelper: Automatically block unwanted, leeches and abnormal BT peers with support for customized and cloud rules.| BT 反吸血工具 - 自动封禁不受欢迎、吸血和异常的 BT 客户端，并支持自定义规则。支持 qB/qBEE/Deluge/BiglyBT/BitComet",
+      "url": "https://github.com/PBH-BTN/PeerBanHelper",
+      "type": "bookmark"
+    },
+    {
+      "name": "control-theory/gonzo: Gonzo! The Go based TUI log analysis tool",
+      "url": "https://github.com/control-theory/gonzo",
+      "type": "bookmark"
+    },
+    {
+      "name": "ripienaar/free-for-dev: A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev",
+      "url": "https://github.com/ripienaar/free-for-dev",
+      "type": "bookmark"
+    },
+    {
+      "name": "firecrawl/open-lovable: 🔥 Clone and recreate any website as a modern React app in seconds",
+      "url": "https://github.com/firecrawl/open-lovable",
+      "type": "bookmark"
+    },
+    {
+      "name": "my-development-tools/ at master · adoyle-h/my-development-tools",
+      "url": "https://github.com/adoyle-h/my-development-tools?search=1",
+      "type": "bookmark"
+    },
+    {
+      "name": "Sunshine/docs/getting_started.md at master · LizardByte/Sunshine",
+      "url": "https://github.com/LizardByte/Sunshine/blob/master/docs/getting_started.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "term.everything/resources/HowIDidIt.md 在主页面 · mmulet/term.everything --- term.everything/resources/HowIDidIt.md at main · mmulet/term.everything",
+      "url": "https://github.com/mmulet/term.everything/blob/main/resources/HowIDidIt.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "GitHub - linuxserver/docker-webtop: Ubuntu, Alpine, Arch, and Fedora based Webtop images, Linux in a web browser supporting popular desktop environments.",
+      "url": "https://github.com/linuxserver/docker-webtop",
+      "type": "bookmark"
+    },
+    {
+      "name": "ourongxing/newsnow: Elegant reading of real-time and hottest news",
+      "url": "https://github.com/ourongxing/newsnow",
+      "type": "bookmark"
+    },
+    {
+      "name": "GPT-SoVITS/docs/cn/README.md at main · RVC-Boss/GPT-SoVITS · GitHub",
+      "url": "https://github.com/RVC-Boss/GPT-SoVITS/blob/main/docs/cn/README.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "GitHub - ChrisTitusTech/winutil: Chris Titus Tech's Windows Utility - Install Programs, Tweaks, Fixes, and Updates",
+      "url": "https://github.com/ChrisTitusTech/winutil",
+      "type": "bookmark"
+    },
+    {
+      "name": "GitHub - weicanie/prisma-ai：你的 AI 求职助手，帮你优化项目、定制简历、匹配工作，并帮助你准备面试。此外，它还包含一个以面试经验为驱动的学习系统和 IT 求职数据网站： --- GitHub - weicanie/prisma-ai: Your AI job-hunting co-pilot, optimizing your projects, customizing your resume, matching you with jobs, and helping you prepare for interviews. Also featuring an interview-experience-driven learning system and IT job-hunting data website:",
+      "url": "https://github.com/weicanie/prisma-ai",
+      "type": "bookmark"
+    },
+    {
+      "name": "ntdevlabs/tiny11builder: Scripts to build a trimmed-down Windows 11 image.",
+      "url": "https://github.com/ntdevlabs/tiny11builder",
+      "type": "bookmark"
+    },
+    {
+      "name": "hjkl01/drawnix: 开源白板工具（SaaS），一体化白板，包含思维导图、流程图、自由画等。All in one open-source whiteboard tool with mind, flowchart, freehand and etc.",
+      "url": "https://github.com/hjkl01/drawnix",
+      "type": "bookmark"
+    },
+    {
+      "name": "awesome-docker/README.md at master · veggiemonk/awesome-docker",
+      "url": "https://github.com/veggiemonk/awesome-docker/blob/master/README.md#terminal",
+      "type": "bookmark"
+    },
+    {
+      "name": "CopilotC-Nvim/CopilotChat.nvim: Chat with GitHub Copilot in Neovim",
+      "url": "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
+      "type": "bookmark"
+    },
+    {
+      "name": "cjpais/Handy: A free, open source, and extensible speech-to-text application that works completely offline.",
+      "url": "https://github.com/cjpais/Handy",
+      "type": "bookmark"
+    },
+    {
+      "name": "RicardoValdovinos/vite-react-boilerplate: A production ready, scalable starter template for Vite + React",
+      "url": "https://github.com/RicardoValdovinos/vite-react-boilerplate",
+      "type": "bookmark"
+    },
+    {
+      "name": "SafeLine/README_CN.md at main · chaitin/SafeLine",
+      "url": "https://github.com/chaitin/SafeLine/blob/main/README_CN.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "istoreos/docker.md at main · tonc/istoreos",
+      "url": "https://github.com/tonc/istoreos/blob/main/docker.md",
+      "type": "bookmark"
+    },
+    {
+      "name": "ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.",
+      "url": "https://github.com/ibraheemdev/modern-unix",
+      "type": "bookmark"
+    },
+    {
+      "name": "Vita3K/Vita3K: Experimental PlayStation Vita emulator",
+      "url": "https://github.com/Vita3K/Vita3K",
+      "type": "bookmark"
+    },
+    {
+      "name": "HumanAIGC-Engineering/OpenAvatarChat",
+      "url": "https://github.com/HumanAIGC-Engineering/OpenAvatarChat",
+      "type": "bookmark"
+    },
+    {
+      "name": "cisagov/LME: Logging Made Easy (LME) is a no cost, open source platform that centralizes log collection, enhances threat detection, and enables real-time alerting, helping small to medium-sized organizations secure their infrastructure. LME Docs can be found at https://cisagov.github.io/lme-docs/docs/",
+      "url": "https://github.com/cisagov/LME",
+      "type": "bookmark"
+    },
+    {
+      "name": "kspeeder/docker_kspeeder: Docker镜像加速专家 多镜像并发下载，动态负载均衡，断点续传支持，Docker镜像代理服务",
+      "url": "https://github.com/kspeeder/docker_kspeeder",
+      "type": "bookmark"
+    },
+    {
+      "name": "nokyan/resources: Keep an eye on system resources",
+      "url": "https://github.com/nokyan/resources",
+      "type": "bookmark"
+    },
+    {
+      "name": "BeehiveInnovations/zen-mcp-server: The power of Claude Code / GeminiCLI / CodexCLI + [Gemini / OpenAI / OpenRouter / Azure / Grok / Ollama / Custom Model / All Of The Above] working as one.",
+      "url": "https://github.com/BeehiveInnovations/zen-mcp-server",
+      "type": "bookmark"
+    },
+    {
+      "name": "upstash/context7: Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors",
+      "url": "https://github.com/upstash/context7?tab=readme-ov-file",
+      "type": "bookmark"
+    },
+    {
+      "name": "GitHub - murtaza-nasir/speakr: Speakr is a personal, self-hosted web application designed for transcribing audio recordings",
+      "url": "https://github.com/murtaza-nasir/speakr",
+      "type": "bookmark"
+    },
+    {
+      "name": "GitHub - Zackriya-Solutions/meeting-minutes: A free and open source, self hosted Ai based live meeting note taker and minutes summary generator that can completely run in your Local device (Mac OS and windows OS Support added. Working on adding linux support soon) https://meetily.zackriya.com/ is meetly ai",
+      "url": "https://github.com/Zackriya-Solutions/meeting-minutes?tab=readme-ov-file#docker-setup-alternative",
+      "type": "bookmark"
+    },
+    {
+      "name": "GitHub - xiangyuecn/Recorder: html5 js 录音 mp3 wav ogg webm amr g711a g711u 格式，支持pc和Android、iOS部分浏览器、Hybrid App（提供Android iOS App源码）、微信，提供ASR语音识别转文字 H5版语音通话聊天示例 DTMF编码解码",
+      "url": "https://github.com/xiangyuecn/Recorder",
+      "type": "bookmark"
+    },
+    {
+      "name": "Achuan-2/SlideSCI: PPT plugin, supports one-click to add image titles, copy and paste positions, one-click image alignment, and one-click to insert Markdown (including bold, hyperlinks, and other inline styles, as well as code blocks, LaTeX, and other block-level styles)! PPT插件，支持一键添加图片标题，复制粘贴位置、一键图片对齐、一键插入Markdown（加粗、超链接等行内样式、代码块、LaTeX等块级样式）、便捷导出图片！",
+      "url": "https://github.com/Achuan-2/SlideSCI",
+      "type": "bookmark"
+    }
+  ],
+  "extracted_at": {
+    "timestamp": "2025-10-28 09:40:34.808850",
+    "source": "/home/ljl/github/astro-project/Bookmarks"
+  }
+}

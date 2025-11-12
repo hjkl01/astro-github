@@ -67,8 +67,9 @@ async def scrape_github_trending():
                 print(f"Error parsing repo: {e}")
                 continue
 
-    proxy_config = ProxyConfiguration(proxy_urls=["http://localhost:7890"])
-    crawler = BeautifulSoupCrawler(proxy_configuration=proxy_config)
+    # proxy_config = ProxyConfiguration(proxy_urls=["http://localhost:7890"])
+    # crawler = BeautifulSoupCrawler(proxy_configuration=proxy_config)
+    crawler = BeautifulSoupCrawler()
     crawler.router.default_handler(handler)
 
     await crawler.add_requests(

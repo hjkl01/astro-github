@@ -3,14 +3,14 @@ title: GitHub Projects Collection
 description: A curated collection of useful GitHub projects for developers.
 template: splash
 hero:
-  tagline: Discover amazing open-source projects on GitHub, automatically curated and described with AI!
+  tagline: 发现GitHub上精彩的开源项目，自动整理并用AI描述！
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Browse Projects
+    - text: 浏览项目
       link: /02-dotfiles/dotfiles_hjkl01
       icon: right-arrow
-    - text: View on GitHub
+    - text: 在GitHub上查看
       link: https://github.com/hjkl01/astro-github
       icon: external
       variant: minimal
@@ -18,71 +18,77 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## How It Works
+## 工作原理
 
-This collection is automatically maintained through several key features:
+这个集合通过以下几个关键功能自动维护：
 
-### 🤖 Automated Content Generation
+### 🤖 自动内容生成
 
-- **GitHub Trending Scraper**: Automatically fetches trending repositories from GitHub across multiple programming languages
-- **AI-Powered Descriptions**: Uses advanced AI models to generate detailed Chinese descriptions of project features and usage
-- **Smart Categorization**: Automatically organizes projects into appropriate categories based on their functionality
+- **GitHub Trending Scraper**：自动从GitHub获取多个编程语言的热门仓库
+- **AI驱动描述**：使用先进的AI模型生成项目功能和用法的详细中文描述
+- **智能分类**：根据功能自动将项目组织到适当的类别中
 
-### 🚀 Static Site Generation
+### 🚀 静态站点生成
 
-- Built with Astro for lightning-fast static site generation
-- Starlight provides beautiful documentation UI with search and responsive design
-- Supports both light and dark themes
+- 使用Astro构建，实现闪电般的静态站点生成
+- Starlight提供漂亮的文档UI，具有搜索和响应式设计
+- 支持明暗主题
 
-## Usage
+## 用法
 
-### Running the Scraper
+### 运行爬虫
 
 ```bash
-# Scrape trending repositories and update urls.txt
+# 抓取热门仓库并更新urls.txt
 python github_trending_scraper.py
 
-# Generate markdown files for new projects
+# 为新项目生成markdown文件
 python main.py
 
-# Categorize existing files
+# 对现有文件进行分类
 python main.py cate
 ```
 
-### Building the Site
+### 构建站点
 
 ```bash
 pnpm install
-pnpm dev      # Start development server
-pnpm build    # Build for production
-pnpm preview  # Preview build
+pnpm dev      # 启动开发服务器
+pnpm build    # 构建生产版本
+pnpm preview  # 预览构建
 ```
 
-## Explore Categories
+### 部署站点
+
+```bash
+pnpm deploy  # 构建并部署到GitHub Pages
+```
+
+## 探索类别
 
 <CardGrid stagger>
-  <Card title="Programming Languages" icon="code">
-    Explore projects for Go, Python, Rust, JavaScript, and more.
+  <Card title="编程语言" icon="code">
+    探索Go、Python、Rust、JavaScript等项目的项目。
   </Card>
-  <Card title="Web Development" icon="rocket">
-    Discover tools and frameworks for building modern web applications.
+  <Card title="Web开发" icon="rocket">
+    发现用于构建现代Web应用程序的工具和框架。
   </Card>
-  <Card title="Databases & APIs" icon="database">
-    Tools for data management, APIs, and backend services.
+  <Card title="数据库和API" icon="database">
+    用于数据管理、API和后端服务的工具。
   </Card>
-  <Card title="DevOps & Deployment" icon="setting">
-    Essential tools for development, deployment, and automation.
+  <Card title="DevOps和部署" icon="setting">
+    开发、部署和自动化必备工具。
   </Card>
-  <Card title="AI & Data Science" icon="brain">
-    Cutting-edge projects in artificial intelligence and data science.
+  <Card title="AI和数据科学" icon="brain">
+    人工智能和数据科学的前沿项目。
   </Card>
-  <Card title="Mobile & Desktop" icon="devices">
-    Apps and libraries for mobile and desktop development.
+  <Card title="移动和桌面" icon="devices">
+    用于移动和桌面开发的应用程序和库。
   </Card>
-  <Card title="Tools & Utilities" icon="tools">
-    Productivity tools, utilities, and miscellaneous projects.
+  <Card title="工具和实用程序" icon="tools">
+    生产力工具、实用程序和杂项项目。
   </Card>
-  <Card title="Games & Media" icon="game">
-    Entertainment, emulators, and media-related projects.
+  <Card title="游戏和媒体" icon="game">
+    娱乐、模拟器和媒体相关项目。
   </Card>
 </CardGrid>

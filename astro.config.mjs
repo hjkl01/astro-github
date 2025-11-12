@@ -27,21 +27,27 @@ export default defineConfig({
       title: 'Github Trending',
       description: 'A curated collection of useful GitHub repositories',
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/withastro/starlight',
+        },
       ],
-      sidebar: fs.readdirSync('src/content/docs').filter(dir => {
-        const stat = fs.statSync(`src/content/docs/${dir}`);
-        return stat.isDirectory();
-      }).map(dir => ({
-        label: dir,
-        autogenerate: { directory: dir },
-        collapsed: true,
-      })),
+      sidebar: fs
+        .readdirSync('src/content/docs')
+        .filter((dir) => {
+          const stat = fs.statSync(`src/content/docs/${dir}`);
+          return stat.isDirectory();
+        })
+        .map((dir) => ({
+          label: dir,
+          autogenerate: { directory: dir },
+          collapsed: true,
+        })),
 
       editLink: {
-        baseUrl: 'https://github.com/hjkl01/astro-github/'
+        baseUrl: 'https://github.com/hjkl01/astro-github/',
       },
     }),
   ],
-
 });

@@ -26,8 +26,9 @@ async def api_opencode(url=None, content=None):
     if url:
         content = f"用markdown的格式 介绍项目的功能和用法：{url}.  \
 注意事项： \
-    1. 以项目名_用户名.md 为文件名, 写到 src/content/docs/ 对应的文件夹下,如01-neovim文件夹下.不要新建文件夹，如没有合适的文件夹，则放到默认的github文件夹下。  \
-    2. 开头保持astro模板starlight的格式： --- \n title: repository \n ---  "
+    1. 以项目名_用户名.md 为文件名, 写到 src/content/docs/ 对应的文件夹下,如01-neovim文件夹下.不要新建文件夹，如没有合适的文件夹，则放到默认的github文件夹下。\n  \
+    2. 开头保持astro模板starlight的格式： --- \n title: repository \n ---  \n \
+    3. 用中文介绍。"
     print(f"{content=}")
     command = 'opencode run "{}"'.format(content)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
