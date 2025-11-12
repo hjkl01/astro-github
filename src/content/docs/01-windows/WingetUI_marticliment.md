@@ -204,8 +204,6 @@ UniGetUI 如果没有我们亲爱的贡献者的帮助是不可能的。从修�
 
 ![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_4.png)
 
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_5.png)
-
 ![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_6.png)
 
 ![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_7.png)
