@@ -8,7 +8,7 @@ title: xonsh
 
 ## 概述
 
-Xonsh 是一个 Python 驱动的命令行 shell。它是 Python 3.6+ 的超集，添加了 shell 原语。名称 "Xonsh" 读作 "conch"（🐚），代表它属于命令 shell 的世界。
+Xonsh 是一个 Python 驱动的 shell。全功能且跨平台。该语言是 Python 3.6+ 的超集，具有额外的 shell 原语。名称 "Xonsh" 读作 "conch"（🐚），代表它属于命令 shell 的世界。
 
 ## 主要特性
 

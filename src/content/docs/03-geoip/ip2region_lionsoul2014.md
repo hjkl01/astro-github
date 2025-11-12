@@ -19,6 +19,10 @@ title: ip2region
 - **数据更新**：项目自带原始数据不提供更新，建议购买商用离线数据以获取更高精度和更新频率的数据。
 - **无外部依赖**：纯本地查询，不需要网络连接，隐私安全。
 
+## 官方社区
+
+Ip2Region 官方社区正式上线于 2025/06/12 日，一方面提供了稳定的 [商用离线数据](https://ip2region.net/products/offline) 服务，另一方面便于在核心代码外强化 IP 工具链和数据服务，例如 [使用文档](https://ip2region.net/doc/)，[查询测试](https://ip2region.net/search/demo)，数据纠错等。更多关于社区的信息和服务请访问 [Ip2Region 官方社区](https://ip2region.net/)。
+
 ## 主要功能
 
 - **IP地理位置查询**：根据IPv4或IPv6地址，返回详细的地域信息（如中国|北京市|北京市|中国电信），支持精确到城市的查询定位。
@@ -103,3 +107,22 @@ xdb 查询客户端支持多种编程语言，包括：
 - 第三方实现：php composer客户端、node.js addon、ruby客户端等
 
 详细用法和API文档请参考各语言绑定目录下的README文件。
+
+## 相关备注
+
+### 1、并发查询必读
+
+xdb 整个缓存的查询都是并发安全的，基于文件的查询都不是并发安全的实现，不同进程/线程/协程需要通过创建不同的查询对象来安全使用，并发量很大的情况下，基于文件查询的方式可能会导致打开文件数过多的错误，请修改内核的最大允许打开文件数(fs.file-max=一个更高的值)，或者将整个xdb加载到内存进行安全并发使用。
+
+### 2、核心 xdb 技术
+
+- xdb 数据结构分析：["ip2region xdb-数据结构描述"](https://ip2region.net/doc/xdb/structure)
+- xdb 查询过程分析：["ip2region xdb-查询过程描述"](https://ip2region.net/doc/xdb/search)
+- xdb 生成过程分析：["ip2region xdb-生成过程描述"](https://ip2region.net/doc/xdb/generate)
+- xdb 文件生成教程：["ip2region xdb-文件生成教程"](https://ip2region.net/doc/data/xdb_make)
+- xdb 数据更新方法：["ip2region 数据更新和 xdb 数据编辑器的使用"](https://mp.weixin.qq.com/s/cZH5qIn4E5rQFy6N32RCzA)
+
+### 3、技术信息博客
+
+- 微信公众号 - lionsoul-org，作者活跃的技术分享渠道
+- [Ip2Region 官方社区](https://ip2region.net)

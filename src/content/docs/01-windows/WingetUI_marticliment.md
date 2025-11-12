@@ -2,56 +2,258 @@
 title: WingetUI
 ---
 
-# UniGetUI 项目
+# <img src="https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/icon.png" height="40">UniGetUI（前身为 WingetUI）
 
-## 项目地址
+[![Downloads@latest](https://img.shields.io/github/downloads/marticliment/UniGetUI/3.2.0/total?style=for-the-badge)](https://github.com/marticliment/UniGetUI/releases/latest/download/UniGetUI.Installer.exe)
+[![Release Version Badge](https://img.shields.io/github/v/release/marticliment/UniGetUI?style=for-the-badge)](https://github.com/marticliment/UniGetUI/releases)
+[![Issues Badge](https://img.shields.io/github/issues/marticliment/UniGetUI?style=for-the-badge)](https://github.com/marticliment/UniGetUI/issues)
+[![Closed Issues Badge](https://img.shields.io/github/issues-closed/marticliment/UniGetUI?color=%238256d0&style=for-the-badge)](https://github.com/marticliment/UniGetUI/issues?q=is%3Aissue+is%3Aclosed)<br>
+这个项目的首要目标是为 Windows 10 和 11 最常见的 CLI 包管理器创建直观的 GUI，例如 [WinGet](https://learn.microsoft.com/en-us/windows/package-manager/)、[Scoop](https://scoop.sh/)、[Chocolatey](https://chocolatey.org/)、[Pip](https://pypi.org/)、[Npm](https://www.npmjs.com/)、[.NET Tool](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-tool-install)、[PowerShell Gallery](https://www.powershellgallery.com/) 等（查看包管理器兼容性表）！
 
-[GitHub 项目地址](https://github.com/marticliment/UniGetUI)
+使用此应用，您可以轻松下载、安装、更新和卸载支持的包管理器上发布的任何软件——以及更多！
 
-## 主要特性
+查看更多截图 [此处](#screenshots)
 
-UniGetUI (formerly WingetUI) 是一个开源的图形用户界面（GUI）工具，为 Windows 10 和 11 上最常见的 CLI 包管理器设计，如 WinGet、Scoop、Chocolatey、Pip、Npm、.NET Tool、PowerShell Gallery 等。它允许用户轻松下载、安装、更新和卸载任何发布在支持的包管理器上的软件。主要特性包括：
+查看[支持的包管理器表](#supported-package-managers)以获取更多详细信息！
 
-- **多包管理器支持**：整合 WinGet、Scoop、Chocolatey、Pip、Npm 等包管理器。
-- **用户友好界面**：直观的 GUI，支持一键安装、更新和卸载，无需命令行。
-- **批量操作**：选择多个包同时执行安装、更新或卸载。
-- **包发现与过滤**：搜索和过滤包，查看详细元数据。
-- **自动更新**：自动更新包，或通知可用更新，支持跳过版本。
-- **自定义安装**：为每个包选择不同安装选项，保存设置。
-- **导出/导入**：导出包列表到文件，导入到另一台机器。
-- **开源与多语言**：支持多种语言，包括中文。
+**免责声明：** 这个项目与任何支持的包管理器无关——它是完全非官方的。请注意，我，UniGetUI 的开发者，对下载的软件不负责任。谨慎行事
 
-## 主要功能
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/marticliment/WingetUI/dotnet-test.yml?branch=main&style=for-the-badge&label=Tests)<br>
 
-- **安装软件**：搜索并安装支持的包管理器中的软件。
-- **更新软件**：扫描并更新已安装软件，支持批量。
-- **卸载软件**：移除已安装的软件。
-- **包管理**：导出导入包列表，备份设置。
-- **通知与小部件**：系统托盘显示更新，集成 Dev Home 小部件。
-- **日志与调试**：详细日志，便于排查问题。
-- **主题支持**：浅色/深色模式。
+> [!CAUTION]
+> **UniGetUI 的官方网站是 [https://www.marticliment.com/unigetui/](https://www.marticliment.com/unigetui/)**<br>
+> **任何其他网站都应被视为非官方的，尽管它们可能声称是。**
 
-## 用法
+🔒 发现安全问题？请通过[我们的披露程序](https://whitehub.net/programs/unigetui/)报告
 
-1. **安装**：
-   - Microsoft Store：搜索 UniGetUI。
-   - WinGet：`winget install --exact --id MartiCliment.UniGetUI --source winget`
-   - Scoop：`scoop bucket add extras; scoop install extras/unigetui`
-   - Chocolatey：`choco install wingetui`
-   - 或下载安装程序从 Releases。
+## 支持开发者
 
-2. **启动应用**：
-   - 运行 UniGetUI，可能需要管理员权限。
+这确实会产生很大的影响，非常感谢。谢谢 :)<br>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P86KKPB)
 
-3. **基本操作**：
-   - **发现包**：搜索包，查看详情，安装。
-   - **更新**：检查更新，批量更新。
-   - **已安装**：管理已安装包，卸载或更新。
-   - **设置**：配置包管理器、更新检查等。
+## 目录
 
-4. **注意事项**：
-   - 支持的包管理器需单独安装（如 WinGet 默认在 Win10/11）。
-   - 包来自第三方，使用风险自负。
-   - 如遇问题，检查 Wiki 或 Issues。
+- **[UniGetUI 主页](https://www.marticliment.com/unigetui/)**
+- [目录](#table-of-contents)
+- [安装](#installation)
+- [更新 UniGetUI](#update-UniGetUI)
+- [支持开发者](#support-the-developer)
+- [功能](#features)
+  - [支持的包管理器](#supported-package-managers)
+- [翻译 UniGetUI](#translating-UniGetUI-to-other-languages)
+  - [当前支持的语言](#currently-supported-languages)
+- [贡献者](#contributors)
+- [截图](#screenshots)
+- [常见问题](#frequently-asked-questions)
+- [命令行参数](https://github.com/marticliment/UniGetUI/blob/main/cli-arguments.md)
 
-此工具适合需要管理多个包管理器的用户，提升软件管理效率。
+<a href="https://hellogithub.com/repository/46bec642537f449a857215e39a1d64ae" target="_blank"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=46bec642537f449a857215e39a1d64ae&claim_uid=u6sFoX4hC2HztbD&theme=small" alt="Featured｜HelloGitHub" /></a>
+
+## 安装
+
+<p>有多种方式安装 UniGetUI——选择您喜欢的任何一种！</p>
+  
+### Microsoft Store 安装（推荐）
+<a href="https://apps.microsoft.com/detail/xpfftq032ptphf"><img alt="alt_text" width="240px" src="https://get.microsoft.com/images/en-us%20dark.svg" /></a>
+
+### 下载 UniGetUI 安装程序：
+
+![GitHub Release](https://img.shields.io/github/v/release/marticliment/UniGetUI?style=for-the-badge)
+
+<p align="left"><b><a href="https://github.com/marticliment/UniGetUI/releases/latest/download/WingetUI.Installer.exe">点击此处下载 UniGetUI</a></b></p>
+
+### 通过 WinGet 安装 UniGetUI：
+
+![WinGet Package Version](https://img.shields.io/winget/v/MartiCliment.UniGetUI?style=for-the-badge)
+
+```cmd
+winget install --exact --id MartiCliment.UniGetUI --source winget
+```
+
+### 通过 Scoop 安装 UniGetUI：
+
+![Scoop version](https://img.shields.io/scoop/v/unigetui?bucket=extras&style=for-the-badge)
+
+```cmd
+scoop bucket add extras
+scoop install extras/unigetui
+```
+
+### 通过 Chocolatey 安装 UniGetUI：
+
+![Chocolatey Version](https://img.shields.io/chocolatey/v/wingetui?style=for-the-badge)
+
+```cmd
+choco install wingetui
+```
+
+## 更新 UniGetUI
+
+UniGetUI 内置了自动更新程序。但是，它也可以像任何其他包一样在 UniGetUI 中更新（因为 UniGetUI 可从 WinGet、Scoop 和 Chocolatey 获取）。
+
+## 功能
+
+- 一键轻松安装、更新和移除系统中的软件：UniGetUI 结合了 Windows 最常用的包管理器：Winget、Chocolatey、Scoop、Pip、Npm 和 .NET Tool 的包。
+- 发现新包并过滤它们以轻松找到您想要的包。
+- 在安装前查看任何包的详细元数据。获取直接下载 URL 或发布者名称，以及下载大小。
+- 通过在执行操作前选择多个包，轻松批量安装、更新或卸载多个包
+- 自动更新包，或在更新可用时收到通知。按包跳过版本或完全忽略更新。
+- 使用 [UniGetUI 的小部件](https://apps.microsoft.com/detail/9NB9M5KZ8SLX) 从 **小部件窗格** 或 **Dev Home 窗格** 一键管理您的可用更新\*。
+- 系统托盘图标还将显示可用更新和已安装的包，以高效更新程序或从系统中移除包。
+- 轻松自定义包的安装方式和位置。为每个包选择不同的安装选项和开关。安装旧版本或强制安装 32 位架构。\[但别担心，这些选项将为该包的未来更新保存\*]
+- 与朋友分享包，向他们炫耀您找到的程序。这是一个例子：[嘿 \@friend，查看这个程序！](https://marticliment.com/unigetui/share/?pname=Google%20Chrome&pid=Google.Chrome&psource=Winget:%20winget)
+- 导出自定义包列表，然后导入到另一台机器并使用之前指定的自定义安装参数安装这些包。设置机器或配置特定软件设置从未如此简单。
+- 将您的包备份到本地文件，在迁移到新机器时几秒钟内轻松恢复设置\*
+
+## 支持的包管理器
+
+**注意：** 所有包管理器都支持基本的安装、更新和卸载过程，以及检查更新、查找新包和从包中检索详细信息。
+
+<img src="https://marticliment.com/unigetui/extra/supported-managers.svg"/>
+
+✅: 在 UniGetUI 上支持<br>
+☑️: 未直接支持但可以轻松实现<br>
+⚠️: 在某些情况下可能无法工作<br>
+❌: 包管理器不支持<br>
+<br>
+
+# 将 UniGetUI 翻译成其他语言
+
+要将 UniGetUI 翻译成其他语言或更新旧翻译，请查看 [翻译 UniGetUI - UniGetUI Wiki](https://github.com/marticliment/UniGetUI/wiki#translating-wingetui) 以获取更多信息。
+
+## 当前支持的语言
+
+<!-- Autogenerated translations -->
+
+| Language                                                                             | Translated | Translator(s)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :----------------------------------------------------------------------------------- | :--------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <img src='https://flagcdn.com/af.svg' width=20> &nbsp; Afrikaans - Afrikaans         | 86%        | Hendrik Bezuidenhout                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| <img src='https://flagcdn.com/sa.svg' width=20> &nbsp; Arabic - عربي‎                | 90%        | [Abdu11ahAS](https://github.com/Abdu11ahAS), [Abdullah-Dev115](https://github.com/Abdullah-Dev115), [AbdullahAlousi](https://github.com/AbdullahAlousi), [bassuny3003](https://github.com/bassuny3003), [DaRandomCube](https://github.com/DaRandomCube), [FancyCookin](https://github.com/FancyCookin), [IFrxo](https://github.com/IFrxo), [mo9a7i](https://github.com/mo9a7i)                                                                                                                                                                                                                                         |
+| <img src='https://flagcdn.com/by.svg' width=20> &nbsp; Belarusian - беларуская       | 100%       | [bthos](https://github.com/bthos)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| <img src='https://flagcdn.com/bg.svg' width=20> &nbsp; Bulgarian - български         | 99%        | Nikolay Naydenov, Vasil Kolev                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; Bangla - বাংলা                | 58%        | [fluentmoheshwar](https://github.com/fluentmoheshwar), [itz-rj-here](https://github.com/itz-rj-here), Mushfiq Iqbal Rayon, Nilavra Bhattacharya, [samiulislamsharan](https://github.com/samiulislamsharan)                                                                                                                                                                                                                                                                                                                                                                                                             |
+| <img src='https://flagcdn.com/ad.svg' width=20> &nbsp; Catalan - Català              | 100%       | [marticliment](https://github.com/marticliment)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; Czech - Čeština               | 99%        | [mlisko](https://github.com/mlisko), [panther7](https://github.com/panther7), [xtorlukas](https://github.com/xtorlukas)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| <img src='https://flagcdn.com/dk.svg' width=20> &nbsp; Danish - Dansk                | 81%        | [AAUCrisp](https://github.com/AAUCrisp), [bstordrup](https://github.com/bstordrup), [mikkolukas](https://github.com/mikkolukas), [siewers](https://github.com/siewers), [yrjarv](https://github.com/yrjarv)                                                                                                                                                                                                                                                                                                                                                                                                            |
+| <img src='https://flagcdn.com/de.svg' width=20> &nbsp; German - Deutsch              | 99%        | [1270o1](https://github.com/1270o1), [alxhu-dev](https://github.com/alxhu-dev), [Araxxas](https://github.com/Araxxas), [arnowelzel](https://github.com/arnowelzel), [CanePlayz](https://github.com/CanePlayz), [Datacra5H](https://github.com/Datacra5H), [ebnater](https://github.com/ebnater), [martinwilco](https://github.com/martinwilco), [michaelmairegger](https://github.com/michaelmairegger), [Seeloewen](https://github.com/Seeloewen), [TheScarfix](https://github.com/TheScarfix), [tkohlmeier](https://github.com/tkohlmeier), [VfBFan](https://github.com/VfBFan), [yrjarv](https://github.com/yrjarv) |
+| <img src='https://flagcdn.com/gr.svg' width=20> &nbsp; Greek - Ελληνικά              | 100%       | [antwnhsx](https://github.com/antwnhsx), [panos78](https://github.com/panos78), [seijind](https://github.com/seijind), [thunderstrike116](https://github.com/thunderstrike116), [wobblerrrgg](https://github.com/wobblerrrgg)                                                                                                                                                                                                                                                                                                                                                                                          |
+| <img src='https://flagcdn.com/ee.svg' width=20> &nbsp; Estonian - Eesti              | 51%        | [artjom3729](https://github.com/artjom3729)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| <img src='https://flagcdn.com/gb.svg' width=20> &nbsp; English - English             | 100%       | [lucadsign](https://github.com/lucadsign), [marticliment](https://github.com/marticliment), [ppvnf](https://github.com/ppvnf)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; Spanish - Castellano          | 99%        | [apazga](https://github.com/apazga), [dalbitresb12](https://github.com/dalbitresb12), [evaneliasyoung](https://github.com/evaneliasyoung), [guplem](https://github.com/guplem), [JMoreno97](https://github.com/JMoreno97), [marticliment](https://github.com/marticliment), [P10Designs](https://github.com/P10Designs), [rubnium](https://github.com/rubnium), [uKER](https://github.com/uKER)                                                                                                                                                                                                                        |
+| <img src='https://flagcdn.com/ir.svg' width=20> &nbsp; Persian - فارسی‎              | 99%        | [MobinMardi](https://github.com/MobinMardi)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| <img src='https://flagcdn.com/fi.svg' width=20> &nbsp; Finnish - Suomi               | 100%       | [simakuutio](https://github.com/simakuutio)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| <img src='https://flagcdn.com/fil.svg' width=20> &nbsp; Filipino - Filipino          | 96%        | [infyProductions](https://github.com/infyProductions)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| <img src='https://flagcdn.com/fr.svg' width=20> &nbsp; French - Français             | 100%       | BreatFR, [Entropiness](https://github.com/Entropiness), Evans Costa, [PikPakPik](https://github.com/PikPakPik), Rémi Guerrero, [W1L7dev](https://github.com/W1L7dev)                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; Gujarati - ગુજરાતી            | 6%         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; Hindi - हिंदी                 | 71%        | [Ashu-r](https://github.com/Ashu-r), [atharva_xoxo](https://github.com/atharva_xoxo), [satanarious](https://github.com/satanarious)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <img src='https://flagcdn.com/hr.svg' width=20> &nbsp; Croatian - Hrvatski           | 100%       | [AndrejFeher](https://github.com/AndrejFeher), Ivan Nuić, Stjepan Treger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| <img src='https://flagcdn.com/il.svg' width=20> &nbsp; Hebrew - עִבְרִית‎            | 100%       | [lucadsign](https://github.com/lucadsign), [marticliment](https://github.com/marticliment), [ppvnf](https://github.com/ppvnf)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| <img src='https://flagcdn.com/hu.svg' width=20> &nbsp; Hungarian - Magyar            | 99%        | [gidano](https://github.com/gidano)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <img src='https://flagcdn.com/it.svg' width=20> &nbsp; Italian - Italiano            | 100%       | David Senoner, [giacobot](https://github.com/giacobot), [maicol07](https://github.com/maicol07), [mapi68](https://github.com/mapi68), [mrfranza](https://github.com/mrfranza), Rosario Di Mauro                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| <img src='https://flagcdn.com/id.svg' width=20> &nbsp; Indonesian - Bahasa Indonesia | 99%        | [agrinfauzi](https://github.com/agrinfauzi), [arthackrc](https://github.com/arthackrc), [joenior](https://github.com/joenior), [nrarfn](https://github.com/nrarfn)                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; Japanese - 日本語             | 99%        | [anmoti](https://github.com/anmoti), [BHCrusher1](https://github.com/BHCrusher1), [nob-swik](https://github.com/nob-swik), Nobuhiro Shintaku, sho9029, [tacostea](https://github.com/tacostea), Yuki Takase                                                                                                                                                                                                                                                                                                                                                                                                            |
+| <img src='https://flagcdn.com/ka.svg' width=20> &nbsp; Georgian - ქართული            | 99%        | [marticliment](https://github.com/marticliment), [ppvnf](https://github.com/ppvnf)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; Kannada - ಕನ್ನಡ               | 9%         | [skanda890](https://github.com/skanda890)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; Korean - 한국어               | 100%       | [jihoon416](https://github.com/jihoon416), [minbert](https://github.com/minbert), [MuscularPuky](https://github.com/MuscularPuky), [shblue21](https://github.com/shblue21), [thejjw](https://github.com/thejjw), [VenusGirl](https://github.com/VenusGirl)                                                                                                                                                                                                                                                                                                                                                             |
+| <img src='https://flagcdn.com/lt.svg' width=20> &nbsp; Lithuanian - Lietuvių         | 92%        | [dziugas1959](https://github.com/dziugas1959), Džiugas Januševičius, [martyn3z](https://github.com/martyn3z)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| <img src='https://flagcdn.com/mk.svg' width=20> &nbsp; Macedonian - Македонски       | 40%        | LordDeatHunter                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| <img src='https://flagcdn.com/no.svg' width=20> &nbsp; Norwegian (bokmål)            | 69%        | [mikaelkw](https://github.com/mikaelkw), [yrjarv](https://github.com/yrjarv)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| <img src='https://flagcdn.com/no.svg' width=20> &nbsp; Norwegian (nynorsk)           | 64%        | [yrjarv](https://github.com/yrjarv)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <img src='https://flagcdn.com/nl.svg' width=20> &nbsp; Dutch - Nederlands            | 100%       | [abbydiode](https://github.com/abbydiode), [CateyeNL](https://github.com/CateyeNL), [mia-riezebos](https://github.com/mia-riezebos), [Stephan-P](https://github.com/Stephan-P)                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| <img src='https://flagcdn.com/pl.svg' width=20> &nbsp; Polish - Polski               | 100%       | [AdiMajsterek](https://github.com/AdiMajsterek), [GrzegorzKi](https://github.com/GrzegorzKi), [H4qu3r](https://github.com/H4qu3r), [ikarmus2001](https://github.com/ikarmus2001), [juliazero](https://github.com/juliazero), [KamilZielinski](https://github.com/KamilZielinski), [kwiateusz](https://github.com/kwiateusz), [RegularGvy13](https://github.com/RegularGvy13), [szumsky](https://github.com/szumsky), [ThePhaseless](https://github.com/ThePhaseless)                                                                                                                                                   |
+| <img src='https://flagcdn.com/br.svg' width=20> &nbsp; Portuguese (Brazil)           | 100%       | [maisondasilva](https://github.com/maisondasilva), [ppvnf](https://github.com/ppvnf), [Rodrigo-Matsuura](https://github.com/Rodrigo-Matsuura), [thiagojramos](https://github.com/thiagojramos), [wanderleihuttel](https://github.com/wanderleihuttel)                                                                                                                                                                                                                                                                                                                                                                  |
+| <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; Portuguese (Portugal)         | 93%        | [100Nome](https://github.com/100Nome), [PoetaGA](https://github.com/PoetaGA), [Putocoroa](https://github.com/Putocoroa), [Tiago_Ferreira](https://github.com/Tiago_Ferreira)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| <img src='https://flagcdn.com/ro.svg' width=20> &nbsp; Romanian - Română             | 100%       | [David735453](https://github.com/David735453), [lucadsign](https://github.com/lucadsign), [SilverGreen93](https://github.com/SilverGreen93), TZACANEL                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; Russian - Русский             | 100%       | Alexander, [bropines](https://github.com/bropines), [Denisskas](https://github.com/Denisskas), [DvladikD](https://github.com/DvladikD), [flatron4eg](https://github.com/flatron4eg), Gleb Saygin, [katrovsky](https://github.com/katrovsky), Sergey, sklart, [solarscream](https://github.com/solarscream), [tapnisu](https://github.com/tapnisu)                                                                                                                                                                                                                                                                      |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; Sanskrit - संस्कृत भाषा       | 8%         | [skanda890](https://github.com/skanda890)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| <img src='https://flagcdn.com/sk.svg' width=20> &nbsp; Slovak - Slovenčina           | 8%         | [Luk164](https://github.com/Luk164)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <img src='https://flagcdn.com/rs.svg' width=20> &nbsp; Serbian - Srpski              | 73%        | [daVinci13](https://github.com/daVinci13), [momcilovicluka](https://github.com/momcilovicluka)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| <img src='https://flagcdn.com/al.svg' width=20> &nbsp; Albanian - Shqip              | 100%       | [RDN000](https://github.com/RDN000)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <img src='https://flagcdn.com/lk.svg' width=20> &nbsp; Sinhala - සිංහල               | 10%        | [SashikaSandeepa](https://github.com/SashikaSandeepa), [Savithu-s3](https://github.com/Savithu-s3), [ttheek](https://github.com/ttheek)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| <img src='https://flagcdn.com/si.svg' width=20> &nbsp; Slovene - Slovenščina         | 86%        | [rumplin](https://github.com/rumplin)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| <img src='https://flagcdn.com/se.svg' width=20> &nbsp; Swedish - Svenska             | 100%       | [curudel](https://github.com/curudel), [Hi-there-how-are-u](https://github.com/Hi-there-how-are-u), [kakmonster](https://github.com/kakmonster), [umeaboy](https://github.com/umeaboy)                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| <img src='https://flagcdn.com/ta.svg' width=20> &nbsp; Tamil - தமிழ்                 | 4%         | [nochilli](https://github.com/nochilli)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| <img src='https://flagcdn.com/ph.svg' width=20> &nbsp; Tagalog - Tagalog             | 12%        | lasersPew, [znarfm](https://github.com/znarfm)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| <img src='https://flagcdn.com/th.svg' width=20> &nbsp; Thai - ภาษาไทย                | 81%        | [apaeisara](https://github.com/apaeisara), [dulapahv](https://github.com/dulapahv), [hanchain](https://github.com/hanchain), [rikoprushka](https://github.com/rikoprushka), [vestearth](https://github.com/vestearth)                                                                                                                                                                                                                                                                                                                                                                                                  |
+| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; Turkish - Türkçe              | 100%       | [ahmetozmtn](https://github.com/ahmetozmtn), [BerkeA111](https://github.com/BerkeA111), [dogancanyr @anzeralp](https://github.com/dogancanyr @anzeralp), [gokberkgs](https://github.com/gokberkgs)                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| <img src='https://flagcdn.com/ua.svg' width=20> &nbsp; Ukrainian - Українська        | 100%       | Alex Logvin, Artem Moldovanenko, Operator404, [Taron-art](https://github.com/Taron-art)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| <img src='https://flagcdn.com/pk.svg' width=20> &nbsp; Urdu - اردو                   | 81%        | [digitio](https://github.com/digitio), [digitpk](https://github.com/digitpk), [hamzaharoon1314](https://github.com/hamzaharoon1314)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; Vietnamese - Tiếng Việt       | 100%       | [aethervn2309](https://github.com/aethervn2309), [legendsjoon](https://github.com/legendsjoon), [txavlog](https://github.com/txavlog), [vanlongluuly](https://github.com/vanlongluuly)                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; Simplified Chinese (China)    | 100%       | Aaron Liu, adfnekc, [Ardenet](https://github.com/Ardenet), [arthurfsy2](https://github.com/arthurfsy2), [bai0012](https://github.com/bai0012), BUGP Association, ciaran, CnYeSheng, Cololi, [dongfengweixiao](https://github.com/dongfengweixiao), [enKl03B](https://github.com/enKl03B), [seanyu0](https://github.com/seanyu0), [Sigechaishijie](https://github.com/Sigechaishijie), [SpaceTimee](https://github.com/SpaceTimee), [xiaopangju](https://github.com/xiaopangju), Yisme                                                                                                                                  |
+| <img src='https://flagcdn.com/tw.svg' width=20> &nbsp; Traditional Chinese (Taiwan)  | 99%        | Aaron Liu, CnYeSheng, Cololi, [enKl03B](https://github.com/enKl03B), [Henryliu880922](https://github.com/Henryliu880922), [StarsShine11904](https://github.com/StarsShine11904), [yrctw](https://github.com/yrctw)                                                                                                                                                                                                                                                                                                                                                                                                     |
+
+Last updated: Sun Nov 9 00:37:28 2025
+
+<!-- END Autogenerated translations -->
+
+# 贡献
+
+UniGetUI 如果没有我们亲爱的贡献者的帮助是不可能的。从修复拼写错误的人到改进一半代码的人，UniGetUI 如果没有他们是不可能的！:smile:<br><br>
+
+## 贡献者：
+
+[![My dear contributors](https://contrib.rocks/image?repo=marticliment/UniGetUI)](https://github.com/marticliment/UniGetUI/graphs/contributors)<br><br>
+
+# 截图
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_1.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_2.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_3.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_4.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_5.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_6.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_7.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_8.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_9.png)
+
+![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_10.png)
+
+# 常见问题
+
+**Q: 我无法安装或升级特定的 Winget 包！该怎么办？**<br>
+
+A: 这可能是 Winget 的问题而不是 UniGetUI。
+
+请检查是否可以通过 PowerShell 或命令提示符使用 `winget upgrade` 或 `winget install` 命令安装/升级包，具体取决于情况（例如：`winget upgrade --id Microsoft.PowerToys`）。
+
+如果这不起作用，请考虑在 [Winget 的项目页面](https://github.com/microsoft/winget-cli) 寻求帮助。<br>
+
+#
+
+**Q: 包的名称被省略号修剪——如何查看其完整名称/id？**<br>
+
+A: 这是 Winget 的已知限制。
+
+有关更多详细信息，请查看此问题：https://github.com/microsoft/winget-cli/issues/2603。<br>
+
+#
+
+**Q: 我的杀毒软件告诉我 UniGetUI 是病毒！/ 我的浏览器阻止下载 UniGetUI！**<br>
+
+A: 应用（即可执行文件）被阻止和/或检测为病毒的常见原因是——即使它们没有恶意，如 UniGetUI 的情况——因为相对较少的人在使用它们。
+
+结合您可能正在下载最近发布的东西的事实，在许多情况下，阻止未知应用是防止实际恶意软件的好预防措施。
+
+由于 UniGetUI 是开源的且安全使用，请在您的杀毒软件/浏览器设置中将应用列入白名单。<br>
+
+#
+
+**Q: Winget/Scoop 包安全吗？**<br>
+
+A: UniGetUI、Microsoft 和 Scoop 不对可下载的包负责，这些包由第三方提供，理论上可能被 compromise。
+
+Microsoft 为 Winget 上可用的软件实施了一些检查以减轻下载恶意软件的风险。尽管如此，建议您只从受信任的发布者下载软件。
+
+<br><p align="center"><i>查看 <a href="https://github.com/marticliment/UniGetUI/wiki">Wiki</a> 以获取更多信息！</i></p>
+
+## 命令行参数：
+
+查看完整参数列表 [此处](https://github.com/marticliment/UniGetUI/blob/main/cli-arguments.md)

@@ -14,16 +14,16 @@ OpCore-Simplify 是一个专门设计的工具，用于简化 [OpenCore](https:/
    - **GPU**: Intel iGPU 从 Iron Lake (1nd Gen) 到 Ice Lake (10th Gen)；AMD APU Vega Raven ASIC 系列；AMD dGPU Navi 23, 22, 21 及更早系列；NVIDIA Kepler, Pascal, Maxwell, Fermi, Tesla 系列。
    - **macOS**: 从 macOS High Sierra 到 macOS Tahoe。
 
-2. **ACPI Patches 和 Kexts**  
-   根据硬件配置自动检测并添加 ACPI patches 和 kexts。集成 SSDTTime，支持常见 patches，如 FakeEC, FixHPET, PLUG, RTCAWAC。包括自定义 patches，如防止内核 panic、禁用不支持的 PCI 设备、修复睡眠状态等。
+2. **ACPI Patches 和 Kexts**
+   根据硬件配置自动检测并添加 ACPI patches 和 kexts。集成 SSDTTime，支持常见 patches，如 FakeEC、FixHPET、PLUG、RTCAWAC。包括自定义 patches，如防止内核 panic、禁用不支持的 PCI 设备、修复睡眠状态等。
 
-3. **自动更新**  
+3. **自动更新**
    在每次 EFI 构建前自动检查并更新 OpenCorePkg 和 kexts 从 Dortania Builds 和 GitHub releases。
 
-4. **EFI 配置**  
+4. **EFI 配置**
    基于广泛使用的来源和个人经验应用额外自定义，如欺骗 GPU IDs、禁用 SIP、欺骗 CPU IDs、添加 NVRAM 条目等。
 
-5. **易于自定义**  
+5. **易于自定义**
    除了默认设置，用户可以轻松进行进一步自定义，如自定义 ACPI patches、kexts 和 SMBIOS 调整。
 
 ## 使用方法

@@ -8,7 +8,7 @@ title: opentui
 
 ## 概述
 
-OpenTUI 是一个用于构建终端用户界面 (TUI) 的 TypeScript 库。它提供了现代化的 API 来创建命令行应用程序的交互式界面。目前仍在开发中，还未准备好用于生产环境。它将成为 [opencode](https://opencode.ai) 和 [terminaldotshop](https://terminal.shop) 的基础 TUI 框架。
+OpenTUI 是一个用于构建终端用户界面 (TUIs) 的 TypeScript 库。它目前正在开发中，不适合生产使用。它将成为 opencode 和 terminaldotshop 的基础 TUI 框架。
 
 ## 主要特性
 

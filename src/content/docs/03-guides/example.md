@@ -1,11 +1,10 @@
 ---
-title: example
+title: 示例
 ---
----
 
-Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.
-Writing a good guide requires thinking about what your users are trying to do.
+指南引导用户完成他们想要完成的具体任务，通常包含一系列步骤。
+编写好的指南需要考虑用户想要做什么。
 
-## Further reading
+## 进一步阅读
 
-- Read [about how-to guides](https://diataxis.fr/how-to-guides/) in the Diátaxis framework
+- 阅读 Diátaxis 框架中的[关于操作指南](https://diataxis.fr/how-to-guides/)

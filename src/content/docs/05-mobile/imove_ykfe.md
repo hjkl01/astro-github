@@ -2,7 +2,7 @@
 title: imove
 ---
 
-# iMove 项目
+# iMove 项目（已不活跃）
 
 **GitHub 项目地址:** [https://github.com/ykfe/imove](https://github.com/ykfe/imove)
 

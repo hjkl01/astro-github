@@ -10,7 +10,7 @@ Terraform AWS Provider 是 HashiCorp 开发的 Terraform 提供商，用于管�
 
 主要功能包括：
 
-- 支持数千种 AWS 资源和服务，包括 EC2、S3、Lambda、RDS 等
+- 支持数千种 AWS 资源和服务，包括 EC2、S3、Lambda、RDS、EKS、ECS、VPC、DynamoDB、CloudWatch 等
 - 基础设施即代码 (IaC) 管理
 - 状态管理以跟踪资源变化
 - 与 Terraform 生态系统集成
@@ -33,7 +33,7 @@ Terraform AWS Provider 是 HashiCorp 开发的 Terraform 提供商，用于管�
       required_providers {
         aws = {
           source  = "hashicorp/aws"
-          version = "~> 6.0"
+          version = "~> 6.14"
         }
       }
     }

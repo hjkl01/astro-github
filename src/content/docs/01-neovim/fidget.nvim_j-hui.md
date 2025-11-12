@@ -6,7 +6,6 @@ title: Fidget
 
 # 💫 Fidget
 
-[![Docs](https://github.com/j-hui/fidget.nvim/actions/workflows/docs.yaml/badge.svg)](doc/fidget.txt)
 [![LuaRocks](https://img.shields.io/luarocks/v/j-hui/fidget.nvim?logo=lua&color=purple)](https://luarocks.org/modules/j-hui/fidget.nvim)
 
 > Description from GitHub: 💫 Extensible UI for Neovim notifications and LSP progress messages.

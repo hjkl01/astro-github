@@ -4,37 +4,37 @@ title: turborepo
 
 # Turborepo
 
-Turborepo is a high-performance build system for JavaScript and TypeScript codebases, written in Rust.
+Turborepo 是一个为 JavaScript 和 TypeScript 代码库打造的高性能构建系统，使用 Rust 编写。
 
-## Features
+## 功能
 
-- **Task Caching**: Caches task outputs to avoid redundant work.
-- **Dependency Graph**: Understands task dependencies for efficient execution.
-- **Parallel Execution**: Runs independent tasks simultaneously.
-- **Remote Caching**: Shares cache with team members.
-- **Daemon Process**: Background process for performance optimization.
-- **Watch Mode**: Automatically re-runs tasks on file changes.
-- **Code Generation**: Uses generators for scaffolding code.
+- **任务缓存**：缓存任务输出以避免重复工作。
+- **依赖图**：理解任务依赖关系以实现高效执行。
+- **并行执行**：同时运行独立任务。
+- **远程缓存**：与团队成员共享缓存。
+- **守护进程**：后台进程以优化性能。
+- **监视模式**：在文件更改时自动重新运行任务。
+- **代码生成**：使用生成器来搭建代码。
 
-## Installation
+## 安装
 
-Install Turborepo as a development dependency:
+将 Turborepo 作为开发依赖项安装：
 
 ```bash
 pnpm add turbo --save-dev --ignore-workspace-root-check
-# or
+# 或
 yarn add turbo --dev --ignore-workspace-root-check
-# or
+# 或
 npm install turbo --save-dev
-# or
+# 或
 bun install turbo --dev
 ```
 
-## Usage
+## 用法
 
-### Configuration
+### 配置
 
-Create a `turbo.json` file to define tasks:
+创建 `turbo.json` 文件来定义任务：
 
 ```json
 {
@@ -52,26 +52,26 @@ Create a `turbo.json` file to define tasks:
 }
 ```
 
-### Running Tasks
+### 运行任务
 
-Run tasks with:
+使用以下命令运行任务：
 
 ```bash
 turbo run build
 turbo run dev
 ```
 
-### Watch Mode
+### 监视模式
 
-Enable watch mode to re-run tasks on changes:
+启用监视模式以在更改时重新运行任务：
 
 ```bash
 turbo watch dev lint test
 ```
 
-### Other Commands
+### 其他命令
 
-- `turbo query`: Query the dependency graph.
-- `turbo telemetry enable/disable`: Manage telemetry.
+- `turbo query`：查询依赖图。
+- `turbo telemetry enable/disable`：管理遥测。
 
-For more details, visit [turborepo.com](https://turborepo.com).
+更多详细信息，请访问 [turborepo.com](https://turborepo.com)。

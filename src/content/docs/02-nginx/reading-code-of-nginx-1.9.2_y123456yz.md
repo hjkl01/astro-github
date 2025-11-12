@@ -8,7 +8,7 @@ title: reading-code-of-nginx-1.9.2
 
 ## 主要特性
 
-- Detailed analysis of Nginx 1.9.2 source code with extensive Chinese comments and function call flow annotations.
+- 对 Nginx 1.9.2 源代码的详细分析，带有广泛的中文注释和函数调用流程注解。
 - Most comprehensive nginx source code reading analysis Chinese comments, updated.
 - Covers high concurrency design, excellent ideas applied to other high concurrency proxy middleware.
 

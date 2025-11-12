@@ -2,11 +2,15 @@
 title: Comment.nvim
 ---
 
-## 功能介绍
+## GitHub Link
+
+https://github.com/numToStr/Comment.nvim
+
+## Description
 
 Comment.nvim 是一个智能且强大的 Neovim 注释插件，支持 Treesitter、点重复、左右/上下移动、钩子等功能。它提供了行注释（`//`）和块注释（`/* */`）的支持，能够处理多种语言和文件类型。
 
-### 主要特性
+## Main Features
 
 - **Treesitter 支持**：利用 Treesitter 计算注释字符串，支持多语言嵌入。
 - **点重复**：支持 `.` 重复操作，如 `gcc`、`gbc` 等。
@@ -16,7 +20,29 @@ Comment.nvim 是一个智能且强大的 Neovim 注释插件，支持 Treesitter
 - **钩子**：支持预钩子和后钩子函数。
 - **忽略行**：可忽略特定行，支持 Lua 正则表达式。
 
-## 用法
+## Main Functions
+
+### 基本映射
+
+- **NORMAL 模式**：
+  - `gcc`：切换当前行行注释
+  - `gbc`：切换当前行块注释
+  - `[count]gcc`：切换指定行数行注释
+  - `[count]gbc`：切换指定行数块注释
+  - `gc[count]{motion}`：使用行注释切换区域
+  - `gb[count]{motion}`：使用块注释切换区域
+
+- **VISUAL 模式**：
+  - `gc`：使用行注释切换区域
+  - `gb`：使用块注释切换区域
+
+### 额外映射
+
+- `gco`：在下一行插入注释并进入插入模式
+- `gcO`：在上一行插入注释并进入插入模式
+- `gcA`：在当前行尾插入注释并进入插入模式
+
+## Usage
 
 ### 安装
 
@@ -87,26 +113,6 @@ require('Comment').setup({
     post_hook = nil,
 })
 ```
-
-### 基本映射
-
-- **NORMAL 模式**：
-  - `gcc`：切换当前行行注释
-  - `gbc`：切换当前行块注释
-  - `[count]gcc`：切换指定行数行注释
-  - `[count]gbc`：切换指定行数块注释
-  - `gc[count]{motion}`：使用行注释切换区域
-  - `gb[count]{motion}`：使用块注释切换区域
-
-- **VISUAL 模式**：
-  - `gc`：使用行注释切换区域
-  - `gb`：使用块注释切换区域
-
-### 额外映射
-
-- `gco`：在下一行插入注释并进入插入模式
-- `gcO`：在上一行插入注释并进入插入模式
-- `gcA`：在当前行尾插入注释并进入插入模式
 
 ### 示例
 

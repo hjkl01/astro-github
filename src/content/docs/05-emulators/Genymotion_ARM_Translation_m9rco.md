@@ -38,8 +38,8 @@ title: Genymotion
 如果安装 ARM APK 时出现错误消息：
 
 ```
-An error occured while deploying the file.
-This probably means that the app contains ARM native code and your Genymotion device cannot run ARM instructions. You should either build your native code to x86 or install an ARM translation tool in your device.
+部署文件时发生错误。
+这可能意味着应用程序包含 ARM 原生代码，而您的 Genymotion 设备无法运行 ARM 指令。您应该将原生代码构建为 x86，或在设备中安装 ARM 翻译工具。
 ```
 
 1. 验证 ARM_Translation 是否成功安装。

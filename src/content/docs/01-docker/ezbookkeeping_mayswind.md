@@ -12,51 +12,11 @@ ezBookkeeping 为移动和桌面设备提供定制界面，支持 PWA（渐进�
 
 ### 主要功能
 
-- **开源 & 自托管**
-  - 注重隐私和控制
-- **轻量 & 快速**
-  - 性能优化，即使在低资源环境中也能流畅运行
-- **易安装**
-  - Docker 就绪
-  - 支持 SQLite、MySQL、PostgreSQL
-  - 跨平台（Windows、macOS、Linux）
-  - 支持 x86、amd64、ARM 架构
-- **用户友好界面**
-  - UI 针对移动和桌面优化
-  - PWA 支持，提供类似原生的移动体验
-  - 暗模式
-- **AI 功能**
-  - 收据图像识别
-  - 支持 MCP（模型上下文协议）进行 AI 集成
-- **强大记账**
-  - 两级账户和类别
-  - 交易附加图像
-  - 位置跟踪与地图
-  - 重复交易
-  - 高级过滤、搜索、可视化和分析
-- **本地化 & 全球化**
-  - 多语言和多货币支持
-  - 自动汇率
-  - 多时区感知
-  - 自定义日期、数字和货币格式
-- **安全**
-  - 双因素认证 (2FA)
-  - 登录速率限制
-  - 应用锁（PIN 码 / WebAuthn）
-- **数据导入/导出**
-  - 支持 CSV、OFX、QFX、QIF、IIF、Camt.053、MT940、GnuCash、Firefly III、Beancount 等
+一个轻量级、自托管的个人财务应用，具有用户友好的界面和强大的记账功能。
 
 ## 用法
 
-### 使用 Docker 运行
-
-访问 [Docker Hub](https://hub.docker.com/r/mayswind/ezbookkeeping) 查看所有镜像和标签。
-
-**最新发布版：**
-
-```bash
-docker run -p8080:8080 mayswind/ezbookkeeping
-```
+请参考项目文档获取详细用法。
 
 **最新每日构建：**
 

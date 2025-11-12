@@ -4,6 +4,8 @@ title: sftpgo
 
 # SFTPGo 项目概述
 
+使用 SFTPGo，您可以利用本地和云存储后端，使用您已经熟悉的相同工具和流程，在内部或与业务伙伴交换和存储文件。
+
 ## 项目地址
 
 [GitHub 项目地址](https://github.com/drakkan/sftpgo)
@@ -74,6 +76,34 @@ SFTPGo 是一个功能丰富的、完全功能化的、基于 Go 语言编写的
    - 更新：定期拉取新版本并重启服务。
 
 更多细节请参考项目文档：[官方文档](https://docs.sftpgo.com/)。
+
+## 赞助商
+
+SFTPGo 致力于开源。核心功能免费提供并维护。如果您在项目中依赖 SFTPGo，请考虑成为[赞助商](https://github.com/sponsors/drakkan)，以帮助确保其长期可持续性。
+
+您的赞助有助于覆盖维护、安全更新和开源版本的持续开发。
+
+### 感谢我们的赞助商
+
+#### 白金赞助商
+
+[![Aledade logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/Aledade_logo.png)](https://www.aledade.com/)
+
+[![Jump Trading logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/jumptrading.png)](https://www.jumptrading.com/)
+
+[![WP Engine logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/wpengine.png)](https://wpengine.com/)
+
+#### 白银赞助商
+
+[![IDCS logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/IDCS.png)](https://idcs.ip-paris.fr/)
+
+#### 青铜赞助商
+
+[![7digital logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/7digital.png)](https://www.7digital.com/)
+
+[![servinga logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/servinga.png)](https://servinga.com/)
+
+[![ReUI logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/reui.png)](https://www.reui.io/)
 
 ## 支持
 

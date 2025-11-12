@@ -6,7 +6,7 @@ title: bitmagnet
 
 **GitHub 项目地址:** [https://github.com/bitmagnet-io/bitmagnet](https://github.com/bitmagnet-io/bitmagnet)
 
-A self-hosted BitTorrent indexer, DHT crawler, content classifier and torrent search engine with web UI, GraphQL API and Servarr stack integration.
+一个自托管的 BitTorrent 索引器、DHT 爬虫、内容分类器和 torrent 搜索引擎，具有 Web UI、GraphQL API 和 Servarr 堆栈集成。
 
 ## 主要特性
 

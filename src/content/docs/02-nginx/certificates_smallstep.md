@@ -4,7 +4,7 @@ title: certificates
 
 # step-ca
 
-🛡️ A private certificate authority (X.509 & SSH) & ACME server for secure automated certificate management, so you can use TLS everywhere & SSO for SSH.
+🛡️ 一个私有证书颁发机构 (X.509 & SSH) & ACME 服务器，用于安全自动证书管理，让您可以在任何地方使用 TLS 和 SSH SSO。
 
 ## Features
 

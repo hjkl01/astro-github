@@ -8,7 +8,7 @@ title: nginx-admins-handbook
 
 ## 主要特性
 
-- Comprehensive guide for improving NGINX performance, security, and other important things.
+- 全面指南，用于改进 NGINX 性能、安全性和其他重要事项。
 - Structured content with chapters on HTTP Basics, SSL/TLS Basics, NGINX Basics, Helpers, Base Rules, Debugging, Performance, Hardening, Reverse Proxy, Load Balancing, Others, Configuration Examples.
 - Practical examples, cheatsheets, printable hardening posters, fully automatic installation scripts, static error pages generator, server names parser.
 - Open source and free, community-driven.

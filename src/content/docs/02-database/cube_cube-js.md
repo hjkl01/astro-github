@@ -4,29 +4,29 @@ title: cube
 
 # Cube
 
-Cube Core is an open-source semantic layer and LookML alternative for AI, BI, and embedded analytics. It enables data professionals to access data from modern data stores, organize it into consistent definitions, and deliver it to applications via multiple APIs.
+Cube Core 是一个开源的语义层和 LookML 的替代方案，用于 AI、BI 和嵌入式分析。它使数据专业人员能够从现代数据存储中访问数据，将其组织成一致的定义，并通过多个 API 交付给应用程序。
 
-## Key Features
+## 主要特性
 
-- **Data Source Support**: Connects to SQL-enabled data sources including cloud data warehouses (Snowflake, Google BigQuery), query engines (Presto, Amazon Athena), and application databases (Postgres).
-- **APIs**: Provides REST, GraphQL, and SQL APIs for embedded analytics and BI.
-- **Performance**: Built-in relational caching engine for sub-second latency and high concurrency.
-- **Multidimensional Analysis**: Enables OLAP-style analytics with consistent metric definitions.
-- **Access Control**: Robust governance and security across data ecosystems.
-- **Headless Architecture**: Flexible integration without vendor lock-in.
+- **数据源支持**：连接到启用 SQL 的数据源，包括云数据仓库（Snowflake、Google BigQuery）、查询引擎（Presto、Amazon Athena）和应用程序数据库（Postgres）。
+- **API**：为嵌入式分析和 BI 提供 REST、GraphQL 和 SQL API。
+- **性能**：内置关系缓存引擎，实现亚秒级延迟和高并发。
+- **多维分析**：使用一致的指标定义启用 OLAP 风格的分析。
+- **访问控制**：跨数据生态系统的强大治理和安全。
+- **无头架构**：灵活集成，无供应商锁定。
 
-## Getting Started
+## 入门指南
 
-### Cube Cloud (Recommended)
+### Cube Cloud（推荐）
 
-Cube Cloud offers managed infrastructure and free access for development projects.
+Cube Cloud 提供托管基础设施，并为开发项目提供免费访问。
 
-1. Sign up at [Cube Cloud](https://cubecloud.dev/auth/signup).
-2. Follow the [step-by-step guide](https://cube.dev/docs/getting-started/cloud/overview).
+1. 在 [Cube Cloud](https://cubecloud.dev/auth/signup) 注册。
+2. 按照 [逐步指南](https://cube.dev/docs/getting-started/cloud/overview) 操作。
 
-### Docker (Self-Hosted)
+### Docker（自托管）
 
-Run Cube locally using Docker:
+使用 Docker 在本地运行 Cube：
 
 ```bash
 docker run -p 4000:4000 \

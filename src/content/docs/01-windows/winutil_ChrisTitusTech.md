@@ -2,62 +2,99 @@
 title: winutil
 ---
 
-# 项目地址
+# Chris Titus Tech's Windows Utility
 
-https://github.com/ChrisTitusTech/winutil
+[![Version](https://img.shields.io/github/v/release/ChrisTitusTech/winutil?color=%230567ff&label=Latest%20Release&style=for-the-badge)](https://github.com/ChrisTitusTech/winutil/releases/latest)
+![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/ChrisTitusTech/winutil/winutil.ps1?label=Total%20Downloads&style=for-the-badge)
+[![](https://dcbadge.limes.pink/api/server/https://discord.gg/RUbZUZyByQ?theme=default-inverted&style=for-the-badge)](https://discord.gg/RUbZUZyByQ)
+[![Static Badge](https://img.shields.io/badge/Documentation-_?style=for-the-badge&logo=bookstack&color=grey)](https://winutil.christitus.com/)
 
-# 主要特性
+This utility is a compilation of Windows tasks I perform on each Windows system I use. It is meant to streamline _installs_, debloat with _tweaks_, troubleshoot with _config_, and fix Windows _updates_. I am extremely picky about any contributions to keep this project clean and efficient.
 
-Chris Titus Tech's Windows Utility 是一个用于Windows系统的实用工具集合，由Chris Titus Tech开发。它旨在简化Windows系统的安装、优化、故障排除和更新过程。该工具编译了作者在每个Windows系统上执行的常见任务，包括安装程序、系统优化调整、故障修复和更新管理。项目注重保持代码的清洁和高效，对贡献有严格的要求。
+![screen-install](https://raw.githubusercontent.com/Chris-Titus-Docs/winutil-docs/refs/heads/main/assets/images/Title-Screen.png)
 
-# 功能
+## 💡 Usage
 
-- **安装程序**：提供一键安装常用软件和工具的功能。
-- **系统优化（Tweaks）**：包括去膨胀（debloat）功能，帮助移除不必要的预装软件和组件，以提升系统性能。
-- **故障排除（Config）**：提供配置和诊断工具，帮助解决常见的Windows问题。
-- **修复和更新**：自动化处理Windows更新和修复常见系统错误。
-- **构建和开发**：支持源码编译，用户可以克隆仓库并使用自定义编译脚本生成可执行文件。
-- **社区支持**：提供Discord社区、文档和YouTube教程，帮助用户使用和贡献项目。
+Winutil must be run in Admin mode because it performs system-wide tweaks. To achieve this, run PowerShell as an administrator. Here are a few ways to do it:
 
-# 用法
+1. **Start menu Method:**
+   - Right-click on the start menu.
+   - Choose "Windows PowerShell (Admin)" (for Windows 10) or "Terminal (Admin)" (for Windows 11).
 
-Winutil必须以管理员模式运行，因为它执行系统级别的调整。可以通过以下方式启动PowerShell管理员模式：
+2. **Search and Launch Method:**
+   - Press the Windows key.
+   - Type "PowerShell" or "Terminal" (for Windows 11).
+   - Press `Ctrl + Shift + Enter` or Right-click and choose "Run as administrator" to launch it with administrator privileges.
 
-1. **开始菜单方法**：
-   - 右键点击开始菜单。
-   - 选择“Windows PowerShell (Admin)”（Windows 10）或“Terminal (Admin)”（Windows 11）。
+### Launch Command
 
-2. **搜索启动方法**：
-   - 按Windows键。
-   - 输入“PowerShell”或“Terminal”（Windows 11）。
-   - 按Ctrl + Shift + Enter或右键选择“以管理员身份运行”。
+#### Stable Branch (Recommended)
 
-### 启动命令
-
-#### 稳定分支（推荐）
-
-```
+```ps1
 irm "https://christitus.com/win" | iex
 ```
 
-#### 开发分支
+#### Dev Branch
 
-```
+```ps1
 irm "https://christitus.com/windev" | iex
 ```
 
-如果遇到问题，请参考[已知问题](https://winutil.christitus.com/knownissues/)。
+If you have Issues, refer to [Known Issues](https://winutil.christitus.com/knownissues/)
 
-### 构建和开发
+## 🎓 Documentation
 
-Winutil是一个大型脚本，分为多个文件，使用自定义编译器合并为单个.ps1文件。克隆仓库后，运行PowerShell（无需管理员权限）：
+> [!NOTE]
+> To contribute to the documentation, please visit [WinUtil Docs Repo](https://github.com/Chris-Titus-Docs/winutil-docs) for more info.
 
-```
+### [WinUtil Official Documentation](https://winutil.christitus.com/)
+
+### [YouTube Tutorial](https://www.youtube.com/watch?v=6UQZ5oQg8XA)
+
+### [ChrisTitus.com Article](https://christitus.com/windows-tool/)
+
+## 🛠️ Build & Develop
+
+> [!NOTE]
+> Winutil is a relatively large script, so it's split into multiple files which're combined into a single `.ps1` file using a custom compiler. This makes maintaining the project a lot easier.
+
+Get a copy of the source code, this can be done using GitHub UI (`Code -> Download ZIP`), or by cloning (downloading) the repo using git.
+
+If git is installed, run the following commands under a PowerShell window to clone and move into project's directory:
+
+```ps1
 git clone --depth 1 "https://github.com/ChrisTitusTech/winutil.git"
 cd winutil
+```
+
+To build the project, run the Compile Script under a PowerShell window (admin permissions IS NOT required):
+
+```ps1
 .\Compile.ps1
 ```
 
-这将生成`winutil.ps1`文件，可以以管理员身份运行。
+You'll see a new file named `winutil.ps1`, which's created by `Compile.ps1` script, now you can run it as admin and a new window will popup, enjoy your own compiled version of WinUtil :)
 
-更多信息请参考[贡献指南](https://winutil.christitus.com/contributing/)和[Discord社区](https://discord.gg/RUbZUZyByQ)。
+> [!TIP]
+> For more info on using WinUtil and how to develop for it, please consider reading [the Contribution Guidelines](https://winutil.christitus.com/contributing/), if you don't know where to start, or have questions, you can ask over on our [Discord Community Server](https://discord.gg/RUbZUZyByQ) and active project members will answer when they can.
+
+## 💖 Support
+
+- To morally and mentally support the project, make sure to leave a ⭐️!
+- EXE Wrapper for $10 @ https://www.cttstore.com/windows-toolbox
+
+## 💖 Sponsors
+
+These are the sponsors that help keep this project alive with monthly contributions.
+
+<!-- sponsors --><a href="https://github.com/TriHydera"><img src="https:&#x2F;&#x2F;github.com&#x2F;TriHydera.png" width="60px" alt="User avatar: TriHydera" /></a><a href="https://github.com/markamos"><img src="https:&#x2F;&#x2F;github.com&#x2F;markamos.png" width="60px" alt="User avatar: Mark Amos" /></a><a href="https://github.com/dwelfusius"><img src="https:&#x2F;&#x2F;github.com&#x2F;dwelfusius.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/mews-se"><img src="https:&#x2F;&#x2F;github.com&#x2F;mews-se.png" width="60px" alt="User avatar: Martin Stockzell" /></a><a href="https://github.com/jdiegmueller"><img src="https:&#x2F;&#x2F;github.com&#x2F;jdiegmueller.png" width="60px" alt="User avatar: Jason A. Diegmueller" /></a><a href="https://github.com/robertsandrock"><img src="https:&#x2F;&#x2F;github.com&#x2F;robertsandrock.png" width="60px" alt="User avatar: RMS" /></a><a href="https://github.com/KenichiQaz"><img src="https:&#x2F;&#x2F;github.com&#x2F;KenichiQaz.png" width="60px" alt="User avatar: Stefan" /></a><a href="https://github.com/paulsheets"><img src="https:&#x2F;&#x2F;github.com&#x2F;paulsheets.png" width="60px" alt="User avatar: Paul" /></a><a href="https://github.com/djones369"><img src="https:&#x2F;&#x2F;github.com&#x2F;djones369.png" width="60px" alt="User avatar: Dave J  (WhamGeek)" /></a><a href="https://github.com/anthonymendez"><img src="https:&#x2F;&#x2F;github.com&#x2F;anthonymendez.png" width="60px" alt="User avatar: Anthony Mendez" /></a><a href="https://github.com/FatBastard0"><img src="https:&#x2F;&#x2F;github.com&#x2F;FatBastard0.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/DursleyGuy"><img src="https:&#x2F;&#x2F;github.com&#x2F;DursleyGuy.png" width="60px" alt="User avatar: DursleyGuy" /></a><a href="https://github.com/realmuddy"><img src="https:&#x2F;&#x2F;github.com&#x2F;realmuddy.png" width="60px" alt="User avatar: Phillip Waters" /></a><a href="https://github.com/quaszi"><img src="https:&#x2F;&#x2F;github.com&#x2F;quaszi.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/DwayneTheRockLobster1"><img src="https:&#x2F;&#x2F;github.com&#x2F;DwayneTheRockLobster1.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/KieraKujisawa"><img src="https:&#x2F;&#x2F;github.com&#x2F;KieraKujisawa.png" width="60px" alt="User avatar: Kiera Meredith" /></a><a href="https://github.com/partybrasil"><img src="https:&#x2F;&#x2F;github.com&#x2F;partybrasil.png" width="60px" alt="User avatar: Miguel Diaz" /></a><!-- sponsors -->
+
+## 🏅 Thanks to all Contributors
+
+Thanks a lot for spending your time helping Winutil grow. Thanks a lot! Keep rocking 🍻.
+
+[![Contributors](https://contrib.rocks/image?repo=ChrisTitusTech/winutil)](https://github.com/ChrisTitusTech/winutil/graphs/contributors)
+
+## 📊 GitHub Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/aad37eec9114c507f109d34ff8d38a59adc9503f.svg 'Repobeats analytics image')

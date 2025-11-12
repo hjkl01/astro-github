@@ -2,50 +2,80 @@
 title: ContextMenuManager
 ---
 
-# ContextMenuManager 项目
+**简体中文** | **[English](README-en.md)**
 
-**项目地址:** [https://github.com/BluePointLilac/ContextMenuManager](https://github.com/BluePointLilac/ContextMenuManager)
+# ContextMenuManager
 
-## 主要特性
+> 🖱️ 一个纯粹的Windows右键菜单管理程序
 
-ContextMenuManager 是一个纯粹的 Windows 右键菜单管理程序，用于管理文件、文件夹、新建、发送到、打开方式等右键菜单项目。它具有以下核心特性：
+## 程序下载
 
-- **启用/禁用菜单项**：支持启用或禁用各种右键菜单项目，包括系统默认和第三方添加的项。
-- **修改菜单项**：允许修改菜单项的名称、图标、导航注册表位置、导航文件位置，或永久删除。
-- **自定义添加**：支持自定义添加右键菜单项目，自定义菜单命令。
-- **兼容性强**：适用于 Windows 10、8.1、8、7、Vista，支持 64bit 和 32bit 系统，高分屏显示。
-- **多语言支持**：支持国际化多语言显示，包括中文。
-- **安全提示**：修改前提示潜在风险，支持撤销操作；可能被误报为病毒，需添加白名单。
+- [最新版本][Latest]<br>
+  [GitHub Releases][GitHub Releases]<br>
+  [Gitee Releases][Gitee Releases]<br>
+- 下载说明：在Assets文件列表里面下载zip（建议）或者直接下载exe
+- .NET版本说明：程序分为.NET3.5版和.NET4.0版，均适用于Win10、8.1、8、7、Vista系统<br>
+  win7自带.NET3.5，win8、win8.1、win10自带.NET4.0以上版本，Vista系统既不自带.NET3.5也不自带4.0以上版本<br>
+  自带.NET可直接运行程序，不自带则需要安装对应版本的[.NET Framework运行库][.NET Framework]
 
 ## 主要功能
 
-- **菜单管理**：启用、禁用、修改或删除右键菜单项，包括文件、文件夹、新建、发送到、打开方式、自定义文件格式、IE浏览器、WinX等。
-- **自定义添加**：添加自定义菜单命令。
-- **导航功能**：导航到注册表位置或文件位置，便于手动操作。
-- **兼容提示**：处理与其他右键管理程序的冲突，建议单独使用。
+- 启用或禁用文件、文件夹、新建、发送到、打开方式、自定义文件格式、IE浏览器、WinX等右键菜单项目
+- 对上述场景右键菜单项目进行修改名称、修改图标、导航注册表位置、导航文件位置、永久删除等操作
+- 对上述场景右键菜单自定义添加项目，自定义菜单命令
 
-## 用法
+## 兼容性能
 
-1. **下载与安装**：
-   - 从 [GitHub Releases](https://github.com/BluePointLilac/ContextMenuManager/releases) 或 [Gitee Releases](https://gitee.com/BluePointLilac/ContextMenuManager/releases) 下载最新版本的 zip 或 exe 文件。
-   - 程序分为 .NET 3.5 版和 .NET 4.0 版，根据系统选择（Vista 需要安装 [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework)）。
-   - 解压或安装后运行，无需管理员权限查看，但修改需提升权限。
+- 适用于Win10、8.1、8、7、Vista
+- 适用于 64bit、32bit CPU 操作系统
+- 适用于高分屏，最佳显示缩放比为150%
+- 程序支持国际化多语言显示，欢迎为此程序制作语言字典
 
-2. **启动程序**：
-   - 运行 ContextMenuManager.exe，程序会扫描当前系统的右键菜单。
+## 运行截图
 
-3. **管理菜单**：
-   - 在界面中选择菜单类型（如文件、文件夹等）。
-   - 查看列表中的菜单项，启用/禁用、修改名称/图标，或删除。
-   - 添加新项：选择添加选项，输入命令和参数。
+## 资源引用
 
-4. **应用更改**：
-   - 修改后应用更改，可能需重启资源管理器生效。
-   - 注意：与其他程序冲突时，先用对应程序还原。
+- 程序主图标来自 [EasyIcon][EasyIcon]<br>
+  ![][AppIcon]
+- [程序按钮图标][AppImage] 主要来自于 [阿里巴巴矢量图标资源库][IconFont]<br>
 
-5. **注意事项**：
-   - 程序读写注册表和文件，可能被 Windows Defender 误报，添加白名单。
-   - 不用于清理未卸载程序，但可定位相关位置。
-   - 适合电脑小白使用启用/禁用功能。
+## 温馨提示
 
-此工具适合 Windows 用户优化右键菜单，提升效率。更多细节请参考项目 README。
+- 程序需要对大量的注册表项和文件进行读写删改操作，这些行为比较敏感，<br>
+  可能会被 Windows Defender 等误报为病毒，如发生此情况请自行添加进白名单。
+
+- 一些特殊菜单项可能会受到其他因素影响导致不会直接显示在右键菜单中，<br>但是按照程序使用的通用规则在此程序中仍会显示为启用，这是正常的现象。
+
+- 每个右键管理程序禁用菜单方法可能不同，建议不要同时使用多个右键菜单管理程序，<br>
+  大部分程序使用简单暴力的备份删除法，此程序尽可能使用了系统提供的键值进行隐藏，<br>
+  通过其他程序禁用的菜单项目。请先使用对应程序还原，不然可能无法在此程序中看到它。
+
+- 此程序不用于清理未卸载干净的程序，但是可以帮助你快速定位菜单项相关注册表位置和文件位置，<br>你可以根据相关内容进行你的操作。如果你是一个电脑小白，建议只使用启用\禁用功能。
+
+## 联系作者
+
+- 程序由我个人独立开发，当然也要感谢 [萌研社][PcMoe] 站长 @坑晨 平时的答疑解惑。<br>
+  能力有限，难免出现一些Bug，欢迎大家积极反馈Bug和提出优化建议。
+- 个人B站：[蓝点lilac][Bilibili]（欢迎大家关注我！）
+- 个人邮箱：1617859183@qq.com
+
+## 捐赠作者
+
+此程序完全免费，如果你觉得这个程序对你有所帮助，可以通过扫面下方二维码（微信、支付宝、QQ）<br>
+进行捐赠，金额请随意，谢谢你的理解和支持！更加期待你为此项目点亮Star（这对我很重要！）<br>
+[捐赠名单](Donate.md)<br>![][Donate]
+
+## 项目收藏
+
+[![Stargazers over time](https://starchart.cc/BluePointLilac/ContextMenuManager.svg)](https://starchart.cc/BluePointLilac/ContextMenuManager)
+
+[Latest]: https://github.com/BluePointLilac/ContextMenuManager/releases/latest
+[GitHub Releases]: https://github.com/BluePointLilac/ContextMenuManager/releases
+[Gitee Releases]: https://gitee.com/BluePointLilac/ContextMenuManager/releases
+[.NET Framework]: https://dotnet.microsoft.com/download/dotnet-framework
+[EasyIcon]: https://www.easyicon.net/1208132-mouse_icon.html
+[AppIcon]: ContextMenuManager/Properties/AppIcon.ico
+[AppImage]: ContextMenuManager/Properties/Resources/Images
+[IconFont]: https://www.iconfont.cn
+[PcMoe]: http://www.pcmoe.net
+[Bilibili]: https://space.bilibili.com/34492771

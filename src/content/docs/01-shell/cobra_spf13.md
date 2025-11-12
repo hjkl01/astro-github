@@ -6,6 +6,12 @@ title: cobra
 
 > 项目地址: <https://github.com/spf13/cobra>
 
+## 概述
+
+Cobra 是一个用于创建强大的现代 CLI 应用程序的库。
+
+Cobra 被许多 Go 项目使用，例如 Kubernetes、Hugo 和 GitHub CLI 等。
+
 ## 主要特性
 
 - **层级化命令结构**  

@@ -8,7 +8,9 @@ title: oh-my-posh
 
 ## 概述
 
-oh-my-posh 是一个跨平台的命令行提示词（prompt）生成器，专为 PowerShell、bash、zsh、fish 等 shell 设计。它利用 ANSI 颜色、Unicode 字符、Powerline 字体以及自定义模板来创建可视化、信息丰富且可高度定制的提示符。
+Oh My Posh 是一个适用于任何 shell 的提示主题引擎。
+
+这个 repo 是 oh-my-posh2 的后代，为 PowerShell 设计的结果是一个跨平台、高度可定制和可扩展的提示主题引擎。经过 4 年的 oh-my-posh 工作，一个现代且更高效的工具是必需的，以满足我的个人需求。
 
 ## 主要特性
 

@@ -8,17 +8,17 @@ title: nginx-proxy-manager
 
 ## 主要特性
 
-Nginx Proxy Manager is a web-based interface for managing Nginx proxy hosts. It simplifies the management of Nginx reverse proxies, SSL certificates, and access controls through a user-friendly web UI. Key features include:
+Nginx Proxy Manager 是一个基于 Web 的界面，用于管理 Nginx 代理主机。它通过用户友好的 Web UI 简化了 Nginx 反向代理、SSL 证书和访问控制的管理。主要特性包括：
 
-- Web-based management interface
-- Automatic SSL certificate provisioning via Let's Encrypt
-- Reverse proxy configuration for HTTP/HTTPS
-- Access lists and authentication (basic auth, IP restrictions)
-- Load balancing support
-- Custom Nginx configuration injection
-- Docker-friendly with official images
-- Multi-language support
-- Open source and free
+- 基于 Web 的管理界面
+- 通过 Let's Encrypt 自动 SSL 证书配置
+- HTTP/HTTPS 反向代理配置
+- 主机的访问列表和基本 HTTP 认证
+- 负载均衡支持
+- 自定义 Nginx 配置注入
+- 支持 Docker，提供官方镜像
+- 多语言支持
+- 开源且免费
 
 ## 主要功能
 

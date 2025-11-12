@@ -10,7 +10,7 @@ title: nginx-ui
 
 ## 主要特性
 
-Nginx UI allows you to access and modify the nginx configurations files without cli.
+Nginx UI 允许您在不使用命令行的情况下访问和修改 nginx 配置文件。
 
 - Web-based interface for editing nginx configs
 - Real-time preview and validation

@@ -12,17 +12,7 @@ Glance 是一个轻量级、高度可定制的自托管仪表板，用于在一�
 
 ### 多种小部件
 
-- RSS feeds
-- Subreddit posts
-- Hacker News posts
-- 天气预报
-- YouTube 频道上传
-- Twitch 频道
-- 市场价格
-- Docker 容器状态
-- 服务器统计
-- 自定义小部件
-- 以及更多...
+一个自托管的仪表盘，将所有 feed 放在一个地方
 
 ### 快速且轻量
 

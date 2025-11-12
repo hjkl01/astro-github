@@ -2,46 +2,175 @@
 title: optimizer
 ---
 
-# Optimizer 项目
+<p align="center">
+   <img src="https://raw.githubusercontent.com/hellzerg/optimizer/master/banner.png">
+</p>
 
-## 项目地址
-[GitHub 项目地址](https://github.com/hellzerg/optimizer)
+<p align="center">
+	<a href="https://github.com/hellzerg/optimizer/releases/download/16.7/Optimizer-16.7.exe" target="_blank">
+		<img src="https://raw.githubusercontent.com/hellzerg/optimizer/master/download-button.png">
+		<br>
+		<img src="https://raw.githubusercontent.com/hellzerg/optimizer/master/flags.png">
+	</a>
+</p>
 
-## 主要特性
-Optimizer 是一个开源的 Windows 系统优化工具，专为 Windows 10/11 设计。它提供了一键式优化功能，帮助用户提升系统性能、隐私保护和自定义设置。主要特性包括：
-- **系统性能优化**：自动禁用不必要的后台服务、启动项和动画效果，提高系统响应速度。
-- **隐私保护**：关闭 Windows 遥测数据收集、Cortana 搜索和位置跟踪等隐私泄露功能。
-- **界面自定义**：修改任务栏、开始菜单、桌面图标等外观设置，支持深色模式和透明效果。
-- **网络优化**：优化 DNS 设置、禁用 OneDrive 同步，并提供 VPN 和代理管理。
-- **安全增强**：强化防火墙规则、禁用不安全协议（如 SMBv1），并管理 UAC（用户账户控制）级别。
-- **一键备份与恢复**：允许用户备份当前优化设置，并随时恢复到默认状态。
-- **无痕优化**：所有更改均为可逆，不会修改系统核心文件，确保安全。
+<center>
+<h2>ℹ️ 高级隐私和安全配置实用工具</h2> 
+</center>
 
-该工具使用现代 UI 界面，支持多语言（包括中文），体积小巧，便于携带和使用。
+欢迎使用 Optimizer，一个高级配置实用工具，专为在 Windows 上增强您的隐私和安全而设计。这个工具强烈推荐在 Windows 新安装后使用，以实现最大隐私和安全益处。根据您的 Windows 版本，Optimizer 还可以帮助您应用特定系统调整。
 
-## 主要功能
-- **优化标签页**：核心功能区，包括性能调优、隐私设置和电源管理。
-- **应用标签页**：管理预装应用，允许卸载或禁用如 Candy Crush 等冗余软件。
-- **高级标签页**：提供注册表编辑、上下文菜单自定义和黑名单功能。
-- **工具标签页**：内置文件清理、系统信息查看和快捷方式创建。
-- **设置标签页**：配置工具行为，如自动运行优化或主题切换。
+<center>
+<h2> 🏗️ 关键功能：</h2> 
+</center>
 
-功能基于 Windows API 和注册表操作，适用于家庭和专业用户。
+- 完整多语言支持（24 种语言可用）
+- 增强系统和网络性能
+- 禁用不必要的 Windows 服务
+- 关闭 Windows 遥测、Cortana 和更多
+- 禁用 Office 遥测（适用于 Office 2016 或更新版本）
+- 停止自动 Windows 10/11 更新
+- 快速下载多个有用的应用
+- 在 Windows 11 和 Edge 中禁用 CoPilot AI
+- 全局启用 UTC 时间
+- 高级调整如禁用 HPET、OneDrive 等
+- 卸载 UWP 应用
+- 清理系统驱动器和浏览器配置文件
+- 修复常见注册表问题
+- Ping IP 并评估延迟
+- 在 SHODAN.io 上搜索 IP
+- 快速更改 DNS 服务器（从预制列表）
+- 刷新 DNS 缓存
+- 删除不需要的启动程序
+- 编辑您的 HOSTS 文件
+- 编辑您的系统变量路径
+- 识别并终止文件锁定句柄
+- 硬件检查工具
+- 添加项目到桌面右键菜单
+- 为运行对话框定义自定义命令
+- 支持使用模板文件进行静默运行
 
-## 用法
-1. **下载与安装**：
-   - 从 GitHub Releases 页面下载最新版本的 Optimizer.exe（便携版，无需安装）。
-   - 运行文件前，建议以管理员身份执行（右键 > “以管理员身份运行”）。
+<center>
+<h2> ⬇️ 下载</h2> 
+</center>
 
-2. **基本使用**：
-   - 启动 Optimizer 后，选择左侧标签页（如“优化”）。
-   - 勾选所需功能（如“禁用遥测”或“优化性能”）。
-   - 点击“应用优化”按钮执行更改。工具会自动重启相关服务。
-   - 对于备份：点击“备份”按钮保存当前设置；恢复时点击“恢复”并选择备份文件。
+在 [Releases](https://github.com/hellzerg/optimizer/releases) 页面找到 Optimizer 的最新版本。
 
-3. **高级用法**：
-   - 在“高级”标签页中，手动编辑注册表条目或添加自定义规则。
-   - 使用“黑名单”功能阻止特定更新或应用。
-   - 若需重置系统，点击“恢复默认”并重启电脑。
+<center>
+<h2>🖼️ 截图</h2> 
+</center>
 
-**注意**：优化前请备份重要数据。工具不适合服务器环境，仅限个人 Windows 系统使用。如果遇到问题，可在 GitHub Issues 中反馈。
+通过我们的 [截图](https://github.com/hellzerg/optimizer/blob/master/IMAGES.md) 集合查看 Optimizer 的实际操作。
+
+<center>
+<h2> 🆘 如何在 Windows 10 1903 和更高版本中禁用 Defender</h2> 
+</center>
+
+- 在安全模式下重启并运行 Optimizer 与 `/disabledefender` 开关
+- 或 -
+- 使用 `/restart=disabledefender` 开关运行 Optimizer 以自动禁用
+
+<center>
+<h2>🔨 使用模板自动化</h2> 
+</center>
+
+探索使用 Optimizer 通过我们的 [自动化指南](https://github.com/hellzerg/optimizer/blob/master/AUTOMATION.md) 进行自动化的可能性。
+
+<center>
+<h2> 🔨 命令行选项</h2> 
+</center>
+
+查看 Optimizer 的 [命令行选项](https://github.com/hellzerg/optimizer/blob/master/CONFS.md)。
+
+<center>
+<h2> ❓ 常见问题</h2> 
+</center>
+
+在 [FAQ 部分](https://github.com/hellzerg/optimizer/blob/master/FAQ.md) 找到常见查询的答案。
+
+<center>
+<h2> 📰 更新日志</h2> 
+</center>
+
+通过 [更新日志](https://github.com/hellzerg/optimizer/blob/master/CHANGELOG.md) 保持最新更改。
+
+<center>
+<h2>🛡️ 安全政策</h2> 
+</center>
+
+在 [安全政策](https://github.com/hellzerg/optimizer/blob/master/SECURITY.md) 中了解我们的安全措施。
+
+<center>
+<h2> 💻 兼容性</h2> 
+</center>
+
+- 需要 .NET Framework 4.8.1
+- 兼容 Windows 7、8、8.1、10、11
+- 可以使用 `/unsafe` 开关在 Windows Server 2008、2012、2016、2019、2022 上运行
+
+<center>
+<h2> 📊 详情</h2> 
+</center>
+
+- 最新版本：16.7（发布：2024 年 8 月 18 日）
+- SHA256：03A234060541B686AC4265754AFF43DF9325C21383F90E17F831E67965D717F8
+
+<center>
+<h2> ☕ 给我买杯美味的浓缩咖啡</h2> 
+</center>
+
+如果您发现这个工具有用，请考虑通过 [PayPal 捐赠](https://www.paypal.com/paypalme/supportoptimizer) 来支持我的工作。
+
+<center>
+<h2> 🌐 加入我们的社区</h2>
+</center>
+
+成为我们的 [Discord](https://discord.gg/RmHYWMxWfJ) 社区的一部分。
+
+<center>
+<h2> ❤️ 致谢和感谢</h2>
+</center>
+
+- [ByteSize](https://github.com/omar/ByteSize) - 由 Omar Rahman 提供的有用库
+- ColorPicker - 主题引擎，由 cat 提供（[GitHub 个人资料](https://github.com/vadiscode)）
+
+<center>
+<h2> ❤️ 翻译</h2>
+</center>
+
+我们感谢以下贡献者提供的翻译：
+
+- 俄语：mrkaban
+- 德语：theflamehd
+- 土耳其语：Kheasyque
+- 西班牙语：danielcshn
+- 葡萄牙语：Cassio
+- 法语：RAFF47
+- 意大利语：Ziocash
+- 中文：btwise
+- 捷克语：Tom Longhorn
+- 台湾语：H3XDaemon
+- 韩语：VenusGirl
+- 波兰语：Wilamaxin
+- 阿拉伯语：MesterPerfect
+- 罗马尼亚语：BeamingNG, DefaultUser9148
+- 荷兰语：svanlaere
+- 乌克兰语：Kirill Ermakov
+- 日语：Yamada Hayao, creeper-0910
+- 库尔德语：Parwar Andam
+- 匈牙利语：Zan
+- 波斯语：MjavadH
+- 尼泊尔语：chapagetti
+- 希腊语
+- 保加利亚语
+- 印尼语：ftrsndrya
+- 克罗地亚语：zZan54
+
+<center>
+<h2> ❤️ 贡献翻译</h2>
+</center>
+
+如果您想将应用翻译成您的语言，您可以这样做，通过翻译 EN.json 并制作 PR。
+不要忘记提及您的语言的官方名称，以及其国旗。
+
+- [EN.json](https://github.com/hellzerg/optimizer/blob/master/Optimizer/Resources/i18n/EN.json)

@@ -4,37 +4,37 @@ title: Iced
 
 # Iced
 
-A cross-platform GUI library for Rust, inspired by Elm.
+一个受 Elm 启发的 Rust 跨平台 GUI 库。
 
-## Features
+## 特性
 
-- Simple, easy-to-use, batteries-included API
-- Type-safe, reactive programming model
-- Cross-platform support (Windows, macOS, Linux, and the Web)
-- Responsive layout
-- Built-in widgets (including text inputs, scrollables, and more!)
-- Custom widget support (create your own!)
-- Debug overlay with performance metrics
-- First-class support for async actions (use futures!)
-- Modular ecosystem split into reusable parts:
-  - A renderer-agnostic native runtime enabling integration with existing systems
-  - Two built-in renderers leveraging `wgpu` and `tiny-skia`
-    - `iced_wgpu` supporting Vulkan, Metal and DX12
-    - `iced_tiny_skia` offering a software alternative as a fallback
-  - A windowing shell
+- 简单、易用、开箱即用的 API
+- 类型安全、响应式编程模型
+- 跨平台支持（Windows、macOS、Linux 和 Web）
+- 响应式布局
+- 内置小部件（包括文本输入、可滚动等！）
+- 自定义小部件支持（创建自己的！）
+- 带有性能指标的调试覆盖层
+- 对异步操作的一流支持（使用 futures！）
+- 模块化生态系统，分为可重用部分：
+  - 启用与现有系统集成的渲染器无关的原生运行时
+  - 两个内置渲染器，利用 `wgpu` 和 `tiny-skia`
+    - `iced_wgpu` 支持 Vulkan、Metal 和 DX12
+    - `iced_tiny_skia` 作为后备提供软件替代方案
+  - 一个窗口外壳
 
-## Usage
+## 用法
 
-Inspired by The Elm Architecture, Iced expects you to split user interfaces into four different concepts:
+受 Elm 架构启发，Iced 期望您将用户界面分为四个不同的概念：
 
-- **State** — the state of your application
-- **Messages** — user interactions or meaningful events that you care about
-- **View logic** — a way to display your state as widgets that may produce messages on user interaction
-- **Update logic** — a way to react to messages and update your state
+- **状态** — 应用程序的状态
+- **消息** — 用户交互或您关心的有意义事件
+- **视图逻辑** — 将状态显示为小部件的方式，这些小部件可能在用户交互时产生消息
+- **更新逻辑** — 对消息做出反应并更新状态的方式
 
-### Example: A Simple Counter
+### 示例：一个简单的计数器
 
-We start by modelling the **state** of our application:
+我们从建模应用程序的**状态**开始：
 
 ```rust
 #[derive(Default)]
@@ -43,7 +43,7 @@ struct Counter {
 }
 ```
 
-Next, we need to define the possible user interactions of our counter: the button presses. These interactions are our **messages**:
+接下来，我们需要定义计数器的可能用户交互：按钮按下。这些交互是我们的**消息**：
 
 ```rust
 #[derive(Debug, Clone, Copy)]
@@ -53,31 +53,31 @@ pub enum Message {
 }
 ```
 
-Now, let's show the actual counter by putting it all together in our **view logic**:
+现在，让我们通过在**视图逻辑**中将它们组合在一起来显示实际计数器：
 
 ```rust
 use iced::widget::{button, column, text, Column};
 
 impl Counter {
     pub fn view(&self) -> Column<Message> {
-        // We use a column: a simple vertical layout
+        // 我们使用一个列：一个简单的垂直布局
         column![
-            // The increment button. We tell it to produce an
-            // `Increment` message when pressed
+            // 增量按钮。我们告诉它在按下时产生一个
+            // `Increment` 消息
             button("+").on_press(Message::Increment),
 
-            // We show the value of the counter here
+            // 我们在这里显示计数器的值
             text(self.value).size(50),
 
-            // The decrement button. We tell it to produce a
-            // `Decrement` message when pressed
+            // 减量按钮。我们告诉它在按下时产生一个
+            // `Decrement` 消息
             button("-").on_press(Message::Decrement),
         ]
     }
 }
 ```
 
-Finally, we need to be able to react to any produced **messages** and change our **state** accordingly in our **update logic**:
+最后，我们需要能够对任何产生的**消息**做出反应，并相应地改变我们的**状态**在我们的**更新逻辑**中：
 
 ```rust
 impl Counter {
@@ -96,7 +96,7 @@ impl Counter {
 }
 ```
 
-And that's everything! We just wrote a whole user interface. Let's run it:
+就是这样！我们刚刚写了一个完整的用户界面。让我们运行它：
 
 ```rust
 fn main() -> iced::Result {
@@ -104,10 +104,10 @@ fn main() -> iced::Result {
 }
 ```
 
-Iced will automatically:
+Iced 将自动：
 
-1. Take the result of our **view logic** and layout its widgets.
-2. Process events from our system and produce **messages** for our **update logic**.
-3. Draw the resulting user interface.
+1. 获取我们的**视图逻辑**的结果并布局其小部件。
+2. 处理来自系统的事件并为我们的**更新逻辑**产生**消息**。
+3. 绘制结果用户界面。
 
-Read the [book](https://book.iced.rs/), the [documentation](https://docs.rs/iced/), and the [examples](https://github.com/iced-rs/iced/tree/master/examples#examples) to learn more!
+阅读 [book](https://book.iced.rs/)、[documentation](https://docs.rs/iced/) 和 [examples](https://github.com/iced-rs/iced/tree/master/examples#examples) 以了解更多！

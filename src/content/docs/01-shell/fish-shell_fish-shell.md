@@ -4,7 +4,7 @@ title: fish-shell
 
 # fish-shell
 
-fish (friendly interactive shell) 是一个智能且用户友好的命令行 shell，适用于 macOS、Linux 和其他 Unix-like 系统。它提供了语法高亮、自动建议、强大的 tab 补全等功能，无需额外配置即可使用。
+fish 是一个智能且用户友好的命令行 shell，适用于 macOS、Linux 以及其他系统。fish 包含语法高亮、键入时自动建议以及无需配置即可使用的花哨 tab 补全等功能。
 
 ## 主要功能
 

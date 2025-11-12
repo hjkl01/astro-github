@@ -4,30 +4,30 @@ title: Archgw
 
 # ArchGW
 
-Arch is a models-native proxy server designed to handle the essential plumbing work in AI agent development. It provides agent routing, guardrails, observability, and unified access to various LLMs like OpenAI, Anthropic, and Ollama, enabling faster and more reliable agent building and scaling.
+ArchGW 是一个模型原生的代理服务器，旨在处理 AI 代理开发中的基本管道工作。它提供代理路由、护栏、可观测性和对各种 LLM（如 OpenAI、Anthropic 和 Ollama）的统一访问，从而实现更快、更可靠的代理构建和扩展。
 
-## Key Features
+## 主要功能
 
-- **Agent Routing**: Fast (<100ms) routing and hand-off between agents using purpose-built LLMs.
-- **LLM Routing**: Supports three strategies - model-based, alias-based, and preference-aligned routing for unified access to multiple LLM providers.
-- **Guardrails**: Centrally configured safety measures to prevent harmful outcomes and ensure secure interactions.
-- **Tools Integration**: Automatically clarifies prompts and converts them to API calls for common agentic scenarios.
-- **Observability**: W3C-compatible tracing, metrics, and logging that integrates with popular monitoring tools.
-- **Built on Envoy**: Leverages Envoy Proxy's proven HTTP management and scalability features.
+- **代理路由**：使用专用构建的 LLM 进行快速（<100ms）代理路由和交接。
+- **LLM 路由**：支持三种策略 - 基于模型的路由、别名路由和偏好对齐路由，以统一访问多个 LLM 提供商。
+- **护栏**：集中配置的安全措施，以防止有害结果并确保安全交互。
+- **工具集成**：自动澄清提示并将其转换为常见代理场景的 API 调用。
+- **可观测性**：与流行监控工具集成的 W3C 兼容跟踪、指标和日志记录。
+- **基于 Envoy 构建**：利用 Envoy Proxy 经过验证的 HTTP 管理和可扩展性功能。
 
-## Usage
+## 用法
 
-### Installation
+### 安装
 
-Install the ArchGW CLI using pip:
+使用 pip 安装 ArchGW CLI：
 
 ```bash
 pip install archgw==0.3.18
 ```
 
-### LLM Router Configuration
+### LLM 路由器配置
 
-Create a configuration file (e.g., `arch_config.yaml`) for routing to LLMs:
+创建配置文件（例如 `arch_config.yaml`）以路由到 LLM：
 
 ```yaml
 version: v0.1.0
@@ -48,15 +48,15 @@ llm_providers:
     access_key: $ANTHROPIC_API_KEY
 ```
 
-Start the gateway:
+启动网关：
 
 ```bash
 archgw up arch_config.yaml
 ```
 
-### Agentic App Configuration
+### 代理应用配置
 
-For building agentic applications, configure prompts, guards, and endpoints:
+对于构建代理应用，配置提示、护栏和端点：
 
 ```yaml
 version: v0.1.0
@@ -94,7 +94,7 @@ endpoints:
     protocol: https
 ```
 
-Interact using OpenAI-compatible API:
+使用 OpenAI 兼容 API 进行交互：
 
 ```python
 from openai import OpenAI
@@ -106,4 +106,4 @@ response = client.chat.completions.create(
 )
 ```
 
-For more details, visit the [official documentation](https://docs.archgw.com).
+有关更多详细信息，请访问[官方文档](https://docs.archgw.com)。

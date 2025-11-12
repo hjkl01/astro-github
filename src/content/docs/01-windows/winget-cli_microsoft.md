@@ -2,57 +2,121 @@
 title: winget-cli
 ---
 
-# Microsoft Winget CLI
+# Windows Package Manager
 
-**GitHub项目地址:** [https://github.com/microsoft/winget-cli](https://github.com/microsoft/winget-cli)
+## WinGet Client
 
-## 主要特性
-Winget CLI 是 Microsoft 开发的 Windows 包管理器工具，具有以下核心特性：
-- **跨平台支持**：专为 Windows 10（版本 1809 或更高）和 Windows 11 设计，支持命令行操作。
-- **开源与社区驱动**：基于 MIT 许可开源，允许社区贡献软件包和改进工具。
-- **安全与可靠**：通过 Microsoft Store 分发，确保软件来源可靠；支持数字签名验证，减少恶意软件风险。
-- **轻量级集成**：无需额外安装，直接通过 Microsoft Store 或 GitHub Releases 获取，支持系统级集成。
-- **多源支持**：默认使用 Microsoft 的 Winget 源，但可添加自定义源以扩展软件仓库。
+If you are new to the Windows Package Manager, you might want to [Explore the Windows Package Manager tool](https://docs.microsoft.com/learn/modules/explore-windows-package-manager-tool/?WT.mc_id=AZ-MVP-5004737). The client has access to packages from two default sources. The first is "msstore" the Microsoft Store (free Apps rated "e" for everyone). The second is "winget" the [WinGet community repository](https://github.com/microsoft/winget-pkgs).
 
-## 主要功能
-Winget CLI 提供丰富的包管理功能，类似于 Linux 的 apt 或 macOS 的 Homebrew，主要包括：
-- **搜索与发现**：搜索软件包、查看详细信息和可用版本。
-- **安装与卸载**：从仓库安装软件，支持静默安装和自定义参数；轻松卸载已安装应用。
-- **升级与管理**：检查并升级已安装软件，列出所有已安装包。
-- **源管理**：添加、移除或切换软件源，支持 YAML 配置。
-- **导出与导入**：导出已安装软件列表为 JSON 文件，便于在多机迁移。
-- **哈希验证**：验证下载包的完整性，确保安全。
-- **高级选项**：支持代理设置、日志记录和架构指定（x64、ARM 等）。
+> [!NOTE]
+> Group policy may be configured and modify configured sources. Run `winget --info` to see any configured policies.
 
-## 用法
-Winget CLI 通过命令行使用，基本语法为 `winget <命令> [选项]`。以下是常见用法示例（在 PowerShell 或命令提示符中运行）：
+## Installing The Client
 
-### 安装 Winget
-- 通过 Microsoft Store 搜索 "App Installer" 并安装（包含 Winget）。
-- 或从 GitHub Releases 下载最新 .msixbundle 文件安装。
+> [!NOTE]
+> The client requires Windows 10 1809 (build 17763) or later at this time. Windows Server 2019 is not supported as the Microsoft Store is not available nor are updated dependencies. It may be possible to install on Windows Server 2022, this should be considered experimental (not supported) and requires dependencies to be manually installed as well.
 
-### 基本命令示例
-- **搜索软件**：  
-  `winget search <软件名>`  
-  示例：`winget search vscode`（搜索 Visual Studio Code）。
+### Microsoft Store [Recommended]
 
-- **安装软件**：  
-  `winget install <包ID>`  
-  示例：`winget install Microsoft.VisualStudioCode`（安装 VS Code，支持 `--silent` 静默模式）。
+The client is distributed within the [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) package.
 
-- **卸载软件**：  
-  `winget uninstall <包ID>`  
-  示例：`winget uninstall Microsoft.VisualStudioCode`。
+### Development Releases
 
-- **升级软件**：  
-  `winget upgrade`（列出所有可升级包）；  
-  `winget upgrade <包ID>`（升级指定包）。
+There are a few methods to get development releases:
 
-- **列出已安装**：  
-  `winget list`（显示所有已安装应用）。
+- Install a [Windows 10 or Windows 11 Insider](https://insider.windows.com/) build.
+- Manually update using a development build from our [Releases](https://github.com/microsoft/winget-cli/releases) page.
+- Use the `Repair-WinGetPackageManager` cmdlet from the [Microsoft.WinGet.Client](https://www.powershellgallery.com/packages/Microsoft.WinGet.Client/) PowerShell module and use the `-IncludePrerelease` parameter.
 
-- **添加源**：  
-  `winget source add --name <源名> --arg <URL>`  
-  示例：添加自定义源。
+> [!NOTE]
+> If you decide to install the latest release from GitHub, and you have successfully joined the insider program, you will receive updates when the next development release has been published in the Microsoft Store.
 
-更多详细用法，请参考项目文档或运行 `winget --help` 查看帮助。Winget 适用于 IT 管理员、开发者及日常用户简化软件管理。
+### Manually Update
+
+The same Microsoft Store package will be made available via our [Releases](https://github.com/microsoft/winget-cli/releases). Note that installing this package will give you the WinGet client, but it will not enable automatic updates from the Microsoft Store if you have not joined the Windows Package Manager Insider program.
+
+> [!NOTE]
+> You may need to install the [VC++ v14 Desktop Framework Package](https://docs.microsoft.com/troubleshoot/cpp/c-runtime-packages-desktop-bridge#how-to-install-and-update-desktop-framework-packages).
+> This should only be necessary on older builds of Windows 10 and only if you get an error about missing framework packages.
+
+### Troubleshooting
+
+Please read our [troubleshooting guide](/doc/troubleshooting/README.md).
+
+## Administrator Considerations
+
+Installer behavior can be different depending on whether you are running **WinGet** with administrator privileges.
+
+- When running **WinGet** without administrator privileges, some applications may [require elevation](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works) to install. When the installer runs, Windows will prompt you to [elevate](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works#the-uac-user-experience). If you choose not to elevate, the application will fail to install.
+
+- When running **WinGet** in an Administrator Command Prompt, you will not see [elevation prompts](https://docs.microsoft.com/windows/security/identity-protection/user-account-control/how-user-account-control-works#the-uac-user-experience) if the application requires it. Always use caution when running your command prompt as an administrator, and only install applications you trust.
+
+### Build your own
+
+You can also [build the client yourself](#building-the-client). While the client should be perfectly functional, we are not ready to provide full support for clients running outside of the official distribution mechanisms yet. Feel free to file an [Issue](https://github.com/microsoft/winget-cli/issues/new/choose), but know that it may get lower prioritization.
+
+## Build Status
+
+[![Build Status](<https://dev.azure.com/shine-oss/winget-cli/_apis/build/status/winget-cli%20Build_Test?branchName=master&label=Main%20Branch%20(Including%20PRs)>)](https://dev.azure.com/shine-oss/winget-cli/_build/latest?definitionId=10&branchName=master)
+
+## Windows Package Manager Release Roadmap
+
+The plan for delivering the next Windows Package Manager release is described and included in our [discussions](https://github.com/microsoft/winget-cli/discussions/2063), and will be updated as the project proceeds.
+
+## Overview of the Windows Package Manager
+
+The **Windows Package Manager** is a tool designed to help you quickly and easily discover and install those packages that make your PC environment special. By using the **Windows Package Manager**, from one command, you can install your favorite packages:
+
+`winget install <package>`
+
+## Overview
+
+### Client Repository
+
+This winget-cli repository includes the source code designed to build the client. You are encouraged to participate in the development of this client. We have plenty of backlog features in our [Issues](https://github.com/microsoft/winget-cli/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog-Client). You can upvote the ones you want, add more, or even [get started on one.](https://github.com/orgs/microsoft/projects/137)
+
+### Sources
+
+The client is built around the concept of sources; a set of packages effectively. Sources provide the ability to discover and retrieve the metadata about the packages so that the client can act on it.
+
+- The default "winget" source includes packages in the [Windows Package Manager Community Repository](https://github.com/microsoft/winget-pkgs).
+- The default "msstore" source includes packages in the Microsoft Store.
+- It is also possible to host your own private [REST-based](https://github.com/microsoft/winget-cli-restsource) source.
+
+## Building the client
+
+Please follow our [developer guidance](/doc/Developing.md) to build, run & test the client.
+
+## Credit
+
+We would like to thank [Keivan Beigi (@kayone)](https://github.com/kayone) for his work on AppGet which helped us with the initial project direction for Windows Package Manager.
+
+## Contributing
+
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and do, actually grant us the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com. More
+information is available in our [CONTRIBUTING.md](/CONTRIBUTING.md) file.
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information, please refer to the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## Data/Telemetry
+
+The winget.exe client is instrumented to collect usage and diagnostic (error) data and sends it to Microsoft to help improve the product.
+
+If you build the client yourself the instrumentation will not be enabled and no data will be sent to Microsoft.
+
+The winget.exe client respects machine-wide privacy settings and users can opt out on their device, as documented in the [Microsoft Windows privacy statement](https://support.microsoft.com/help/4468236/diagnostics-feedback-and-privacy-in-windows-10-microsoft-privacy). In addition, you may also explicitly block telemetry using [settings](https://docs.microsoft.com/windows/package-manager/winget/settings)
+
+In short, to opt out, do one of the following:
+
+**Windows 11**: Go to `Start`, then select `Settings` > `Privacy & Security` > `Diagnostics & feedback` > `Diagnostic data` and unselect `Send optional diagnostic data`.
+
+**Windows 10**: Go to `Start`, then select `Settings` > `Privacy` > `Diagnostics & feedback`, and select `Required diagnostic data`.
+
+See the [privacy statement](PRIVACY.md) for more details.
