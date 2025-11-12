@@ -83,28 +83,6 @@ SFTPGo 致力于开源。核心功能免费提供并维护。如果您在项目�
 
 您的赞助有助于覆盖维护、安全更新和开源版本的持续开发。
 
-### 感谢我们的赞助商
-
-#### 白金赞助商
-
-[![Aledade logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/Aledade_logo.png)](https://www.aledade.com/)
-
-[![Jump Trading logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/jumptrading.png)](https://www.jumptrading.com/)
-
-[![WP Engine logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/wpengine.png)](https://wpengine.com/)
-
-#### 白银赞助商
-
-[![IDCS logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/IDCS.png)](https://idcs.ip-paris.fr/)
-
-#### 青铜赞助商
-
-[![7digital logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/7digital.png)](https://www.7digital.com/)
-
-[![servinga logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/servinga.png)](https://servinga.com/)
-
-[![ReUI logo](https://raw.githubusercontent.com/drakkan/sftpgo/main/img/reui.png)](https://www.reui.io/)
-
 ## 支持
 
 开源版本的 SFTPGo 是免费使用的，遵循其许可证条款。我们致力于提供强大且功能完整的版本，以满足许多生产环境的需求。

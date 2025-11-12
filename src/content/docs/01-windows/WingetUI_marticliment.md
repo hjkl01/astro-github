@@ -2,14 +2,6 @@
 title: WingetUI
 ---
 
-# <img src="https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/icon.png" height="40">UniGetUI（前身为 WingetUI）
-
-[![Downloads@latest](https://img.shields.io/github/downloads/marticliment/UniGetUI/3.2.0/total?style=for-the-badge)](https://github.com/marticliment/UniGetUI/releases/latest/download/UniGetUI.Installer.exe)
-[![Release Version Badge](https://img.shields.io/github/v/release/marticliment/UniGetUI?style=for-the-badge)](https://github.com/marticliment/UniGetUI/releases)
-[![Issues Badge](https://img.shields.io/github/issues/marticliment/UniGetUI?style=for-the-badge)](https://github.com/marticliment/UniGetUI/issues)
-[![Closed Issues Badge](https://img.shields.io/github/issues-closed/marticliment/UniGetUI?color=%238256d0&style=for-the-badge)](https://github.com/marticliment/UniGetUI/issues?q=is%3Aissue+is%3Aclosed)<br>
-这个项目的首要目标是为 Windows 10 和 11 最常见的 CLI 包管理器创建直观的 GUI，例如 [WinGet](https://learn.microsoft.com/en-us/windows/package-manager/)、[Scoop](https://scoop.sh/)、[Chocolatey](https://chocolatey.org/)、[Pip](https://pypi.org/)、[Npm](https://www.npmjs.com/)、[.NET Tool](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-tool-install)、[PowerShell Gallery](https://www.powershellgallery.com/) 等（查看包管理器兼容性表）！
-
 使用此应用，您可以轻松下载、安装、更新和卸载支持的包管理器上发布的任何软件——以及更多！
 
 查看更多截图 [此处](#screenshots)
@@ -193,26 +185,6 @@ UniGetUI 如果没有我们亲爱的贡献者的帮助是不可能的。从修�
 ## 贡献者：
 
 [![My dear contributors](https://contrib.rocks/image?repo=marticliment/UniGetUI)](https://github.com/marticliment/UniGetUI/graphs/contributors)<br><br>
-
-# 截图
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_1.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_2.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_3.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_4.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_6.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_7.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_8.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_9.png)
-
-![image](https://raw.githubusercontent.com/marticliment/UniGetUI/main/media/UniGetUI_10.png)
 
 # 常见问题
 
