@@ -11,8 +11,6 @@ title: winutil
 
 This utility is a compilation of Windows tasks I perform on each Windows system I use. It is meant to streamline _installs_, debloat with _tweaks_, troubleshoot with _config_, and fix Windows _updates_. I am extremely picky about any contributions to keep this project clean and efficient.
 
-![screen-install](https://raw.githubusercontent.com/Chris-Titus-Docs/winutil-docs/refs/heads/main/assets/images/Title-Screen.png)
-
 ## 💡 Usage
 
 Winutil must be run in Admin mode because it performs system-wide tweaks. To achieve this, run PowerShell as an administrator. Here are a few ways to do it:
