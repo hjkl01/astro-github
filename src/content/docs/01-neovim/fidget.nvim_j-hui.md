@@ -10,8 +10,6 @@ title: Fidget
 
 > Description from GitHub: 💫 Extensible UI for Neovim notifications and LSP progress messages.
 
-![fidget.nvim demo](https://github.com/j-hui/fidget.nvim/blob/media/gifs/fidget-demo-rust-analyzer.gif?raw=true)
-
 <details>
   <summary>Demo setup</summary>
 
