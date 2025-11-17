@@ -74,11 +74,11 @@ async def scrape_github_trending():
 
     await crawler.add_requests(
         [
-            "https://github.com/trending",
-            "https://github.com/trending/python",
-            "https://github.com/trending/lua",
-            "https://github.com/trending/go",
-            "https://github.com/trending/rust",
+            "https://github.com/trending?since=weekly",
+            "https://github.com/trending/python?since=weekly",
+            "https://github.com/trending/lua?since=weekly",
+            "https://github.com/trending/go?since=weekly",
+            "https://github.com/trending/rust?since=weekly",
             # "https://github.com/trending/javascript",
         ]
     )
