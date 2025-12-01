@@ -2,25 +2,50 @@
 title: romm
 ---
 
-## 功能介绍
+# Romm
 
-RomM 是一个美观、强大的自托管 ROM 管理器和播放器。它允许您扫描、丰富、浏览和播放您的游戏收藏，使用干净且响应式的界面。支持多种平台、各种命名方案和自定义标签，是使用模拟器玩游戏的必备工具。
+Romm 是一个开源的、自托管的 ROM 管理器，专为复古游戏爱好者设计。它提供了一个现代化的 Web 界面，帮助用户组织、浏览和播放 ROM 文件，同时支持元数据下载、截图管理和多平台游戏库管理。该项目基于 Python 和 FastAPI 构建，前端使用 Vue.js。
 
-### 主要功能
+## 主要功能
 
-- **扫描和丰富游戏库**：从 IGDB、Screenscraper 和 MobyGames 获取元数据。
-- **自定义艺术作品**：从 SteamGridDB 获取自定义艺术作品。
-- **成就显示**：显示来自 Retroachievements 的成就。
-- **平台支持**：支持 400 多种平台的元数据。
-- **浏览器播放**：直接在浏览器中使用 EmulatorJS 和 RuffleRS 播放游戏。
-- **分享库**：与朋友分享您的库，具有有限的访问和权限。
-- **官方应用**：支持 Playnite 和 muOS 的官方应用。
-- **多磁盘和附加内容**：支持多磁盘游戏、DLC、模组、破解、补丁和手册。
-- **标签解析**：解析和过滤文件名中的标签。
-- **Web 管理**：从任何现代 Web 浏览器查看、上传、更新和删除游戏。
+- **ROM 库组织**：自动扫描和分类 ROM 文件，支持多种文件格式（如 ZIP、7Z）。
+- **元数据集成**：从 IGDB、MobyGames 等数据库下载游戏信息，包括描述、发布日期和评分。
+- **媒体管理**：自动下载游戏截图、封面和视频预览。
+- **多平台支持**：支持 NES、SNES、PS1 等数百个游戏平台。
+- **用户管理**：支持多用户访问和权限控制。
+- **集成仿真**：可与模拟器集成，直接在浏览器中播放游戏。
+- **搜索和过滤**：强大的搜索功能，按平台、类型或收藏夹过滤。
+- **备份和恢复**：支持 ROM 库的备份和导入。
 
-## 用法
+## 安装说明
 
-要开始使用 RomM，请查看文档中的[快速入门指南](https://docs.romm.app/latest/Getting-Started/Quick-Start-Guide/)。如果遇到问题，请参考[故障排除步骤](https://docs.romm.app/latest/Troubleshooting/Scanning-Issues/)。
+Romm 支持 Docker 安装（推荐）和源码安装。以下是 Docker 方式的步骤：
 
-RomM 支持 Docker 部署，您可以使用提供的 docker-compose.yml 文件轻松启动服务。
+1. **前提条件**：确保安装了 Docker 和 Docker Compose。
+2. **克隆仓库**：
+   ```
+   git clone https://github.com/rommapp/romm.git
+   cd romm
+   ```
+3. **配置环境**：复制 `.env.example` 为 `.env`，并编辑数据库和 Redis 设置。
+4. **启动服务**：
+   ```
+   docker-compose up -d
+   ```
+   这将启动 Romm 应用、PostgreSQL 数据库和 Redis 缓存。
+5. **访问应用**：打开浏览器访问 `http://localhost:8080`，使用默认凭据登录（admin/admin）。
+
+对于源码安装：
+
+- 安装 Python 3.10+ 和依赖：`pip install -r requirements.txt`
+- 运行：`python main.py`
+
+## 使用方法
+
+1. **添加 ROM**：在 Web 界面中上传或扫描 ROM 文件夹。Romm 会自动识别平台和游戏。
+2. **下载元数据**：选择游戏，点击"下载元数据"以获取详细信息和媒体。
+3. **浏览库**：使用侧边栏按平台浏览，或使用搜索栏查找游戏。
+4. **播放游戏**：点击游戏图标，选择模拟器启动（需配置模拟器路径）。
+5. **管理收藏**：创建收藏夹，标记收藏游戏，或导出库为 JSON。
+
+Romm 强调隐私和自托管，不依赖外部服务。更多详情请查看 GitHub 仓库：https://github.com/rommapp/romm。
