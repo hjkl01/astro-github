@@ -105,6 +105,7 @@ def clean_small_md_files(dirname="src/content/docs", min_size=500):
                 if size < min_size:
                     # os.remove(filepath)
                     print(f"Deleted small file: {filepath}")
+                    os.remove(filepath)
 
 
 async def category_md_files(dirname="src/content/docs/00"):
