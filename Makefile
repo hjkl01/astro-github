@@ -13,12 +13,17 @@ install:
 	uv sync
 	@echo "✅ 依赖安装完成，激活环境：source $(VENV)/bin/activate"
 
-
-run:
-	@echo "🚀 启动服务..."
+crawl:
+	@echo "🚀 抓取trending..."
 	$(ACTIVATE) && uv run python ./github_trending_scraper.py
+
+gene:
+	@echo "🚀 启动解析..."
 	$(ACTIVATE) && uv run python ./main.py
-	$(ACTIVATE) && uv run python ./main.py cate
+
+run: crawl gene
+	@echo "🚀 启动服务..."
+	# $(ACTIVATE) && uv run python ./main.py cate
 
 clean-cache:
 	@echo "🚀 清理缓存..."
