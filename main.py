@@ -29,13 +29,9 @@ def generate_markdown(dirname, category_dirs="00"):
     prompt = markdown_prompt.replace("readme_content", content)
     result = api_ollama_generate(prompt)
 
-    with open("logs/text.log", "w") as file:
-        file.write(result["text"])
-    text = re.sub(r"<think>.*</think>", "", result.get("text"), flags=re.DOTALL)
-
     if not os.path.exists(f"src/content/docs/{category_dirs}"):
         os.makedirs(f"src/content/docs/{category_dirs}")
-    return text
+    return result
 
 
 def clean_small_md_files(dirname="src/content/docs", min_size=500):
@@ -101,10 +97,12 @@ async def category_md_files(dirname="src/content/docs/00"):
             with open(os.path.join(dirname, md_file), "r", encoding="utf-8") as f:
                 content = f.read()
                 category = await auto_category(content, category_dirs)
-                logger.info(md_file, category)
+                logger.info(f"{md_file}, {category}")
                 if category in category_dirs:
                     new_dir = os.path.join(dirname, category)
                     os.makedirs(new_dir, exist_ok=True)
+                    logger.debug(os.path.join(dirname, md_file))
+                    logger.debug("src/content/docs/" + category + "/" + md_file)
                     os.rename(
                         os.path.join(dirname, md_file),
                         "src/content/docs/" + category + "/" + md_file,
@@ -170,6 +168,8 @@ title: repository
 
         except Exception as e:
             logger.error(f"处理项目 {url} 时出错：{str(e)}")
+
+    await category_md_files()
 
 
 if __name__ == "__main__":
