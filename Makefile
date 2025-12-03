@@ -15,7 +15,8 @@ install:
 
 crawl:
 	@echo "🚀 抓取trending..."
-	$(ACTIVATE) && uv run python ./github_trending_scraper.py
+	# $(ACTIVATE) && uv run python ./github_trending_scraper.py
+	$(ACTIVATE) && uv run python main.py crawl
 
 gene:
 	@echo "🚀 启动解析..."

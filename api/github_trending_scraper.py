@@ -1,7 +1,7 @@
 import asyncio
-import json
+import re
 from crawlee.crawlers._beautifulsoup import BeautifulSoupCrawler
-from crawlee.proxy_configuration import ProxyConfiguration
+# from crawlee.proxy_configuration import ProxyConfiguration
 
 
 async def scrape_github_trending():
@@ -87,7 +87,30 @@ async def scrape_github_trending():
     return repos
 
 
-if __name__ == "__main__":
+def extract_github_info(github_url):
+    """
+    从GitHub URL中提取用户名和项目名
+
+    Args:
+        github_url (str): GitHub仓库URL
+
+    Returns:
+        tuple: (username, project_name) 或 (None, None) 如果匹配失败
+    """
+    # GitHub仓库URL的正则表达式模式
+    pattern = r"https?://github\.com/([^/]+)/([^/?#]+)(?:[/?#].*)?"
+
+    match = re.search(pattern, github_url.strip())
+
+    if match:
+        username = match.group(1)
+        project_name = match.group(2)
+        return username, project_name
+    else:
+        return None, None
+
+
+def main():
     trending_repos = asyncio.run(scrape_github_trending())
     with open("./urls.txt", "r") as f:
         old_urls = [u.strip() for u in f.readlines()]
@@ -96,9 +119,9 @@ if __name__ == "__main__":
         if url not in old_urls:
             with open("./urls.txt", "a") as f:
                 f.write(f"{url}\n")
-    # print(json.dumps(trending_repos, indent=4, ensure_ascii=False))
 
-    # Optionally save to file
-    # with open("trending_repos.json", "w", encoding="utf-8") as f:
-    #     json.dump(trending_repos, f, indent=4, ensure_ascii=False)
-    print("Data saved to trending_repos.json")
+    print("Data saved to urls.txt")
+
+
+if __name__ == "__main__":
+    main()

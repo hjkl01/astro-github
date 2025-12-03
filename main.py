@@ -1,9 +1,60 @@
 import os
-import re
 import sys
+import re
 import asyncio
 from pathlib import Path
-from api_ai import auto_category, api_opencode
+
+from api.config import logger
+from api.prompt import markdown_prompt
+from api.api_ai import auto_category, api_ollama_generate
+from api.github_trending_scraper import main as github_trending_scraper
+
+
+def find_readme(dirname):
+    files = os.listdir(dirname)
+    files = [f for f in files if "readme.md" in f.lower()]
+    logger.info(files)
+    if len(files) == 1:
+        return files[0]
+    else:
+        logger.warning(files)
+        return
+
+
+def generate_markdown(dirname, category_dirs="00"):
+    dirname = dirname.strip("/")
+    readme = find_readme(dirname)
+    with open(f"{dirname}/{readme}") as file:
+        content = file.read()
+    prompt = markdown_prompt.replace("readme_content", content)
+    result = api_ollama_generate(prompt)
+
+    with open("logs/text.log", "w") as file:
+        file.write(result["text"])
+    text = re.sub(r"<think>.*</think>", "", result.get("text"), flags=re.DOTALL)
+
+    if not os.path.exists(f"src/content/docs/{category_dirs}"):
+        os.makedirs(f"src/content/docs/{category_dirs}")
+    return text
+
+
+def clean_small_md_files(dirname="src/content/docs", min_size=500):
+    for root, dirs, files in os.walk(dirname):
+        for file in files:
+            if file.endswith(".md"):
+                filepath = os.path.join(root, file)
+                size = os.path.getsize(filepath)
+                if size < min_size:
+                    os.remove(filepath)
+                    logger.info(f"Deleted small file: {filepath}")
+
+
+def git_clone(url):
+    temp = extract_github_info(url)
+    clone_path = f".cache/{temp[-1]}_{temp[0]}"
+    if not os.path.exists(clone_path):
+        clone_command = f"git clone --depth=1 {url} {clone_path}"
+        os.system(clone_command)
 
 
 def extract_github_info(github_url):
@@ -29,83 +80,12 @@ def extract_github_info(github_url):
         return None, None
 
 
-async def task(url: str, dirname: str = "00"):
-    if "github.com" not in url:
-        return
-
-    username, repository = extract_github_info(url)
-    if not username or not repository:
-        print(f"无法解析 GitHub URL: {url}")
-        return
-
-    print("start: ", username, repository)
-
-    try:
-        await api_opencode(url=url)
-    except Exception as err:
-        print(err)
-    return
-
-    # filename = None
-
-
-#     try:
-#         content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。我要以markdown格式保存为文件, 路径为src/content/docs/{dirname}/{repository}_{username}.md，包含项目地址，不需要其他的废话."
-#         content = f"GitHub项目地址: {url}. 用中文描述该项目的主要特性、功能及其用法。包含项目地址.不需要其他的废话."
-#         response = await api_g4f(content)
-#         # response = await api_opencode(content)
-#         print(response)
-#
-#         # if "choices" not in response or not response["choices"]:
-#         #     print(f"API 响应格式错误: {url}")
-#         #     return
-#
-#         md = response.lstrip("```markdown").rstrip("```")
-#         if len(md) < 50:
-#             print(f"API 响应内容太短：{url}")
-#             return
-#         title = f"""
-# ---
-# title: {repository}
-# ---
-#
-# """
-#         md = title + md
-#
-#         if dirname:
-#             astro_path = f"./src/content/docs/{dirname}"
-#             os.makedirs(astro_path, exist_ok=True)
-#             filename = f"{astro_path}/{repository}_{username}.md"
-#
-#         if filename:
-#             with open(filename, "w", encoding="utf-8") as f:
-#                 f.write(md)
-#             print(f"文件创建成功：{filename}")
-#
-#     except Exception as e:
-#         print(f"处理项目时出错 {url}: {str(e)}")
-#         if filename:
-#             print(f"问题文件：{filename}")
-
-
 def list_files(dirname="src/content/docs"):
     files = []
     for root, dirs, filenames in os.walk(dirname):
         for filename in filenames:
             files.append(os.path.join(root, filename))
     return files
-
-
-def clean_small_md_files(dirname="src/content/docs", min_size=500):
-    for root, dirs, files in os.walk(dirname):
-        for file in files:
-            if file.endswith(".md"):
-                filepath = os.path.join(root, file)
-                size = os.path.getsize(filepath)
-                if size < min_size:
-                    # os.remove(filepath)
-                    print(f"Deleted small file: {filepath}")
-                    os.remove(filepath)
 
 
 async def category_md_files(dirname="src/content/docs/00"):
@@ -121,63 +101,82 @@ async def category_md_files(dirname="src/content/docs/00"):
             with open(os.path.join(dirname, md_file), "r", encoding="utf-8") as f:
                 content = f.read()
                 category = await auto_category(content, category_dirs)
-                print(md_file, category)
+                logger.info(md_file, category)
                 if category in category_dirs:
                     new_dir = os.path.join(dirname, category)
                     os.makedirs(new_dir, exist_ok=True)
-                    os.rename(os.path.join(dirname, md_file), "src/content/docs/" + category + "/" + md_file)
+                    os.rename(
+                        os.path.join(dirname, md_file),
+                        "src/content/docs/" + category + "/" + md_file,
+                    )
+    os.removedirs(dirname)
 
 
 async def main(args=None):
+    clean_small_md_files()
     if args == "cate":
         await category_md_files()
         return
 
-    clean_small_md_files()
-    try:
-        with open("urls.txt", "r", encoding="utf-8") as f:
-            urls = f.readlines()
+    with open("urls.txt", "r", encoding="utf-8") as f:
+        urls = f.readlines()
 
-        md_files = list_files()
-        md_files = [f.split("/")[-1] for f in md_files]
+    md_files = list_files()
+    md_files = [f.split("/")[-1] for f in md_files]
 
-        for project_line in urls:
-            project_line = project_line.strip()
-            if not project_line:
-                continue
+    for project_line in urls:
+        project_line = project_line.strip()
+        if not project_line:
+            continue
 
-            temp = project_line.split("\n")
-            url = temp[0]
+        temp = project_line.split(" ")
+        url = temp[0]
 
-            username, repository = extract_github_info(url)
-            if not username or not repository:
-                print(f"无法解析 GitHub URL: {url}")
-                continue
+        username, repository = extract_github_info(url)
+        if not username or not repository:
+            logger.info(f"无法解析 GitHub URL: {url}")
+            continue
 
-            filename = f"{repository}_{username}.md"
-            if filename in md_files:
-                print(f"文件已存在：{filename}")
-                continue
+        filename = f"{repository}_{username}.md"
+        if filename in md_files:
+            logger.debug(f"文件已存在：{filename}")
+            continue
 
-            try:
-                if len(temp) == 1:
-                    await task(url)
-                elif len(temp) == 2:
-                    await task(url, temp[1])
-                else:
-                    print(f"无法解析：{temp}")
-            except Exception as e:
-                print(f"处理项目 {url} 时出错：{str(e)}")
+        git_clone(url)
 
-    except FileNotFoundError:
-        print("错误：找不到 urls.txt 文件")
-    except Exception as e:
-        print(f"主程序出错：{str(e)}")
+        try:
+            dirname = f".cache/{repository}_{username}"
+            ai_resp = generate_markdown(dirname)
+            if len(temp) == 1:
+                category_dir = "00"
+            elif len(temp) == 2:
+                category_dir = temp[1]
+            else:
+                logger.info(f"无法解析：{temp}")
+
+            title = """
+---
+title: repository
+---
+
+# [username repository](https://github.com/username/repository)
+
+"""
+
+            text = title.replace("username", username).replace("repository", repository) + ai_resp
+
+            with open(f"src/content/docs/{category_dir}/{filename}", "w") as file:
+                file.write(text)
+
+        except Exception as e:
+            logger.error(f"处理项目 {url} 时出错：{str(e)}")
 
 
 if __name__ == "__main__":
     argv = sys.argv
     if len(argv) > 1 and argv[1] == "cate":
         asyncio.run(main("cate"))
+    elif len(argv) > 1 and argv[1] == "crawl":
+        github_trending_scraper()
     else:
         asyncio.run(main())
