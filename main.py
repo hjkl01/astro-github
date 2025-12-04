@@ -6,29 +6,8 @@ from pathlib import Path
 
 from api.config import logger
 from api.prompt import markdown_prompt
-from api.api_ai import auto_category, api_ollama_generate
+from api.api_ai import auto_category, api_ollama_generate, api_github_readme
 from api.github_trending_scraper import main as github_trending_scraper
-
-
-def find_readme(dirname):
-    files = os.listdir(dirname)
-    files = [f for f in files if "readme.md" in f.lower() or "readme.rst" in f.lower()]
-    logger.info(files)
-    if len(files) == 1:
-        return files[0]
-    else:
-        logger.warning(files)
-        return
-
-
-def generate_markdown(dirname):
-    dirname = dirname.strip("/")
-    readme = find_readme(dirname)
-    with open(f"{dirname}/{readme}") as file:
-        content = file.read()
-    prompt = markdown_prompt.replace("readme_content", content)
-    result = api_ollama_generate(prompt)
-    return result
 
 
 def clean_small_md_files(dirname="src/content/docs", min_size=500):
@@ -42,15 +21,6 @@ def clean_small_md_files(dirname="src/content/docs", min_size=500):
                     logger.info(f"Deleted small file: {filepath}")
 
 
-def git_clone(url):
-    temp = extract_github_info(url)
-    clone_path = f".cache/{temp[-1]}_{temp[0]}"
-    if not os.path.exists(clone_path):
-        clone_command = f"git clone --depth=1 {url} {clone_path}"
-        logger.debug(clone_command)
-        os.system(clone_command)
-
-
 def extract_github_info(github_url):
     """
     从GitHub URL中提取用户名和项目名
@@ -62,7 +32,7 @@ def extract_github_info(github_url):
         tuple: (username, project_name) 或 (None, None) 如果匹配失败
     """
 
-    logger.debug(github_url)
+    # logger.debug(github_url)
     # GitHub仓库URL的正则表达式模式
     pattern = r"https?://github\.com/([^/]+)/([^/?#]+)(?:[/?#].*)?"
 
@@ -71,7 +41,7 @@ def extract_github_info(github_url):
     if match:
         username = match.group(1)
         project_name = match.group(2)
-        logger.debug(f"{username} {project_name}")
+        # logger.debug(f"{username} {project_name}")
         return username, project_name
     else:
         return None, None
@@ -141,36 +111,13 @@ async def main(args=None):
             logger.debug(f"文件已存在：{filename}")
             continue
 
-        git_clone(url)
-
-        #         dirname = f".cache/{repository}_{username}"
-        #         ai_resp = generate_markdown(dirname)
-        #         if len(temp) == 1:
-        #             category_dir = "00"
-        #         elif len(temp) == 2:
-        #             category_dir = temp[1]
-        #         else:
-        #             logger.info(f"无法解析：{temp}")
-        #
-        #         title = """
-        # ---
-        # title: repository
-        # ---
-        #
-        # ### [username repository](https://github.com/username/repository)
-        #
-        # """
-        #
-        #         text = title.replace("username", username).replace("repository", repository) + ai_resp
-        #
-        #         if not os.path.exists(f"src/content/docs/{category_dir}"):
-        #             os.makedirs(f"src/content/docs/{category_dir}")
-        #
-        #         with open(f"src/content/docs/{category_dir}/{filename}", "w") as file:
-        #             file.write(text)
+        logger.info(project_line)
         try:
-            dirname = f".cache/{repository}_{username}"
-            ai_resp = generate_markdown(dirname)
+            readme_content = api_github_readme(username, repository)
+            if readme_content is None:
+                continue
+            prompt = markdown_prompt.replace("readme_content", readme_content)
+            ai_resp = api_ollama_generate(prompt)
             if len(temp) == 1:
                 category_dir = "00"
             elif len(temp) == 2:
@@ -179,13 +126,13 @@ async def main(args=None):
                 logger.info(f"无法解析：{temp}")
 
             title = """
----
-title: repository
----
+         ---
+         title: repository
+         ---
 
-### [username repository](https://github.com/username/repository)
+         ### [username repository](https://github.com/username/repository)
 
-"""
+         """
 
             text = title.replace("username", username).replace("repository", repository) + ai_resp
 

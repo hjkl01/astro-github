@@ -1,10 +1,30 @@
-import requests
 import json
 import re
 import time
+import base64
+
+import requests
 
 from .config import logger, OLLAMA_URL, OLLAMA_MODEL
 from .prompt import category_prompt
+
+
+def api_github_readme(owner, repo):
+    url = f"https://api.github.com/repos/{owner}/{repo}/readme"
+    headers = {"Accept": "application/vnd.github.v3+json"}
+
+    resp = requests.get(url, headers=headers)
+    if resp.status_code != 200:
+        print("❌ 无法获取 README:", resp.text)
+        return None
+
+    data = resp.json()
+
+    # content 是 base64 编码
+    content = base64.b64decode(data["content"]).decode("utf-8")
+
+    return content
+    # return {"name": data["name"], "path": data["path"], "download_url": data["download_url"], "content": content}
 
 
 def api_ollama_generate(
@@ -37,17 +57,21 @@ def api_ollama_generate(
       流式: {"text": 累积的输出文本, "raw": 最后一条 JSON 对象}
     """
     url = f"{host.rstrip('/')}/api/generate"
-    payload = {"model": model, "prompt": prompt, "stream": bool(stream), **extra_options}
+    payload = {
+        "model": model,
+        "prompt": prompt,
+        "stream": bool(stream),
+        **extra_options,
+    }
     logger.debug(url)
     logger.debug(payload["prompt"][:300])
 
     resp = requests.post(
         url,
         json=payload,
-        stream=bool(stream),
         timeout=timeout,
     )
-    if not resp.ok:
+    if resp.status_code != 200:
         raise RuntimeError(f"Ollama generate 请求失败: HTTP {resp.status_code} - {resp.text}")
 
     if not stream:
